@@ -1,0 +1,15 @@
+---
+language: python
+python: "2.7"
+
+os:
+  - linux
+
+install:
+  # Install Ansible.
+  - pip install ansible
+
+script:
+  - "ansible-test sanity --test pylint"
+  - "ansible-test sanity --test pep8"
+  - "ansible-test sanity --test validate-modules"
