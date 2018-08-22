@@ -68,13 +68,12 @@ def main():
             password=dict(required=True, no_log=False),
             service_name=dict(required=True),
             mcs_url=dict(required=True),
+            mcs_port=dict(default='8443',required=False),
             state=dict(required=True),
-            # host=dict(required=False),
             validate_certs=dict(default='False', type='bool'),
         )
     )
 
-    mapr_default_services = ['apiserver','cldb','fileserver','nfs']
     mapr_default_service_state = ['start','stop','restart']
 
     def get_current_hostname():
@@ -82,47 +81,32 @@ def main():
         rc, out, err = module.run_command(cmd)
         if rc != 0:
             module.fail_json(msg="Command failed rc=%d, out=%s, err=%s" % (rc, out, err))
-        return to_native(out).strip()
+        return out.strip()
 
     if (module.params['username'] or module.params['password']
             or module.params['service_name'] or module.params['mcs_url']
             or module.params['state'] ):
-        module.fail_json(msg="all values should to be defined")
+        module.fail_json(msg="all values should to be defined except mcs_port/validate_certs")
     elif module.params['state'] not in mapr_default_service_state:
         module.fail_json(msg="state should be start/stop/restart only")
     else:
         host = get_current_hostname()
-        if module.params['service_name'] in mapr_default_services:
-            url_parameters = ""
-        else:
-            url_parameters = "?action=" + module.params['state'] + "&nodes=" + host + "&name=" + module.params['service_name']
+        url_parameters = "?action=" + module.params['state'] + "&nodes=" + str(host) + "&name=" + module.params['service_name']
 
-#https://mapr.local:8443/rest/node/services?action=start&nodes=mapr.local&name=grafana
-
-
-    if module.params['app_name']:
-        data = 'filter[name]=' + str(module.params['app_name'])
-        newrelic_api = 'https://api.newrelic.com/v2/applications.json'
+#https://mapr.local:8443/rest/node/services?action=start&nodes=mapr.local&name=nfs
+        complete_url = "https://" + module.params['mcs_url'] + module.params['mcs_port'] + url_parameters
         headers = "'Content-Type': 'application/json'"
         (resp, info) = fetch_url(module,
-                                 newrelic_api,
+                                 complete_url,
                                  headers=headers,
-                                 data=data,
                                  method='GET')
+        body = resp.read()
         if info['status'] != 200:
-            module.fail_json(msg="unable to get application list from\
-            newrelic: %s" % info['msg'])
+            module.fail_json(msg="unable to reach mcs url " + module.params['mcs_url'])
+        elif body.status != "OK":
+            module.fail_json(msg="unable to + " + module.params['state'] + ": %s" % body.errors)
         else:
-            body = json.loads(resp.read())
-        if body is None:
-            module.fail_json(msg='No Data for applications')
-        else:
-            app_id = body['applications'][0]['id']
-            if app_id is None:
-                module.fail_json(msg="App not found in\
-                NewRelic Registerd Applications List")
-    else:
-        app_id = module.params['application_id']
+            module.exit_json(changed=True)
 
 if __name__ == '__main__':
     main()
