@@ -74,6 +74,12 @@ def main():
         )
     )
 
+    maprUsername = module.params['username']
+    maprPassword = module.params['password']
+    serviceName = module.params['service_name'].lower()
+    serviceState = module.params['state'].lower()
+    mcsUrl = module.params['mcs_url']
+    mcsPort = module.params['mcs_port']
     mapr_default_service_state = ['start','stop','restart']
 
     def get_current_hostname():
@@ -83,30 +89,33 @@ def main():
             module.fail_json(msg="Command failed rc=%d, out=%s, err=%s" % (rc, out, err))
         return out.strip()
 
-    if (module.params['username'] or module.params['password']
-            or module.params['service_name'] or module.params['mcs_url']
-            or module.params['state'] ):
-        module.fail_json(msg="all values should to be defined except mcs_port/validate_certs")
-    elif module.params['state'] not in mapr_default_service_state:
+    if  not maprUsername or not maprPassword:
+        module.fail_json(msg="Username and Password should be defined")
+    elif not serviceName or not serviceState:
+        module.fail_json(msg="Service Name and Service State should be defined")
+    elif not mcsUrl:
+        module.fail_json(msg="MCS Url Should be Defined")
+    elif serviceState not in mapr_default_service_state:
         module.fail_json(msg="state should be start/stop/restart only")
     else:
         host = get_current_hostname()
-        url_parameters = "?action=" + module.params['state'] + "&nodes=" + str(host) + "&name=" + module.params['service_name']
-
+        url_parameters = "?action=" + serviceState + "&nodes=" + str(host) + "&name=" + serviceName
 #https://mapr.local:8443/rest/node/services?action=start&nodes=mapr.local&name=nfs
-        complete_url = "https://" + module.params['mcs_url'] + module.params['mcs_port'] + url_parameters
-        headers = "'Content-Type': 'application/json'"
+        complete_url = "https://" + mcsUrl + ":" + mcsPort + "/rest/node/services" + url_parameters
+        headers = {'Content-Type': 'application/json'}
+        # TODO: added username password as parameter to fetch module
         (resp, info) = fetch_url(module,
                                  complete_url,
                                  headers=headers,
                                  method='GET')
-        body = resp.read()
-        if info['status'] != 200:
-            module.fail_json(msg="unable to reach mcs url " + module.params['mcs_url'])
-        elif body.status != "OK":
-            module.fail_json(msg="unable to + " + module.params['state'] + ": %s" % body.errors)
+        if info['status'] >= 400:
+            module.fail_json(msg="Unauthorized Access to MapR Services ")
         else:
-            module.exit_json(changed=True)
+            print('Hola Continue here')
+        # elif body.status != "OK":
+        #     module.fail_json(msg="unable to + " + module.params['state'] + ": %s" % body.errors)
+        # else:
+        #     module.exit_json(changed=True)
 
 if __name__ == '__main__':
     main()
