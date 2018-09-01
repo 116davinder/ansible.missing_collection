@@ -114,8 +114,8 @@ def main():
         cmd = module.get_bin_path('hostname', True)
         rc, out, err = module.run_command(cmd)
         if rc != 0:
-            module.fail_json(msg="Command failed rc=%d, out=%s, err=%s" \
-                            % (rc, out, err))
+            module.fail_json(
+                msg="Command failed rc=%d, out=%s, err=%s" % (rc, out, err))
         return out.strip()
 
     if not maprUsername or not maprPassword:
@@ -129,9 +129,9 @@ def main():
     else:
         host = get_current_hostname()
         url_parameters = "?action=" + serviceState + "&nodes=" + \
-                        str(host) + "&name=" + serviceName
+            str(host) + "&name=" + serviceName
         complete_url = "https://" + mcsUrl + ":" + mcsPort + \
-                        "/rest/node/services" + url_parameters
+            "/rest/node/services" + url_parameters
         headers = {'Content-Type': 'application/json'}
         (resp, info) = fetch_url(module,
                                  complete_url,
@@ -146,8 +146,8 @@ def main():
             else:
                 module.exit_json(changed=True)
         else:
-            module.fail_json(msg="Unknown Response from MapR API: %s" \
-                            % resp.read())
+            module.fail_json(
+                msg="Unknown Response from MapR API: %s" % resp.read())
 
 if __name__ == '__main__':
     main()
