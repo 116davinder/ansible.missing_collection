@@ -128,7 +128,6 @@ def main():
     else:
         host = get_current_hostname()
         url_parameters = "?action=" + serviceState + "&nodes=" + str(host) + "&name=" + serviceName
-#https://mapr.local:8443/rest/node/services?action=start&nodes=mapr.local&name=nfs
         complete_url = "https://" + mcsUrl + ":" + mcsPort + "/rest/node/services" + url_parameters
         headers = {'Content-Type': 'application/json'}
         (resp, info) = fetch_url(module,
