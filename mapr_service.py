@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # Copyright 2018 Davinder Pal <dpsangwal@gmail.com>
@@ -11,8 +11,7 @@ __metaclass__ = type
 ANSIBLE_METADATA = {'metadata_version': '1.1', 'status': ['preview'],
                     'supported_by': 'individual'}
 
-DOCUMENTATION = \
-    '''
+DOCUMENTATION ='''
 ---
 module: mapr_service
 version_added: "0.1"
@@ -22,16 +21,39 @@ description:
    - Manage MapR Services
         (https://mapr.com/docs/52/ReferenceGuide/REST-API-Syntax.html)
 options:
-  app_name:
+  username:
     description:
-      - (one of app_name or application_id are required)
-        The value of app_name in the newrelic.yml file used by the application
-    required: false
-  application_id:
+      - username for MapR MCS
+    required: true
+    type: string
+  password:
     description:
-      - (one of app_name or application_id are required)
-        (see https://rpm.newrelic.com/api/explore/applications/list)
+      - password for MapR MCS
+    required: true
+    type: string
+  service_name:
+    description:
+      - name of service on which you want to do action
+      - example nfs,fileserver,cldb etc.
+    required: true
+    type: string
+  mcs_url:
+    description:
+      - Mapr MCS Web Address like demo.mapr.com
+      - Note: It should not include port number for MCS
+    required: true
+    type: string
+  mcs_port:
+    description:
+      - Mapr MCS Port
     required: false
+    default: 8443
+    type: string
+  state:
+    description:
+      - state of application like start/stop/restart
+    required: true
+    type: string
   validate_certs:
     description:
       - If C(no), SSL certificates will not be validated.
@@ -42,13 +64,15 @@ options:
     version_added: 2.6.x
 '''
 
-EXAMPLES = \
-    '''
-- newrelic_deployment:
-    token: XXXXXXXXX
-    app_name: ansible_app
-    user: ansible_deployment_user
-    revision: '1.X'
+EXAMPLES ='''
+- mapr_service:
+    username: mapr
+    password: mapr
+    service_name: nfs
+    mcs_url: demo.mapr.com
+    mcs_port: 8443
+    state: restart
+    validate_certs: false
 '''
 
 from ansible.module_utils.basic import AnsibleModule
@@ -64,13 +88,13 @@ def main():
 
     module = AnsibleModule(
         argument_spec=dict(
-            username=dict(required=True),
-            password=dict(required=True, no_log=False),
-            service_name=dict(required=True),
-            mcs_url=dict(required=True),
-            mcs_port=dict(default='8443',required=False),
-            state=dict(required=True),
-            validate_certs=dict(default='False', type='bool'),
+            username=dict(type='str',required=True),
+            password=dict(type='str',required=True, no_log=True),
+            service_name=dict(type='str',required=True),
+            mcs_url=dict(type='str',required=True),
+            mcs_port=dict(type='str',default='8443',required=False),
+            state=dict(type='str',required=True),
+            validate_certs=dict(type='bool',default='False'),
         )
     )
 
@@ -81,6 +105,10 @@ def main():
     mcsUrl = module.params['mcs_url']
     mcsPort = module.params['mcs_port']
     mapr_default_service_state = ['start','stop','restart']
+
+    # Hack to add basic auth username and password the way fetch_url expects
+    module.params['url_username'] = maprUsername
+    module.params['url_password'] = maprPassword
 
     def get_current_hostname():
         cmd = module.get_bin_path('hostname', True)
@@ -103,19 +131,20 @@ def main():
 #https://mapr.local:8443/rest/node/services?action=start&nodes=mapr.local&name=nfs
         complete_url = "https://" + mcsUrl + ":" + mcsPort + "/rest/node/services" + url_parameters
         headers = {'Content-Type': 'application/json'}
-        # TODO: added username password as parameter to fetch module
         (resp, info) = fetch_url(module,
                                  complete_url,
                                  headers=headers,
                                  method='GET')
         if info['status'] >= 400:
-            module.fail_json(msg="Unauthorized Access to MapR Services ")
+            module.fail_json(msg="Unauthorized Access to MapR Services")
+        elif info['status'] == 200:
+            body = json.loads(resp.read())
+            if body['status'] == 'ERROR':
+                module.fail_json(msg=body['errors'][0]['desc'])
+            else:
+                module.exit_json(changed=True)
         else:
-            print('Hola Continue here')
-        # elif body.status != "OK":
-        #     module.fail_json(msg="unable to + " + module.params['state'] + ": %s" % body.errors)
-        # else:
-        #     module.exit_json(changed=True)
+            module.fail_json(msg="Unknown Response from MapR API: %s" % resp.read())
 
 if __name__ == '__main__':
     main()
