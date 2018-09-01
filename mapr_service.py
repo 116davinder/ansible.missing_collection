@@ -11,7 +11,7 @@ __metaclass__ = type
 ANSIBLE_METADATA = {'metadata_version': '1.1', 'status': ['preview'],
                     'supported_by': 'individual'}
 
-DOCUMENTATION ='''
+DOCUMENTATION = '''
 ---
 module: mapr_service
 version_added: "0.1"
@@ -64,7 +64,7 @@ options:
     version_added: 2.6.x
 '''
 
-EXAMPLES ='''
+EXAMPLES = '''
 - mapr_service:
     username: mapr
     password: mapr
@@ -88,13 +88,13 @@ def main():
 
     module = AnsibleModule(
         argument_spec=dict(
-            username=dict(type='str',required=True),
-            password=dict(type='str',required=True, no_log=True),
-            service_name=dict(type='str',required=True),
-            mcs_url=dict(type='str',required=True),
-            mcs_port=dict(type='str',default='8443',required=False),
-            state=dict(type='str',required=True),
-            validate_certs=dict(type='bool',default='False'),
+            username=dict(type='str', required=True),
+            password=dict(type='str', required=True, no_log=True),
+            service_name=dict(type='str', required=True),
+            mcs_url=dict(type='str', required=True),
+            mcs_port=dict(type='str', default='8443', required=False),
+            state=dict(type='str', required=True),
+            validate_certs=dict(type='bool', default='False'),
         )
     )
 
@@ -104,7 +104,7 @@ def main():
     serviceState = module.params['state'].lower()
     mcsUrl = module.params['mcs_url']
     mcsPort = module.params['mcs_port']
-    mapr_default_service_state = ['start','stop','restart']
+    mapr_default_service_state = ['start', 'stop', 'restart']
 
     # Hack to add basic auth username and password the way fetch_url expects
     module.params['url_username'] = maprUsername
@@ -114,21 +114,24 @@ def main():
         cmd = module.get_bin_path('hostname', True)
         rc, out, err = module.run_command(cmd)
         if rc != 0:
-            module.fail_json(msg="Command failed rc=%d, out=%s, err=%s" % (rc, out, err))
+            module.fail_json(msg="Command failed rc=%d, out=%s, err=%s" \
+                            % (rc, out, err))
         return out.strip()
 
-    if  not maprUsername or not maprPassword:
+    if not maprUsername or not maprPassword:
         module.fail_json(msg="Username and Password should be defined")
     elif not serviceName or not serviceState:
-        module.fail_json(msg="Service Name and Service State should be defined")
+        module.fail_json(msg="Service Name & Service State should be defined")
     elif not mcsUrl:
         module.fail_json(msg="MCS Url Should be Defined")
     elif serviceState not in mapr_default_service_state:
         module.fail_json(msg="state should be start/stop/restart only")
     else:
         host = get_current_hostname()
-        url_parameters = "?action=" + serviceState + "&nodes=" + str(host) + "&name=" + serviceName
-        complete_url = "https://" + mcsUrl + ":" + mcsPort + "/rest/node/services" + url_parameters
+        url_parameters = "?action=" + serviceState + "&nodes=" + \
+                        str(host) + "&name=" + serviceName
+        complete_url = "https://" + mcsUrl + ":" + mcsPort + \
+                        "/rest/node/services" + url_parameters
         headers = {'Content-Type': 'application/json'}
         (resp, info) = fetch_url(module,
                                  complete_url,
@@ -143,7 +146,8 @@ def main():
             else:
                 module.exit_json(changed=True)
         else:
-            module.fail_json(msg="Unknown Response from MapR API: %s" % resp.read())
+            module.fail_json(msg="Unknown Response from MapR API: %s" \
+                            % resp.read())
 
 if __name__ == '__main__':
     main()
