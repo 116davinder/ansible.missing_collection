@@ -6,6 +6,8 @@ export ANSIBLE_LIBRARY=`pwd`
 
 ## why required
 * newrelic_deployment
+* mapr_service.py
+
 ```
 To Support V2 Api of NewRelic for Recording of deployment.
 ```
