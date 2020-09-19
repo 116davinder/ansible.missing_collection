@@ -15,7 +15,7 @@ DOCUMENTATION = \
     '''
 ---
 module: newrelic_deployment
-version_added: "0.1"
+version_added: "1.2.0"
 author: "Davinder Pal (@116davinder)"
 short_description: Notify newrelic about app deployments using newrelic v2 api
 description:
@@ -26,40 +26,39 @@ options:
     description:
       - API token, to place in the x-api-key header.
     required: true
+    type: str
   app_name:
     description:
-      - (one of app_name or application_id are required)
+      - (one of app_name or application_id is required)
         The value of app_name in the newrelic.yml file used by the application
     required: false
+    type: str
   application_id:
     description:
-      - (one of app_name or application_id are required)
+      - (one of app_name or application_id is required)
         (see https://rpm.newrelic.com/api/explore/applications/list)
     required: false
+    type: str
   changelog:
     description:
       - A list of changes for this deployment
     required: false
+    type: str
   description:
     description:
       - Text annotation for the deployment - notes for you
     required: false
+    type: str
   revision:
     description:
       - A revision number (e.g., git commit SHA)
-    required: false
+    required: true
+    type: str
   user:
     description:
       - The name of the user/process that triggered this deployment
     required: false
-  validate_certs:
-    description:
-      - If C(no), SSL certificates will not be validated.
-        This should only be used for personal self-signed certificates.
-    required: false
-    default: 'yes'
-    type: bool
-    version_added: 2.5.3
+    type: str
 '''
 
 EXAMPLES = \
@@ -91,7 +90,6 @@ def main():
             description=dict(required=False),
             revision=dict(required=True),
             user=dict(required=False),
-            validate_certs=dict(default='True', type='bool'),
         ),
         required_one_of=[['app_name', 'application_id']]
     )
@@ -126,7 +124,6 @@ def main():
         app_id = module.params['application_id']
 
     # Send the data to NewRelic
-
     url = 'https://api.newrelic.com/v2/applications/' + str(app_id) \
         + '/deployments.json'
     data = {
