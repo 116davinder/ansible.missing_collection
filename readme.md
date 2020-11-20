@@ -1,6 +1,7 @@
 ## Ansible Custom Libs
 * newrelic_deployment
 * mapr_service
+* aws_ssm_parameter_store
 
 ## export ansible library path
 export ANSIBLE_LIBRARY=`pwd`
