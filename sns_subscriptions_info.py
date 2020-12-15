@@ -17,14 +17,14 @@ version_added: 1.4.0
 options:
   topic_arn:
     description:
-      - topic arn related Subscriptions only?
+      - topic_arn subscriptions will be returned?
     required: false
     type: str
     aliases: [ "arn" ]
 author:
-  - "Davinder Pal <dpsangwal@gmail.com>"
+  - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 extends_documentation_fragment:
-  - amazon.aws.sns
+  - amazon.aws.ec2
   - amazon.aws.aws
 requirements:
   - boto3
@@ -33,10 +33,10 @@ requirements:
 
 EXAMPLES = """
 - name: Get list of SNS Subscriptions.
-  sns_subscriptions_info:
+  community.aws.sns_subscriptions_info:
 
 - name: Get list of SNS Subscriptions for given topic.
-  sns_subscriptions_info:
+  community.aws.sns_subscriptions_info:
     arn: 'arn:aws:sns:us-east-1:xxx:test'
 """
 
@@ -46,11 +46,11 @@ subscriptions:
   returned: when success
   type: list
   sample: [{
-    "Endpoint": "arn:aws:sqs:us-east-1:xxxxx:test-endpoint",
-    "Owner": "xxxxx",
-    "Protocol": "sqs",
-    "SubscriptionArn": "arn:aws:sns:us-east-1:xxxxx:test-sub-arn:xxxxxxxxxxxx-524760c63010",
-    "TopicArn": "arn:aws:sns:us-east-1:xxxxx:test-topic-arn"
+    "endpoint": "arn:aws:sqs:us-east-1:xxxxx:test-endpoint",
+    "owner": "xxxxx",
+    "protocol": "sqs",
+    "subscription_arn": "arn:aws:sns:us-east-1:xxxxx:test-sub-arn:xxxxxxxxxxxx-524760c63010",
+    "topic_arn": "arn:aws:sns:us-east-1:xxxxx:test-topic-arn"
   }]
 """
 
@@ -60,14 +60,12 @@ except ImportError:
     pass    # Handled by AnsibleAWSModule
 
 from ansible_collections.amazon.aws.plugins.module_utils.core import AnsibleAWSModule
+from ansible_collections.amazon.aws.plugins.module_utils.ec2 import camel_dict_to_snake_dict
 
-# uncomment below for ansible 2.8 or lower
-# from ansible.module_utils.aws.core import AnsibleAWSModules
 
 def main():
-
     argument_spec = dict(
-    topic_arn=dict(required=False, aliases=['arn']),
+        topic_arn=dict(required=False, aliases=['arn']),
     )
 
     module = AnsibleAWSModule(argument_spec=argument_spec)
@@ -76,19 +74,21 @@ def main():
     __default_return = []
 
     try:
-      if module.params['topic_arn'] is not None:
-        paginator = sns.get_paginator('list_subscriptions_by_topic')
-        iterator = paginator.paginate(TopicArn=module.params['arn'])
-      else:
-        paginator = sns.get_paginator('list_subscriptions')
-        iterator = paginator.paginate()
+        if module.params['topic_arn'] is not None:
+            paginator = sns.get_paginator('list_subscriptions_by_topic')
+            iterator = paginator.paginate(TopicArn=module.params['arn'])
+        else:
+            paginator = sns.get_paginator('list_subscriptions')
+            iterator = paginator.paginate()
 
-      for response in iterator:
-        __default_return += response['Subscriptions']
+        for response in iterator:
+            for sub in response['Subscriptions']:
+                __default_return.append(camel_dict_to_snake_dict(sub))
     except (BotoCoreError, ClientError) as e:
         module.fail_json_aws(e, msg='Failed to fetch sns subscriptions')
 
     module.exit_json(subscriptions=__default_return)
+
 
 if __name__ == '__main__':
     main()
