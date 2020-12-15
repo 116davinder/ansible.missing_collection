@@ -10,7 +10,7 @@
 export ANSIBLE_LIBRARY=`pwd`
 
 ### examples
-```
+```yaml
 - newrelic_deployment:
     token: XXXXXXXXX
     app_name: ansibleApp
