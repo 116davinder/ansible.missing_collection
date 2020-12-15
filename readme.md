@@ -40,5 +40,14 @@ To manage mapr services using rest api.
     description: "This is your first key"
     value: "World"
     tier: "Advanced"
+
+- name: Get list of SNS platform applications but enabled only.
+  sns_platform_info:
+    enabled: 'true'
+
+- name: Get list of Endpoints SNS platform Endpoints but enabled only.
+  sns_platform_endpoint_info:
+    arn: arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app
+    enabled: 'true'
 ```
 
