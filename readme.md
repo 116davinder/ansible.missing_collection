@@ -38,7 +38,7 @@ To manage mapr services using rest api.
     validate_certs: false
 
 - name: Create or update key/value pair in aws parameter store with tier
-  community.aws.aws_ssm_parameter_store:
+  aws_ssm_parameter_store:
     name: "Hello"
     description: "This is your first key"
     value: "World"
