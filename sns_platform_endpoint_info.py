@@ -28,9 +28,9 @@ options:
     type: str
     choices: ['true', 'false']
 author:
-  - "Davinder Pal <dpsangwal@gmail.com>"
+  - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 extends_documentation_fragment:
-  - amazon.aws.sns
+  - amazon.aws.ec2
   - amazon.aws.aws
 requirements:
   - boto3
@@ -39,11 +39,11 @@ requirements:
 
 EXAMPLES = """
 - name: Get list of Endpoints SNS platform Endpoints.
-  sns_platform_endpoint_info:
+  community.aws.sns_platform_endpoint_info:
     arn: arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app
 
 - name: Get list of Endpoints SNS platform Endpoints but enabled only.
-  sns_platform_endpoint_info:
+  community.aws.sns_platform_endpoint_info:
     arn: arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app
     enabled: 'true'
 """
@@ -54,8 +54,8 @@ endpoints:
   returned: when success
   type: list
   sample: [{
-    "Attributes": {"Enabled": "true", "Token": "coaO_xxx6z-DK-"},
-    "EndpointArn": "arn:aws:sns:us-east-1:xxxxx:endpoint/GCM/xxxxx-platform-app/xxxxx-971fa6329ac4"
+    "attributes": {"enabled": "true", "token": "coaO_xxxxxxxxxxx"},
+    "endpoint_arn": "arn:aws:sns:us-east-1:xxxxx:endpoint/GCM/xxxxx-platform-app/xxxxx-971fa6329ac4"
   }]
 """
 
@@ -65,15 +65,13 @@ except ImportError:
     pass    # Handled by AnsibleAWSModule
 
 from ansible_collections.amazon.aws.plugins.module_utils.core import AnsibleAWSModule
+from ansible_collections.amazon.aws.plugins.module_utils.ec2 import camel_dict_to_snake_dict
 
-# uncomment below for ansible 2.8 or lower
-# from ansible.module_utils.aws.core import AnsibleAWSModule
 
 def main():
-
     argument_spec = dict(
-      endpoint_arn=dict(required=True, aliases=['arn']),
-      enabled=dict(required=False,choices=['true', 'false']),
+        endpoint_arn=dict(required=True, aliases=['arn']),
+        enabled=dict(required=False, choices=['true', 'false']),
     )
 
     module = AnsibleAWSModule(argument_spec=argument_spec)
@@ -82,22 +80,24 @@ def main():
     __default_return = []
 
     try:
-      paginator = sns.get_paginator('list_endpoints_by_platform_application')
-      iterator = paginator.paginate(PlatformApplicationArn=module.params['arn'])
-      for response in iterator:
-        __default_return += response['Endpoints']
+        paginator = sns.get_paginator('list_endpoints_by_platform_application')
+        iterator = paginator.paginate(PlatformApplicationArn=module.params['arn'])
+        for response in iterator:
+            for endpoint in response['Endpoints']:
+                __default_return.append(camel_dict_to_snake_dict(endpoint))
     except (BotoCoreError, ClientError) as e:
         module.fail_json_aws(e, msg='Failed to fetch sns platform endpoints')
 
     if module.params['enabled'] is not None:
-      __override_default_return = []
-      for endpoint in __default_return:
-        if endpoint['Attributes']['Enabled'] == module.params['enabled']:
-          __override_default_return.append(endpoint)
+        __override_default_return = []
+        for endpoint in __default_return:
+            if endpoint['attributes']['enabled'] == module.params['enabled']:
+                __override_default_return.append(endpoint)
 
-      module.exit_json(endpoints=__override_default_return)      
+        module.exit_json(endpoints=__override_default_return)
 
     module.exit_json(endpoints=__default_return)
+
 
 if __name__ == '__main__':
     main()
