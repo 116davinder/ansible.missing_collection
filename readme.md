@@ -4,6 +4,7 @@
 * aws_ssm_parameter_store
 * sns_platform_info
 * sns_platform_endpoint_info
+* sns_subscriptions_info.py
 
 ## export ansible library path
 export ANSIBLE_LIBRARY=`pwd`
@@ -51,5 +52,9 @@ To manage mapr services using rest api.
   sns_platform_endpoint_info:
     arn: arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app
     enabled: 'true'
+
+- name: Get list of SNS Subscriptions for given topic.
+  sns_subscriptions_info:
+    arn: 'arn:aws:sns:us-east-1:xxx:test'
 ```
 
