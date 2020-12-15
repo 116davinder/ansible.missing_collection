@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright: (c) 2014, Davinder Pal <dpsangwal@gmail.com>
+# Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
@@ -12,7 +12,7 @@ DOCUMENTATION = """
 module: sns_platform_endpoint_info
 short_description: Get Infomation about AWS SNS Platforms.
 description:
-  - Get Information about AWS SNS Platforms.
+  - Get Information about AWS SNS Platform Endpoint.
 version_added: 1.4.0
 options:
   endpoint_arn:
@@ -30,8 +30,8 @@ options:
 author:
   - "Davinder Pal <dpsangwal@gmail.com>"
 extends_documentation_fragment:
-  - sns
-  - aws
+  - amazon.aws.sns
+  - amazon.aws.aws
 requirements:
   - boto3
   - botocore
@@ -53,7 +53,10 @@ endpoints:
   description: List of SNS Platform Endpoints.
   returned: when success
   type: list
-  sample: [{"Attributes": {"Enabled": "true", "Token": "coaO_xxx6z-DK-"}, "EndpointArn": "arn:aws:sns:us-east-1:xxxxx:endpoint/GCM/xxxxx-platform-app/xxxxx-971fa6329ac4"}]
+  sample: [{
+    "Attributes": {"Enabled": "true", "Token": "coaO_xxx6z-DK-"},
+    "EndpointArn": "arn:aws:sns:us-east-1:xxxxx:endpoint/GCM/xxxxx-platform-app/xxxxx-971fa6329ac4"
+  }]
 """
 
 try:

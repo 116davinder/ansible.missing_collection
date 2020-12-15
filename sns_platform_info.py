@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Copyright: (c) 2014, Davinder Pal <dpsangwal@gmail.com>
+# Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
@@ -24,8 +24,8 @@ options:
 author:
   - "Davinder Pal <dpsangwal@gmail.com>"
 extends_documentation_fragment:
-  - sns
-  - aws
+  - amazon.aws.sns
+  - amazon.aws.aws
 requirements:
   - boto3
   - botocore
@@ -45,7 +45,14 @@ platforms:
   description: List of SNS Platform Applications.
   returned: when success
   type: list
-  sample: [{"Attributes": {"Enabled": "true"}, "PlatformApplicationArn": "arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app"}]
+  sample: [{
+    {"Attributes": {
+      "AppleCertificateExpirationDate": "2021-10-10T16:56:51Z",
+      "Enabled": "true",
+      "SuccessFeedbackSampleRate": "100"
+    },
+    "PlatformApplicationArn": "arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app"
+  }]
 """
 
 try:
