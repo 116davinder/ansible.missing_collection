@@ -20,6 +20,7 @@ options:
       - topic arn related Subscriptions only?
     required: false
     type: str
+    aliases: [ "arn" ]
 author:
   - "Davinder Pal <dpsangwal@gmail.com>"
 extends_documentation_fragment:
