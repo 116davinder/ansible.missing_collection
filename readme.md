@@ -9,17 +9,6 @@
 ## export ansible library path
 export ANSIBLE_LIBRARY=`pwd`
 
-## why required
-
-```
-To Support V2 Api of NewRelic for Recording of deployment.
-```
-
-* mapr_service
-```
-To manage mapr services using rest api.
-```
-
 ### examples
 ```
 - newrelic_deployment:
