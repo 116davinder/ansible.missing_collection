@@ -4,7 +4,7 @@
 * aws_ssm_parameter_store
 * sns_platform_info
 * sns_platform_endpoint_info
-* sns_subscriptions_info.py
+* sns_subscriptions_info
 
 ## export ansible library path
 export ANSIBLE_LIBRARY=`pwd`
