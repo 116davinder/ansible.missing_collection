@@ -1,4 +1,4 @@
-## Ansible Custom Library
+## Ansible Custom Library [![Build Status](https://travis-ci.com/116davinder/ansible-custom-libs.svg?branch=master)](https://travis-ci.com/116davinder/ansible-custom-libs)
 * newrelic_deployment
 * mapr_service
 * aws_ssm_parameter_store_v2
