@@ -53,7 +53,7 @@ queue_urls:
     returned: when queue_name_prefix or dead_letter_source_queue or no module argument is defined and success
     sample: ["https://queue.amazonaws.com/xxxx/test-sqs"]
 attributes:
-    description: all or selected attributes of given sqs queue 
+    description: all or selected attributes of given sqs queue
     type: dict
     returned: when queue_attribute_name and queue_url is defined and success
     sample: {
