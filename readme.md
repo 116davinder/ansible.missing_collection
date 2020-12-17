@@ -1,10 +1,11 @@
-## Ansible Custom Libs
+## Ansible Custom Library
 * newrelic_deployment
 * mapr_service
 * aws_ssm_parameter_store_v2
 * sns_platform_info
 * sns_platform_endpoint_info
 * sns_subscriptions_info
+* sqs_queue_info
 
 ## export ansible library path
 export ANSIBLE_LIBRARY=`pwd`
