@@ -149,5 +149,6 @@ def main():
             module.fail_json(
                 msg="Unknown Response from MapR API: %s" % resp.read())
 
+
 if __name__ == '__main__':
     main()
