@@ -6,11 +6,15 @@
 * sns_platform_endpoint_info
 * sns_subscriptions_info
 * sqs_queue_info
+* aws_eks_cluster_info
 
-## export ansible library path
-export ANSIBLE_LIBRARY=`pwd`
+## how to use these ansible custom library
+```bash
+git clone https://github.com/116davinder/ansible-custom-libs.git /tmp
+export ANSIBLE_LIBRARY=/tmp/ansible-custom-libs
+```
 
-### examples
+### Examples
 ```yaml
 - newrelic_deployment:
     token: XXXXXXXXX
@@ -28,7 +32,7 @@ export ANSIBLE_LIBRARY=`pwd`
     validate_certs: false
 
 - name: Create or update key/value pair in aws parameter store with tier
-  aws_ssm_parameter_store:
+  aws_ssm_parameter_store_v2:
     name: "Hello"
     description: "This is your first key"
     value: "World"
@@ -68,5 +72,29 @@ export ANSIBLE_LIBRARY=`pwd`
   sqs_queue_info:
     queue_url: '{{ __tools.queue_urls[1] }}'
     dead_letter_source_queue: true
+
+- name: "get list of eks clusters"
+  aws_eks_cluster_info:
+  register: __all
+
+- name: "get fargate profiles for given cluster"
+  aws_eks_cluster_info:
+    name: "{{ __all.clusters[1] }}"
+    list_fargate_profiles: true
+
+- name: "get nodegroups for given cluster"
+  aws_eks_cluster_info:
+    name: "{{ __all.clusters[1] }}"
+    list_nodegroups: true
+
+- name: "get list of addons for given cluster"
+  aws_eks_cluster_info:
+    name: "{{ __all.clusters[1] }}"
+    list_addons: true
+
+- name: "get details about given cluster"
+  aws_eks_cluster_info:
+    name: "{{ __all.clusters[1] }}"
+    describe_cluster: true
 ```
 
