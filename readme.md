@@ -1,12 +1,17 @@
 ## Ansible Custom Library [![Build Status](https://travis-ci.com/116davinder/ansible-custom-libs.svg?branch=master)](https://travis-ci.com/116davinder/ansible-custom-libs)
-* newrelic_deployment
+* newrelic_deployment ( v2 api support )
 * mapr_service
-* aws_ssm_parameter_store_v2
+* aws_ssm_parameter_store_v2 ( tier parameter support )
 * sns_platform_info
 * sns_platform_endpoint_info
 * sns_subscriptions_info
 * sqs_queue_info
 * aws_eks_cluster_info
+## why this repository exists ?
+Ansible community reviews have too much ego
+so I decided to host modules on my repository instead of ansible.
+
+**Example:** https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
 
 ## how to use these ansible custom library
 ```bash
