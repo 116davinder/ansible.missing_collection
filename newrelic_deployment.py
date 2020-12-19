@@ -8,19 +8,15 @@
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1', 'status': ['preview'],
-                    'supported_by': 'community'}
-
-DOCUMENTATION = \
-    '''
+DOCUMENTATION = '''
 ---
 module: newrelic_deployment
-version_added: "1.2.0"
-author: "Davinder Pal (@116davinder)"
-short_description: Notify newrelic about app deployments using newrelic v2 api
+author:
+    - "Davinder Pal (@116davinder)"
+short_description: Notify newrelic about app deployments
 description:
    - Notify newrelic about app deployments
-        (https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/record-deployments)
+        (U(https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/record-deployments)).
 options:
   token:
     description:
@@ -29,29 +25,30 @@ options:
     type: str
   app_name:
     description:
-      - (one of app_name or application_id is required)
-        The value of app_name in the newrelic.yml file used by the application
+      - The value of C(app_name) in the C(newrelic.yml) file used by the application.
+      - Exactly one of I(app_name) or I(application_id) is required.
     required: false
     type: str
   application_id:
     description:
-      - (one of app_name or application_id is required)
-        (see https://rpm.newrelic.com/api/explore/applications/list)
+      - The I(application_id), found in the URL when viewing the application in RPM.
+      - See U(https://rpm.newrelic.com/api/explore/applications/list).
+      - Exactly one of I(app_name) or I(application_id) is required.
     required: false
     type: str
   changelog:
     description:
-      - A list of changes for this deployment
+      - A list of changes for this deployment.
     required: false
     type: str
   description:
     description:
-      - Text annotation for the deployment - notes for you
+      - Text annotation for the deployment - notes for you.
     required: false
     type: str
   revision:
     description:
-      - A revision number (e.g., git commit SHA)
+      - A revision number (for example, git commit SHA).
     required: true
     type: str
   user:
@@ -61,9 +58,9 @@ options:
     type: str
 '''
 
-EXAMPLES = \
-    '''
-- newrelic_deployment:
+EXAMPLES = '''
+- name:  Notify newrelic about an app deployment
+  newrelic_deployment:
     token: XXXXXXXXX
     app_name: ansible_app
     user: ansible_deployment_user
@@ -91,12 +88,9 @@ def main():
             revision=dict(required=True),
             user=dict(required=False),
         ),
-        required_one_of=[['app_name', 'application_id']]
+        required_one_of=[['app_name', 'application_id']],
+        mutually_exclusive=[['app_name', 'application_id']],
     )
-
-    if module.params['app_name'] and module.params['application_id']:
-        module.fail_json(msg="both app_name' and 'application_id'\
-        are defined")
 
     if module.params['app_name']:
         data = 'filter[name]=' + str(module.params['app_name'])
@@ -109,8 +103,7 @@ def main():
                                  data=data,
                                  method='GET')
         if info['status'] != 200:
-            module.fail_json(msg="unable to get application list from\
-            newrelic: %s" % info['msg'])
+            module.fail_json(msg="unable to get application list from newrelic: %s" % info['msg'])
         else:
             body = json.loads(resp.read())
         if body is None:
@@ -118,14 +111,12 @@ def main():
         else:
             app_id = body['applications'][0]['id']
             if app_id is None:
-                module.fail_json(msg="App not found in\
-                NewRelic Registerd Applications List")
+                module.fail_json(msg="App not found in NewRelic Registerd Applications List")
     else:
         app_id = module.params['application_id']
 
     # Send the data to NewRelic
-    url = 'https://api.newrelic.com/v2/applications/' + str(app_id) \
-        + '/deployments.json'
+    url = 'https://api.newrelic.com/v2/applications/' + str(app_id) + '/deployments.json'
     data = {
         'deployment': {
             'revision': str(module.params['revision']),
@@ -142,8 +133,7 @@ def main():
     if info['status'] == 201:
         module.exit_json(changed=True)
     else:
-        module.fail_json(msg='unable to update newrelic: %s'
-                         % info['msg'])
+        module.fail_json(msg='unable to update newrelic: %s' % info['msg'])
 
 
 if __name__ == '__main__':
