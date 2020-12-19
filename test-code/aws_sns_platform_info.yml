@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of all platforms"
+      sns_platform_info:
+
+    - name: 'get list of all platforms which are enabled'
+      aws_sns_platform_info:
+        enabled: 'true'
+      register: __

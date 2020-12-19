@@ -1,0 +1,16 @@
+---
+
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: 'get list of all platforms which are enabled'
+      aws_sns_platform_info:
+        enabled: 'true'
+      register: __
+
+    - name: 'get all enabled endpoints for given platform arn'
+      aws_sns_platform_endpoint_info:
+        arn: '{{ __.platforms[0].platform_application_arn }}'
+        enabled: 'true'
+      when: __.platforms | length > 0

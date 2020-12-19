@@ -1,0 +1,38 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of athena catalogs"
+      aws_athena_info:
+      register: __c
+
+    - debug:
+        msg: "{{ __c.catalogs }}"
+
+    - name: "get list of athena database for given catalog"
+      aws_athena_info:
+        name: "{{ __c.catalogs[0].catalog_name }}"
+        list_databases: True
+      register: __db
+
+    - debug:
+        var: __db.databases
+
+    - name: "get list of tables for given database"
+      aws_athena_info:
+        name: "{{ __c.catalogs[0].catalog_name }}"
+        database_name: "{{ __db.databases[0].name }}"
+        list_database_tables: true
+      register: __tb
+
+    - debug:
+        var: __tb.tables
+
+    - name: "get list of athena work groups"
+      aws_athena_info:
+        list_work_groups: true
+      register: __wg
+
+    - debug:
+        var: __wg.work_groups

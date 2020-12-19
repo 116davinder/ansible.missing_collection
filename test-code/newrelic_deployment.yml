@@ -1,0 +1,11 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "create dummy newrelic_deployment"
+      newrelic_deployment:
+        token: XXXXXXXXX
+        app_name: ansibleApp
+        user: ansible deployment user
+        revision: '1.X'

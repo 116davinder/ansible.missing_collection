@@ -1,0 +1,15 @@
+- hosts: localhost
+  gather_facts: false
+  vars:
+    ssm_path_prefix: /DAVINDER/
+    ssm_vars:
+      t: "test"
+  tasks:
+    - name: 'Create or update secure key/value pair with Intelligent-Tiering'
+      aws_ssm_parameter_store_v2:
+        name: '{{ ssm_path_prefix }}{{ item.key }}'
+        value: '{{ item.value }}'
+        tier: 'Intelligent-Tiering'
+        string_type: 'SecureString'
+        state: absent
+      loop: '{{ ssm_vars | dict2items }}'

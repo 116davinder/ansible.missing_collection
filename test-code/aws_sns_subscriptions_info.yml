@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+
+    - name: "get all sns subscriptions"
+      sns_subscriptions_info:
+
+    - name: 'get all subscriptions for given topic arn'
+      sns_subscriptions_info:
+        arn: 'arn:aws:sns:us-east-1:xxx:test-sns'
