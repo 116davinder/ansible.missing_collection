@@ -24,3 +24,8 @@ export ANSIBLE_LIBRARY=/tmp/ansible-custom-libs
 - [aws_eks_cluster_info](test-code/aws_eks_cluster_info.yml)
 - [aws_athena_info](test-code/aws_athena_info.yml)
 
+### License
+None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me ( Davinder Pal ).
+These Modules can be used /distributed in any project except Official Ansible but only with my copyright statement `Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>`.
+
+Any unknown cases, please better contact me ( Davinder Pal <dpsangwal@gmail.com> ).
