@@ -18,7 +18,7 @@
     - name: "get VisibilityTimeout & MaximumMessageSize attributes of given sqs queue"
       aws_sqs_queue_info:
         queue_url: '{{ __tools.queue_urls[0] }}'
-        queue_attribute_name: ['VisibilityTimeout','MaximumMessageSize']
+        queue_attribute_name: ['VisibilityTimeout', 'MaximumMessageSize']
 
     - name: "get sqs queues which have given dead letter queue"
       aws_sqs_queue_info:

@@ -31,7 +31,7 @@ options:
   list_database_tables:
     description:
       - do you want to fetch all tables and there metadata for given athena database.
-      - I(database_name) is required for it. 
+      - I(database_name) is required for it.
       - Mutually Exclusive I(list_databases) , I(list_database_tables) and I(list_work_groups).
     required: false
     type: bool

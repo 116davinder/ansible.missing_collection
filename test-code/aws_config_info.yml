@@ -1,0 +1,11 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of aws config applications"
+      aws_config_info:
+      register: __app
+
+    - debug:
+        msg: "{{ __app.applications }}"

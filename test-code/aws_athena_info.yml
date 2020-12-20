@@ -13,7 +13,7 @@
     - name: "get list of athena database for given catalog"
       aws_athena_info:
         name: "{{ __c.catalogs[0].catalog_name }}"
-        list_databases: True
+        list_databases: true
       register: __db
 
     - debug:

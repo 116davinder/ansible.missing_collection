@@ -23,6 +23,7 @@ export ANSIBLE_LIBRARY=/tmp/ansible-custom-libs
 - [aws_sqs_queue_info](test-code/aws_sqs_queue_info.yml)
 - [aws_eks_cluster_info](test-code/aws_eks_cluster_info.yml)
 - [aws_athena_info](test-code/aws_athena_info.yml)
+- [aws_config_info (WIP)](test-code/aws_config_info.yml)
 
 ### License
 None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me ( Davinder Pal ).
