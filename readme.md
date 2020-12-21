@@ -1,7 +1,7 @@
 ## Ansible Custom Library [![Build Status](https://travis-ci.com/116davinder/ansible-custom-libs.svg?branch=master)](https://travis-ci.com/116davinder/ansible-custom-libs)
 
 ## why this repository exists ?
-Ansible community reviewers have too much ego
+Ansible community reviewers takes too much times and have too hard restrictions
 so I decided to host modules on my repository instead of ansible.
 
 **Example:** https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
