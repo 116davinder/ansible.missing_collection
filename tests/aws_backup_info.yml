@@ -1,0 +1,53 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of aws backup plans without deleted plans"
+      aws_backup_info:
+      register: __b
+
+    - debug:
+        msg: "{{ __b.backup_plans }}"
+
+    - name: "get list of aws backup plans with deleted plans"
+      aws_backup_info:
+        list_backup_plans_include_deleted: true
+      register: __b_deleted
+
+    - debug:
+        msg: "{{ __b_deleted.backup_plans}}"
+
+    - name: "get basic details about specific backup plan"
+      aws_backup_info:
+        backup_plan_id: "{{ __b.backup_plans[0].backup_plan_id }}"
+        list_backup_selections: true
+      register: __selected
+
+    - debug:
+        msg: "{{ __selected.backup_plan_selections }}"
+
+    - name: "get list of backup plan versions about specific backup plan"
+      aws_backup_info:
+        backup_plan_id: "{{ __b.backup_plans[0].backup_plan_id }}"
+        list_backup_plan_versions: true
+      register: __backup_plan_versions
+
+    - debug:
+        msg: "{{ __backup_plan_versions.backup_plan_versions }}"
+
+    - name: "get list of backup plan templates"
+      aws_backup_info:
+        list_backup_plan_templates: true
+      register: __backup_plan_templates
+
+    - debug:
+        msg: "{{ __backup_plan_templates.backup_plan_templates }}"
+
+    - name: "get list of backup vaults"
+      aws_backup_info:
+        list_backup_vaults: true
+      register: __backup_vaults
+
+    - debug:
+        msg: "{{ __backup_vaults.backup_vaults }}"

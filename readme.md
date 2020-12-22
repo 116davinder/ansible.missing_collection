@@ -1,7 +1,7 @@
 ## Ansible Custom Library [![Build Status](https://travis-ci.com/116davinder/ansible-custom-libs.svg?branch=master)](https://travis-ci.com/116davinder/ansible-custom-libs)
 
 ## why this repository exists ?
-Ansible community reviewers takes too much time and have too hard restrictions.
+Ansible Community reviewers takes too much time and have too hard restrictions.
 So I decided to host modules on my repository instead of ansible.
 
 **Example:** https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
@@ -35,6 +35,7 @@ community.missing_collection 0.0.0
 - [community.missing_collection.aws_eks_cluster_info](tests/aws_eks_cluster_info.yml)
 - [community.missing_collection.aws_athena_info](tests/aws_athena_info.yml)
 - [community.missing_collection.aws_config_info (WIP)](tests/aws_config_info.yml)
+- [community.missing_collection.aws_backup_info (WIP)](tests/aws_backup_info.yml)
 
 ### License
 None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me ( Davinder Pal ).
