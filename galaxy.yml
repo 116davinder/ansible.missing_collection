@@ -1,0 +1,18 @@
+namespace: ansible
+name: missing_collection
+version: 0.0.0
+readme: readme.md
+authors:
+  - Ansible (https://github.com/116davinder)
+description: It will contains all the modules which are missing in official ansible collections.
+license_file: COPYING
+tags: [community, aws, cloud, amazon]
+dependencies: null
+repository: https://github.com/116davinder/ansible.missing_collection
+documentation: https://github.com/116davinder/ansible.missing_collection/tree/main/docs
+homepage: https://github.com/116davinder/ansible.missing_collection
+issues: https://github.com/116davinder/ansible.missing_collection/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc
+build_ignore:
+  - '*cloud-config-aws.ini'
+  - '*cloud-config-aws.yml'
+  - 'changelogs/.plugin-cache.yaml'
