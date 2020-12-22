@@ -1,4 +1,4 @@
-namespace: ansible
+namespace: community
 name: missing_collection
 version: 0.0.0
 readme: readme.md

@@ -1,32 +1,45 @@
 ## Ansible Custom Library [![Build Status](https://travis-ci.com/116davinder/ansible-custom-libs.svg?branch=master)](https://travis-ci.com/116davinder/ansible-custom-libs)
 
 ## why this repository exists ?
-Ansible community reviewers takes too much times and have too hard restrictions
-so I decided to host modules on my repository instead of ansible.
+Ansible community reviewers takes too much time and have too hard restrictions.
+So I decided to host modules on my repository instead of ansible.
 
 **Example:** https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
 
-## how to use these ansible custom library
+## how to use these ansible missing_collection library
 ```bash
-git clone https://github.com/116davinder/ansible.missing_collection.git /tmp
-export ANSIBLE_LIBRARY=/tmp/ansible-custom-libs
+$ ansible-galaxy collection install git+https://github.com/116davinder/ansible.missing_collection.git
+Starting galaxy collection install process
+Process install dependency map
+Starting collection install process
+Installing 'community.missing_collection:0.0.0' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
+Created collection for community.missing_collection at /home/dpal/.ansible/collections/ansible_collections/community/missing_collection
+community.missing_collection (0.0.0) was installed successfully
+
+$ ansible-galaxy collection list
+Collection                   Version
+---------------------------- -------
+community.missing_collection 0.0.0  
+
 ```
 
 ### List of Modules & Example Code
 
-- [newrelic_deployment](test-code/newrelic_deployment.yml)
-- [mapr_service](test-code/mapr_service.yml)
-- [aws_ssm_parameter_store_v2](test-code/aws_ssm_parameter_store_v2.yml)
-- [aws_sns_platform_info](test-code/aws_sns_platform_info.yml)
-- [aws_sns_platform_endpoint_info](test-code/aws_sns_platform_endpoint_info.yml)
-- [aws_sns_subscriptions_info](test-code/aws_sns_subscriptions_info.yml)
-- [aws_sqs_queue_info](test-code/aws_sqs_queue_info.yml)
-- [aws_eks_cluster_info](test-code/aws_eks_cluster_info.yml)
-- [aws_athena_info](test-code/aws_athena_info.yml)
-- [aws_config_info (WIP)](test-code/aws_config_info.yml)
+- [community.missing_collection.newrelic_deployment](tests/newrelic_deployment.yml)
+- [community.missing_collection.mapr_service](tests/mapr_service.yml)
+- [community.missing_collection.aws_ssm_parameter_store_v2](tests/aws_ssm_parameter_store_v2.yml)
+- [community.missing_collection.aws_sns_platform_info](tests/aws_sns_platform_info.yml)
+- [community.missing_collection.aws_sns_platform_endpoint_info](tests/aws_sns_platform_endpoint_info.yml)
+- [community.missing_collection.aws_sns_subscriptions_info](tests/aws_sns_subscriptions_info.yml)
+- [community.missing_collection.aws_sqs_queue_info](tests/aws_sqs_queue_info.yml)
+- [community.missing_collection.aws_eks_cluster_info](tests/aws_eks_cluster_info.yml)
+- [community.missing_collection.aws_athena_info](tests/aws_athena_info.yml)
+- [community.missing_collection.aws_config_info (WIP)](tests/aws_config_info.yml)
 
 ### License
 None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me ( Davinder Pal ).
-These Modules can be used /distributed in any project except Official Ansible but only with my copyright statement `Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>`.
+These Modules can be used /distributed in any project except Official Ansible but only with my copyright statement 
+
+`Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>`.
 
 Any unknown cases, please better contact me ( Davinder Pal <dpsangwal@gmail.com> ).

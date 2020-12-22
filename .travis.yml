@@ -12,5 +12,5 @@ before_install:
     - pip install pycodestyle yamllint
 
 script:
-    - pycodestyle --ignore=E402,E501 .
-    - yamllint test-code/
+    - pycodestyle --ignore=E402,E501 plugins/modules/
+    - yamllint tests/
