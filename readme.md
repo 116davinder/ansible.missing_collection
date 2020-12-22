@@ -8,7 +8,7 @@ so I decided to host modules on my repository instead of ansible.
 
 ## how to use these ansible custom library
 ```bash
-git clone https://github.com/116davinder/ansible-custom-libs.git /tmp
+git clone https://github.com/116davinder/ansible.missing_collection.git /tmp
 export ANSIBLE_LIBRARY=/tmp/ansible-custom-libs
 ```
 
