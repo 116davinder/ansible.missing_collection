@@ -1,6 +1,6 @@
 namespace: community
 name: missing_collection
-version: 0.0.0
+version: 0.0.1
 readme: readme.md
 authors:
   - Ansible (https://github.com/116davinder)

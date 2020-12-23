@@ -51,3 +51,31 @@
 
     - debug:
         msg: "{{ __backup_vaults.backup_vaults }}"
+
+    - name: "get list of backup jobs for given backup vault name"
+      aws_backup_info:
+        list_backup_jobs: true
+        list_backup_jobs_by_backup_vault_name: 'rds-valut'
+      register: __b_vault_jobs
+
+    - debug:
+        msg: "{{ __b_vault_jobs.backup_jobs }}"
+
+    - name: "list of backup jobs for given vault name and state"
+      aws_backup_info:
+        list_backup_jobs: true
+        list_backup_jobs_by_backup_vault_name: 'rds-valut'
+        list_backup_jobs_by_state: 'COMPLETED'
+      register: __b_state_jobs
+
+    - debug:
+        msg: "{{ __b_state_jobs.backup_jobs }}"
+
+    - name: "list of backup copy jobs"
+      aws_backup_info:
+        list_copy_jobs: true
+        list_copy_jobs_by_state: 'COMPLETED'
+      register: __b_copy_jobs
+
+    - debug:
+        msg: "{{ __b_copy_jobs.copy_jobs }}"

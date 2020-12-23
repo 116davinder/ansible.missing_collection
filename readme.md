@@ -34,8 +34,8 @@ community.missing_collection 0.0.0
 - [community.missing_collection.aws_sqs_queue_info](tests/aws_sqs_queue_info.yml)
 - [community.missing_collection.aws_eks_cluster_info](tests/aws_eks_cluster_info.yml)
 - [community.missing_collection.aws_athena_info](tests/aws_athena_info.yml)
-- [community.missing_collection.aws_config_info (WIP)](tests/aws_config_info.yml)
-- [community.missing_collection.aws_backup_info (WIP)](tests/aws_backup_info.yml)
+- [community.missing_collection.aws_config_info](tests/aws_config_info.yml)
+- [community.missing_collection.aws_backup_info](tests/aws_backup_info.yml)
 
 ### License
 None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me ( Davinder Pal ).
