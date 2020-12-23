@@ -1,13 +1,14 @@
-## Ansible Missing Collection [![Build Status](https://travis-ci.com/116davinder/ansible-custom-libs.svg?branch=master)](https://travis-ci.com/116davinder/ansible-custom-libs)
+## Ansible Missing Collection
 It will host all new modules which doesn't exists in Official Ansible Collections and takes years to publish something new. Anyone who wan't to contribute, please feel free to create PR / Bug Report / Feature Request.
 
-## why this repository exists ?
+## Why this repository exists ?
 Ansible Community reviewers takes too much time and have too hard restrictions.
 So I decided to host modules on my repository instead of ansible.
 
-**Example:** https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
+**Examples:**
+* https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
 
-## how to use these ansible missing_collection library
+## How to Install Ansible Missing Collection
 ```bash
 $ ansible-galaxy collection install git+https://github.com/116davinder/ansible.missing_collection.git
 Starting galaxy collection install process
@@ -39,8 +40,8 @@ community.missing_collection 0.0.0
 - [community.missing_collection.aws_backup_info](tests/aws_backup_info.yml)
 
 ### License
-None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me ( Davinder Pal ).
-These Modules can be used /distributed in any project except Official Ansible but only with my copyright statement 
+None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me( Davinder Pal ).
+These Modules can be used/distributed in any project except Official Ansible / Ansible-Collections but only with my copyright statement 
 
 `Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>`.
 
