@@ -1,0 +1,61 @@
+name: "CI Testing"
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install test dependencies.
+        run: pip3 install pycodestyle yamllint
+
+      - name: Yaml Lint code.
+        run: yamllint -v tests/
+        
+      - name: Pycodestyle Lint code.
+        run: pycodestyle --ignore=E402,E501 plugins/modules/ --format=pylint --statistics
+
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['python']
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
+
+    - name: Check out the codebase.
+      uses: actions/checkout@v2
+      if: ${{ github.event_name == 'pull_request' }}
+
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
