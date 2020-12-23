@@ -117,7 +117,7 @@ options:
         I(list_backup_plans_include_deleted), I(list_backup_plan_templates), I(list_backup_vaults)
         I(list_backup_jobs) and I(list_copy_jobs)
     required: false
-    type: bool 
+    type: bool
   list_copy_jobs_by_resource_arn:
     description:
       - fetch backup copy jobs by resource arn.
