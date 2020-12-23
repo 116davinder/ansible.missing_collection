@@ -24,7 +24,7 @@ jobs:
         run: pip3 install pycodestyle yamllint
 
       - name: Yaml Lint code.
-        run: yamllint -v tests/
+        run: yamllint tests/
         
       - name: Pycodestyle Lint code.
         run: pycodestyle --ignore=E402,E501 plugins/modules/ --format=pylint --statistics
