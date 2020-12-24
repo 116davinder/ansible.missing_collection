@@ -152,32 +152,57 @@ from ansible_collections.amazon.aws.plugins.module_utils.ec2 import camel_dict_t
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
 
 
+def aws_response_list_parser(paginate: bool, iterator, resource_field: str) -> list:
+    _return = []
+    if paginate:
+        for response in iterator:
+            for _app in response[resource_field]:
+                _return.append(camel_dict_to_snake_dict(_app))
+    else:
+        for _app in iterator[resource_field]:
+            _return.append(camel_dict_to_snake_dict(_app))
+    return _return
+
+
 @AWSRetry.exponential_backoff(retries=5, delay=5)
 def _athena(module):
     try:
         athena = module.client('athena')
 
         if module.params['list_databases']:
-            paginator = athena.get_paginator('list_databases')
-            iterator = paginator.paginate(
-                CatalogName=module.params['name']
-            )
+            if athena.can_paginate('list_databases'):
+                paginator = athena.get_paginator('list_databases')
+                return paginator.paginate(
+                    CatalogName=module.params['name']
+                ), True
+            else:
+                return athena.list_databases(
+                    CatalogName=module.params['name']
+                ), False
         elif module.params['list_database_tables']:
-            paginator = athena.get_paginator('list_table_metadata')
-            iterator = paginator.paginate(
-                CatalogName=module.params['name'],
-                DatabaseName=module.params['database_name']
-            )
+            if athena.can_paginate('list_table_metadata'):
+                paginator = athena.get_paginator('list_table_metadata')
+                return paginator.paginate(
+                    CatalogName=module.params['name'],
+                    DatabaseName=module.params['database_name']
+                ), True
+            else:
+                return athena.list_table_metadata(
+                    CatalogName=module.params['name'],
+                    DatabaseName=module.params['database_name']
+                ), False
         elif module.params['list_work_groups']:
             if athena.can_paginate('list_work_groups'):
                 paginator = athena.get_paginator('list_work_groups')
-                iterator = paginator.paginate()
+                return paginator.paginate(), True
             else:
-                return athena.list_work_groups()
+                return athena.list_work_groups(), False
         else:
-            paginator = athena.get_paginator('list_data_catalogs')
-            iterator = paginator.paginate()
-        return iterator
+            if athena.can_paginate('list_data_catalogs'):
+                paginator = athena.get_paginator('list_data_catalogs')
+                return paginator.paginate(), True
+            else:
+                return athena.list_data_catalogs(), False
     except (BotoCoreError, ClientError) as e:
         module.fail_json_aws(e, msg='Failed to fetch aws athena details')
 
@@ -207,27 +232,16 @@ def main():
 
     __default_return = []
 
-    _it = _athena(module)
+    _it, _paginate = _athena(module)
     if _it is not None:
         if module.params['list_databases']:
-            for response in _it:
-                for database in response['DatabaseList']:
-                    __default_return.append(camel_dict_to_snake_dict(database))
-            module.exit_json(databases=__default_return)
+            module.exit_json(databases=aws_response_list_parser(_paginate, _it, 'DatabaseList'))
         elif module.params['list_database_tables']:
-            for response in _it:
-                for table in response['TableMetadataList']:
-                    __default_return.append(camel_dict_to_snake_dict(table))
-            module.exit_json(tables=__default_return)
+            module.exit_json(tables=aws_response_list_parser(_paginate, _it, 'TableMetadataList'))
         elif module.params['list_work_groups']:
-            for workgroup in _it['WorkGroups']:
-                __default_return.append(camel_dict_to_snake_dict(workgroup))
-            module.exit_json(work_groups=__default_return)
+            module.exit_json(work_groups=aws_response_list_parser(_paginate, _it, 'WorkGroups'))
         else:
-            for response in _it:
-                for catalog in response['DataCatalogsSummary']:
-                    __default_return.append(camel_dict_to_snake_dict(catalog))
-            module.exit_json(catalogs=__default_return)
+            module.exit_json(catalogs=aws_response_list_parser(_paginate, _it, 'DataCatalogsSummary'))
 
 
 if __name__ == '__main__':
