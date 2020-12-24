@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of aws iam analyzers"
+      aws_iam_access_analyzer_info:
+        list_analyzers: true
+        list_analyzers_type: 'ACCOUNT'
+      register: __iam_analyzer
+
+    - name: "get list of archive rules"
+      aws_iam_access_analyzer_info:
+        name: "{{ __iam_analyzer.analyzers[0].name }}"
+        list_archive_rules: true
+
+    - name: "get list of findings"
+      aws_iam_access_analyzer_info:
+        arn: "{{ __iam_analyzer.analyzers[0].arn }}"
+        list_findings: true
+
+    - name: "get list of analyzed resources"
+      aws_iam_access_analyzer_info:
+        arn: "{{ __iam_analyzer.analyzers[0].arn }}"
+        list_analyzed_resources: true
+        list_analyzed_resources_type: 'AWS::S3::Bucket'
