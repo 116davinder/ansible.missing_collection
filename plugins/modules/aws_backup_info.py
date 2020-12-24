@@ -369,6 +369,18 @@ from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
 # from datetime import datetime
 
 
+def aws_response_list_parser(paginate: bool, iterator, resource_field: str) -> list:
+    _return = []
+    if paginate:
+        for response in iterator:
+            for _app in response[resource_field]:
+                _return.append(camel_dict_to_snake_dict(_app))
+    else:
+        for _app in iterator[resource_field]:
+            _return.append(camel_dict_to_snake_dict(_app))
+    return _return
+
+
 @AWSRetry.exponential_backoff(retries=5, delay=5)
 def _backup(module):
     try:
@@ -547,72 +559,23 @@ def main():
 
     __default_return = []
 
-    _it, _can_paginate = _backup(module)
+    _it, _paginate = _backup(module)
     if _it is not None:
         if module.params['backup_plan_id'] is not None:
             if module.params['list_backup_selections']:
-                if _can_paginate:
-                    for response in _it:
-                        for _b_plan in response['BackupSelectionsList']:
-                            __default_return.append(camel_dict_to_snake_dict(_b_plan))
-                else:
-                    for _b_plan in _it['BackupSelectionsList']:
-                        __default_return.append(camel_dict_to_snake_dict(_b_plan))
-                module.exit_json(backup_plan_selections=__default_return)
+                module.exit_json(backup_plan_selections=aws_response_list_parser(_paginate, _it, 'BackupSelectionsList'))
             elif module.params['list_backup_plan_versions']:
-                if _can_paginate:
-                    for response in _it:
-                        for _b_plan in response['BackupPlanVersionsList']:
-                            __default_return.append(camel_dict_to_snake_dict(_b_plan))
-                else:
-                    for _b_plan in _it['BackupPlanVersionsList']:
-                        __default_return.append(camel_dict_to_snake_dict(_b_plan))
-                module.exit_json(backup_plan_versions=__default_return)
+                module.exit_json(backup_plan_versions=aws_response_list_parser(_paginate, _it, 'BackupPlanVersionsList'))
         elif module.params['list_backup_plan_templates']:
-            if _can_paginate:
-                for response in _it:
-                    for _b_plan in response['BackupPlanTemplatesList']:
-                        __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            else:
-                for _b_plan in _it['BackupPlanTemplatesList']:
-                    __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            module.exit_json(backup_plan_templates=__default_return)
+            module.exit_json(backup_plan_templates=aws_response_list_parser(_paginate, _it, 'BackupPlanTemplatesList'))
         elif module.params['list_backup_vaults']:
-            if _can_paginate:
-                for response in _it:
-                    for _b_plan in response['BackupVaultList']:
-                        __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            else:
-                for _b_plan in _it['BackupVaultList']:
-                    __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            module.exit_json(backup_vaults=__default_return)
+            module.exit_json(backup_vaults=aws_response_list_parser(_paginate, _it, 'BackupVaultList'))
         elif module.params['list_backup_jobs']:
-            if _can_paginate:
-                for response in _it:
-                    for _b_plan in response['BackupJobs']:
-                        __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            else:
-                for _b_plan in _it['BackupJobs']:
-                    __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            module.exit_json(backup_jobs=__default_return)
+            module.exit_json(backup_jobs=aws_response_list_parser(_paginate, _it, 'BackupJobs'))
         elif module.params['list_copy_jobs']:
-            if _can_paginate:
-                for response in _it:
-                    for _b_plan in response['CopyJobs']:
-                        __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            else:
-                for _b_plan in _it['CopyJobs']:
-                    __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            module.exit_json(copy_jobs=__default_return)
+            module.exit_json(copy_jobs=aws_response_list_parser(_paginate, _it, 'CopyJobs'))
         else:
-            if _can_paginate:
-                for response in _it:
-                    for _b_plan in response['BackupPlansList']:
-                        __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            else:
-                for _b_plan in _it['BackupPlansList']:
-                    __default_return.append(camel_dict_to_snake_dict(_b_plan))
-            module.exit_json(backup_plans=__default_return)
+            module.exit_json(backup_plans=aws_response_list_parser(_paginate, _it, 'BackupPlansList'))
 
 
 if __name__ == '__main__':
