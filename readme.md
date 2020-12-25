@@ -1,4 +1,10 @@
-## Ansible Missing Collection
+## Ansible Missing Collection 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/116davinder/ansible.missing_collection/CI%20Testing)
+![Lines of code](https://img.shields.io/tokei/lines/github/116davinder/ansible.missing_collection)
+![GitHub repo file count (custom path)](https://img.shields.io/github/directory-file-count/116davinder/ansible.missing_collection/plugins/modules)
+![GitHub contributors](https://img.shields.io/github/contributors/116davinder/ansible.missing_collection)
+![GitHub all releases](https://img.shields.io/github/downloads/116davinder/ansible.missing_collection/total)
+
 It will host all new modules which doesn't exists in Official Ansible Collections and takes years to publish something new. Anyone who wan't to contribute, please feel free to create PR / Bug Report / Feature Request.
 
 ## Why this repository exists ?
