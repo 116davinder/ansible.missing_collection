@@ -9,8 +9,8 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: aws_amp
-short_description: Create / Update AWS Prometheus Service.
+module: aws_amp_info
+short_description: Get details about AWS Prometheus Service.
 description:
   - Get Information about AWS Prometheus Service.
   - U(https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/amp.html)

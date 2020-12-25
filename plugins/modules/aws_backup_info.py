@@ -19,63 +19,41 @@ options:
   backup_plan_id:
     description:
       - Id of Backup Plan.
-      - >
-        Mutually Exclusive with I(list_backup_plans_include_deleted), I(list_backup_plan_templates).
-        I(list_backup_vaults), I(list_backup_jobs) and I(list_copy_jobs)
+      - Mutually Exclusive with I(list_backup_plans_include_deleted), I(list_backup_plan_templates).
+      - I(list_backup_vaults), I(list_backup_jobs) and I(list_copy_jobs)
     required: false
     type: str
   list_backup_plans_include_deleted:
     description:
       - do you want to include deleted backup plans?
-      - >
-        Mutually Exclusive with I(list_backup_plans_include_deleted), I(list_backup_plan_templates).
-        I(list_backup_vaults), I(list_backup_jobs) and I(list_copy_jobs)
     required: false
     type: bool
   list_backup_plan_templates:
     description:
       - do you want to fetch backup plan templates?
-      - >
-        Mutually Exclusive with I(list_backup_plans_include_deleted), I(list_backup_plan_templates).
-        I(list_backup_vaults), I(list_backup_jobs) and I(list_copy_jobs)
     required: false
     type: bool
   list_backup_vaults:
     description:
       - do you want to fetch list of backup vaults?
-      - >
-        Mutually Exclusive with I(list_backup_plans_include_deleted), I(list_backup_plan_templates).
-        I(list_backup_vaults), I(list_backup_jobs) and I(list_copy_jobs)
     required: false
     type: bool
   list_backup_selections:
     description:
       - do you want to fetch backup selections?
       - U(https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupSelections.html)
-      - >
-        Mutually Exclusive with I(list_backup_selections), I(list_backup_plan_versions)
-        I(list_backup_plans_include_deleted), I(list_backup_plan_templates), I(list_backup_vaults)
-        I(list_backup_jobs) and I(list_copy_jobs)
     required: false
     type: bool
   list_backup_plan_versions:
     description:
       - do you want to fetch backup plan versions?
       - U(https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupPlanVersions.html)
-      - >
-        Mutually Exclusive with I(list_backup_selections), I(list_backup_plan_versions)
-        I(list_backup_plans_include_deleted), I(list_backup_plan_templates), I(list_backup_vaults)
-        I(list_backup_jobs) and I(list_copy_jobs)
     required: false
     type: bool
   list_backup_jobs:
     description:
       - do you want to fetch backup jobs?
       - U(https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListBackupJobs.html)
-      - >
-        Mutually Exclusive with I(list_backup_selections), I(list_backup_plan_versions)
-        I(list_backup_plans_include_deleted), I(list_backup_plan_templates), I(list_backup_vaults)
-        I(list_backup_jobs) and I(list_copy_jobs)
     required: false
     type: bool
   list_backup_jobs_by_resource_arn:
@@ -112,10 +90,6 @@ options:
     description:
       - do you want to fetch backup copy jobs?
       - U(https://docs.aws.amazon.com/aws-backup/latest/devguide/API_ListCopyJobs.html)
-      - >
-        Mutually Exclusive with I(list_backup_selections), I(list_backup_plan_versions)
-        I(list_backup_plans_include_deleted), I(list_backup_plan_templates), I(list_backup_vaults)
-        I(list_backup_jobs) and I(list_copy_jobs)
     required: false
     type: bool
   list_copy_jobs_by_resource_arn:
@@ -161,6 +135,7 @@ requirements:
 EXAMPLES = """
 - name: "get list of aws backup plans without deleted plans"
   aws_backup_info:
+  register: __b
 
 - name: "get list of aws backup plans with deleted plans"
   aws_backup_info:
@@ -343,7 +318,7 @@ copy_jobs:
         'resource_arn': 'string',
         'creation_date': datetime(2015, 1, 1),
         'completion_date': datetime(2015, 1, 1),
-        'state': 'CREATED'|'RUNNING'|'COMPLETED'|'FAILED',
+        'state': 'CREATED',
         'status_message': 'string',
         'backup_size_in_bytes': 123,
         'iam_role_arn': 'string',

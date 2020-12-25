@@ -71,7 +71,7 @@ profiles:
         'name': 'string',
         'location_uri': 'string',
         'validator_types': [
-            'JSON_SCHEMA'|'LAMBDA',
+            'JSON_SCHEMA',
         ]
     }
   ]

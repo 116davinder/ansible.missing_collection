@@ -9,7 +9,7 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: sns_platform_endpoint_info
+module: aws_sns_platform_endpoint_info
 short_description: Get Information about AWS SNS Platforms.
 description:
   - Get Information about AWS SNS Platform Endpoint.

@@ -8,11 +8,12 @@ __metaclass__ = type
 
 DOCUMENTATION = '''
 ---
-module: sqs_queue_info
+module: aws_sqs_queue_info
 version_added: 1.4.0
 short_description: Get information about AWS SQS queues.
 description:
   - List AWS SQS queues & there attributes.
+  - U(https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_Operations.html)
 author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 requirements:
@@ -27,12 +28,12 @@ options:
   queue_url:
     description:
       - amazon fqdn queue url.
-      - "example https://queue.amazonaws.com/xxxx/test-sqs"
+      - U(https://queue.amazonaws.com/xxxx/test-sqs)
     type: str
   queue_attribute_name:
     description:
       - list of attributes to fetch only.
-      - https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html
+      - U(https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html)
     type: list
     default: ['All']
   dead_letter_source_queue:
@@ -42,13 +43,13 @@ options:
       - Mutually Exclusive to queue_attribute_name.
     type: bool
 extends_documentation_fragment:
-- amazon.aws.aws
-- amazon.aws.ec2
+    - amazon.aws.aws
+    - amazon.aws.ec2
 '''
 
 RETURN = '''
 queue_urls:
-    description: list of all / queue_name_prefix matched / dead_letter_source_queue sqs urls
+    description: list of all `queue_name_prefix` or `dead_letter_source_queue` sqs urls
     type: list
     returned: when queue_name_prefix or dead_letter_source_queue or no module argument is defined and success
     sample: ["https://queue.amazonaws.com/xxxx/test-sqs"]
@@ -65,13 +66,13 @@ attributes:
         "last_modified_timestamp": "1604326920",
         "maximum_message_size": "262144",
         "message_retention_period": "1209600",
-        "policy": "{xxxxx}",
+        "policy": "{xxxxxxxx}",
         "queue_arn": "arn:aws:sqs:us-east-1:xxxxx:test-sqs",
         "receive_message_wait_time_seconds": "0",
-        "redrive_policy": "{
-            "deadLetterTargetArn":"arn:aws:sqs:us-east-1:xxxxx:test-sqs-dead-queue",
-            "maxReceiveCount":100
-        }",
+        "redrive_policy": {
+            "deadLetterTargetArn": "arn:aws:sqs:us-east-1:xxxxx:test-sqs-dead-queue",
+            "maxReceiveCount": 100
+        },
         "visibility_timeout": "900"
     }
 '''

@@ -154,10 +154,10 @@ deployments:
   type: list
   sample: [
     {
-        'auto_deployed': True|False,
+        'auto_deployed': True,
         'created_date': datetime(2015, 1, 1),
         'deployment_id': 'string',
-        'deployment_status': 'PENDING'|'FAILED'|'DEPLOYED',
+        'deployment_status': 'DEPLOYED',
         'deployment_status_message': 'string',
         'description': 'string'
     }
@@ -223,7 +223,7 @@ vpc_links:
             'string': 'string'
         },
         'vpc_link_id': 'string',
-        'vpc_link_status': 'PENDING'|'AVAILABLE'|'DELETING'|'FAILED'|'INACTIVE',
+        'vpc_link_status': 'AVAILABLE',
         'vpc_link_status_message': 'string',
         'vpc_link_version': 'V2'
     }

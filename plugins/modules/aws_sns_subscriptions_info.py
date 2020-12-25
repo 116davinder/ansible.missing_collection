@@ -9,7 +9,7 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: sns_subscriptions_info
+module: aws_sns_subscriptions_info
 short_description: Get Information about AWS SNS Subscriptions.
 description:
   - Get Information about AWS SNS Subscriptions.

@@ -1,0 +1,90 @@
+## Ansible Missing Collection 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/116davinder/ansible.missing_collection/CI%20Testing)
+![Lines of code](https://img.shields.io/tokei/lines/github/116davinder/ansible.missing_collection)
+![GitHub repo file count (custom path)](https://img.shields.io/github/directory-file-count/116davinder/ansible.missing_collection/plugins/modules)
+![GitHub contributors](https://img.shields.io/github/contributors/116davinder/ansible.missing_collection)
+![GitHub all releases](https://img.shields.io/github/downloads/116davinder/ansible.missing_collection/total)
+
+It will host all new modules which doesn't exists in Official Ansible Collections and takes years to publish something new. Anyone who wan't to contribute, please feel free to create PR / Bug Report / Feature Request.
+
+## Why this repository exists ?
+Ansible Community reviewers takes too much time and have too hard restrictions.
+So I decided to host modules on my repository instead of ansible.
+
+**Examples:**
+* https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
+
+## How to Install Ansible Missing Collection
+<!--start requires_ansible-->
+<!--end requires_ansible-->
+
+```bash
+$ ansible-galaxy collection install git+https://github.com/116davinder/ansible.missing_collection.git
+Starting galaxy collection install process
+Process install dependency map
+Starting collection install process
+Installing 'community.missing_collection:0.0.0' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
+Created collection for community.missing_collection at /home/dpal/.ansible/collections/ansible_collections/community/missing_collection
+community.missing_collection (0.0.0) was installed successfully
+
+$ ansible-galaxy collection list
+Collection                   Version
+---------------------------- -------
+community.missing_collection 0.0.0  
+
+```
+
+<!--start collection content-->
+### Modules
+Name | Description
+--- | ---
+[community.missing_collection.aws_amp](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_amp_module.rst)|Create / Update AWS Prometheus Service.
+[community.missing_collection.aws_amp_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_amp_info_module.rst)|Get details about AWS Prometheus Service.
+[community.missing_collection.aws_api_gateway_v2_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_api_gateway_v2_info_module.rst)|Get details about AWS API Gateway V2 Service.
+[community.missing_collection.aws_athena_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_athena_info_module.rst)|Get Information about AWS Athena.
+[community.missing_collection.aws_backup_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_backup_info_module.rst)|Get Information about AWS Backup.
+[community.missing_collection.aws_config_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_config_info_module.rst)|Get Information about AWS Config.
+[community.missing_collection.aws_eks_cluster_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_eks_cluster_info_module.rst)|Get Information about AWS EKS Clusters.
+[community.missing_collection.aws_iam_access_analyzer_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_iam_access_analyzer_info_module.rst)|Get Information about AWS IAM Access Analyzer.
+[community.missing_collection.aws_sns_platform_endpoint_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_sns_platform_endpoint_info_module.rst)|Get Information about AWS SNS Platforms.
+[community.missing_collection.aws_sns_platform_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_sns_platform_info_module.rst)|Get Information about AWS SNS Platforms.
+[community.missing_collection.aws_sns_subscriptions_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_sns_subscriptions_info_module.rst)|Get Information about AWS SNS Subscriptions.
+[community.missing_collection.aws_sqs_queue_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_sqs_queue_info_module.rst)|Get information about AWS SQS queues.
+[community.missing_collection.aws_ssm_parameter_store](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_ssm_parameter_store_module.rst)|Manage key-value pairs in aws parameter store.
+[community.missing_collection.mapr_service](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.mapr_service_module.rst)|Manage MapR Services by rest api.
+[community.missing_collection.newrelic_deployment](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.newrelic_deployment_module.rst)|Notify newrelic about app deployments via v2 api.
+
+<!--end collection content-->
+
+### Install ansible automatic doc creation tool ?
+```bash
+$ pip3 install git+https://github.com/ansible-network/collection_prep.git
+```
+
+### Generate docs from ansible tool ?
+```bash
+$ collection_prep_add_docs -p ./ansible.missing_collection
+INFO      Setting collection name to community.missing_collection
+INFO      Setting GitHub repository url to https://github.com/116davinder/ansible.missing_collection
+INFO      Purging content from directory /home/dpal/python-projects/ansible.missing_collection/docs
+INFO      Making docs directory /home/dpal/python-projects/ansible.missing_collection/docs
+INFO      Process content in /home/dpal/python-projects/ansible.missing_collection/plugins/modules
+INFO      Processing /home/dpal/python-projects/ansible.missing_collection/plugins/modules/aws_amp_info.py
+..............
+INFO      Processing 'modules' for README
+ERROR     README.md not found in ./ansible.missing_collection
+ERROR     README.md not updated
+```
+
+### License
+None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me( Davinder Pal ).
+These Modules can be used/distributed in any project except Official Ansible / Ansible-Collections but only with my copyright statement 
+
+`Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>`.
+
+Any unknown cases, please better contact me ( Davinder Pal <dpsangwal@gmail.com> ).
+
+
+
+
+

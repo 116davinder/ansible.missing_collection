@@ -28,3 +28,9 @@ jobs:
         
       - name: Pycodestyle Lint code.
         run: pycodestyle --ignore=E402,E501 plugins/modules/ --format=pylint --statistics
+
+      - name: Automatic Doc Creation Tool Installation
+        run: pip3 install git+https://github.com/ansible-network/collection_prep.git
+
+      - name: Run Automatic Doc Creation Tool
+        run: collection_prep_add_docs -p .
