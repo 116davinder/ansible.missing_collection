@@ -47,6 +47,7 @@ community.missing_collection 0.0.0
 - [community.missing_collection.aws_iam_access_analyzer_info](tests/aws_iam_access_analyzer_info.yml)
 - [community.missing_collection.aws_amp](tests/aws_amp.yml)
 - [community.missing_collection.aws_amp_info](tests/aws_amp_info.yml)
+- [community.missing_collection.aws_api_gateway_v2_info](tests/aws_api_gateway_v2_info.yml)
 
 ### License
 None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me( Davinder Pal ).

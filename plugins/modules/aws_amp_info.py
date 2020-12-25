@@ -13,7 +13,7 @@ module: aws_amp
 short_description: Create / Update AWS Prometheus Service.
 description:
   - Get Information about AWS Prometheus Service.
-  - U()
+  - U(https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/amp.html)
 version_added: 1.4.0
 options:
   alias:

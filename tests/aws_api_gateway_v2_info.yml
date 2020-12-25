@@ -1,0 +1,62 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "list of all api gateways"
+      aws_api_gateway_v2_info:
+      register: _all
+
+    - debug:
+        var: _all
+
+    - name: "get details about given api id"
+      aws_api_gateway_v2_info:
+        api_id: "{{ _all.apis[0].api_id }}"
+        get_api: true
+      register: _api
+
+    - debug:
+        var: _api
+
+    - name: "get deployments about given api id"
+      aws_api_gateway_v2_info:
+        api_id: "{{ _all.apis[0].api_id }}"
+        get_deployments: true
+      register: _dep
+
+    - debug:
+        var: _dep
+
+    - name: "get stages about given api id"
+      aws_api_gateway_v2_info:
+        api_id: "{{ _all.apis[0].api_id }}"
+        get_stages: true
+      register: _stage
+
+    - debug:
+        var: _stage
+
+    - name: "get routes about given api id"
+      aws_api_gateway_v2_info:
+        api_id: "{{ _all.apis[0].api_id }}"
+        get_routes: true
+      register: _routes
+
+    - debug:
+        var: _routes
+
+    # it should fail, as I don't custom domain for it
+    - name: "get api mappings about given domain name"
+      aws_api_gateway_v2_info:
+        domain_name: "{{ _all.apis[0].api_id }}"
+        get_api_mappings: true
+      ignore_errors: true
+
+    - name: "get all vpc links"
+      aws_api_gateway_v2_info:
+        get_vpc_links: true
+      register: _vpc
+
+    - debug:
+        var: _vpc
