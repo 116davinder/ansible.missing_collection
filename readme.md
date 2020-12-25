@@ -39,6 +39,8 @@ community.missing_collection 0.0.0
 - [community.missing_collection.aws_config_info](tests/aws_config_info.yml)
 - [community.missing_collection.aws_backup_info](tests/aws_backup_info.yml)
 - [community.missing_collection.aws_iam_access_analyzer_info](tests/aws_iam_access_analyzer_info.yml)
+- [community.missing_collection.aws_amp](tests/aws_amp.yml)
+- [community.missing_collection.aws_amp_info](tests/aws_amp_info.yml)
 
 ### License
 None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me( Davinder Pal ).

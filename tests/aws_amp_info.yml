@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "list workspaces for given alias"
+      aws_amp_info:
+        alias: 'test'
+        list_workspace: true
+      register: _l_w
+
+    - debug:
+        var: _l_w
+
+    - name: "describe workspace for given workspace id"
+      aws_amp_info:
+        workspace_id: '{{ _l_w.workspaces[0].workspace_id }}'
+        describe_workspace: true
+      register: _d_w
+
+    - debug:
+        var: _d_w

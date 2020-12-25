@@ -1,0 +1,97 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  vars:
+    alias: 'test'
+    client_token: '123456' # unique id for given alias
+  tasks:
+    # create workspace first time, response changed True
+    - name: "create amp workspace"
+      aws_amp:
+        alias: '{{ alias }}'
+        client_token: '{{ client_token }}'
+        state: 'present'
+      register: _create
+
+    - debug:
+        var: _create
+
+    # wait for 10 seconds so amp workspace statusCode changed to 'ACTIVE'
+    - pause:
+        seconds: 10
+
+    # create workspace second time, response changed False
+    - name: "create same amp workspace again"
+      aws_amp:
+        alias: '{{ alias }}'
+        client_token: '{{ client_token }}'
+        state: 'present'
+      register: _create_again
+
+    - debug:
+        var: _create_again
+
+    # update already created workspace
+    - name: "update amp workspace alias"
+      aws_amp:
+        alias: '{{ alias }}'
+        new_alias: 'new_alias'
+        client_token: '{{ client_token }}'
+        workspace_id: '{{ _create.workspace_id }}'
+        state: 'update'
+      register: _update
+
+    - debug:
+        var: _update
+
+    - pause:
+        seconds: 60
+
+    # deleting workspace as message
+    - name: "try 1: deleting amp workspace"
+      aws_amp:
+        alias: '{{ alias }}'
+        client_token: '{{ client_token }}'
+        workspace_id: '{{ _create.workspace_id }}'
+        state: 'absent'
+      register: __del
+
+    - debug:
+        var: __del
+
+    # already deleting workspace as message
+    - name: "try 2: deleting amp workspace"
+      aws_amp:
+        alias: '{{ alias }}'
+        client_token: '{{ client_token }}'
+        workspace_id: '{{ _create.workspace_id }}'
+        state: 'absent'
+      register: __del_again
+
+    - debug:
+        var: __del_again
+
+    - pause:
+        seconds: 20
+
+    # workspace not found but still aws background delete is going on
+    - name: "try 3: deleting amp workspace"
+      aws_amp:
+        alias: '{{ alias }}'
+        client_token: '{{ client_token }}'
+        workspace_id: '{{ _create.workspace_id }}'
+        state: 'absent'
+      register: __del_again_2
+
+    - debug:
+        var: __del_again_2
+
+    # same amp workspace can't be created again within one month.
+    # below task should fail but ignored
+    - name: "create same amp workspace again"
+      aws_amp:
+        alias: '{{ alias }}'
+        client_token: '{{ client_token }}'
+        state: 'present'
+      ignore_errors: true
