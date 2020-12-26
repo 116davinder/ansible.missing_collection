@@ -45,21 +45,22 @@ community.missing_collection 0.0.0
 ### Modules
 Name | Description
 --- | ---
-[community.missing_collection.aws_amp](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_amp_module.rst)|Create / Update AWS Prometheus Service.
-[community.missing_collection.aws_amp_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_amp_info_module.rst)|Get details about AWS Prometheus Service.
-[community.missing_collection.aws_api_gateway_v2_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_api_gateway_v2_info_module.rst)|Get details about AWS API Gateway V2 Service.
-[community.missing_collection.aws_athena_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_athena_info_module.rst)|Get Information about AWS Athena.
-[community.missing_collection.aws_backup_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_backup_info_module.rst)|Get Information about AWS Backup.
-[community.missing_collection.aws_config_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_config_info_module.rst)|Get Information about AWS Config.
-[community.missing_collection.aws_eks_cluster_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_eks_cluster_info_module.rst)|Get Information about AWS EKS Clusters.
-[community.missing_collection.aws_iam_access_analyzer_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_iam_access_analyzer_info_module.rst)|Get Information about AWS IAM Access Analyzer.
-[community.missing_collection.aws_sns_platform_endpoint_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_sns_platform_endpoint_info_module.rst)|Get Information about AWS SNS Platforms.
-[community.missing_collection.aws_sns_platform_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_sns_platform_info_module.rst)|Get Information about AWS SNS Platforms.
-[community.missing_collection.aws_sns_subscriptions_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_sns_subscriptions_info_module.rst)|Get Information about AWS SNS Subscriptions.
-[community.missing_collection.aws_sqs_queue_info](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_sqs_queue_info_module.rst)|Get information about AWS SQS queues.
-[community.missing_collection.aws_ssm_parameter_store](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.aws_ssm_parameter_store_module.rst)|Manage key-value pairs in aws parameter store.
-[community.missing_collection.mapr_service](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.mapr_service_module.rst)|Manage MapR Services by rest api.
-[community.missing_collection.newrelic_deployment](https://github.com/116davinder/ansible.missing_collection/blob/main/docs/community.missing_collection.newrelic_deployment_module.rst)|Notify newrelic about app deployments via v2 api.
+[community.missing_collection.aws_amp](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_amp_module.rst)|Create / Update AWS Prometheus Service.
+[community.missing_collection.aws_amp_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_amp_info_module.rst)|Get details about AWS Prometheus Service.
+[community.missing_collection.aws_api_gateway_v2_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_api_gateway_v2_info_module.rst)|Get details about AWS API Gateway V2 Service.
+[community.missing_collection.aws_appflow_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_appflow_info_module.rst)|Get details about AWS AppFlow Service.
+[community.missing_collection.aws_athena_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_athena_info_module.rst)|Get Information about AWS Athena.
+[community.missing_collection.aws_backup_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_backup_info_module.rst)|Get Information about AWS Backup.
+[community.missing_collection.aws_config_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_config_info_module.rst)|Get Information about AWS Config.
+[community.missing_collection.aws_eks_cluster_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_eks_cluster_info_module.rst)|Get Information about AWS EKS Clusters.
+[community.missing_collection.aws_iam_access_analyzer_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_iam_access_analyzer_info_module.rst)|Get Information about AWS IAM Access Analyzer.
+[community.missing_collection.aws_sns_platform_endpoint_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sns_platform_endpoint_info_module.rst)|Get Information about AWS SNS Platforms.
+[community.missing_collection.aws_sns_platform_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sns_platform_info_module.rst)|Get Information about AWS SNS Platforms.
+[community.missing_collection.aws_sns_subscriptions_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sns_subscriptions_info_module.rst)|Get Information about AWS SNS Subscriptions.
+[community.missing_collection.aws_sqs_queue_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sqs_queue_info_module.rst)|Get information about AWS SQS queues.
+[community.missing_collection.aws_ssm_parameter_store](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_ssm_parameter_store_module.rst)|Manage key-value pairs in aws parameter store.
+[community.missing_collection.mapr_service](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_service_module.rst)|Manage MapR Services by rest api.
+[community.missing_collection.newrelic_deployment](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.newrelic_deployment_module.rst)|Notify newrelic about app deployments via v2 api.
 
 <!--end collection content-->
 
@@ -70,7 +71,7 @@ $ pip3 install git+https://github.com/ansible-network/collection_prep.git
 
 ### Generate docs from ansible tool ?
 ```bash
-$ collection_prep_add_docs -p ./ansible.missing_collection
+$ collection_prep_add_docs -p ./ansible.missing_collection -b master
 INFO      Setting collection name to community.missing_collection
 INFO      Setting GitHub repository url to https://github.com/116davinder/ansible.missing_collection
 INFO      Purging content from directory /home/dpal/python-projects/ansible.missing_collection/docs

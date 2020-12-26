@@ -1,0 +1,29 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "list aws app flows"
+      aws_appflow_info:
+      register: _l_f
+
+    - debug:
+        var: _l_f
+
+    - name: "describe aws app flow name"
+      aws_appflow_info:
+        name: 'test'
+        describe_flow: true
+      register: _d_f
+
+    - debug:
+        var: _d_f
+
+    - name: "describe aws app flow connector"
+      aws_appflow_info:
+        describe_connectors: true
+        describe_connector_types: ['S3']
+      register: _d_c
+
+    - debug:
+        var: _d_c
