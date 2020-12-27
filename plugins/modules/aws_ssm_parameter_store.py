@@ -2,17 +2,13 @@
 # Copyright: (c) 2017, Ansible Project
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-ANSIBLE_METADATA = {'status': ['preview'],
-                    'supported_by': 'community',
-                    'metadata_version': '1.1'}
-
 DOCUMENTATION = '''
 ---
 module: aws_ssm_parameter_store
 short_description: Manage key-value pairs in aws parameter store.
 description:
   - Manage key-value pairs in aws parameter store.
-version_added: "2.5"
+version_added: 0.0.1
 options:
   name:
     description:

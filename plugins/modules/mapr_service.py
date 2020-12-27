@@ -8,13 +8,10 @@
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
-ANSIBLE_METADATA = {'metadata_version': '1.1', 'status': ['preview'],
-                    'supported_by': 'individual'}
-
 DOCUMENTATION = '''
 ---
 module: mapr_service
-version_added: "0.1"
+version_added: 0.0.1
 author: "Davinder Pal (@116davinder)"
 short_description: Manage MapR Services by rest api.
 description:

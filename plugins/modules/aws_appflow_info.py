@@ -14,7 +14,7 @@ short_description: Get details about AWS AppFlow Service.
 description:
   - Get Information about AWS AppFlow Service.
   - U(https://docs.aws.amazon.com/appflow/1.0/APIReference/API_Operations.html)
-version_added: 1.4.0
+version_added: 0.0.2
 options:
   name:
     description:

@@ -8,7 +8,7 @@ community.missing_collection.aws_sns_subscriptions_info
 **Get Information about AWS SNS Subscriptions.**
 
 
-Version added: 1.4.0
+Version added: 0.0.1
 
 .. contents::
    :local:

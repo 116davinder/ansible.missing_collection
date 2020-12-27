@@ -8,7 +8,7 @@ community.missing_collection.aws_ssm_parameter_store
 **Manage key-value pairs in aws parameter store.**
 
 
-Version added: 2.5
+Version added: 0.0.1
 
 .. contents::
    :local:

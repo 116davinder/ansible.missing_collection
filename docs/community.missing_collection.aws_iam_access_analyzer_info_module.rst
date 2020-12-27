@@ -8,7 +8,7 @@ community.missing_collection.aws_iam_access_analyzer_info
 **Get Information about AWS IAM Access Analyzer.**
 
 
-Version added: 1.4.0
+Version added: 0.0.2
 
 .. contents::
    :local:

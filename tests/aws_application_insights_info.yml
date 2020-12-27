@@ -1,0 +1,52 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "list of all aws insights applications"
+      aws_application_insights_info:
+      register: _all
+
+    - debug:
+        var: _all
+
+    - name: "list of applications components for given group name"
+      aws_application_insights_info:
+        name: 'test'
+        list_components: true
+      register: _l_c
+      ignore_errors: true
+
+    - debug:
+        var: _l_c
+
+    - name: "list history of events for given group name"
+      aws_application_insights_info:
+        name: 'test'
+        list_configuration_history: true
+        list_configuration_history_event_status: 'INFO'
+      register: _l_h
+      ignore_errors: true
+
+    - debug:
+        var: _l_h
+
+    - name: "list log patterns sets for given group name"
+      aws_application_insights_info:
+        name: 'test'
+        list_log_pattern_sets: true
+      register: _l_ps
+      ignore_errors: true
+
+    - debug:
+        var: _l_ps
+
+    - name: "list of log patterns for given group name"
+      aws_application_insights_info:
+        name: 'test'
+        list_log_patterns: true
+      register: _l_p
+      ignore_errors: true
+
+    - debug:
+        var: _l_p

@@ -8,7 +8,7 @@ community.missing_collection.mapr_service
 **Manage MapR Services by rest api.**
 
 
-Version added: 0.1
+Version added: 0.0.1
 
 .. contents::
    :local:

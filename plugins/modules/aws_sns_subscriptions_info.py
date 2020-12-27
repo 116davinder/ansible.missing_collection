@@ -13,7 +13,7 @@ module: aws_sns_subscriptions_info
 short_description: Get Information about AWS SNS Subscriptions.
 description:
   - Get Information about AWS SNS Subscriptions.
-version_added: 1.4.0
+version_added: 0.0.1
 options:
   topic_arn:
     description:

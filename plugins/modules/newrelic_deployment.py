@@ -13,6 +13,7 @@ DOCUMENTATION = '''
 module: newrelic_deployment
 author:
     - "Davinder Pal (@116davinder)"
+version_added: 0.0.1
 short_description: Notify newrelic about app deployments via v2 api.
 description:
    - Notify newrelic about app deployments

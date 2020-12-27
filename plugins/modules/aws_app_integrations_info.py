@@ -14,7 +14,7 @@ short_description: Get details about Amazon AppIntegrations Service.
 description:
   - Get Information about Amazon AppIntegrations Service.
   - U(https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_Operations.html)
-version_added: 1.4.0
+version_added: 0.0.2
 options:
   name:
     description:

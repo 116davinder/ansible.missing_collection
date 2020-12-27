@@ -8,6 +8,7 @@ community.missing_collection.newrelic_deployment
 **Notify newrelic about app deployments via v2 api.**
 
 
+Version added: 0.0.1
 
 .. contents::
    :local:

@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_amp_info_module:
+.. _community.missing_collection.aws_application_insights_info_module:
 
 
-*****************************************
-community.missing_collection.aws_amp_info
-*****************************************
+**********************************************************
+community.missing_collection.aws_application_insights_info
+**********************************************************
 
-**Get details about AWS Prometheus Service.**
+**Get details about Amazon CloudWatch Application Insights.**
 
 
 Version added: 0.0.2
@@ -17,8 +17,8 @@ Version added: 0.0.2
 
 Synopsis
 --------
-- Get Information about AWS Prometheus Service.
-- https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/amp.html
+- Get Information about Amazon CloudWatch Application Insights.
+- https://docs.aws.amazon.com/appinsights/latest/APIReference/API_Operations.html
 
 
 
@@ -43,21 +43,6 @@ Parameters
             <th>Choices/<font color="blue">Defaults</font></th>
             <th width="100%">Comments</th>
         </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>alias</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>alias of AWS AMP Resource.</div>
-                </td>
-            </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
@@ -150,21 +135,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_workspace</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>do you want to describe workspace for given <em>workspace_id</em>.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>ec2_url</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -181,7 +151,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_workspace</b>
+                    <b>list_components</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -194,7 +164,101 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to fetch all workspaces for given <em>alias</em>?</div>
+                        <div>do you want to fetch all components of given group name <em>name</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_configuration_history</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to fetch history of given group name <em>name</em>?</div>
+                        <div><em>list_configuration_history_event_status</em> is required for it.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_configuration_history_event_status</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>INFO</li>
+                                    <li>WARN</li>
+                                    <li>ERROR</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>which type of history event?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_log_pattern_sets</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to fetch all log pattern sets for given group name <em>name</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_log_patterns</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to fetch all log patterns for given group name <em>name</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>name of resource group.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: resource_group_name</div>
                 </td>
             </tr>
             <tr>
@@ -268,21 +332,6 @@ Parameters
                         <div>When set to &quot;no&quot;, SSL certificates will not be validated for boto versions &gt;= 2.6.0.</div>
                 </td>
             </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>workspace_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>workspace id for AWS AMP Resource.</div>
-                </td>
-            </tr>
     </table>
     <br/>
 
@@ -302,16 +351,29 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "list workspaces for given alias"
-      aws_amp_info:
-        alias: 'test'
-        list_workspace: true
-      register: _l_w
+    - name: "list of all aws insights applications"
+      aws_application_insights_info:
 
-    - name: "describe workspace for given workspace id"
-      aws_amp_info:
-        workspace_id: '{{ _l_w.workspaces[0].workspace_id }}'
-        describe_workspace: true
+    - name: "list of applications components for given group name"
+      aws_application_insights_info:
+        name: 'test'
+        list_components: true
+
+    - name: "list history of events for given group name"
+      aws_application_insights_info:
+        name: 'test'
+        list_configuration_history: true
+        list_configuration_history_event_status: 'INFO'
+
+    - name: "list log patterns sets for given group name"
+      aws_application_insights_info:
+        name: 'test'
+        list_log_pattern_sets: true
+
+    - name: "list of log patterns for given group name"
+      aws_application_insights_info:
+        name: 'test'
+        list_log_patterns: true
 
 
 
@@ -330,35 +392,86 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>workspace</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                    </div>
-                </td>
-                <td>when `workspace_id` is defined and `describe_workspace=true` and success</td>
-                <td>
-                            <div>Information about given workspace id.</div>
-                    <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alias&#x27;: &#x27;test&#x27;, &#x27;arn&#x27;: &#x27;arn:aws:aps:us-east-1:xxxxxxxxx:workspace/ws-xxxxxxxxx-b0c8-0ae28d089ff2&#x27;, &#x27;created_at&#x27;: &#x27;2020-12-25T03:38:59.974000+02:00&#x27;, &#x27;prometheus_endpoint&#x27;: &#x27;https://aps-workspaces.us-east-1.amazonaws.com/workspaces/ws-xxxxxxxxx-b0c8-0ae28d089ff2/&#x27;, &#x27;status&#x27;: {&#x27;status_code&#x27;: &#x27;ACTIVE&#x27;}, &#x27;workspace_id&#x27;: &#x27;ws-xxxxxxxxx-b0c8-0ae28d089ff2&#x27;}</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>workspaces</b>
+                    <b>application_list</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `alias` is defined and `list_workspace=true` and success</td>
+                <td>when no argument and success</td>
                 <td>
-                            <div>List of workspaces from given aws amp alias.</div>
+                            <div>List of applications.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;alias&#x27;: &#x27;test&#x27;, &#x27;arn&#x27;: &#x27;arn:aws:aps:us-east-1:xxxxxx:workspace/ws-xxxxxxxxx-b0c8-0ae28d089ff2&#x27;, &#x27;created_at&#x27;: &#x27;2020-12-25T03:38:59.974000+02:00&#x27;, &#x27;status&#x27;: {&#x27;status_code&#x27;: &#x27;ACTIVE&#x27;}, &#x27;workspace_id&#x27;: &#x27;ws-xxxxxxxxx-b0c8-0ae28d089ff2&#x27;}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;resource_group_name&#x27;: &#x27;string&#x27;, &#x27;life_cycle&#x27;: &#x27;string&#x27;, &#x27;ops_item_sns_topic_arn&#x27;: &#x27;string&#x27;, &#x27;ops_center_enabled&#x27;: True, &#x27;cwe_monitor_enabled&#x27;: True, &#x27;remarks&#x27;: &#x27;string&#x27;}]</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>component_list</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `name` is defined and `list_components=true` and success</td>
+                <td>
+                            <div>List of application components.</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;component_name&#x27;: &#x27;string&#x27;, &#x27;component_remarks&#x27;: &#x27;string&#x27;, &#x27;resource_type&#x27;: &#x27;string&#x27;, &#x27;os_type&#x27;: &#x27;LINUX&#x27;, &#x27;tier&#x27;: &#x27;CUSTOM&#x27;, &#x27;monitor&#x27;: True, &#x27;detected_workload&#x27;: {&#x27;string&#x27;: {&#x27;string&#x27;: &#x27;string&#x27;}}}]</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>event_list</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `name` and `list_configuration_history_event_status` is defined and `list_configuration_history=true` and success</td>
+                <td>
+                            <div>List of configuration history events for group name.</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;monitored_resource_arn&#x27;: &#x27;string&#x27;, &#x27;event_status&#x27;: &#x27;INFO&#x27;, &#x27;event_resource_type&#x27;: &#x27;CLOUDWATCH_ALARM&#x27;, &#x27;event_time&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;1)&#x27;: None, &#x27;event_detail&#x27;: &#x27;string&#x27;, &#x27;event_resource_name&#x27;: &#x27;string&#x27;}]</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>list_log_pattern_sets</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `name` and `list_log_pattern_sets=true` and success</td>
+                <td>
+                            <div>List of log pattern sets for group name.</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;string&#x27;]</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>list_log_patterns</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `name` and `list_log_patterns=true` and success</td>
+                <td>
+                            <div>List of log patterns for group name.</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;pattern_set_name&#x27;: &#x27;string&#x27;, &#x27;pattern_name&#x27;: &#x27;string&#x27;, &#x27;pattern&#x27;: &#x27;string&#x27;, &#x27;rank&#x27;: 123}]</div>
                 </td>
             </tr>
     </table>

@@ -14,7 +14,7 @@ short_description: Get Information about AWS Backup.
 description:
   - Get Information about AWS Backup.
   - U(https://docs.aws.amazon.com/aws-backup/latest/devguide/API_Operations.html)
-version_added: 1.4.0
+version_added: 0.0.1
 options:
   backup_plan_id:
     description:

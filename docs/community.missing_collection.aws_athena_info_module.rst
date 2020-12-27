@@ -8,7 +8,7 @@ community.missing_collection.aws_athena_info
 **Get Information about AWS Athena.**
 
 
-Version added: 1.4.0
+Version added: 0.0.1
 
 .. contents::
    :local:

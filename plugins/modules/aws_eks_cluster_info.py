@@ -13,7 +13,7 @@ module: aws_eks_cluster_info
 short_description: Get Information about AWS EKS Clusters.
 description:
   - Get Information about AWS EKS Clusters.
-version_added: 1.4.0
+version_added: 0.0.2
 options:
   name:
     description:

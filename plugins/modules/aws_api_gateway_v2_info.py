@@ -14,7 +14,7 @@ short_description: Get details about AWS API Gateway V2 Service.
 description:
   - Get Information about AWS API Gateway V2 Service.
   - U(https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/apigatewayv2.html)
-version_added: 1.4.0
+version_added: 0.0.2
 options:
   api_id:
     description:

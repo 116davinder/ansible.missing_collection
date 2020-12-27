@@ -9,7 +9,7 @@ __metaclass__ = type
 DOCUMENTATION = '''
 ---
 module: aws_sqs_queue_info
-version_added: 1.4.0
+version_added: 0.0.1
 short_description: Get information about AWS SQS queues.
 description:
   - List AWS SQS queues & there attributes.

@@ -14,7 +14,7 @@ short_description: Get Information about AWS IAM Access Analyzer.
 description:
   - Get Information about AWS IAM Access Analyzer Resources.
   - U(https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_Operations.html)
-version_added: 1.4.0
+version_added: 0.0.2
 options:
   name:
     description:

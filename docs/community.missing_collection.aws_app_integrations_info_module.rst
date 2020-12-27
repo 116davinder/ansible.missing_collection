@@ -8,7 +8,7 @@ community.missing_collection.aws_app_integrations_info
 **Get details about Amazon AppIntegrations Service.**
 
 
-Version added: 1.4.0
+Version added: 0.0.2
 
 .. contents::
    :local:

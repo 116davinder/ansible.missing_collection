@@ -13,7 +13,7 @@ module: aws_athena_info
 short_description: Get Information about AWS Athena.
 description:
   - Get Information about AWS Athena.
-version_added: 1.4.0
+version_added: 0.0.1
 options:
   name:
     description:

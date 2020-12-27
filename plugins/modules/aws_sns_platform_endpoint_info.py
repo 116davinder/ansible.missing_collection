@@ -13,7 +13,7 @@ module: aws_sns_platform_endpoint_info
 short_description: Get Information about AWS SNS Platforms.
 description:
   - Get Information about AWS SNS Platform Endpoint.
-version_added: 1.4.0
+version_added: 0.0.1
 options:
   endpoint_arn:
     description:

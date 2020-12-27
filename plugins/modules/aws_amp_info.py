@@ -14,7 +14,7 @@ short_description: Get details about AWS Prometheus Service.
 description:
   - Get Information about AWS Prometheus Service.
   - U(https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/amp.html)
-version_added: 1.4.0
+version_added: 0.0.2
 options:
   alias:
     description:

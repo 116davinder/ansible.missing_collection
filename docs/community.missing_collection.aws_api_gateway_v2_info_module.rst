@@ -8,7 +8,7 @@ community.missing_collection.aws_api_gateway_v2_info
 **Get details about AWS API Gateway V2 Service.**
 
 
-Version added: 1.4.0
+Version added: 0.0.2
 
 .. contents::
    :local:

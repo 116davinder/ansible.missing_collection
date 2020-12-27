@@ -13,7 +13,7 @@ module: aws_config_info
 short_description: Get Information about AWS Config.
 description:
   - Get Information about AWS Config.
-version_added: 1.4.0
+version_added: 0.0.1
 options:
   id:
     description:

@@ -8,7 +8,7 @@ community.missing_collection.aws_eks_cluster_info
 **Get Information about AWS EKS Clusters.**
 
 
-Version added: 1.4.0
+Version added: 0.0.2
 
 .. contents::
    :local:
