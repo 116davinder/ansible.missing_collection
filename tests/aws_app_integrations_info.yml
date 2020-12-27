@@ -1,0 +1,32 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "list aws app integrations"
+      aws_app_integrations_info:
+      register: _all
+
+    - debug:
+        var: _all
+
+    - name: "list of app integration associations given event name"
+      aws_app_integrations_info:
+        name: 'test'
+        list_event_integration_associations: true
+      register: _event_associations
+
+    - debug:
+        var: _event_associations
+
+# below should fail because no event name found
+    - name: "describe aws app event integrations"
+      aws_app_integrations_info:
+        name: 'test'
+        describe_event_integration: true
+      register: _des_event
+      ignore_errors: true
+
+    - debug:
+        var: _des_event
+      ignore_errors: true
