@@ -1,0 +1,27 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "describe all fleets of aws app streams"
+      aws_appstream_info:
+        describe_fleets: true
+
+    - name: "describe all directory configs of aws app streams"
+      aws_appstream_info:
+        describe_directory_configs: true
+
+    - name: "describe all image builder of aws app streams"
+      aws_appstream_info:
+        describe_image_builders: true
+
+    - name: "describe all images of aws app streams"
+      aws_appstream_info:
+        describe_images: true
+        image_type: 'PRIVATE'
+
+    - name: "describe all users of aws app streams"
+      aws_appstream_info:
+        describe_users: true
+        authentication_type: 'USERPOOL'
