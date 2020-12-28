@@ -1,0 +1,25 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Gets information about the scalable targets in the specified namespace"
+      aws_application_auto_scaling_info:
+        service_namespace: 'ecs'
+        describe_scalable_targets: true
+
+    - name: "descriptive information about the scaling activities in the specified namespace"
+      aws_application_auto_scaling_info:
+        service_namespace: 'ecs'
+        describe_scaling_activities: true
+
+    - name: "Describes the Application Auto Scaling scaling policies for the specified service namespace"
+      aws_application_auto_scaling_info:
+        service_namespace: 'ecs'
+        describe_scaling_policies: true
+
+    - name: "Describes the Application Auto Scaling scheduled actions for the specified service namespace"
+      aws_application_auto_scaling_info:
+        service_namespace: 'ecs'
+        describe_scheduled_actions: true

@@ -30,14 +30,14 @@ $ ansible-galaxy collection install git+https://github.com/116davinder/ansible.m
 Starting galaxy collection install process
 Process install dependency map
 Starting collection install process
-Installing 'community.missing_collection:0.0.0' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
+Installing 'community.missing_collection:0.0.2' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
 Created collection for community.missing_collection at /home/dpal/.ansible/collections/ansible_collections/community/missing_collection
-community.missing_collection (0.0.0) was installed successfully
+community.missing_collection (0.0.2) was installed successfully
 
 $ ansible-galaxy collection list
 Collection                   Version
 ---------------------------- -------
-community.missing_collection 0.0.0  
+community.missing_collection 0.0.2  
 
 ```
 
@@ -50,6 +50,7 @@ Name | Description
 [community.missing_collection.aws_api_gateway_v2_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_api_gateway_v2_info_module.rst)|Get details about AWS API Gateway V2 Service.
 [community.missing_collection.aws_app_integrations_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_app_integrations_info_module.rst)|Get details about Amazon AppIntegrations Service.
 [community.missing_collection.aws_appflow_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_appflow_info_module.rst)|Get details about AWS AppFlow Service.
+[community.missing_collection.aws_application_auto_scaling_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_application_auto_scaling_info_module.rst)|Get details about AWS Application Auto Scaling.
 [community.missing_collection.aws_application_insights_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_application_insights_info_module.rst)|Get details about Amazon CloudWatch Application Insights.
 [community.missing_collection.aws_athena_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_athena_info_module.rst)|Get Information about AWS Athena.
 [community.missing_collection.aws_backup_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_backup_info_module.rst)|Get Information about AWS Backup.
@@ -85,16 +86,3 @@ INFO      Processing 'modules' for README
 ERROR     README.md not found in ./ansible.missing_collection
 ERROR     README.md not updated
 ```
-
-### License
-None of these modules should be published to Official Ansible / Ansible-Collections without written confirmation from me( Davinder Pal ).
-These Modules can be used/distributed in any project except Official Ansible / Ansible-Collections but only with my copyright statement 
-
-`Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>`.
-
-Any unknown cases, please better contact me ( Davinder Pal <dpsangwal@gmail.com> ).
-
-
-
-
-
