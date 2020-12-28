@@ -86,7 +86,7 @@ scalable_targets:
       'min_capacity': 123,
       'max_capacity': 123,
       'role_arn': 'string',
-      'creation_time': datetime(2015, 1, 1),
+      'creation_time': datetime(2015, 1, 10),
       'suspended_state': {}
     },
   ]
@@ -102,8 +102,8 @@ scaling_activities:
       'scalable_dimension': 'kafka:broker-storage:VolumeSize',
       'description': 'string',
       'cause': 'string',
-      'start_time': datetime(2015, 1, 1),
-      'end_time': datetime(2015, 1, 1),
+      'start_time': datetime(2015, 1, 5),
+      'end_time': datetime(2018, 8, 8),
       'status_code': 'InProgress',
       'status_message': 'string',
       'details': 'string'
@@ -124,7 +124,7 @@ scaling_policies:
       'step_scaling_policy_configuration': {},
       'target_tracking_scaling_policy_configuration': {},
       'alarms': [],
-      'creation_time': datetime(2015, 1, 1)
+      'creation_time': datetime(2016, 9, 9)
     },
   ]
 scheduled_actions:
@@ -139,10 +139,10 @@ scheduled_actions:
       'schedule': 'string',
       'resource_id': 'string',
       'scalable_dimension': 'ecs:service:DesiredCount',
-      'start_time': datetime(2015, 1, 1),
-      'end_time': datetime(2015, 1, 1),
+      'start_time': datetime(2017, 1, 4),
+      'end_time': datetime(2016, 2, 2),
       'scalable_target_action': {},
-      'creation_time': datetime(2015, 1, 1)
+      'creation_time': datetime(2010, 10, 7)
     },
   ]
 """

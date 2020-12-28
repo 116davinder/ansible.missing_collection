@@ -195,7 +195,7 @@ backup_plans:
         "backup_plan_id": "74a37778-xxxxx-9176d22ae8f2",
         "backup_plan_name": "Test",
         "creation_date": "2020-10-13T15:39:45.605000+03:00",
-        "deletion_date": "2020-10-13T16:58:10.741000+03:00",
+        "deletion_date": "2021-11-15T16:58:10.741000+03:00",
         "last_execution_date": "2020-10-13T16:33:12.037000+03:00",
         "version_id": "Yzk2YWJmMTxxxxxFkNTNmNTRm"
     }
@@ -316,7 +316,7 @@ copy_jobs:
         'destination_backup_vault_arn': 'string',
         'destination_recovery_point_arn': 'string',
         'resource_arn': 'string',
-        'creation_date': datetime(2015, 1, 1),
+        'creation_date': datetime(2017, 7, 7),
         'completion_date': datetime(2015, 1, 1),
         'state': 'CREATED',
         'status_message': 'string',

@@ -1,0 +1,41 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "list all app meshes"
+      aws_appmesh_info:
+      register: _all
+
+    - name: "list virtual routers for given mesh_name"
+      aws_appmesh_info:
+        name: 'test'
+        list_virtual_routers: true
+
+    - name: "list virtual routes for given mesh_name and virtual_router_name"
+      aws_appmesh_info:
+        name: 'test'
+        virtual_router_name: 'test'
+        list_routes: true
+
+    - name: "list virtual nodes for given mesh_name"
+      aws_appmesh_info:
+        name: 'test'
+        list_virtual_nodes: true
+
+    - name: "list virtual gateways for given mesh_name"
+      aws_appmesh_info:
+        name: 'test'
+        list_virtual_gateways: true
+
+    - name: "list virtual services for given mesh_name"
+      aws_appmesh_info:
+        name: 'test'
+        list_virtual_services: true
+
+    - name: "list virtual gateway routes for given mesh_name and virtual_gateway_name"
+      aws_appmesh_info:
+        name: 'test'
+        virtual_gateway_name: 'test'
+        list_gateway_routes: true
