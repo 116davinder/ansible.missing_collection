@@ -1,0 +1,30 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "list of all assessments from AWS Audit Manager"
+      aws_auditmanager_info:
+
+    - name: "list of all AWS Audit Manager framework library"
+      aws_auditmanager_info:
+        type: 'Standard'
+        list_assessment_frameworks: true
+
+    - name: "list of assessment reports created in AWS Audit Manager"
+      aws_auditmanager_info:
+        list_assessment_reports: true
+
+    - name: "list of controls from AWS Audit Manager"
+      aws_auditmanager_info:
+        type: 'Standard'
+        list_controls: true
+
+    - name: "list of all AWS Audit Manager notifications"
+      aws_auditmanager_info:
+        list_notifications: true
+
+    - name: "list of delegations from an audit owner to a delegate"
+      aws_auditmanager_info:
+        list_delegations: true
