@@ -1,0 +1,41 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "describe all asgs"
+      aws_autoscaling_info:
+        describe_auto_scaling_groups: true
+        asg_names: []
+
+    - name: "describe all asgs instances"
+      aws_autoscaling_info:
+        describe_auto_scaling_instances: true
+        instance_ids: []
+    
+    - name: "describe all launch configs"
+      aws_autoscaling_info:
+        describe_launch_configurations: true
+        launch_config_names: []
+
+    - name: "describe all load balancers related with give asg"
+      aws_autoscaling_info:
+        describe_load_balancers: true
+        asg_name: "test"
+
+    - name: "describe all load balancer target groups related with give asg"
+      aws_autoscaling_info:
+        describe_load_balancer_target_groups: true
+        asg_name: "test"
+
+    - name: "describe all notifications related to given asgs"
+      aws_autoscaling_info:
+        describe_notification_configurations: true
+        asg_names: []
+
+    - name: "describe all asg polices for given asg"
+      aws_autoscaling_info:
+        describe_policies: true
+        asg_name: "test"
+        policy_types: []

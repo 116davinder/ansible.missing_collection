@@ -16,15 +16,36 @@ description:
   - U(https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Operations.html)
 version_added: 0.0.2
 options:
-  name:
+  type:
     description:
-      - name of resource group.
+      - can be type of control ?
+      - can be type of frameworks ?
     required: false
     type: str
-    aliases: ['resource_group_name']
-  list_components:
+    choices: ['Standard', 'Custom']
+  list_assessment_frameworks:
     description:
-      - do you want to fetch all components of given group name I(name)?
+      - do you want to fetch all frameworks of given type I(type)?
+    required: false
+    type: bool
+  list_assessment_reports:
+    description:
+      - do you want to fetch all assement reports?
+    required: false
+    type: bool
+  list_controls:
+    description:
+      - do you want to fetch all controls of given type I(type)?
+    required: false
+    type: bool
+  list_notifications:
+    description:
+      - do you want to fetch all notifications?
+    required: false
+    type: bool
+  list_delegations:
+    description:
+      - do you want to fetch all delegations?
     required: false
     type: bool
 author:

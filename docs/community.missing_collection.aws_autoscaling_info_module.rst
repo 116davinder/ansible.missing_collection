@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_auditmanager_info_module:
+.. _community.missing_collection.aws_autoscaling_info_module:
 
 
-**************************************************
-community.missing_collection.aws_auditmanager_info
-**************************************************
+*************************************************
+community.missing_collection.aws_autoscaling_info
+*************************************************
 
-**Get details about AWS Audit Manager.**
+**Get details about Amazon EC2 Auto Scaling.**
 
 
 Version added: 0.0.2
@@ -17,8 +17,8 @@ Version added: 0.0.2
 
 Synopsis
 --------
-- Get Information about AWS Audit Manager.
-- https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Operations.html
+- Get Information about Amazon EC2 Auto Scaling.
+- https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_Operations.html
 
 
 
@@ -43,6 +43,37 @@ Parameters
             <th>Choices/<font color="blue">Defaults</font></th>
             <th width="100%">Comments</th>
         </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>asg_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>name of the autoscaling group.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>asg_names</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>
+                        <b>Default:</b><br/><div style="color: blue">[]</div>
+                </td>
+                <td>
+                        <div>list of the autoscaling group names.</div>
+                </td>
+            </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
@@ -135,6 +166,139 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_auto_scaling_groups</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to describe given asg names <em>asg_names</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_auto_scaling_instances</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to describe given instance ids <em>instance_ids</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_launch_configurations</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to describe given launch configurations names <em>launch_config_names</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_load_balancer_target_groups</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to describe load balances target groups for given asg name <em>asg_name</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_load_balancers</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to describe load balances for given asg name <em>asg_name</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_notification_configurations</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to describe asg notifications for given group names <em>asg_names</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_policies</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to describe asg policies for given asg name <em>asg_name</em> and policy types <em>policy_types</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>ec2_url</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -151,96 +315,50 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_assessment_frameworks</b>
+                    <b>instance_ids</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
+                        <span style="color: purple">list</span>
                     </div>
                 </td>
                 <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
+                        <b>Default:</b><br/><div style="color: blue">[]</div>
                 </td>
                 <td>
-                        <div>do you want to fetch all frameworks of given type <em>type</em>?</div>
+                        <div>list of the ec2 instance ids.</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_assessment_reports</b>
+                    <b>launch_config_names</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
+                        <span style="color: purple">list</span>
                     </div>
                 </td>
                 <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
+                        <b>Default:</b><br/><div style="color: blue">[]</div>
                 </td>
                 <td>
-                        <div>do you want to fetch all assement reports?</div>
+                        <div>list of the autoscaling launch configuration names.</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_controls</b>
+                    <b>policy_types</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
+                        <span style="color: purple">list</span>
                     </div>
                 </td>
                 <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
+                        <b>Default:</b><br/><div style="color: blue">[]</div>
                 </td>
                 <td>
-                        <div>do you want to fetch all controls of given type <em>type</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_delegations</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch all delegations?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_notifications</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch all notifications?</div>
+                        <div>list of the autoscaling policy types.</div>
+                        <div>Combination of SimpleScaling, StepScaling, TargetTrackingScaling.</div>
                 </td>
             </tr>
             <tr>
@@ -298,26 +416,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>type</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>Standard</li>
-                                    <li>Custom</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>can be type of control ?</div>
-                        <div>can be type of frameworks ?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>validate_certs</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -353,30 +451,41 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "list of all assessments from AWS Audit Manager"
-      aws_auditmanager_info:
+    - name: "describe all asgs"
+        aws_autoscaling_info:
+        describe_auto_scaling_groups: true
+        asg_names: []
 
-    - name: "list of all AWS Audit Manager framework library"
-      aws_auditmanager_info:
-        type: 'Standard'
-        list_assessment_frameworks: true
+    - name: "describe all asgs instances"
+        aws_autoscaling_info:
+        describe_auto_scaling_instances: true
+        instance_ids: []
 
-    - name: "list of assessment reports created in AWS Audit Manager"
-      aws_auditmanager_info:
-        list_assessment_reports: true
+    - name: "describe all launch configs"
+        aws_autoscaling_info:
+        describe_launch_configurations: true
+        launch_config_names: []
 
-    - name: "list of controls from AWS Audit Manager"
-      aws_auditmanager_info:
-        type: 'Standard'
-        list_controls: true
+    - name: "describe all load balancers related with give asg"
+        aws_autoscaling_info:
+        describe_load_balancers: true
+        asg_name: "test"
 
-    - name: "list of all AWS Audit Manager notifications"
-      aws_auditmanager_info:
-        list_notifications: true
+    - name: "describe all load balancer target groups related with give asg"
+        aws_autoscaling_info:
+        describe_load_balancer_target_groups: true
+        asg_name: "test"
 
-    - name: "list of delegations from an audit owner to a delegate"
-      aws_auditmanager_info:
-        list_delegations: true
+    - name: "describe all notifications related to given asgs"
+        aws_autoscaling_info:
+        describe_notification_configurations: true
+        asg_names: []
+
+    - name: "describe all asg polices for given asg"
+        aws_autoscaling_info:
+        describe_policies: true
+        asg_name: "test"
+        policy_types: []
 
 
 
@@ -395,103 +504,120 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>assessment_reports</b>
+                    <b>auto_scaling_groups</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_assessment_reports` is defined and success</td>
+                <td>when `describe_auto_scaling_groups` is defined and success</td>
                 <td>
-                            <div>Returns a list of assessment reports created in AWS Audit Manager.</div>
+                            <div>Describes one or more Auto Scaling groups.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;id&#x27;: &#x27;string&#x27;, &#x27;name&#x27;: &#x27;string&#x27;, &#x27;description&#x27;: &#x27;string&#x27;, &#x27;assessment_id&#x27;: &#x27;string&#x27;, &#x27;assessment_name&#x27;: &#x27;string&#x27;, &#x27;author&#x27;: &#x27;string&#x27;, &#x27;status&#x27;: &#x27;COMPLETE&#x27;, &#x27;creation_time&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;1)&#x27;: None}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;auto_scaling_group_name&#x27;: &#x27;string&#x27;, &#x27;auto_scaling_group_arn&#x27;: &#x27;string&#x27;, &#x27;launch_configuration_name&#x27;: &#x27;string&#x27;, &#x27;launch_template&#x27;: {}, &#x27;mixed_instances_policy&#x27;: {}, &#x27;min_size&#x27;: 123, &#x27;max_size&#x27;: 123, &#x27;desired_capacity&#x27;: 123, &#x27;default_cooldown&#x27;: 123, &#x27;availability_zones&#x27;: [], &#x27;load_balancer_names&#x27;: [], &#x27;target_group_arns&#x27;: [], &#x27;health_check_type&#x27;: &#x27;string&#x27;, &#x27;health_check_grace_period&#x27;: 123, &#x27;instances&#x27;: [], &#x27;created_time&#x27;: &#x27;xxxxxxxx&#x27;, &#x27;suspended_processes&#x27;: [], &#x27;placement_group&#x27;: &#x27;string&#x27;, &#x27;vpc_zone_identifier&#x27;: &#x27;string&#x27;, &#x27;enabled_metrics&#x27;: [], &#x27;status&#x27;: &#x27;string&#x27;, &#x27;tags&#x27;: [], &#x27;termination_policies&#x27;: [], &#x27;new_instances_protected_from_scale_in&#x27;: True, &#x27;service_linked_role_arn&#x27;: &#x27;string&#x27;, &#x27;max_instance_lifetime&#x27;: 123, &#x27;capacity_rebalance&#x27;: True}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>assessments</b>
+                    <b>auto_scaling_instances</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when no argument and success</td>
+                <td>when `describe_auto_scaling_instances` is defined and success</td>
                 <td>
-                            <div>Returns a list of current and past assessments from AWS Audit Manager.</div>
+                            <div>Describes one or more Auto Scaling groups.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;name&#x27;: &#x27;string&#x27;, &#x27;id&#x27;: &#x27;string&#x27;, &#x27;compliance_type&#x27;: &#x27;string&#x27;, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;roles&#x27;: [{&#x27;role_type&#x27;: &#x27;PROCESS_OWNER&#x27;, &#x27;role_arn&#x27;: &#x27;string&#x27;}], &#x27;delegations&#x27;: [{&#x27;id&#x27;: &#x27;string&#x27;, &#x27;assessment_name&#x27;: &#x27;string&#x27;, &#x27;assessment_id&#x27;: &#x27;string&#x27;, &#x27;status&#x27;: &#x27;IN_PROGRESS&#x27;, &#x27;role_arn&#x27;: &#x27;string&#x27;, &#x27;role_type&#x27;: &#x27;PROCESS_OWNER&#x27;, &#x27;creation_time&#x27;: &#x27;datetime(2017&#x27;, 7: None, &#x27;7)&#x27;: None, &#x27;last_updated&#x27;: &#x27;datetime(2016&#x27;, 6: None, &#x27;6)&#x27;: None, &#x27;control_set_id&#x27;: &#x27;string&#x27;, &#x27;comment&#x27;: &#x27;string&#x27;, &#x27;created_by&#x27;: &#x27;string&#x27;}], &#x27;creation_time&#x27;: &#x27;datetime(2018&#x27;, 8: None, &#x27;8)&#x27;: None, &#x27;last_updated&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;1)&#x27;: None}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;instance_id&#x27;: &#x27;string&#x27;, &#x27;instance_type&#x27;: &#x27;string&#x27;, &#x27;auto_scaling_group_name&#x27;: &#x27;string&#x27;, &#x27;availability_zone&#x27;: &#x27;string&#x27;, &#x27;lifecycle_state&#x27;: &#x27;string&#x27;, &#x27;health_status&#x27;: &#x27;string&#x27;, &#x27;launch_configuration_name&#x27;: &#x27;string&#x27;, &#x27;launch_template&#x27;: {}, &#x27;protected_from_scale_in&#x27;: True, &#x27;weighted_capacity&#x27;: &#x27;string&#x27;}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>control_metadata_list</b>
+                    <b>launch_configurations</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_controls` and `type` are defined and success</td>
+                <td>when `describe_launch_configurations` is defined and success</td>
                 <td>
-                            <div>Returns a list of controls from AWS Audit Manager.</div>
+                            <div>Describes one or more launch configurations.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;arn&#x27;: &#x27;string&#x27;, &#x27;id&#x27;: &#x27;string&#x27;, &#x27;name&#x27;: &#x27;string&#x27;, &#x27;control_sources&#x27;: &#x27;string&#x27;, &#x27;created_at&#x27;: &#x27;datetime(2016&#x27;, 6: None, &#x27;6)&#x27;: None, &#x27;last_updated_at&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;1)&#x27;: None}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;launch_configuration_name&#x27;: &#x27;string&#x27;, &#x27;launch_configuration_arn&#x27;: &#x27;string&#x27;, &#x27;image_id&#x27;: &#x27;string&#x27;, &#x27;key_name&#x27;: &#x27;string&#x27;, &#x27;security_groups&#x27;: [], &#x27;classic_link_vpc_id&#x27;: &#x27;string&#x27;, &#x27;classic_link_vpc_security_groups&#x27;: [], &#x27;user_data&#x27;: &#x27;string&#x27;, &#x27;instance_type&#x27;: &#x27;string&#x27;, &#x27;kernel_id&#x27;: &#x27;string&#x27;, &#x27;ramdisk_id&#x27;: &#x27;string&#x27;, &#x27;block_device_mappings&#x27;: [], &#x27;instance_monitoring&#x27;: {}, &#x27;spot_price&#x27;: &#x27;string&#x27;, &#x27;iam_instance_profile&#x27;: &#x27;string&#x27;, &#x27;created_time&#x27;: &#x27;xxxx&#x27;, &#x27;ebs_optimized&#x27;: True, &#x27;associate_public_ip_address&#x27;: True, &#x27;placement_tenancy&#x27;: &#x27;string&#x27;, &#x27;metadata_options&#x27;: {}}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>delegations</b>
+                    <b>load_balancer_target_groups</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_delegations` is defined and success</td>
+                <td>when `describe_load_balancer_target_groups` is defined and success</td>
                 <td>
-                            <div>Returns a list of delegations from an audit owner to a delegate.</div>
+                            <div>Describes the target groups for the specified Auto Scaling group.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;id&#x27;: &#x27;string&#x27;, &#x27;assessment_name&#x27;: &#x27;string&#x27;, &#x27;assessment_id&#x27;: &#x27;string&#x27;, &#x27;status&#x27;: &#x27;IN_PROGRESS&#x27;, &#x27;role_arn&#x27;: &#x27;string&#x27;, &#x27;creation_time&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;1)&#x27;: None, &#x27;control_set_name&#x27;: &#x27;string&#x27;}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;load_balancer_target_group_arn&#x27;: &#x27;string&#x27;, &#x27;state&#x27;: &#x27;string&#x27;}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>framework_metadata_list</b>
+                    <b>load_balancers</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_assessment_frameworks` and `type` are defined and success</td>
+                <td>when `describe_load_balancers` is defined and success</td>
                 <td>
-                            <div>Returns a list of the frameworks available in the AWS Audit Manager framework library.</div>
+                            <div>Describes the load balancers for the specified Auto Scaling group.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;id&#x27;: &#x27;string&#x27;, &#x27;type&#x27;: &#x27;Standard&#x27;, &#x27;name&#x27;: &#x27;string&#x27;, &#x27;description&#x27;: &#x27;string&#x27;, &#x27;logo&#x27;: &#x27;string&#x27;, &#x27;compliance_type&#x27;: &#x27;string&#x27;, &#x27;controls_count&#x27;: 123, &#x27;control_sets_count&#x27;: 123, &#x27;created_at&#x27;: &#x27;datetime(2016&#x27;, 6: None, &#x27;6)&#x27;: None, &#x27;last_updated_at&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;1)&#x27;: None}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;load_balancer_name&#x27;: &#x27;string&#x27;, &#x27;state&#x27;: &#x27;string&#x27;}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>notifications</b>
+                    <b>notification_configurations</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_notifications` is defined and success</td>
+                <td>when `describe_notification_configurations` is defined and success</td>
                 <td>
-                            <div>Returns a list of all AWS Audit Manager notifications.</div>
+                            <div>Describes the notification actions associated with the specified Auto Scaling group.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;id&#x27;: &#x27;string&#x27;, &#x27;assessment_id&#x27;: &#x27;string&#x27;, &#x27;assessment_name&#x27;: &#x27;string&#x27;, &#x27;control_set_id&#x27;: &#x27;string&#x27;, &#x27;control_set_name&#x27;: &#x27;string&#x27;, &#x27;description&#x27;: &#x27;string&#x27;, &#x27;event_time&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;1)&#x27;: None, &#x27;source&#x27;: &#x27;string&#x27;}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;auto_scaling_group_name&#x27;: &#x27;string&#x27;, &#x27;topic_arn&#x27;: &#x27;string&#x27;, &#x27;notification_type&#x27;: &#x27;string&#x27;}]</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>scaling_policies</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `describe_policies` is defined and success</td>
+                <td>
+                            <div>Describes the policies for the specified Auto Scaling group.</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;auto_scaling_group_name&#x27;: &#x27;string&#x27;, &#x27;policy_name&#x27;: &#x27;string&#x27;, &#x27;policy_arn&#x27;: &#x27;string&#x27;, &#x27;policy_type&#x27;: &#x27;string&#x27;, &#x27;adjustment_type&#x27;: &#x27;string&#x27;, &#x27;min_adjustment_step&#x27;: 123, &#x27;min_adjustment_magnitude&#x27;: 123, &#x27;scaling_adjustment&#x27;: 123, &#x27;cooldown&#x27;: 123, &#x27;step_adjustments&#x27;: [], &#x27;metric_aggregation_type&#x27;: &#x27;string&#x27;, &#x27;estimated_instance_warmup&#x27;: 123, &#x27;alarms&#x27;: [], &#x27;target_tracking_configuration&#x27;: {}, &#x27;enabled&#x27;: True}]</div>
                 </td>
             </tr>
     </table>
