@@ -1,7 +1,6 @@
 ## Ansible Missing Collection 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/116davinder/ansible.missing_collection/CI%20Testing)
 ![Lines of code](https://img.shields.io/tokei/lines/github/116davinder/ansible.missing_collection)
-![GitHub repo file count (custom path)](https://img.shields.io/github/directory-file-count/116davinder/ansible.missing_collection/plugins/modules)
 ![GitHub contributors](https://img.shields.io/github/contributors/116davinder/ansible.missing_collection)
 ![GitHub all releases](https://img.shields.io/github/downloads/116davinder/ansible.missing_collection/total)
 
@@ -12,6 +11,9 @@ Ansible Community reviewers takes too much time and have too hard restrictions.
 So I decided to host modules on my repository instead of ansible.
 
 **Examples:**
+* [Official Ansible PR: 1](https://github.com/ansible/ansible/pull/40029)
+* [Official Ansible PR: 2](https://github.com/ansible-collections/community.general/pull/876)
+* [Official Ansible PR: 3](https://github.com/ansible-collections/community.general/pull/1501)
 * https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
 
 <!--start requires_ansible-->
