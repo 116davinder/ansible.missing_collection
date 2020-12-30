@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Describes one or more of your scaling plans."
+      aws_autoscaling_plans_info:
+        scaling_plan_names: []  #all plans
+        describe_scaling_plans: true
+
+    - name: "Describes the scalable resources in the specified scaling plan."
+      aws_autoscaling_plans_info:
+        scaling_plan_name: 'test'
+        scaling_plan_version: 1
+        describe_scaling_plan_resources: true
