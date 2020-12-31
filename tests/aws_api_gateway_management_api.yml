@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "delete given connection id"
+      aws_api_gateway_management_api:
+        connection_id: 'test'
+        delete_connection: true
+
+    - name: "send data to given connection id"
+      aws_api_gateway_management_api:
+        connection_id: 'test'
+        data: "<bytes>"
+        post_to_connection: true
