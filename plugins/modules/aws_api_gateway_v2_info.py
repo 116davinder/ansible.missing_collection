@@ -350,7 +350,6 @@ def main():
 
     _gateway = module.client('apigatewayv2', retry_decorator=AWSRetry.exponential_backoff())
     _it, paginate = _api_gateway_v2(_gateway, module)
-    _return = []
 
     if module.params['get_api']:
         module.exit_json(api=camel_dict_to_snake_dict(_it))

@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "details about given connection id"
+      aws_api_gateway_management_api_info:
+        connection_id: 'test'
+        get_connection: true
