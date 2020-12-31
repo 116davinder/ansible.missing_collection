@@ -1,0 +1,32 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Returns a list of AWS Batch jobs."
+      aws_batch_info:
+        job_queue: 'test'
+        job_status: 'RUNNING'
+        list_jobs: true
+
+    - name: "Describes a list of AWS Batch jobs."
+      aws_batch_info:
+        job_ids: ['test']
+        describe_jobs: true
+
+    - name: "Describes one or more of your job queues."
+      aws_batch_info:
+        job_queues: []
+        describe_job_queues: true
+
+    - name: "Describes a list of job definitions"
+      aws_batch_info:
+        job_definition_names: ['test']
+        job_definition_status: 'ACTIVE'
+        describe_job_definitions: true
+
+    - name: "Describes one or more of your compute environments."
+      aws_batch_info:
+        compute_environment_names: ['test']
+        describe_compute_environments: true

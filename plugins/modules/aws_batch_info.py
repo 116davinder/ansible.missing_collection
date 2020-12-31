@@ -16,19 +16,77 @@ description:
   - U(https://docs.aws.amazon.com/batch/latest/APIReference/API_Operations.html)
 version_added: 0.0.2
 options:
-  scaling_plan_name:
+  job_queue:
     description:
-      - name of scaling plan.
+      - name of batch queue.
+      - arn of batch queue.
     required: false
     type: str
-  describe_scaling_plans:
+    aliases: ['job_queue_arn']
+  job_queues:
     description:
-      - do you want to describe all scaling plans or given scaling names I(scaling_plan_names)?
+      - list of names of batch queue.
+      - list of arn of batch queue.
+    required: false
+    type: list
+    default: []
+    aliases: ['job_queue_arns']
+  job_ids:
+    description:
+      - list of job ids.
+    required: false
+    type: list
+  job_definition_arns:
+    description:
+      - list of names of batch job definitions.
+      - list of arns of batch job definitions.
+    required: false
+    type: list
+    aliases: ['job_definition_names']
+  job_definition_status:
+    description:
+      - job definition status to filter.
+    required: false
+    type: str
+    default: 'ACTIVE'
+  job_status:
+    description:
+      - job status to filter the results.
+    required: false
+    type: str
+    choices: ['SUBMITTED', 'PENDING', 'RUNNABLE', 'STARTING', 'RUNNING', 'SUCCEEDED', 'FAILED']
+    default: 'RUNNING'
+  compute_environment_arns:
+    description:
+      - list of compute environment names.
+      - list of compute environment arns.
+    required: false
+    type: list
+    default: []
+    aliases: ['compute_environment_names']
+  list_jobs:
+    description:
+      - do you want to list job related to I(job_queue)?
     required: false
     type: bool
-  describe_scaling_plan_resources:
+  describe_jobs:
     description:
-      - do you want to describe all scaling plan resources for I(scaling_plan_name) and I(scaling_plan_version)?
+      - do you want to describe job related to I(job_ids)?
+    required: false
+    type: bool
+  describe_job_queues:
+    description:
+      - do you want to describe job queues related to I(job_queues)?
+    required: false
+    type: bool
+  describe_job_definitions:
+    description:
+      - do you want to describe job definitations related to I(job_definition_arns) and I(job_definition_status)?
+    required: false
+    type: bool
+  describe_compute_environments:
+    description:
+      - do you want to describe compute environments related to I(compute_environment_arns)?
     required: false
     type: bool
 author:
@@ -71,11 +129,110 @@ EXAMPLES = """
 """
 
 RETURN = """
-scaling_plans:
-  description: Describes one or more of your scaling plans.
-  returned: when `scaling_plan_names` and `describe_scaling_plans` are defined and success
+job_summary_list:
+  description: Returns a list of AWS Batch jobs.
+  returned: when `list_jobs` and `job_queue` are defined and success
   type: list
-  sample: 
+  sample: [
+    {
+        'job_arn': 'string',
+        'job_id': 'string',
+        'job_name': 'string',
+        'created_at': 123,
+        'status': 'SUBMITTED',
+        'status_reason': 'string',
+        'started_at': 123,
+        'stopped_at': 123,
+        'container': {},
+        'array_properties': {},
+        'node_properties': {}
+    },
+  ]
+jobs:
+  description: Describes a list of AWS Batch jobs.
+  returned: when `describe_jobs` and `job_ids` are defined and success
+  type: list
+  sample: [
+    {
+        'job_arn': 'string',
+        'job_name': 'string',
+        'job_id': 'string',
+        'job_queue': 'string',
+        'status': 'SUBMITTED',
+        'attempts': [],
+        'status_reason': 'string',
+        'created_at': 123,
+        'retry_strategy': {},
+        'started_at': 123,
+        'stopped_at': 123,
+        'depends_on': [],
+        'job_definition': 'string',
+        'parameters': {},
+        'container': {},
+        'node_details': {},
+        'node_properties': {},
+        'array_properties': {},
+        'timeout': {},
+        'tags': {},
+        'propagate_tags': True,
+        'platform_capabilities': []
+    },
+  ]
+job_queues:
+  description: Describes one or more of your job queues.
+  returned: when `describe_job_queues` and `job_queues` are defined and success
+  type: list
+  sample: [
+    {
+        'job_queue_name': 'string',
+        'job_queue_arn': 'string',
+        'state': 'ENABLED',
+        'status': 'CREATING',
+        'status_reason': 'string',
+        'priority': 123,
+        'compute_environment_order': [],
+        'tags': {}
+    },
+  ]
+job_definitions:
+  description: Describes a list of job definitions.
+  returned: when `describe_job_definitions` and `job_definition_arns` and `job_definition_status` are defined and success
+  type: list
+  sample: [
+    {
+        'job_definition_name': 'string',
+        'job_definition_arn': 'string',
+        'revision': 123,
+        'status': 'string',
+        'type': 'string',
+        'parameters': {},
+        'retry_strategy': {},
+        'container_properties': {},
+        'timeout': {},
+        'node_properties': {},
+        'tags': {},
+        'propagate_tags': True,
+        'platform_capabilities': []
+    },
+  ]
+compute_environments:
+  description: Describes one or more of your compute environments.
+  returned: when `describe_compute_environments` and `compute_environment_arns` are defined and success
+  type: list
+  sample: [
+    {
+        'compute_environment_name': 'string',
+        'compute_environment_arn': 'string',
+        'ecs_cluster_arn': 'string',
+        'tags': {},
+        'type': 'MANAGED',
+        'state': 'ENABLED',
+        'status': 'CREATING',
+        'status_reason': 'string',
+        'compute_resources': {},
+        'service_role': 'string'
+    },
+  ]
 """
 
 try:
@@ -171,12 +328,12 @@ def main():
         job_definition_status=dict(required=False, default='ACTIVE'),
         compute_environment_arns=dict(required=False, type=list, default=[], aliases=['compute_environment_names']),
         job_status=dict(
-          required=False,
-          choices=['SUBMITTED', 'PENDING', 'RUNNABLE', 'STARTING', 'RUNNING', 'SUCCEEDED', 'FAILED'],
-          default='RUNNING'
+            required=False,
+            choices=['SUBMITTED', 'PENDING', 'RUNNABLE', 'STARTING', 'RUNNING', 'SUCCEEDED', 'FAILED'],
+            default='RUNNING'
         ),
-        list_jobs=dict(required=False, type=bool),
         job_ids=dict(required=False, type=list),
+        list_jobs=dict(required=False, type=bool),
         describe_jobs=dict(required=False, type=bool),
         describe_job_queues=dict(required=False, type=bool),
         describe_job_definitions=dict(required=False, type=bool),
