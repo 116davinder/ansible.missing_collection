@@ -1,0 +1,23 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "list of all environment ids"
+      aws_cloud9_info:
+
+    - name: "Gets information about AWS Cloud9 development environments."
+      aws_cloud9_info:
+        environment_ids: ['test']
+        describe_environments: true
+
+    - name: "Gets information about AWS Cloud9 development environment status"
+      aws_cloud9_info:
+        environment_id: 'test'
+        describe_environment_status: true
+
+    - name: "Gets information about AWS Cloud9 development environment memeberships"
+      aws_cloud9_info:
+        environment_id: 'test'
+        describe_environment_memberships: true

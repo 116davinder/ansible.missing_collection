@@ -9,7 +9,7 @@ license_file: COPYING
 tags: [community, aws, cloud, amazon]
 dependencies: null
 repository: https://github.com/116davinder/ansible.missing_collection
-documentation: https://github.com/116davinder/ansible.missing_collection/tree/main/docs
+documentation: https://github.com/116davinder/ansible.missing_collection/tree/master/docs
 homepage: https://github.com/116davinder/ansible.missing_collection
 issues: https://github.com/116davinder/ansible.missing_collection/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc
 build_ignore:
