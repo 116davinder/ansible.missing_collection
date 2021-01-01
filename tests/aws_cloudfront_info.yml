@@ -1,0 +1,87 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "list of all cloudfront distributions ids"
+      aws_cloudfront_info:
+      register: _dl
+    
+    - debug:
+        var: _dl.distribution_list[0].id
+  
+    - name: "list of cache policies"
+      aws_cloudfront_info:
+        type: 'managed'
+        list_cache_policies: true
+      register: _cp
+    
+    - debug:
+        var: _cp.cache_policy_list[0]
+
+    - name: "list of all orgins identities"
+      aws_cloudfront_info:
+        list_cloud_front_origin_access_identities: true
+      register: _oi
+
+    - debug:
+        var: _oi.cloud_front_origin_access_identity_list[0]
+
+    - name: "list of all field level encryption configs"
+      aws_cloudfront_info:
+        list_field_level_encryption_configs: true
+      register: _fl
+    
+    - debug:
+        var: _fl.field_level_encryption_list
+
+    - name: "list of all field level encryption profiles"
+      aws_cloudfront_info:
+        list_field_level_encryption_profiles: true
+      register: _fp
+    
+    - debug:
+        var: _fp.field_level_encryption_profile_list
+
+    - name: "list of all field level encryption profiles"
+      aws_cloudfront_info:
+        id: "{{ _dl.distribution_list[0].id }}"
+        list_invalidations: true
+      register: _li
+    
+    - debug:
+        var: _li.invalidation_list
+
+    - name: "list of all key groups"
+      aws_cloudfront_info:
+        list_key_groups: true
+      register: _kg
+
+    - debug:
+        var: _kg.key_group_list
+
+    - name: "list of all origin request policies"
+      aws_cloudfront_info:
+        type: 'managed'
+        list_origin_request_policies: true
+      register: _orp
+    
+    - debug:
+        var: _orp.origin_request_policy_list
+
+    - name: "list of all public keys"
+      aws_cloudfront_info:
+        list_public_keys: true
+      register: _keys
+    
+    - debug:
+        var: _keys.public_key_list
+
+    - name: "list of all streaming distribution"
+      aws_cloudfront_info:
+        list_streaming_distributions: true
+      register: _sd
+    
+    - debug:
+        var: _sd.streaming_distribution_list
