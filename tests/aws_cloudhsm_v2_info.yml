@@ -1,0 +1,18 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "should fail as no options are passed"
+      aws_cloudhsm_v2_info:
+
+    - name: "describe all hsm clusters"
+      aws_cloudhsm_v2_info:
+        describe_clusters: true
+        cluster_ids: ['test']
+
+    - name: "describe backups for all hsm clusters"
+      aws_cloudhsm_v2_info:
+        describe_backups: true
+        cluster_ids: ['test']

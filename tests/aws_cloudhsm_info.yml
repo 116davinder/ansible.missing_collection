@@ -1,0 +1,38 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "list available zones of cloudhsm"
+      aws_cloudhsm_info:
+      register: _az
+
+    - name: "Retrieves the identifiers of all of the HSMs provisioned"
+      aws_cloudhsm_info:
+        list_hsms: true
+
+    - name: "Lists the high-availability partition groups"
+      aws_cloudhsm_info:
+        list_hapgs: true
+
+    - name: "Lists all of the luna clients."
+      aws_cloudhsm_info:
+        list_luna_clients: true
+
+    - name: "Retrieves information about a high-availability partition group."
+      aws_cloudhsm_info:
+        describe_hapg: true
+        arn: 'hapg_arn'
+
+    - name: "Retrieves information about an HSM."
+      aws_cloudhsm_info:
+        describe_hsm: true
+        arn: 'cloud_hsm_arn'
+        serial_number: '122344545'
+
+    - name: "Retrieves information about an HSM client."
+      aws_cloudhsm_info:
+        describe_luna_client: true
+        arn: 'client_cert_arn'
+        certificate_fingerprint: 'certificate_fingerprint'

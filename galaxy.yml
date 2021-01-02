@@ -1,11 +1,11 @@
 namespace: community
 name: missing_collection
-version: 0.0.2
+version: 0.0.3
 readme: README.md
 authors:
   - Ansible (https://github.com/116davinder)
 description: It will contains all the modules which are missing in official ansible collections.
-license_file: COPYING
+license_file: LICENSE
 tags: [community, aws, cloud, amazon]
 dependencies: null
 repository: https://github.com/116davinder/ansible.missing_collection
