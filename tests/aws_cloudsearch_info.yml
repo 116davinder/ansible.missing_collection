@@ -1,0 +1,57 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "list cloudsearch domains"
+      aws_cloudsearch_info:
+
+    - name: "describe test analysis schemas"
+      aws_cloudsearch_info:
+        describe_analysis_schemes: true
+        domain_name: "test"
+        analysis_scheme_names: ['test']
+
+    - name: "describe availability options"
+      aws_cloudsearch_info:
+        describe_availability_options: true
+        domain_name: "test"
+
+    - name: "describe domain endpoint options"
+      aws_cloudsearch_info:
+        describe_domain_endpoint_options: true
+        domain_name: "test"
+
+    - name: "describe domains"
+      aws_cloudsearch_info:
+        describe_domains: true
+        domain_names: ["test"]
+
+    - name: "describe expressions"
+      aws_cloudsearch_info:
+        describe_expressions: true
+        domain_name: "test"
+        expression_names: ['test']
+
+    - name: "describe index fields"
+      aws_cloudsearch_info:
+        describe_index_fields: true
+        domain_name: "test"
+        field_names: ['rank']
+
+    - name: "describe scaling parameters"
+      aws_cloudsearch_info:
+        describe_scaling_parameters: true
+        domain_name: "test"
+
+    - name: "describe service access policies"
+      aws_cloudsearch_info:
+        describe_service_access_policies: true
+        domain_name: "test"
+
+    - name: "describe suggesters"
+      aws_cloudsearch_info:
+        describe_suggesters: true
+        domain_name: "test"
+        suggester_names: "test"
