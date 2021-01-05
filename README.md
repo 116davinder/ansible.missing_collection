@@ -69,6 +69,7 @@ Name | Description
 [community.missing_collection.aws_cloudhsm_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_cloudhsm_info_module.rst)|Get details about Amazon CloudHSM.
 [community.missing_collection.aws_cloudhsm_v2_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_cloudhsm_v2_info_module.rst)|Get details about Amazon CloudHSM V2.
 [community.missing_collection.aws_cloudsearch_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_cloudsearch_info_module.rst)|Get details about Amazon CloudSearch.
+[community.missing_collection.aws_cloudtrail_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_cloudtrail_info_module.rst)|Get Information about AWS Cloudtrail.
 [community.missing_collection.aws_config_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_config_info_module.rst)|Get Information about AWS Config.
 [community.missing_collection.aws_eks_cluster_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_eks_cluster_info_module.rst)|Get Information about AWS EKS Clusters.
 [community.missing_collection.aws_iam_access_analyzer_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_iam_access_analyzer_info_module.rst)|Get Information about AWS IAM Access Analyzer.
@@ -89,7 +90,7 @@ $ pip3 install git+https://github.com/ansible-network/collection_prep.git
 
 ### Generate docs from ansible tool ?
 ```bash
-$ collection_prep_add_docs -p ./ansible.missing_collection -b master
+$ collection_prep_add_docs -p . -b master
 INFO      Setting collection name to community.missing_collection
 INFO      Setting GitHub repository url to https://github.com/116davinder/ansible.missing_collection
 INFO      Purging content from directory /home/dpal/python-projects/ansible.missing_collection/docs

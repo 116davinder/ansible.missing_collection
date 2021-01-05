@@ -1,0 +1,20 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get all the trails"
+      aws_cloudtrail_info:
+      register: __app
+
+    - debug:
+        msg: "{{ __app.trails[0] }}"
+
+    - name: "get all the trails"
+      aws_cloudtrail_info:
+        get_trail: true
+        name: 'amplify-preprod'
+      register: __trail
+
+    - debug:
+        var: __trail.trail
