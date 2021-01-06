@@ -151,6 +151,44 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>get_event_selectors</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to fetch event selector detail about given trail name <em>name</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>get_insight_selectors</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to fetch insight selector detail about given trail name <em>name</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>get_trail</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -170,6 +208,25 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>get_trail_status</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to fetch status detail about given trail name <em>name</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -180,6 +237,7 @@ Parameters
                 </td>
                 <td>
                         <div>name of the cloudtrail.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: arn</div>
                 </td>
             </tr>
             <tr>
@@ -274,11 +332,27 @@ Examples
 
     - name: "get all the trails"
       aws_cloudtrail_info:
+      register: __app
 
     - name: "get detail about specific trail"
       aws_cloudtrail_info:
         get_trail: true
-        name: 'test'
+        name: '{{ __app.trails[0].name }}'
+
+    - name: "get status information about given trail"
+      aws_cloudtrail_info:
+        get_trail_status: true
+        name: '{{ __app.trails[0].name }}'
+
+    - name: "get insight selectors about given trail"
+      aws_cloudtrail_info:
+        get_insight_selectors: true
+        name: '{{ __app.trails[0].name }}'
+
+    - name: "get event selector about given trail"
+      aws_cloudtrail_info:
+        get_event_selectors: true
+        arn: '{{ __app.trails[0].name }}'
 
 
 
@@ -294,6 +368,57 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>event_selector</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                    </div>
+                </td>
+                <td>when `name` and `get_event_selectors` are defined and success</td>
+                <td>
+                            <div>event selector detail about given trail name</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;event_selectors&#x27;: [{&#x27;data_resources&#x27;: [], &#x27;exclude_management_event_sources&#x27;: [], &#x27;include_management_events&#x27;: True, &#x27;read_write_type&#x27;: &#x27;ReadOnly&#x27;}], &#x27;response_metadata&#x27;: {}, &#x27;trail_arn&#x27;: &#x27;arn:aws:cloudtrail:us-east-1:xxxxxxxxx:trail/test-trail&#x27;, &#x27;advanced_event_selectors&#x27;: []}</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>insight_selector</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                    </div>
+                </td>
+                <td>when `name` and `get_insight_selectors` are defined and success</td>
+                <td>
+                            <div>event selector detail about given trail name</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;trail_arn&#x27;: &#x27;string&#x27;, &#x27;insight_selectors&#x27;: [{&#x27;insight_type&#x27;: &#x27;ApiCallRateInsight&#x27;}]}</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>status</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                    </div>
+                </td>
+                <td>when `name` and `get_trail_status` are defined and success</td>
+                <td>
+                            <div>status detail about given trail name</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;is_logging&#x27;: True, &#x27;latest_delivery_attempt_succeeded&#x27;: &#x27;2021-01-06T13:22:52Z&#x27;, &#x27;latest_delivery_attempt_time&#x27;: &#x27;2021-01-06T13:22:52Z&#x27;, &#x27;latest_delivery_time&#x27;: &#x27;2021-01-06T15:22:52.719000+02:00&#x27;, &#x27;latest_digest_delivery_time&#x27;: &#x27;2021-01-06T14:55:16.802000+02:00&#x27;, &#x27;latest_notification_attempt_succeeded&#x27;: &#x27;&#x27;, &#x27;latest_notification_attempt_time&#x27;: &#x27;&#x27;, &#x27;response_metadata&#x27;: {}, &#x27;start_logging_time&#x27;: &#x27;2018-11-23T16:03:40.179000+02:00&#x27;, &#x27;time_logging_started&#x27;: &#x27;2018-11-23T14:03:40Z&#x27;, &#x27;time_logging_stopped&#x27;: &#x27;&#x27;}</div>
+                </td>
+            </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>

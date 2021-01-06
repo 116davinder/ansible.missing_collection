@@ -21,9 +21,25 @@ options:
       - name of the cloudtrail.
     required: false
     type: str
+    aliases: ['arn']
   get_trail:
     description:
       - do you want to fetch details about given trail name I(name)?
+    required: false
+    type: bool
+  get_trail_status:
+    description:
+      - do you want to fetch status detail about given trail name I(name)?
+    required: false
+    type: bool
+  get_insight_selectors:
+    description:
+      - do you want to fetch insight selector detail about given trail name I(name)?
+    required: false
+    type: bool
+  get_event_selectors:
+    description:
+      - do you want to fetch event selector detail about given trail name I(name)?
     required: false
     type: bool
 author:
@@ -39,11 +55,27 @@ requirements:
 EXAMPLES = """
 - name: "get all the trails"
   aws_cloudtrail_info:
+  register: __app
 
 - name: "get detail about specific trail"
   aws_cloudtrail_info:
     get_trail: true
-    name: 'test'
+    name: '{{ __app.trails[0].name }}'
+
+- name: "get status information about given trail"
+  aws_cloudtrail_info:
+    get_trail_status: true
+    name: '{{ __app.trails[0].name }}'
+
+- name: "get insight selectors about given trail"
+  aws_cloudtrail_info:
+    get_insight_selectors: true
+    name: '{{ __app.trails[0].name }}'
+
+- name: "get event selector about given trail"
+  aws_cloudtrail_info:
+    get_event_selectors: true
+    arn: '{{ __app.trails[0].name }}'
 """
 
 RETURN = """
@@ -73,6 +105,52 @@ trail:
     "name": "test-trail",
     "s3_bucket_name": "test-trail-bucket",
     "trail_arn": "arn:aws:cloudtrail:us-east-1:xxxxxxxxx:trail/test-trail"
+  }
+status:
+  description: status detail about given trail name
+  returned: when `name` and `get_trail_status` are defined and success
+  type: dict
+  sample: {
+    "is_logging": true,
+    "latest_delivery_attempt_succeeded": "2021-01-06T13:22:52Z",
+    "latest_delivery_attempt_time": "2021-01-06T13:22:52Z",
+    "latest_delivery_time": "2021-01-06T15:22:52.719000+02:00",
+    "latest_digest_delivery_time": "2021-01-06T14:55:16.802000+02:00",
+    "latest_notification_attempt_succeeded": "",
+    "latest_notification_attempt_time": "",
+    "response_metadata": {},
+    "start_logging_time": "2018-11-23T16:03:40.179000+02:00",
+    "time_logging_started": "2018-11-23T14:03:40Z",
+    "time_logging_stopped": ""
+  }
+insight_selector:
+  description: event selector detail about given trail name
+  returned: when `name` and `get_insight_selectors` are defined and success
+  type: dict
+  sample: {
+    'trail_arn': 'string',
+    'insight_selectors': [
+        {
+            'insight_type': 'ApiCallRateInsight'
+        },
+    ]
+  }
+event_selector:
+  description: event selector detail about given trail name
+  returned: when `name` and `get_event_selectors` are defined and success
+  type: dict
+  sample: {
+    "event_selectors": [
+        {
+            "data_resources": [],
+            "exclude_management_event_sources": [],
+            "include_management_events": true,
+            "read_write_type": "ReadOnly"
+        }
+    ],
+    "response_metadata": {},
+    "trail_arn": "arn:aws:cloudtrail:us-east-1:xxxxxxxxx:trail/test-trail",
+    "advanced_event_selectors": []
   }
 """
 
@@ -104,6 +182,18 @@ def _cloudtrail(client, module):
             return client.get_trail(
                 Name=module.params['name']
             ), False
+        elif module.params['get_trail_status']:
+            return client.get_trail_status(
+                Name=module.params['name']
+            ), False
+        elif module.params['get_insight_selectors']:
+            return client.get_insight_selectors(
+                TrailName=module.params['name']
+            ), False
+        elif module.params['get_event_selectors']:
+            return client.get_event_selectors(
+                TrailName=module.params['name']
+            ), False
         else:
             if client.can_paginate('list_trails'):
                 paginator = client.get_paginator('list_trails')
@@ -116,8 +206,11 @@ def _cloudtrail(client, module):
 
 def main():
     argument_spec = dict(
-        name=dict(required=False, type=str),
+        name=dict(required=False, type=str, aliases=['arn']),
         get_trail=dict(required=False, type=bool),
+        get_trail_status=dict(required=False, type=bool),
+        get_insight_selectors=dict(required=False, type=bool),
+        get_event_selectors=dict(required=False, type=bool),
     )
 
     module = AnsibleAWSModule(
@@ -125,8 +218,18 @@ def main():
 
         required_if=(
             ('get_trail', True, ['name']),
+            ('get_trail_status', True, ['name']),
+            ('get_insight_selectors', True, ['name']),
+            ('get_event_selectors', True, ['name']),
         ),
-        mutually_exclusive=[],
+        mutually_exclusive=[
+            (
+                'get_trail',
+                'get_trail_status',
+                'get_insight_selectors',
+                'get_event_selectors',
+            )
+        ],
     )
 
     client = module.client('cloudtrail', retry_decorator=AWSRetry.exponential_backoff())
@@ -134,6 +237,12 @@ def main():
 
     if module.params['get_trail']:
         module.exit_json(trail=camel_dict_to_snake_dict(_it['Trail']))
+    elif module.params['get_trail_status']:
+        module.exit_json(status=camel_dict_to_snake_dict(_it))
+    elif module.params['get_insight_selectors']:
+        module.exit_json(insight_selector=camel_dict_to_snake_dict(_it))
+    elif module.params['get_event_selectors']:
+        module.exit_json(event_selector=camel_dict_to_snake_dict(_it))
     else:
         module.exit_json(trails=aws_response_list_parser(paginate, _it, 'Trails'))
 
