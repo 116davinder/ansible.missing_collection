@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get all the cloudwatch dashboards"
+      aws_cloudwatch_info:
+
+    - name: "describe given cloudwatch alarms"
+      aws_cloudwatch_info:
+        describe_alarms: true
+        alarm_names: ['test']
+        alarm_state: 'OK'
+        alarm_types: []
+
+    - name: "describe cloudwatch dashboard"
+      aws_cloudwatch_info:
+        get_dashboard: true
+        dashboard_name: 'GOL'
+
+    - name: "describe anomaly detectors"
+      aws_cloudwatch_info:
+        describe_anomaly_detectors: true
+        name_space: 'AWS/EC2'
+        metric_name: 'CPUUtilization'
