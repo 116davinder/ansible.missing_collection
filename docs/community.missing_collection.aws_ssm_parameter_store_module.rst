@@ -343,7 +343,7 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>Paramter Store Tier Type</div>
+                        <div>Parameter Store Tier Type</div>
                 </td>
             </tr>
             <tr>
@@ -499,3 +499,6 @@ Authors
 ~~~~~~~
 
 - Davinder Pal (@116davinder) <dpsangwal@gmail.com>
+- Nathan Webster (@nathanwebsterdotme)
+- Bill Wang (@ozbillwang) <ozbillwang@gmail.com>
+- Michael De La Rue (@mikedlr)

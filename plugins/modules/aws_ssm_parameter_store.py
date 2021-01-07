@@ -60,12 +60,16 @@ options:
     required: false
   tier:
     description:
-      - Paramter Store Tier Type
+      - Parameter Store Tier Type
     required: false
     choices: ['Standard', 'Advanced', 'Intelligent-Tiering']
     default: Standard
     type: str
-author: "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
+author:
+  - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
+  - Nathan Webster (@nathanwebsterdotme)
+  - Bill Wang (@ozbillwang) <ozbillwang@gmail.com>
+  - Michael De La Rue (@mikedlr)
 extends_documentation_fragment: aws
 requirements: [ botocore, boto3 ]
 '''
