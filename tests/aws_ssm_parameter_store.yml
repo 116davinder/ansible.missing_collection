@@ -6,7 +6,7 @@
       t: "test"
   tasks:
     - name: 'Create or update secure key/value pair with Intelligent-Tiering'
-      aws_ssm_parameter_store_v2:
+      aws_ssm_parameter_store:
         name: '{{ ssm_path_prefix }}{{ item.key }}'
         value: '{{ item.value }}'
         tier: 'Intelligent-Tiering'
