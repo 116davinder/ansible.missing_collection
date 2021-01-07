@@ -1,0 +1,38 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of all domains"
+      aws_codeartifact_info:
+
+    - name: "get list of repositories"
+      aws_codeartifact_info:
+        list_repositories: true
+        prefix: 'test'      # works as repositoryPrefix
+
+    - name: "get list of repositories in a domain"
+      aws_codeartifact_info:
+        list_repositories_in_domain: true
+        prefix: 'test'      # works as repositoryPrefix
+        domain: 'test'
+
+    - name: "get list of packages in a repository"
+      aws_codeartifact_info:
+        list_packages: true
+        prefix: 'test'    # works as packagePrefix
+        domain: 'test'
+        repository: 'test-hola'
+        format: 'pypi'
+
+    - name: "get details about domain"
+      aws_codeartifact_info:
+        describe_domain: true
+        domain: 'test'
+
+    - name: "get details about repository"
+      aws_codeartifact_info:
+        describe_repository: true
+        domain: 'test'
+        repository: 'test-hola'
