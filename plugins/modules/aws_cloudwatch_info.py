@@ -209,7 +209,7 @@ def _cloudtrail(client, module):
             else:
                 return client.list_dashboards(), False
     except (BotoCoreError, ClientError) as e:
-        module.fail_json_aws(e, msg='Failed to fetch aws cloudtrail details')
+        module.fail_json_aws(e, msg='Failed to fetch aws cloudwatch details')
 
 
 def main():

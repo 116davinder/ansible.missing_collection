@@ -272,7 +272,7 @@ def _cloudtrail(client, module):
             else:
                 return client.list_domains(), False
     except (BotoCoreError, ClientError) as e:
-        module.fail_json_aws(e, msg='Failed to fetch aws cloudtrail details')
+        module.fail_json_aws(e, msg='Failed to fetch aws code artifact details')
 
 
 def main():

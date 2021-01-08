@@ -1,0 +1,58 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of all projects"
+      aws_codebuild_info:
+        list_projects: true
+        sort_by: 'NAME'
+        sort_order: 'ASCENDING'
+
+    - name: "get list of all shared projects"
+      aws_codebuild_info:
+        list_shared_projects: true
+        sort_by: 'ARN'
+        sort_order: 'ASCENDING'
+
+    - name: "get list of all report groups"
+      aws_codebuild_info:
+        list_report_groups: true
+        sort_by: 'NAME'
+        sort_order: 'ASCENDING'
+
+    - name: "get list of all shared report groups"
+      aws_codebuild_info:
+        list_shared_report_groups: true
+        sort_by: 'ARN'
+        sort_order: 'ASCENDING'
+
+    - name: "get list of all reports"
+      aws_codebuild_info:
+        list_reports: true
+        report_filter_status: 'SUCCEEDED'
+        sort_order: 'ASCENDING'
+
+    - name: "get list of all reports for given report_group"
+      aws_codebuild_info:
+        list_reports_for_report_group: true
+        report_filter_status: 'SUCCEEDED'
+        sort_order: 'ASCENDING'
+        report_group_arn: 'aws:::test'
+
+    - name: "get list of all builds"
+      aws_codebuild_info:
+        list_builds: true
+        sort_order: 'ASCENDING'
+
+    - name: "get list of all builds for given project"
+      aws_codebuild_info:
+        list_builds_for_project: true
+        project_name: 'test'
+        sort_order: 'ASCENDING'
+
+    - name: "get details about given project names or arns"
+      aws_codebuild_info:
+        describe_projects: true
+        project_names: ['test']
