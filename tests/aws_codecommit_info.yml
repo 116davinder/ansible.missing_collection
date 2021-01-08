@@ -1,0 +1,31 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of all repositories"
+      aws_codecommit_info:
+        list_repositories: true
+        sort_by: 'repositoryName'
+        sort_order: 'ascending'
+
+    - name: "get list of all branches of given repository"
+      aws_codecommit_info:
+        list_branches: true
+        name: 'test'
+
+    - name: "get list of pull request of given repository"
+      aws_codecommit_info:
+        list_pull_requests: true
+        name: 'test'
+
+    - name: "get details of given repository"
+      aws_codecommit_info:
+        describe_repository: true
+        name: 'test'
+
+    - name: "get details about triggers of given repository"
+      aws_codecommit_info:
+        describe_repository_triggers: true
+        name: 'test'
