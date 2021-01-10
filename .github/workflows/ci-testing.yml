@@ -27,7 +27,7 @@ jobs:
         run: yamllint tests/
         
       - name: Pycodestyle Lint code.
-        run: pycodestyle --config=.pycodestyle
+        run: pycodestyle --config=.pycodestyle plugins/modules/
 
       - name: Automatic Doc Creation Tool Installation
         run: pip3 install git+https://github.com/ansible-network/collection_prep.git
