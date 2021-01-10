@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get details about given code review arn"
+      aws_codeguru_reviewer_info:
+        describe_code_review: true
+        arn: 'aws:::code-review:test'

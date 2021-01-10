@@ -27,10 +27,10 @@ jobs:
         run: yamllint tests/
         
       - name: Pycodestyle Lint code.
-        run: pycodestyle --ignore=E402,E501 plugins/modules/ --format=pylint --statistics
+        run: pycodestyle --config=.pycodestyle
 
       - name: Automatic Doc Creation Tool Installation
         run: pip3 install git+https://github.com/ansible-network/collection_prep.git
 
       - name: Run Automatic Doc Creation Tool
-        run: collection_prep_add_docs -p .
+        run: collection_prep_add_docs -p . -b master

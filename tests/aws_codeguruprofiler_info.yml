@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of profiling groups."
+      aws_codeguruprofiler_info:
+        list_profiling_groups: true
+        include_description: true
