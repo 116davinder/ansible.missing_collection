@@ -1,0 +1,36 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of profiling groups."
+      aws_codeguruprofiler_info:
+        list_profiling_groups: true
+        include_description: true
+
+    - name: "get list of finding reports."
+      aws_codeguruprofiler_info:
+        list_findings_reports: true
+        daily_reports_only: true
+        start_time: '2020-01-01'
+        end_time: '2021-01-01'
+        profiling_group_name: 'test'
+
+    - name: "get details about given profiling name"
+      aws_codeguruprofiler_info:
+        describe_profiling_group: true
+        profiling_group_name: 'test'
+
+    - name: "get list of notifications configs for profiling group name."
+      aws_codeguruprofiler_info:
+        get_notification_configuration: true
+        profiling_group_name: 'test'
+
+    - name: "get list of profiling groups."
+      aws_codeguruprofiler_info:
+        get_recommendations: true
+        end_time: '2021-01-01'
+        start_time: '2020-01-01'
+        profiling_group_name: 'test'
+        locale: 'en-GB'

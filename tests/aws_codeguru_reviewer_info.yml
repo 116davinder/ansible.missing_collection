@@ -1,0 +1,35 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of code reviews"
+      aws_codeguru_reviewer_info:
+        list_code_reviews: true
+        provider_types: ['CodeCommit']
+        type: 'PullRequest'
+        states: ['Completed']
+        repository_names: ['test']
+
+    - name: "get details about given code review arn"
+      aws_codeguru_reviewer_info:
+        describe_code_review: true
+        arn: 'arn:aws:::codeguru-reviewer:test'
+
+    - name: "get list of recommendations about given code review arn"
+      aws_codeguru_reviewer_info:
+        list_recommendations: true
+        arn: 'arn:aws:::codeguru-reviewer:test'
+
+    - name: "get list of recommendations feedback about given code review arn"
+      aws_codeguru_reviewer_info:
+        list_recommendation_feedback: true
+        arn: 'arn:aws:::codeguru-reviewer:test'
+
+    - name: "get list repository associations"
+      aws_codeguru_reviewer_info:
+        list_repository_associations: true
+        provider_types: ['CodeCommit']
+        states: ['Associated']
+        repository_names: ['test']
