@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_codeguru_reviewer_info
-short_description: (WIP) Get Information about AWS Codeguru Reviewer.
+short_description: Get Information about AWS Codeguru Reviewer.
 description:
   - Get Information about AWS Codeguru Reviewer.
   - U(https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_Operations.html)
@@ -81,9 +81,35 @@ requirements:
 """
 
 EXAMPLES = """
-- name: "get all the trails"
+- name: "get list of code reviews"
   aws_codeguru_reviewer_info:
-  register: __app
+    list_code_reviews: true
+    provider_types: ['CodeCommit']
+    type: 'PullRequest'
+    states: ['Completed']
+    repository_names: ['test']
+
+- name: "get details about given code review arn"
+  aws_codeguru_reviewer_info:
+    describe_code_review: true
+    arn: 'arn:aws:::codeguru-reviewer:test'
+
+- name: "get list of recommendations about given code review arn"
+  aws_codeguru_reviewer_info:
+    list_recommendations: true
+    arn: 'arn:aws:::codeguru-reviewer:test'
+
+- name: "get list of recommendations feedback about given code review arn"
+  aws_codeguru_reviewer_info:
+    list_recommendation_feedback: true
+    arn: 'arn:aws:::codeguru-reviewer:test'
+
+- name: "get list repository associations"
+  aws_codeguru_reviewer_info:
+    list_repository_associations: true
+    provider_types: ['CodeCommit']
+    states: ['Associated']
+    repository_names: ['test']
 """
 
 RETURN = """
@@ -240,13 +266,13 @@ def _codeguru(client, module):
                 return paginator.paginate(
                     ProviderTypes=module.params['provider_types'],
                     States=module.params['states'],
-                    RepositoryNames=module.params['repository_names'],
+                    Names=module.params['repository_names'],
                 ), True
             else:
                 return client.list_repository_associations(
                     ProviderTypes=module.params['provider_types'],
                     States=module.params['states'],
-                    RepositoryNames=module.params['repository_names'],
+                    Names=module.params['repository_names'],
                 ), False
         else:
             return None, False

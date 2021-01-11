@@ -10,7 +10,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_codeguruprofiler_info
-short_description: (WIP) Get Information about Amazon CodeGuru Profiler.
+short_description: Get Information about Amazon CodeGuru Profiler.
 description:
   - Get Information about Amazon CodeGuru Profiler
   - U(https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_Operations.html)
@@ -88,6 +88,32 @@ EXAMPLES = """
   aws_codeguruprofiler_info:
     list_profiling_groups: true
     include_description: true
+
+- name: "get list of finding reports."
+  aws_codeguruprofiler_info:
+    list_findings_reports: true
+    daily_reports_only: true
+    start_time: '2020-01-01'
+    end_time: '2021-01-01'
+    profiling_group_name: 'test'
+
+- name: "get details about given profiling name"
+  aws_codeguruprofiler_info:
+    describe_profiling_group: true
+    profiling_group_name: 'test'
+
+- name: "get list of notifications configs for profiling group name."
+  aws_codeguruprofiler_info:
+    get_notification_configuration: true
+    profiling_group_name: 'test'
+
+- name: "get list of profiling groups."
+  aws_codeguruprofiler_info:
+    get_recommendations: true
+    end_time: '2021-01-01'
+    start_time: '2020-01-01'
+    profiling_group_name: 'test'
+    locale: 'en-GB'
 """
 
 RETURN = """
@@ -207,7 +233,7 @@ def aws_response_list_parser(paginate: bool, iterator, resource_field: str) -> l
 def _convert_str_to_datetime(time: str):
     try:
         return datetime.strptime(time, '%Y-%m-%d')
-    except:
+    except ValueError:
         return None
 
 
@@ -226,8 +252,8 @@ def _codeguruprofiler(client, module):
         elif module.params['list_findings_reports']:
             _end_time = _convert_str_to_datetime(module.params['end_time'])
             _start_time = _convert_str_to_datetime(module.params['start_time'])
-            if _start_time or _end_time is None:
-                module.fail_json("date format is wrong, please correct format. Example: '2020-06-01'")
+            if _start_time is None or _end_time is None:
+                module.fail_json("date format is wrong, please use correct format. Example: '2020-06-01'")
             if client.can_paginate('list_findings_reports'):
                 paginator = client.get_paginator('list_findings_reports')
                 return paginator.paginate(
@@ -254,7 +280,7 @@ def _codeguruprofiler(client, module):
         elif module.params['get_recommendations']:
             _end_time = _convert_str_to_datetime(module.params['end_time'])
             _start_time = _convert_str_to_datetime(module.params['start_time'])
-            if _start_time or _end_time is None:
+            if _start_time is None or _end_time is None:
                 module.fail_json("date format is wrong, please correct format. Example: '2020-06-01'")
             return client.get_recommendations(
                 locale=module.params['locale'],
