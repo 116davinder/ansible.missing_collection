@@ -1,0 +1,32 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of codepipelines"
+      aws_codepipeline_info:
+
+    - name: "get details about codepipeline"
+      aws_codepipeline_info:
+        get_pipeline: true
+        name: 'test'
+
+    - name: "get list of webhooks"
+      aws_codepipeline_info:
+        list_webhooks: true
+
+    - name: "get list of codepipeline executions"
+      aws_codepipeline_info:
+        list_pipeline_executions: true
+        name: 'test'
+
+    - name: "get list of action types"
+      aws_codepipeline_info:
+        list_action_types: true
+        action_owner_filter: 'AWS'
+
+    - name: "get list of the action executions for given pipeline"
+      aws_codepipeline_info:
+        list_action_executions: true
+        name: 'test'
