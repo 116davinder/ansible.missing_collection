@@ -1,0 +1,23 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of codestar projects"
+      aws_codestar_info:
+
+    - name: "get list of codestar project resources"
+      aws_codestar_info:
+        list_resources: true
+        id: 'test-codestar-project'
+
+    - name: "get list of codestar project team members"
+      aws_codestar_info:
+        list_team_members: true
+        id: 'test-codestar-project'
+
+    - name: "get details about codestar project"
+      aws_codestar_info:
+        describe_project: true
+        id: 'test-codestar-project'

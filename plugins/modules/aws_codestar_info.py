@@ -9,20 +9,30 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_codestar_info
-short_description: Get Information about AWS CodePipeline.
+short_description: Get Information about AWS CodeStar.
 description:
-  - Get Information about AWS CodePipeline.
-  - U(https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_Operations.html)
+  - Get Information about AWS CodeStar.
+  - U(https://docs.aws.amazon.com/codestar/latest/APIReference/API_Operations.html)
 version_added: 0.0.4
 options:
-  name:
+  id:
     description:
-      - name of the code pipeline.
+      - id of codestar project.
     required: false
     type: str
-  list_action_executions:
+  list_resources:
     description:
-      - do you want to get list of execution actions details about given I(name)?
+      - do you want to get list of resources for given I(id)?
+    required: false
+    type: bool
+  list_team_members:
+    description:
+      - do you want to get list of team members for given I(id)?
+    required: false
+    type: bool
+  describe_project:
+    description:
+      - do you want to get details for given I(id)?
     required: false
     type: bool
 author:
@@ -36,32 +46,73 @@ requirements:
 """
 
 EXAMPLES = """
+- name: "get list of codestar projects"
+  aws_codestar_info:
+
+- name: "get list of codestar project resources"
+  aws_codestar_info:
+    list_resources: true
+    id: 'test-codestar-project'
+
+- name: "get list of codestar project team members"
+  aws_codestar_info:
+    list_team_members: true
+    id: 'test-codestar-project'
+
+- name: "get details about codestar project"
+  aws_codestar_info:
+    describe_project: true
+    id: 'test-codestar-project'
 """
 
 RETURN = """
-pipelines:
+projects:
   description: get list of code pipelines.
   returned: when no argument and success
   type: list
   sample: [
     {
-        'name': 'string',
-        'version': 123,
-        'created': datetime(2015, 1, 1),
-        'updated': datetime(2016, 6, 6)
+        'project_id': 'string',
+        'project_arn': 'string'
     },
   ]
-pipeline:
-  description: get detail about given pipeline name.
-  returned: when `get_pipeline` is defined and success
+resources:
+  description: get list of resources for project.
+  returned: when `list_resources` and `id` are defined and success
+  type: list
+  sample: [
+    {
+        'id': 'string'
+    },
+  ]
+team_members:
+  description: get list of team members for project.
+  returned: when `list_team_members` and `id` are defined and success
+  type: list
+  sample: [
+    {
+        'user_arn': 'string',
+        'project_role': 'string',
+        'remote_access_allowed': True
+    },
+  ]
+project:
+  description: get details about project.
+  returned: when `describe_project` and `id` are defined and success
   type: dict
   sample: {
     'name': 'string',
-    'role_arn': 'string',
-    'artifact_store': {},
-    'artifact_stores': {},
-    'stages': [],
-    'version': 123
+    'id': 'string',
+    'arn': 'string',
+    'description': 'string',
+    'client_request_token': 'string',
+    'created_time_stamp': datetime(2015, 1, 1),
+    'stack_dd': 'string',
+    'project_template_id': 'string',
+    'status': {
+        'state': 'string',
+        'reason': 'string'
+    }
   }
 """
 
@@ -109,12 +160,6 @@ def _codestar(client, module):
                 return client.list_team_members(
                     projectId=module.params['id']
                 ), False
-        elif module.params['list_user_profiles']:
-            if client.can_paginate('list_user_profiles'):
-                paginator = client.get_paginator('list_user_profiles')
-                return paginator.paginate(), True
-            else:
-                return client.list_user_profiles(), False
         elif module.params['describe_project']:
             return client.describe_project(
                 id=module.params['id']

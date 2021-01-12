@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of codestar notification rules"
+      aws_codestar_notifications_info:
+
+    - name: "get list of codestar targets"
+      aws_codestar_notifications_info:
+        list_targets: true
+
+    - name: "get details about notification rule"
+      aws_codestar_notifications_info:
+        describe_notification_rule: true
+        arn: 'test-notification-rule-arn'

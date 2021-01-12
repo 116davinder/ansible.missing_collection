@@ -9,20 +9,30 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_codestar_notifications_info
-short_description: Get Information about AWS CodePipeline.
+short_description: Get Information about AWS CodeStar Notifications.
 description:
-  - Get Information about AWS CodePipeline.
-  - U(https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_Operations.html)
+  - Get Information about AWS CodeStar Notifications.
+  - U(https://docs.aws.amazon.com/codestar-notifications/latest/APIReference/API_Operations.html)
 version_added: 0.0.4
 options:
-  name:
+  arn:
     description:
-      - name of the code pipeline.
+      - arn of codestar notification rule.
     required: false
     type: str
-  list_action_executions:
+  list_event_types:
     description:
-      - do you want to get list of execution actions details about given I(name)?
+      - do you want to get list of event types?
+    required: false
+    type: bool
+  list_targets:
+    description:
+      - do you want to get list of targets?
+    required: false
+    type: bool
+  describe_notification_rule:
+    description:
+      - do you want to get details about notification rule?
     required: false
     type: bool
 author:
@@ -36,32 +46,69 @@ requirements:
 """
 
 EXAMPLES = """
+- name: "get list of codestar notification rules"
+  aws_codestar_notifications_info:
+
+- name: "get list of codestar targets"
+  aws_codestar_notifications_info:
+    list_targets: true
+
+- name: "get details about notification rule"
+  aws_codestar_notifications_info:
+    describe_notification_rule: true
+    arn: 'test-notification-rule-arn'
 """
 
 RETURN = """
-pipelines:
-  description: get list of code pipelines.
+rules:
+  description: get list of codestar notifications rules.
   returned: when no argument and success
   type: list
   sample: [
     {
-        'name': 'string',
-        'version': 123,
-        'created': datetime(2015, 1, 1),
-        'updated': datetime(2016, 6, 6)
+        'id': 'string',
+        'arn': 'string'
     },
   ]
-pipeline:
-  description: get detail about given pipeline name.
-  returned: when `get_pipeline` is defined and success
+event_types:
+  description: get list of event types.
+  returned: when `list_event_types` is defined and success
+  type: list
+  sample: [
+    {
+        'event_type_id': 'string',
+        'service_name': 'string',
+        'event_type_name': 'string',
+        'resource_type': 'string'
+    },
+  ]
+targets:
+  description: get list of targets.
+  returned: when `list_targets` is defined and success
+  type: list
+  sample: [
+    {
+        'target_address': 'string',
+        'target_type': 'string',
+        'target_status': 'PENDING'
+    },
+  ]
+rule:
+  description: get details about notification rule.
+  returned: when `describe_notification_rule` and `arn` are defined and success
   type: dict
   sample: {
+    'arn': 'string',
     'name': 'string',
-    'role_arn': 'string',
-    'artifact_store': {},
-    'artifact_stores': {},
-    'stages': [],
-    'version': 123
+    'event_types': [],
+    'resource': 'string',
+    'targets': [],
+    'detail_type': 'BASIC',
+    'created_by': 'string',
+    'status': 'ENABLED',
+    'created_timestamp': datetime(2016, 6, 6),
+    'last_modified_timestamp': datetime(2015, 1, 1),
+    'Tags': {}
   }
 """
 

@@ -1,0 +1,24 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of codestar connections"
+      aws_codestar_connections_info:
+        list_connections: true
+        provider_type_filter: 'Bitbucket'
+
+    - name: "get list of codestar hosts"
+      aws_codestar_connections_info:
+        list_hosts: true
+
+    - name: "get detail about connection"
+      aws_codestar_connections_info:
+        get_connection: true
+        arn: 'connection-test-arn'
+
+    - name: "get detail about host"
+      aws_codestar_connections_info:
+        get_host: true
+        arn: 'host-test-arn'

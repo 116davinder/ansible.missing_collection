@@ -9,20 +9,43 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_codestar_connections_info
-short_description: Get Information about AWS CodePipeline.
+short_description: Get Information about AWS CodeStar Connections.
 description:
-  - Get Information about AWS CodePipeline.
-  - U(https://docs.aws.amazon.com/codepipeline/latest/APIReference/API_Operations.html)
+  - Get Information about AWS CodeStar Connections.
+  - U(https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_Operations.html)
 version_added: 0.0.4
 options:
-  name:
+  arn:
     description:
-      - name of the code pipeline.
+      - can be arn of codestar connection?
+      - can be arn of codestar host?
     required: false
     type: str
-  list_action_executions:
+  provider_type_filter:
     description:
-      - do you want to get list of execution actions details about given I(name)?
+      - type of provider.
+    required: false
+    type: str
+    choices: ['Bitbucket', 'GitHub', 'GitHubEnterpriseServer']
+    default: 'Bitbucket'
+  list_connections:
+    description:
+      - do you want to get list of codestar connections for given I(provider_type_filter)?
+    required: false
+    type: bool
+  list_hosts:
+    description:
+      - do you want to get list of codestar hosts?
+    required: false
+    type: bool
+  get_connection:
+    description:
+      - do you want to get details about codestar connections I(arn)?
+    required: false
+    type: bool
+  get_host:
+    description:
+      - do you want to get details about codestar host I(arn)?
     required: false
     type: bool
 author:
@@ -36,32 +59,78 @@ requirements:
 """
 
 EXAMPLES = """
+- name: "get list of codestar connections"
+  aws_codestar_connections_info:
+    list_connections: true
+    provider_type_filter: 'Bitbucket'
+
+- name: "get list of codestar hosts"
+  aws_codestar_connections_info:
+    list_hosts: true
+
+- name: "get detail about connection"
+  aws_codestar_connections_info:
+    get_connection: true
+    arn: 'connection-test-arn'
+
+- name: "get detail about host"
+  aws_codestar_connections_info:
+    get_host: true
+    arn: 'host-test-arn'
 """
 
 RETURN = """
-pipelines:
-  description: get list of code pipelines.
-  returned: when no argument and success
+connections:
+  description: list of codestar connections.
+  returned: when `list_connections` and `provider_type_filter` are defined and success
+  type: list
+  sample: [
+    {
+        'connection_name': 'string',
+        'connection_arn': 'string',
+        'provider_type': 'Bitbucket',
+        'owner_account_id': 'string',
+        'connection_Status': 'PENDING',
+        'host_arn': 'string'
+    },
+  ]
+hosts:
+  description: list of codestar hosts.
+  returned: when `list_hosts` is defined and success
   type: list
   sample: [
     {
         'name': 'string',
-        'version': 123,
-        'created': datetime(2015, 1, 1),
-        'updated': datetime(2016, 6, 6)
+        'hostArn': 'string',
+        'provider_type': 'Bitbucket',
+        'provider_endpoint': 'string',
+        'vpc_configuration': {},
+        'status': 'string',
+        'statusMessage': 'string'
     },
   ]
-pipeline:
-  description: get detail about given pipeline name.
-  returned: when `get_pipeline` is defined and success
+connection:
+  description: get details about codestar connection.
+  returned: when `get_connection` and `arn` are defined and success
+  type: dict
+  sample: {
+    'connection_name': 'string',
+    'connection_arn': 'string',
+    'provider_type': 'Bitbucket',
+    'owner_account_id': 'string',
+    'connection_status': 'PENDING',
+    'host_arn': 'string'
+  }
+host:
+  description: get details about codestar host.
+  returned: when `get_host` and `arn` are defined and success
   type: dict
   sample: {
     'name': 'string',
-    'role_arn': 'string',
-    'artifact_store': {},
-    'artifact_stores': {},
-    'stages': [],
-    'version': 123
+    'status': 'string',
+    'provider_type': 'Bitbucket',
+    'provider_endpoint': 'string',
+    'vpc_configuration': {}
   }
 """
 
