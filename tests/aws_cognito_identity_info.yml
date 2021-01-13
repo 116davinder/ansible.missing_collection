@@ -1,0 +1,23 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of cognito identity pools"
+      aws_cognito_identity_info:
+
+    - name: "get list of cognito identities for given pool"
+      aws_cognito_identity_info:
+        list_identities: true
+        id: 'test-pool-id'
+
+    - name: "get details about cognito identity pool"
+      aws_cognito_identity_info:
+        describe_identity_pool: true
+        id: 'test-pool-id'
+
+    - name: "get details about cognito identity"
+      aws_cognito_identity_info:
+        describe_identity: true
+        id: 'test-identity-id'

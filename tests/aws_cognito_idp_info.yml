@@ -1,0 +1,49 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of cognito user pools"
+      aws_cognito_idp_info:
+
+    - name: "get list of cognito devices"
+      aws_cognito_idp_info:
+        list_devices: true
+        access_token: 'test'
+
+    - name: "get list of cognito user groups"
+      aws_cognito_idp_info:
+        list_groups: true
+        user_pool_id: 'test'
+
+    - name: "get list of cognito providers"
+      aws_cognito_idp_info:
+        list_identity_providers: true
+        user_pool_id: 'test'
+
+    - name: "get list of cognito resource servers"
+      aws_cognito_idp_info:
+        list_resource_servers: true
+        user_pool_id: 'test'
+
+    - name: "get list of cognito import jobs"
+      aws_cognito_idp_info:
+        list_user_import_jobs: true
+        user_pool_id: 'test'
+
+    - name: "get list of cognito user pool clients"
+      aws_cognito_idp_info:
+        list_user_pool_clients: true
+        user_pool_id: 'test'
+
+    - name: "get list of cognito users in a pool"
+      aws_cognito_idp_info:
+        list_users: true
+        user_pool_id: 'test'
+
+    - name: "get list of cognito users in group"
+      aws_cognito_idp_info:
+        list_users_in_group: true
+        user_pool_id: 'test'
+        group_name: 'test-group'

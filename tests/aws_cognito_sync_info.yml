@@ -1,0 +1,29 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of cognito datasets"
+      aws_cognito_sync_info:
+        list_datasets: true
+        identity_pool_id: 'test-pool-id'
+        identity_id: 'test-id'
+
+    - name: "get list of cognito pool usage"
+      aws_cognito_sync_info:
+        list_identity_pool_usage: true
+
+    - name: "get list of cognito dataset records"
+      aws_cognito_sync_info:
+        list_records: true
+        identity_pool_id: 'test-pool-id'
+        identity_id: 'test-id'
+        dataset_name: 'test-dataset'
+
+    - name: "get details about cognito dataset"
+      aws_cognito_sync_info:
+        describe_dataset: true
+        identity_pool_id: 'test-pool-id'
+        identity_id: 'test-id'
+        dataset_name: 'test-dataset'
