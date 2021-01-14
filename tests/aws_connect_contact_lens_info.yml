@@ -1,0 +1,11 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get analysis segments of real time session"
+      aws_connect_contact_lens_info:
+        list_realtime_contact_analysis_segments: true
+        instance_id: 'test-instance'
+        contact_id: 'test-contact'

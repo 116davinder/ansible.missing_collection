@@ -32,14 +32,14 @@ $ ansible-galaxy collection install git+https://github.com/116davinder/ansible.m
 Starting galaxy collection install process
 Process install dependency map
 Starting collection install process
-Installing 'community.missing_collection:0.0.2' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
+Installing 'community.missing_collection:0.0.4' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
 Created collection for community.missing_collection at /home/dpal/.ansible/collections/ansible_collections/community/missing_collection
-community.missing_collection (0.0.2) was installed successfully
+community.missing_collection (0.0.4) was installed successfully
 
 $ ansible-galaxy collection list
 Collection                   Version
 ---------------------------- -------
-community.missing_collection 0.0.2  
+community.missing_collection 0.0.4
 
 ```
 
@@ -87,6 +87,7 @@ Name | Description
 [community.missing_collection.aws_comprehendmedical_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_comprehendmedical_info_module.rst)|Get Information about Amazon Comprehend Medical.
 [community.missing_collection.aws_compute_optimizer_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_compute_optimizer_info_module.rst)|Get Information about AWS Compute Optimizer.
 [community.missing_collection.aws_config_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_config_info_module.rst)|Get Information about AWS Config.
+[community.missing_collection.aws_connect_contact_lens_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_connect_contact_lens_info_module.rst)|Get Information about Amazon Connect Contact Lens.
 [community.missing_collection.aws_eks_cluster_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_eks_cluster_info_module.rst)|Get Information about AWS EKS Clusters.
 [community.missing_collection.aws_iam_access_analyzer_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_iam_access_analyzer_info_module.rst)|Get Information about AWS IAM Access Analyzer.
 [community.missing_collection.aws_sns_platform_endpoint_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sns_platform_endpoint_info_module.rst)|Get Information about AWS SNS Platforms.
