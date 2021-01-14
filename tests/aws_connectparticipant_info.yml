@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get pre-signed URL for download of a completed attachment"
+      aws_connectparticipant_info:
+        get_attachment: true
+        connection_token: 'test-token'
+        attachment_id: 'test-attachment'
+
+    - name: "get list of transcript of the session"
+      aws_connectparticipant_info:
+        get_transcript: true
+        connection_token: 'test-token'
+        contact_id: 'test-contact'
