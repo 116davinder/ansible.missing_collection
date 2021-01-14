@@ -1,0 +1,56 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of comprehend endpoints"
+      aws_comprehend_info:
+
+    - name: "get list of comprehend document classification jobs"
+      aws_comprehend_info:
+        list_document_classification_jobs: true
+        job_status: "SUBMITTED"
+
+    - name: "get list of comprehend document classifiers"
+      aws_comprehend_info:
+        list_document_classifiers: true
+
+    - name: "get list of comprehend dominant language detection jobs"
+      aws_comprehend_info:
+        list_dominant_language_detection_jobs: true
+        job_status: "SUBMITTED"
+
+    - name: "get list of comprehend entities detection jobs"
+      aws_comprehend_info:
+        list_entities_detection_jobs: true
+        job_status: "SUBMITTED"
+
+    - name: "get list of comprehend entity recognizers"
+      aws_comprehend_info:
+        list_entity_recognizers: true
+
+    - name: "get list of comprehend events detection jobs"
+      aws_comprehend_info:
+        list_events_detection_jobs: true
+        job_status: "SUBMITTED"
+
+    - name: "get list of comprehend key phrases detection jobs"
+      aws_comprehend_info:
+        list_key_phrases_detection_jobs: true
+        job_status: "SUBMITTED"
+
+    - name: "get list of comprehend pii entities detection jobs"
+      aws_comprehend_info:
+        list_pii_entities_detection_jobs: true
+        job_status: "SUBMITTED"
+
+    - name: "get list of comprehend sentiment detection jobs"
+      aws_comprehend_info:
+        list_sentiment_detection_jobs: true
+        job_status: "SUBMITTED"
+
+    - name: "get list of comprehend topic detection jobs"
+      aws_comprehend_info:
+        list_topics_detection_jobs: true
+        job_status: "SUBMITTED"

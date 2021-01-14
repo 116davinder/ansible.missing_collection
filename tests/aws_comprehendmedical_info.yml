@@ -1,0 +1,24 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of comprehendmedical entities detection v2 jobs"
+      aws_comprehendmedical_info:
+        list_entities_detection_v2_jobs: true
+        job_status: "SUBMITTED"
+
+    - name: "get list of comprehendmedical icd10 cm inference jobs"
+      aws_comprehendmedical_info:
+        list_icd10_cm_inference_jobs: true
+
+    - name: "get list of comprehendmedical phi detection jobs"
+      aws_comprehendmedical_info:
+        list_phi_detection_jobs: true
+        job_status: "SUBMITTED"
+
+    - name: "get list of comprehendmedical rx norm inference jobs"
+      aws_comprehendmedical_info:
+        list_rx_norm_inference_jobs: true
+        job_status: "SUBMITTED"
