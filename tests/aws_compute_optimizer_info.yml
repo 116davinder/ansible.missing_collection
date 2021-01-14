@@ -1,0 +1,28 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get status compute optimizer"
+      aws_compute_optimizer_info:
+
+    - name: "get list of recommendation for auto scaling group"
+      aws_compute_optimizer_info:
+        get_auto_scaling_group_recommendations: true
+
+    - name: "get list of recommendation for ebs volume"
+      aws_compute_optimizer_info:
+        get_ebs_volume_recommendations: true
+
+    - name: "get list of recommendation for ec2"
+      aws_compute_optimizer_info:
+        get_ec2_instance_recommendations: true
+
+    - name: "get list of recommendation for lambda"
+      aws_compute_optimizer_info:
+        get_lambda_function_recommendations: true
+
+    - name: "get details about all recommendation export jobs"
+      aws_compute_optimizer_info:
+        describe_recommendation_export_jobs: true
