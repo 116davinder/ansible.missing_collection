@@ -1,0 +1,36 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "list of connect domains."
+      aws_customer_profiles_info:
+
+    - name: "Lists all of the integrations associated to a specific URI in the AWS account."
+      aws_customer_profiles_info:
+        list_account_integrations: true
+        uri: 'test'
+
+    - name: "Lists all of the integrations in your domain."
+      aws_customer_profiles_info:
+        list_integrations: true
+        domain_name: 'test'
+
+    - name: "Lists all of the template information for object types."
+      aws_customer_profiles_info:
+        list_profile_object_type_templates: true
+
+    - name: "Lists all of the templates available within the service."
+      aws_customer_profiles_info:
+        domain_name: 'test'
+        list_profile_object_types: true
+
+    - name: "get information about a specific domain."
+      aws_customer_profiles_info:
+        domain_name: 'test'
+        get_domain: true
+
+    - name: "get an integration for a domain."
+      aws_customer_profiles_info:
+        domain_name: 'test'
+        get_integration: true

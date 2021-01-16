@@ -128,10 +128,11 @@ def _connect(client, module):
                     ContactId=module.params['contact_id'],
                     ConnectionToken=module.params['connection_token'],
                 ), True
-            return client.get_transcript(
-                ContactId=module.params['contact_id'],
-                ConnectionToken=module.params['connection_token'],
-            ), False
+            else:
+                return client.get_transcript(
+                    ContactId=module.params['contact_id'],
+                    ConnectionToken=module.params['connection_token'],
+                ), False
         else:
             return None, False
     except (BotoCoreError, ClientError) as e:

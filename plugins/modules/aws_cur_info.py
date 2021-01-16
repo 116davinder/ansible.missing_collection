@@ -14,7 +14,7 @@ description:
   - Get Information about AWS Cost and Usage Report Service.
   - U(https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Operations.html)
 version_added: 0.0.5
-options:
+options: None
 author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 extends_documentation_fragment:
