@@ -1,0 +1,31 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "Lists all of the DataBrew projects"
+      aws_databrew_info:
+
+    - name: "Lists all of the AWS Glue DataBrew datasets"
+      aws_databrew_info:
+        list_datasets: true
+
+    - name: "Lists the AWS Glue DataBrew jobs"
+      aws_databrew_info:
+        list_jobs: true
+        dataset_name: 'test'
+        project_name: 'test'
+
+    - name: "Lists all of the previous runs of a particular AWS Glue DataBrew job"
+      aws_databrew_info:
+        list_job_runs: true
+        job_name: 'test'
+
+    - name: "Lists all of the AWS Glue DataBrew recipes"
+      aws_databrew_info:
+        list_recipes: true
+
+    - name: "Lists the AWS Glue DataBrew schedules"
+      aws_databrew_info:
+        job_name: 'test'
+        list_schedules: true
