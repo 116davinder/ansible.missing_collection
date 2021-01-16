@@ -1,0 +1,7 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get lists the AWS Cost and Usage reports"
+      aws_cur_info:
