@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Lists all of the dataexchange datasets"
+      aws_dataexchange_info:
+        list_datasets: true
+
+    - name: "Lists the dataexchange jobs"
+      aws_dataexchange_info:
+        list_jobs: true
+        data_set_id: 'test'
