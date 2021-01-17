@@ -1,0 +1,32 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "list of datasync agents"
+      aws_datasync_info:
+        list_agents: true
+
+    - name: "list of datasync locations"
+      aws_datasync_info:
+        list_locations: true
+
+    - name: "list of datasync task executions"
+      aws_datasync_info:
+        list_task_executions: true
+        task_arn: 'test-arn'
+
+    - name: "list of datasync tasks"
+      aws_datasync_info:
+        list_tasks: true
+
+    - name: "describe datasync task"
+      aws_datasync_info:
+        describe_task: true
+        task_arn: 'test-arn'
+
+    - name: "describe datasync agent"
+      aws_datasync_info:
+        describe_agent: true
+        agent_arn: 'test-arn'

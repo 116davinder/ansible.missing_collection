@@ -129,39 +129,11 @@ def _dataexchange(client, module):
             if client.can_paginate('list_jobs'):
                 paginator = client.get_paginator('list_jobs')
                 return paginator.paginate(
-                    DatasetName=module.params['dataset_name'],
-                    ProjectName=module.params['project_name'],
+                    DataSetId =module.params['data_set_id'],
                 ), True
             else:
                 return client.list_jobs(
-                    DatasetName=module.params['dataset_name'],
-                    ProjectName=module.params['project_name'],
-                ), False
-        elif module.params['list_job_runs']:
-            if client.can_paginate('list_job_runs'):
-                paginator = client.get_paginator('list_job_runs')
-                return paginator.paginate(
-                    Name=module.params['job_name'],
-                ), True
-            else:
-                return client.list_job_runs(
-                    Name=module.params['job_name'],
-                ), False
-        elif module.params['list_recipes']:
-            if client.can_paginate('list_recipes'):
-                paginator = client.get_paginator('list_recipes')
-                return paginator.paginate(), True
-            else:
-                return client.list_recipes(), False
-        elif module.params['list_schedules']:
-            if client.can_paginate('list_schedules'):
-                paginator = client.get_paginator('list_schedules')
-                return paginator.paginate(
-                    JobName=module.params['job_name'],
-                ), True
-            else:
-                return client.list_schedules(
-                    JobName=module.params['job_name'],
+                    DataSetId =module.params['data_set_id'],
                 ), False
         else:
             return None, False
