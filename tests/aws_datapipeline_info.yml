@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Lists all of the pipelines"
+      aws_datapipeline_info:
+
+    - name: "describe pipelines"
+      aws_datapipeline_info:
+        describe_pipelines: true
+        ids: ['test']
