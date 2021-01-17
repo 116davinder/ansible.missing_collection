@@ -129,11 +129,11 @@ def _dataexchange(client, module):
             if client.can_paginate('list_jobs'):
                 paginator = client.get_paginator('list_jobs')
                 return paginator.paginate(
-                    DataSetId =module.params['data_set_id'],
+                    DataSetId=module.params['data_set_id'],
                 ), True
             else:
                 return client.list_jobs(
-                    DataSetId =module.params['data_set_id'],
+                    DataSetId=module.params['data_set_id'],
                 ), False
         else:
             return None, False
