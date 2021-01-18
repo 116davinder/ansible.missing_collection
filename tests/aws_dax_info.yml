@@ -1,0 +1,35 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Lists all of the dax clusters."
+      aws_dax_info:
+        describe_clusters: true
+        cluster_names: []
+
+    - name: "Lists all of default parameters."
+      aws_dax_info:
+        describe_default_parameters: true
+
+    - name: "Lists of the dax events."
+      aws_dax_info:
+        describe_events: true
+        source_name: 'test'
+        source_type: 'CLUSTER'
+
+    - name: "Lists all of the dax parameter groups."
+      aws_dax_info:
+        describe_parameter_groups: true
+        parameter_group_names: []
+
+    - name: "describe dax parameters of a parameter group name"
+      aws_dax_info:
+        describe_parameters: true
+        parameter_group_name: 'test'
+
+    - name: "describe dax subnet groups."
+      aws_dax_info:
+        describe_subnet_groups: true
+        subnet_group_names: []
