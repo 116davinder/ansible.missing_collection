@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Lists all of graphs."
+      aws_detective_info:
+
+    - name: "Lists all of graph invitations."
+      aws_detective_info:
+        list_invitations: true
+
+    - name: "Lists of the graph members."
+      aws_detective_info:
+        list_members: true
+        graph_arn: 'test-arn'
