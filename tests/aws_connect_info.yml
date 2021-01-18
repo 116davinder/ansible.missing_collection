@@ -1,0 +1,89 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "list of connect instances."
+      aws_connect_info:
+
+    - name: "list of contact flows."
+      aws_connect_info:
+        list_contact_flows: true
+        instance_id: 'test'
+
+    - name: "list of instance hour of operations."
+      aws_connect_info:
+        list_hours_of_operations: true
+        instance_id: 'test'
+
+    - name: "list of instance instance_attributes."
+      aws_connect_info:
+        list_instance_attributes: true
+        instance_id: 'test'
+
+    - name: "list of instance integration associations."
+      aws_connect_info:
+        list_integration_associations: true
+        instance_id: 'test'
+
+    - name: "list of instance lambda functions."
+      aws_connect_info:
+        list_lambda_functions: true
+        instance_id: 'test'
+
+    - name: "list of instance lex bots."
+      aws_connect_info:
+        list_lex_bots: true
+        instance_id: 'test'
+
+    - name: "list of phone numbers"
+      aws_connect_info:
+        list_phone_numbers: true
+        instance_id: 'test'
+
+    - name: "list of prompts"
+      aws_connect_info:
+        list_prompts: true
+        instance_id: 'test'
+
+    - name: "list of queues"
+      aws_connect_info:
+        list_queues: true
+        instance_id: 'test'
+
+    - name: "list of quick connects."
+      aws_connect_info:
+        list_quick_connects: true
+        instance_id: 'test'
+
+    - name: "list of routing profile queues"
+      aws_connect_info:
+        list_routing_profile_queues: true
+        instance_id: 'test'
+        routing_profile_id: 'test'
+
+    - name: "list of routing profiles"
+      aws_connect_info:
+        list_routing_profiles: true
+        instance_id: 'test'
+
+    - name: "list of security keys"
+      aws_connect_info:
+        list_security_keys: true
+        instance_id: 'test'
+
+    - name: "list of security profiles"
+      aws_connect_info:
+        list_security_profiles: true
+        instance_id: 'test'
+
+    - name: "list of user hierarchy groups"
+      aws_connect_info:
+        list_user_hierarchy_groups: true
+        instance_id: 'test'
+
+    - name: "list of users"
+      aws_connect_info:
+        list_users: true
+        instance_id: 'test'

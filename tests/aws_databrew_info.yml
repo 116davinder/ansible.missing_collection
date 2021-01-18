@@ -2,6 +2,7 @@
 
 - hosts: localhost
   gather_facts: false
+  ignore_errors: true
   tasks:
     - name: "Lists all of the DataBrew projects"
       aws_databrew_info:

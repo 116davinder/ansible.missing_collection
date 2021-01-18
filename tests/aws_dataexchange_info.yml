@@ -6,7 +6,7 @@
   tasks:
     - name: "Lists all of the dataexchange datasets"
       aws_dataexchange_info:
-        list_datasets: true
+        list_data_sets: true
 
     - name: "Lists the dataexchange jobs"
       aws_dataexchange_info:

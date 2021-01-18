@@ -43,7 +43,7 @@ requirements:
 EXAMPLES = """
 - name: "Lists all of the dataexchange datasets"
   aws_dataexchange_info:
-    list_datasets: true
+    list_data_sets: true
 
 - name: "Lists the dataexchange jobs"
   aws_dataexchange_info:
@@ -79,7 +79,7 @@ jobs:
   sample: [
     {
         'arn': 'string',
-        'created_at': datetime(2015, 1, 1),
+        'created_at': datetime(2016, 6, 6),
         'details': {
             'export_asset_to_signed_url': {},
             'export_assets_to_s3': {},

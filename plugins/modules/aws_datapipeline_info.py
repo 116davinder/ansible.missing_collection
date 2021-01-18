@@ -117,7 +117,7 @@ def _datapipeline(client, module):
 
 def main():
     argument_spec = dict(
-        ids=dict(required=False),
+        ids=dict(required=False, type=list),
         describe_pipelines=dict(required=False, type=bool),
     )
 
@@ -125,7 +125,7 @@ def main():
         argument_spec=argument_spec,
 
         required_if=(
-            ('describe_pipelines', True, ['id']),
+            ('describe_pipelines', True, ['ids']),
         ),
         mutually_exclusive=[],
     )

@@ -2,6 +2,7 @@
 
 - hosts: localhost
   gather_facts: false
+  ignore_errors: true
   tasks:
     - name: "list of connect domains."
       aws_customer_profiles_info:
