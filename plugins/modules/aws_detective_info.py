@@ -164,7 +164,7 @@ def main():
         argument_spec=argument_spec,
 
         required_if=(
-            ('list_members', True, ['graph_arn'])
+            ('list_members', True, ['graph_arn']),
         ),
         mutually_exclusive=[
             (
