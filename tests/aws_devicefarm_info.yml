@@ -1,0 +1,106 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Lists all the projects."
+      aws_devicefarm_info:
+
+    - name: "Lists all of artifacts"
+      aws_devicefarm_info:
+        list_artifacts: true
+        arn: 'test-arn'
+        artifact_type: 'FILE'
+
+    - name: "Lists all of device instances"
+      aws_devicefarm_info:
+        list_device_instances: true
+
+    - name: "Lists all of device pools"
+      aws_devicefarm_info:
+        list_device_pools: true
+        arn: 'test-arn'
+        device_pool_type: 'CURATED'
+
+    - name: "Lists all of devices"
+      aws_devicefarm_info:
+        list_devices: true
+        arn: 'test-arn'
+
+    - name: "Lists all of jobs"
+      aws_devicefarm_info:
+        list_jobs: true
+        arn: 'test-arn'
+
+    - name: "Lists all of network profiles"
+      aws_devicefarm_info:
+        list_network_profiles: true
+        arn: 'test-arn'
+        network_profile_type: 'CURATED'
+
+    - name: "Lists all of offering promotions"
+      aws_devicefarm_info:
+        list_offering_promotions: true
+
+    - name: "Lists all of offering transactions"
+      aws_devicefarm_info:
+        list_offering_transactions: true
+
+    - name: "Lists all of offerings"
+      aws_devicefarm_info:
+        list_offerings: true
+
+    - name: "Lists all of remote access sessions"
+      aws_devicefarm_info:
+        list_remote_access_sessions: true
+        arn: 'test-arn'
+
+    - name: "Lists all of runs"
+      aws_devicefarm_info:
+        list_runs: true
+        arn: 'test-arn'
+
+    - name: "Lists all of samples"
+      aws_devicefarm_info:
+        list_samples: true
+        arn: 'test-arn'
+
+    - name: "Lists all of suites"
+      aws_devicefarm_info:
+        list_suites: true
+        arn: 'test-arn'
+
+    - name: "Lists all of test grid projects"
+      aws_devicefarm_info:
+        list_test_grid_projects: true
+
+    - name: "Lists all of test grid session actions"
+      aws_devicefarm_info:
+        list_test_grid_session_actions: true
+        arn: 'test-session-arn'
+
+    - name: "Lists all of test grid session artifacts"
+      aws_devicefarm_info:
+        list_test_grid_session_artifacts: true
+        arn: 'test-session-arn'
+
+    - name: "Lists all of test grid sessions"
+      aws_devicefarm_info:
+        list_test_grid_sessions: true
+        arn: 'test-arn'
+        test_grid_session_status: 'ACTIVE'
+
+    - name: "Lists all of tests"
+      aws_devicefarm_info:
+        list_tests: true
+        arn: 'test-arn'
+
+    - name: "Lists all of uploads"
+      aws_devicefarm_info:
+        list_uploads: true
+        arn: 'test-arn'
+
+    - name: "Lists all of vpce configurations"
+      aws_devicefarm_info:
+        list_vpce_configurations: true
