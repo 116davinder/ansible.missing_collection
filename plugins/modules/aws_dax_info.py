@@ -132,7 +132,7 @@ clusters:
         'description': 'string',
         'cluster_arn': 'string',
         'total_nodes': 123,
-        'active_nodes': 123,
+        'active_nodes': 1234,
         'node_type': 'string',
         'status': 'string',
         'cluster_discovery_endpoint': {},
@@ -187,7 +187,7 @@ parameter_groups:
         'description': 'string'
     },
   ]
-parameters:
+parameter:
   description: describe dax parameters of a parameter group name.
   returned: when `describe_parameters`, and `parameter_group_name` are defined and success
   type: list
@@ -353,7 +353,7 @@ def main():
     elif module.params['describe_parameter_groups']:
         module.exit_json(parameter_groups=aws_response_list_parser(paginate, _it, 'ParameterGroups'))
     elif module.params['describe_parameters']:
-        module.exit_json(parameters=camel_dict_to_snake_dict(_it['Parameters']))
+        module.exit_json(parameter=camel_dict_to_snake_dict(_it['Parameters']))
     elif module.params['describe_subnet_groups']:
         module.exit_json(subnet_groups=aws_response_list_parser(paginate, _it, 'SubnetGroups'))
     else:
