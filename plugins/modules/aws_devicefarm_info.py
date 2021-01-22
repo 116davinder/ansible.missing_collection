@@ -9,7 +9,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_devicefarm_info
-short_description: Get Information about AWS Device Farm.
+short_description: (WIP) Get Information about AWS Device Farm.
 description:
   - Get Information about AWS Device Farm.
   - U(https://docs.aws.amazon.com/devicefarm/latest/APIReference/API_Operations.html)
