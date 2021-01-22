@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Gets detailed information about the specified lifecycle policy."
+      aws_dlm_info:
+        get_lifecycle_policy: true
+        id: 'test-id'
+
+    - name: "Gets summary information about all or the specified data lifecycle policies."
+      aws_dlm_info:
+        get_lifecycle_policies: true
+        state: 'ENABLED'
+        resource_types: ['VOLUME']
