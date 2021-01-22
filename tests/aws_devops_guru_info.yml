@@ -1,0 +1,32 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get health"
+      aws_devops_guru_info:
+
+    - name: "account overview"
+      aws_devops_guru_info:
+        describe_account_overview: true
+        from_time: '2020-12-31'
+
+    - name: "describe anomaly"
+      aws_devops_guru_info:
+        describe_anomaly: true
+        id: 'test'
+
+    - name: "describe insight"
+      aws_devops_guru_info:
+        describe_insight: true
+        id: 'test'
+
+    - name: "describe resource collection health"
+      aws_devops_guru_info:
+        describe_resource_collection_health: true
+        resource_collection_type: 'AWS_CLOUD_FORMATION'
+
+    - name: "describe service integration"
+      aws_devops_guru_info:
+        describe_service_integration: true
