@@ -1,0 +1,33 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of configurations."
+      aws_discovery_info:
+        list_configurations: true
+        configuration_type: 'SERVER'
+
+    - name: "describe list of configurations."
+      aws_discovery_info:
+        describe_configurations: true
+        ids: ['test']
+
+    - name: "get list of agents"
+      aws_discovery_info:
+        describe_agents: true
+
+    - name: "get list of exports."
+      aws_discovery_info:
+        describe_continuous_exports: true
+        ids: ['test-export-id']
+
+    - name: "get list of export tasks."
+      aws_discovery_info:
+        describe_export_tasks: true
+        ids: ['test-export-id']
+
+    - name: "get list of import tasks."
+      aws_discovery_info:
+        describe_import_tasks: true
