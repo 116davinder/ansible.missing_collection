@@ -242,7 +242,7 @@ def main():
     elif module.params['describe_import_tasks']:
         module.exit_json(import_tasks=aws_response_list_parser(paginate, it, 'tasks'))
     else:
-        module.fail_json_aws("unknown options are passed")
+        module.fail_json("unknown options are passed")
 
 
 if __name__ == '__main__':

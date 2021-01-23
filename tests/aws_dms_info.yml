@@ -1,0 +1,47 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of replication instances."
+      aws_dms_info:
+        describe_replication_instances: true
+
+    - name: "get list of certificates."
+      aws_dms_info:
+        describe_certificates: true
+
+    - name: "get list of endpoints."
+      aws_dms_info:
+        describe_endpoints: true
+
+    - name: "get list of event categories."
+      aws_dms_info:
+        describe_event_categories: true
+
+    - name: "get list of event subscriptions."
+      aws_dms_info:
+        describe_event_subscriptions: true
+
+    - name: "get list of events."
+      aws_dms_info:
+        describe_events: true
+        source_type: 'replication-instance'
+
+    - name: "get list of pending maintenance actions."
+      aws_dms_info:
+        describe_pending_maintenance_actions: true
+
+    - name: "get list of replication subnet groups."
+      aws_dms_info:
+        describe_replication_subnet_groups: true
+
+    - name: "get list of replication tasks."
+      aws_dms_info:
+        describe_replication_tasks: true
+
+    - name: "get list of schemas."
+      aws_dms_info:
+        describe_schemas: true
+        arn: 'test-endpoint-arn'
