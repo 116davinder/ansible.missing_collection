@@ -1,0 +1,66 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Gets detailed of all the direct connect gateways"
+      aws_directconnect_info:
+
+    - name: "get details about given connection"
+      aws_directconnect_info:
+        describe_connections: true
+        id: 'test-connection-id'
+
+    - name: "get details about connections of given interconnect"
+      aws_directconnect_info:
+        describe_connections_on_interconnect: true
+        id: 'test-interconnect-id'
+
+    - name: "get details about given connection"
+      aws_directconnect_info:
+        describe_connections: true
+        id: 'test-connection-id'
+
+    - name: "get details of association proposals of given direct connect gateway"
+      aws_directconnect_info:
+        describe_direct_connect_gateway_association_proposals: true
+        id: 'test-connect-gateway-id'
+
+    - name: "get details of association attachments of given direct connect gateway"
+      aws_directconnect_info:
+        describe_direct_connect_gateway_attachments: true
+        id: 'test-connect-gateway-id'
+
+    - name: "get details about given hosted connections"
+      aws_directconnect_info:
+        describe_hosted_connections: true
+        id: 'test-connection-id'
+
+    - name: "get details about given interconnect"
+      aws_directconnect_info:
+        describe_interconnects: true
+        id: 'test-interconnect-id'
+
+    - name: "gget details about link aggregation groups (LAG)"
+      aws_directconnect_info:
+        describe_lags: true
+        id: 'test-connection-id'
+
+    - name: "get details about the LOA-CFA for a connection"
+      aws_directconnect_info:
+        describe_loa: true
+        id: 'test-lag-id'
+
+    - name: "get details of direct connect locations"
+      aws_directconnect_info:
+        describe_locations: true
+
+    - name: "get details about all virtual gateways"
+      aws_directconnect_info:
+        describe_virtual_gateways: true
+
+    - name: "get details about virtual interfaces of given connection"
+      aws_directconnect_info:
+        describe_virtual_interfaces: true
+        id: 'test-connection-id'
