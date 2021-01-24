@@ -9,5 +9,5 @@ def convert_str_to_datetime(time: str):
     """
     try:
         return datetime.strptime(time, '%Y-%m-%d')
-    except:
+    except ValueError:
         return None
