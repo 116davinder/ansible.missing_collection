@@ -1,0 +1,28 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of streams for given table name."
+      aws_dynamodbstreams_info:
+        list_streams: true
+        table_name: 'test'
+
+    - name: "get summary about given stream arn."
+      aws_dynamodbstreams_info:
+        describe_stream: true
+        stream_arn: 'test'
+
+    - name: "get shard iterator."
+      aws_dynamodbstreams_info:
+        get_shard_iterator: true
+        stream_arn: 'test-arn'
+        shard_id: 'test-id'
+        shard_iterator_type: 'LATEST'
+        sequence_number: 'test-number'
+
+    - name: "get records for given iterator."
+      aws_dynamodbstreams_info:
+        get_records: true
+        shard_iterator: 'test'
