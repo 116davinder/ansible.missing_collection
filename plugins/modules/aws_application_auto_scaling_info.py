@@ -27,7 +27,7 @@ options:
     type: bool
   describe_scaling_activities:
     description:
-      - do you want to describe/fetch list of aws application autoscaling activites for given I(service_namespace)?
+      - do you want to describe/fetch list of aws application autoscaling activities for given I(service_namespace)?
     required: false
     type: bool
   describe_scaling_policies:

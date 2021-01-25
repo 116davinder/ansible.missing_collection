@@ -9,7 +9,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_directconnect_info
-short_description: (WIP) Get Information about AWS Direct Connect.
+short_description: Get Information about AWS Direct Connect.
 description:
   - Get Information about AWS Direct Connect.
   - U(https://docs.aws.amazon.com/directconnect/latest/APIReference/API_Operations.html)

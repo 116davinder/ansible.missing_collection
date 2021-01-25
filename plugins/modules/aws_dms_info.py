@@ -9,7 +9,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_dms_info
-short_description: (WIP) Get Information about AWS Database Migration Service.
+short_description: Get Information about AWS Database Migration Service.
 description:
   - Get Information about AWS Database Migration Service
   - U(https://docs.aws.amazon.com/dms/latest/APIReference/API_Operations.html)

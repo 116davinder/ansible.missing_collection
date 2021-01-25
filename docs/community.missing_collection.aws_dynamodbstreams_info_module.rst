@@ -1,14 +1,14 @@
-.. _community.missing_collection.aws_application_auto_scaling_info_module:
+.. _community.missing_collection.aws_dynamodbstreams_info_module:
 
 
-**************************************************************
-community.missing_collection.aws_application_auto_scaling_info
-**************************************************************
+*****************************************************
+community.missing_collection.aws_dynamodbstreams_info
+*****************************************************
 
-**Get details about AWS Application Auto Scaling.**
+**Get Information about Amazon DynamoDB Streams.**
 
 
-Version added: 0.0.2
+Version added: 0.0.5
 
 .. contents::
    :local:
@@ -17,8 +17,8 @@ Version added: 0.0.2
 
 Synopsis
 --------
-- Get Information about AWS Application Auto Scaling.
-- https://docs.aws.amazon.com/autoscaling/application/APIReference/API_Operations.html
+- Get Information about Amazon DynamoDB Streams.
+- https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Operations_Amazon_DynamoDB_Streams.html
 
 
 
@@ -135,7 +135,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_scalable_targets</b>
+                    <b>describe_stream</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -148,64 +148,7 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to describe/fetch list of aws application autoscaling targets for given <em>service_namespace</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_scaling_activities</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to describe/fetch list of aws application autoscaling activities for given <em>service_namespace</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_scaling_policies</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to describe/fetch list of aws application autoscaling policies for given <em>service_namespace</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_scheduled_actions</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to describe/fetch list of aws application autoscaling scheduled actions for given <em>service_namespace</em>?</div>
+                        <div>do you want to get summary about given stream <em>stream_arn</em>?</div>
                 </td>
             </tr>
             <tr>
@@ -222,6 +165,79 @@ Parameters
                 <td>
                         <div>Url to use to connect to EC2 or your Eucalyptus cloud (by default the module will use EC2 endpoints). Ignored for modules where region is required. Must be specified for all other modules if region is not used. If not set then the value of the EC2_URL environment variable, if any, is used.</div>
                         <div style="font-size: small; color: darkgreen"><br/>aliases: aws_endpoint_url, endpoint_url</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>get_records</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get records for given <em>shard_iterator</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>get_shard_iterator</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get shard iterator for <em>stream_arn</em>, <em>shard_id</em>, <em>shard_iterator_type</em> and <em>sequence_number</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_streams</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of streams for given <em>name</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>name of dynamodb table.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: table_name</div>
                 </td>
             </tr>
             <tr>
@@ -279,17 +295,82 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>service_namespace</b>
+                    <b>sequence_number</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                         / <span style="color: red">required</span>
                     </div>
                 </td>
                 <td>
                 </td>
                 <td>
-                        <div>The namespace of the AWS service that provides the resource.</div>
+                        <div>sequence number.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>shard_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>id of shard.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>shard_iterator</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>shard iterator.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>shard_iterator_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>TRIM_HORIZON</li>
+                                    <li>LATEST</li>
+                                    <li>AT_SEQUENCE_NUMBER</li>
+                                    <li>AFTER_SEQUENCE_NUMBER</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>type of shard iterator.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>stream_arn</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>arn of stream.</div>
                 </td>
             </tr>
             <tr>
@@ -330,25 +411,28 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "Gets information about the scalable targets in the specified namespace"
-      aws_application_auto_scaling_info:
-        service_namespace: 'ecs'
-        describe_scalable_targets: true
+    - name: "get list of streams for given table name."
+      aws_dynamodbstreams_info:
+        list_streams: true
+        table_name: 'test'
 
-    - name: "descriptive information about the scaling activities in the specified namespace"
-      aws_application_auto_scaling_info:
-        service_namespace: 'elasticmapreduce'
-        describe_scaling_activities: true
+    - name: "get summary about given stream arn."
+      aws_dynamodbstreams_info:
+        describe_stream: true
+        stream_arn: 'test'
 
-    - name: "Describes the Application Auto Scaling scaling policies for the specified service namespace"
-      aws_application_auto_scaling_info:
-        service_namespace: 'appstream'
-        describe_scaling_policies: true
+    - name: "get shard iterator."
+      aws_dynamodbstreams_info:
+        get_shard_iterator: true
+        stream_arn: 'test-arn'
+        shard_id: 'test-id'
+        shard_iterator_type: 'LATEST'
+        sequence_number: 'test-number'
 
-    - name: "Describes the Application Auto Scaling scheduled actions for the specified service namespace"
-      aws_application_auto_scaling_info:
-        service_namespace: 'rds'
-        describe_scheduled_actions: true
+    - name: "get records for given iterator."
+      aws_dynamodbstreams_info:
+        get_records: true
+        shard_iterator: 'test'
 
 
 
@@ -367,69 +451,61 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>scalable_targets</b>
+                    <b>records</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `service_namespace` is defined and `describe_scalable_targets=true` and success</td>
+                <td>when `get_records` is defined and success</td>
                 <td>
-                            <div>Gets information about the scalable targets in the specified namespace.</div>
+                            <div>get records for given iterator.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;service_namespace&#x27;: &#x27;ecs&#x27;, &#x27;resource_id&#x27;: &#x27;string&#x27;, &#x27;scalable_dimension&#x27;: &#x27;ecs:service:DesiredCount&#x27;, &#x27;min_capacity&#x27;: 123, &#x27;max_capacity&#x27;: 123, &#x27;role_arn&#x27;: &#x27;string&#x27;, &#x27;creation_time&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;10)&#x27;: None, &#x27;suspended_state&#x27;: {}}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>scaling_activities</b>
+                    <b>shard_iterator</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">list</span>
+                      <span style="color: purple">dictionary</span>
                     </div>
                 </td>
-                <td>when `service_namespace` is defined and `describe_scaling_activities=true` and success</td>
+                <td>when `get_shard_iterator` is defined and success</td>
                 <td>
-                            <div>Provides descriptive information about the scaling activities in the specified namespace from the previous six weeks.</div>
+                            <div>get shard iterator.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;activity_id&#x27;: &#x27;string&#x27;, &#x27;service_namespace&#x27;: &#x27;kafka&#x27;, &#x27;resource_id&#x27;: &#x27;string&#x27;, &#x27;scalable_dimension&#x27;: &#x27;kafka:broker-storage:VolumeSize&#x27;, &#x27;description&#x27;: &#x27;string&#x27;, &#x27;cause&#x27;: &#x27;string&#x27;, &#x27;start_time&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;5)&#x27;: None, &#x27;end_time&#x27;: &#x27;datetime(2018&#x27;, 8: None, &#x27;8)&#x27;: None, &#x27;status_code&#x27;: &#x27;InProgress&#x27;, &#x27;status_message&#x27;: &#x27;string&#x27;, &#x27;details&#x27;: &#x27;string&#x27;}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>scaling_policies</b>
+                    <b>stream</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">list</span>
+                      <span style="color: purple">dictionary</span>
                     </div>
                 </td>
-                <td>when `service_namespace` is defined and `describe_scaling_policies=true` and success</td>
+                <td>when `describe_stream` is defined and success</td>
                 <td>
-                            <div>Describes the Application Auto Scaling scaling policies for the specified service namespace.</div>
+                            <div>get summary about given stream arn.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;policy_arn&#x27;: &#x27;string&#x27;, &#x27;policy_name&#x27;: &#x27;string&#x27;, &#x27;service_namespace&#x27;: &#x27;dynamodb&#x27;, &#x27;resource_id&#x27;: &#x27;string&#x27;, &#x27;scalable_dimension&#x27;: &#x27;dynamodb:table:ReadCapacityUnits&#x27;, &#x27;policy_type&#x27;: &#x27;StepScaling&#x27;, &#x27;step_scaling_policy_configuration&#x27;: {}, &#x27;target_tracking_scaling_policy_configuration&#x27;: {}, &#x27;alarms&#x27;: [], &#x27;creation_time&#x27;: &#x27;datetime(2016&#x27;, 9: None, &#x27;9)&#x27;: None}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>scheduled_actions</b>
+                    <b>streams</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `service_namespace` is defined and `describe_scheduled_actions=true` and success</td>
+                <td>when `list_streams` is defined and success</td>
                 <td>
-                            <div>Describes the Application Auto Scaling scheduled actions for the specified service namespace.</div>
+                            <div>get list of streams for given table name.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;scheduled_action_name&#x27;: &#x27;string&#x27;, &#x27;scheduled_action_arn&#x27;: &#x27;string&#x27;, &#x27;service_namespace&#x27;: &#x27;ecs&#x27;, &#x27;schedule&#x27;: &#x27;string&#x27;, &#x27;resource_id&#x27;: &#x27;string&#x27;, &#x27;scalable_dimension&#x27;: &#x27;ecs:service:DesiredCount&#x27;, &#x27;start_time&#x27;: &#x27;datetime(2017&#x27;, 1: None, &#x27;4)&#x27;: None, &#x27;end_time&#x27;: &#x27;datetime(2016&#x27;, 2: None, &#x27;2)&#x27;: None, &#x27;scalable_target_action&#x27;: {}, &#x27;creation_time&#x27;: &#x27;datetime(2010&#x27;, 10: None, &#x27;7)&#x27;: None}]</div>
                 </td>
             </tr>
     </table>

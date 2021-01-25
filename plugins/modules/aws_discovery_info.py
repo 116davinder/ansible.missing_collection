@@ -9,7 +9,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_discovery_info
-short_description: (WIP) Get Information about AWS Application Discovery Service.
+short_description: Get Information about AWS Application Discovery Service.
 description:
   - Get Information about AWS Application Discovery Service.
   - U(https://docs.aws.amazon.com/application-discovery/latest/APIReference/API_Operations.html)

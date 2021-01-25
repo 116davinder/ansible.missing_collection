@@ -9,7 +9,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_docdb_info
-short_description: (WIP) Get Information about Amazon DocumentDB.
+short_description: Get Information about Amazon DocumentDB.
 description:
   - Get Information about Amazon DocumentDB.
   - U(https://docs.aws.amazon.com/documentdb/latest/developerguide/API_Operations.html)

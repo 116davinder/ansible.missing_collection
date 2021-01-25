@@ -1,14 +1,14 @@
-.. _community.missing_collection.aws_application_auto_scaling_info_module:
+.. _community.missing_collection.aws_docdb_info_module:
 
 
-**************************************************************
-community.missing_collection.aws_application_auto_scaling_info
-**************************************************************
+*******************************************
+community.missing_collection.aws_docdb_info
+*******************************************
 
-**Get details about AWS Application Auto Scaling.**
+**Get Information about Amazon DocumentDB.**
 
 
-Version added: 0.0.2
+Version added: 0.0.5
 
 .. contents::
    :local:
@@ -17,8 +17,8 @@ Version added: 0.0.2
 
 Synopsis
 --------
-- Get Information about AWS Application Auto Scaling.
-- https://docs.aws.amazon.com/autoscaling/application/APIReference/API_Operations.html
+- Get Information about Amazon DocumentDB.
+- https://docs.aws.amazon.com/documentdb/latest/developerguide/API_Operations.html
 
 
 
@@ -135,7 +135,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_scalable_targets</b>
+                    <b>describe_certificates</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -148,13 +148,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to describe/fetch list of aws application autoscaling targets for given <em>service_namespace</em>?</div>
+                        <div>do you want to get list of certificates?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_scaling_activities</b>
+                    <b>describe_db_cluster_parameter_groups</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -167,13 +167,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to describe/fetch list of aws application autoscaling activities for given <em>service_namespace</em>?</div>
+                        <div>do you want to get list of db cluster parameter groups?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_scaling_policies</b>
+                    <b>describe_db_cluster_parameters</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -186,13 +186,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to describe/fetch list of aws application autoscaling policies for given <em>service_namespace</em>?</div>
+                        <div>do you want to get list of db cluster parameters for given <em>name</em>?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_scheduled_actions</b>
+                    <b>describe_db_cluster_snapshots</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -205,7 +205,83 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to describe/fetch list of aws application autoscaling scheduled actions for given <em>service_namespace</em>?</div>
+                        <div>do you want to get list of db cluster snapshots for given <em>snapshot_type</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_db_instances</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of db instances?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_db_subnet_groups</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of db subnet groups?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_event_categories</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of event categories for given <em>source_type</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_events</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of events for given <em>start_time</em> and <em>end_time</em>?</div>
                 </td>
             </tr>
             <tr>
@@ -222,6 +298,36 @@ Parameters
                 <td>
                         <div>Url to use to connect to EC2 or your Eucalyptus cloud (by default the module will use EC2 endpoints). Ignored for modules where region is required. Must be specified for all other modules if region is not used. If not set then the value of the EC2_URL environment variable, if any, is used.</div>
                         <div style="font-size: small; color: darkgreen"><br/>aliases: aws_endpoint_url, endpoint_url</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>end_time</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>{&#x27;Time to filter results? Example&#x27;: &#x27;<em>2021-12-01</em>&#x27;}</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>name of the parameter group.</div>
                 </td>
             </tr>
             <tr>
@@ -279,17 +385,58 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>service_namespace</b>
+                    <b>snapshot_type</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                         / <span style="color: red">required</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li><div style="color: blue"><b>automated</b>&nbsp;&larr;</div></li>
+                                    <li>manual</li>
+                                    <li>shared</li>
+                                    <li>public</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>type of snapshot.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>source_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li><div style="color: blue"><b>db-instance</b>&nbsp;&larr;</div></li>
+                                    <li>db-parameter-group</li>
+                                    <li>db-security-group</li>
+                                    <li>db-snapshot</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>type of source.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>start_time</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
                     </div>
                 </td>
                 <td>
                 </td>
                 <td>
-                        <div>The namespace of the AWS service that provides the resource.</div>
+                        <div>{&#x27;Time to filter results? Example&#x27;: &#x27;<em>2021-12-01</em>&#x27;}</div>
                 </td>
             </tr>
             <tr>
@@ -330,25 +477,45 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "Gets information about the scalable targets in the specified namespace"
-      aws_application_auto_scaling_info:
-        service_namespace: 'ecs'
-        describe_scalable_targets: true
+    - name: "get list of db clusters"
+      aws_docdb_info:
 
-    - name: "descriptive information about the scaling activities in the specified namespace"
-      aws_application_auto_scaling_info:
-        service_namespace: 'elasticmapreduce'
-        describe_scaling_activities: true
+    - name: "get list of db cluster parameter groups."
+      aws_docdb_info:
+        describe_db_cluster_parameter_groups: true
 
-    - name: "Describes the Application Auto Scaling scaling policies for the specified service namespace"
-      aws_application_auto_scaling_info:
-        service_namespace: 'appstream'
-        describe_scaling_policies: true
+    - name: "get list of certificates."
+      aws_docdb_info:
+        describe_certificates: true
 
-    - name: "Describes the Application Auto Scaling scheduled actions for the specified service namespace"
-      aws_application_auto_scaling_info:
-        service_namespace: 'rds'
-        describe_scheduled_actions: true
+    - name: "get list of db cluster parameters."
+      aws_docdb_info:
+        describe_db_cluster_parameters: true
+        name: 'test-parameter-group-name'
+
+    - name: "get list of db snapshots"
+      aws_docdb_info:
+        describe_db_cluster_snapshots: true
+        snapshot_type: 'automated'
+
+    - name: "get list of db instances"
+      aws_docdb_info:
+        describe_db_instances: true
+
+    - name: "get list of db subnet groups"
+      aws_docdb_info:
+        describe_db_subnet_groups: true
+
+    - name: "get list of db event categories"
+      aws_docdb_info:
+        describe_event_categories: true
+        source_type: 'db-instance'
+
+    - name: "get list of events."
+      aws_docdb_info:
+        describe_events: true
+        start_time: '2020-12-30'
+        end_time: '2021-12-30'
 
 
 
@@ -367,69 +534,121 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>scalable_targets</b>
+                    <b>certificates</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `service_namespace` is defined and `describe_scalable_targets=true` and success</td>
+                <td>when `describe_certificates` is defined and success</td>
                 <td>
-                            <div>Gets information about the scalable targets in the specified namespace.</div>
+                            <div>list of certificates.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;service_namespace&#x27;: &#x27;ecs&#x27;, &#x27;resource_id&#x27;: &#x27;string&#x27;, &#x27;scalable_dimension&#x27;: &#x27;ecs:service:DesiredCount&#x27;, &#x27;min_capacity&#x27;: 123, &#x27;max_capacity&#x27;: 123, &#x27;role_arn&#x27;: &#x27;string&#x27;, &#x27;creation_time&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;10)&#x27;: None, &#x27;suspended_state&#x27;: {}}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>scaling_activities</b>
+                    <b>db_cluster_parameter_groups</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `service_namespace` is defined and `describe_scaling_activities=true` and success</td>
+                <td>when `describe_db_cluster_parameter_groups` is defined and success</td>
                 <td>
-                            <div>Provides descriptive information about the scaling activities in the specified namespace from the previous six weeks.</div>
+                            <div>list of db cluster parameter groups.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;activity_id&#x27;: &#x27;string&#x27;, &#x27;service_namespace&#x27;: &#x27;kafka&#x27;, &#x27;resource_id&#x27;: &#x27;string&#x27;, &#x27;scalable_dimension&#x27;: &#x27;kafka:broker-storage:VolumeSize&#x27;, &#x27;description&#x27;: &#x27;string&#x27;, &#x27;cause&#x27;: &#x27;string&#x27;, &#x27;start_time&#x27;: &#x27;datetime(2015&#x27;, 1: None, &#x27;5)&#x27;: None, &#x27;end_time&#x27;: &#x27;datetime(2018&#x27;, 8: None, &#x27;8)&#x27;: None, &#x27;status_code&#x27;: &#x27;InProgress&#x27;, &#x27;status_message&#x27;: &#x27;string&#x27;, &#x27;details&#x27;: &#x27;string&#x27;}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>scaling_policies</b>
+                    <b>db_subnet_groups</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `service_namespace` is defined and `describe_scaling_policies=true` and success</td>
+                <td>when `describe_db_subnet_groups` is defined and success</td>
                 <td>
-                            <div>Describes the Application Auto Scaling scaling policies for the specified service namespace.</div>
+                            <div>list of db subnet groups.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;policy_arn&#x27;: &#x27;string&#x27;, &#x27;policy_name&#x27;: &#x27;string&#x27;, &#x27;service_namespace&#x27;: &#x27;dynamodb&#x27;, &#x27;resource_id&#x27;: &#x27;string&#x27;, &#x27;scalable_dimension&#x27;: &#x27;dynamodb:table:ReadCapacityUnits&#x27;, &#x27;policy_type&#x27;: &#x27;StepScaling&#x27;, &#x27;step_scaling_policy_configuration&#x27;: {}, &#x27;target_tracking_scaling_policy_configuration&#x27;: {}, &#x27;alarms&#x27;: [], &#x27;creation_time&#x27;: &#x27;datetime(2016&#x27;, 9: None, &#x27;9)&#x27;: None}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>scheduled_actions</b>
+                    <b>event_categories</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `service_namespace` is defined and `describe_scheduled_actions=true` and success</td>
+                <td>when `describe_event_categories` is defined and success</td>
                 <td>
-                            <div>Describes the Application Auto Scaling scheduled actions for the specified service namespace.</div>
+                            <div>list of db event categories.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;scheduled_action_name&#x27;: &#x27;string&#x27;, &#x27;scheduled_action_arn&#x27;: &#x27;string&#x27;, &#x27;service_namespace&#x27;: &#x27;ecs&#x27;, &#x27;schedule&#x27;: &#x27;string&#x27;, &#x27;resource_id&#x27;: &#x27;string&#x27;, &#x27;scalable_dimension&#x27;: &#x27;ecs:service:DesiredCount&#x27;, &#x27;start_time&#x27;: &#x27;datetime(2017&#x27;, 1: None, &#x27;4)&#x27;: None, &#x27;end_time&#x27;: &#x27;datetime(2016&#x27;, 2: None, &#x27;2)&#x27;: None, &#x27;scalable_target_action&#x27;: {}, &#x27;creation_time&#x27;: &#x27;datetime(2010&#x27;, 10: None, &#x27;7)&#x27;: None}]</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>events</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `describe_events` is defined and success</td>
+                <td>
+                            <div>list of db cluster events.</div>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>instances</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `describe_db_instances` is defined and success</td>
+                <td>
+                            <div>list of db instances.</div>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>parameters</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `describe_db_cluster_parameters` is defined and success</td>
+                <td>
+                            <div>list of cluster parameters.</div>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>snapshots</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `describe_db_cluster_snapshots` is defined and success</td>
+                <td>
+                            <div>list of db cluster snapshots.</div>
+                    <br/>
                 </td>
             </tr>
     </table>

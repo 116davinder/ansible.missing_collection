@@ -9,7 +9,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_dynamodbstreams_info
-short_description: (WIP) Get Information about Amazon DynamoDB Streams.
+short_description: Get Information about Amazon DynamoDB Streams.
 description:
   - Get Information about Amazon DynamoDB Streams.
   - U(https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_Operations_Amazon_DynamoDB_Streams.html)
