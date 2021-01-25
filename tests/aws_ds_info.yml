@@ -1,0 +1,50 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "describe given directories"
+      aws_ds_info:
+        describe_directories: true
+        ids: []
+
+    - name: "get list of certificates"
+      aws_ds_info:
+        list_certificates: true
+        id: 'test-id'
+
+    - name: "get list of ip routes"
+      aws_ds_info:
+        list_ip_routes: true
+        id: 'test-id'
+
+    - name: "get list of log subscriptions"
+      aws_ds_info:
+        list_log_subscriptions: true
+        id: 'test-id'
+
+    - name: "get list of schema extensions"
+      aws_ds_info:
+        list_schema_extensions: true
+        id: 'test-id'
+
+    - name: "describe domain controllers"
+      aws_ds_info:
+        describe_conditional_forwarders: true
+        id: 'test-id'
+
+    - name: "describe event topics"
+      aws_ds_info:
+        describe_event_topics: true
+        id: 'test-id'
+
+    - name: "describe snapshots"
+      aws_ds_info:
+        describe_snapshots: true
+        id: 'test-id'
+
+    - name: "describe trusts"
+      aws_ds_info:
+        describe_trusts: true
+        id: 'test-id'

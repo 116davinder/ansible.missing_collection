@@ -1,0 +1,27 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of tables"
+      aws_dynamodb_info:
+
+    - name: "get list of global tables"
+      aws_dynamodb_info:
+        list_global_tables: true
+
+    - name: "get list of export jobs"
+      aws_dynamodb_info:
+        list_exports: true
+        arn: 'test-arn'
+
+    - name: "get list of contributor insights"
+      aws_dynamodb_info:
+        list_contributor_insights: true
+        name: 'test-name'
+
+    - name: "get list of backups"
+      aws_dynamodb_info:
+        list_backups: true
+        name: 'test-name'
