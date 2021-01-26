@@ -8,15 +8,15 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: aws_eks_cluster_info
-short_description: Get Information about AWS EKS Clusters.
+module: aws_eks_info
+short_description: Get Information about AWS EKS.
 description:
-  - Get Information about AWS EKS Clusters.
+  - Get Information about AWS EKS.
 version_added: 0.0.2
 options:
   name:
     description:
-      - name of the eks cluster
+      - name of the eks cluster.
     required: false
     type: str
     aliases: ['cluster_name']
@@ -52,26 +52,26 @@ requirements:
 
 EXAMPLES = """
 - name: "get list of eks clusters"
-  aws_eks_cluster_info:
+  aws_eks_info:
   register: __all
 
 - name: "get fargate profiles for given cluster"
-  aws_eks_cluster_info:
+  aws_eks_info:
     name: "{{ __all.clusters[1] }}"
     list_fargate_profiles: true
 
 - name: "get nodegroups for given cluster"
-  aws_eks_cluster_info:
+  aws_eks_info:
     name: "{{ __all.clusters[1] }}"
     list_nodegroups: true
 
 - name: "get list of addons for given cluster"
-  aws_eks_cluster_info:
+  aws_eks_info:
     name: "{{ __all.clusters[1] }}"
     list_addons: true
 
 - name: "get details about given cluster"
-  aws_eks_cluster_info:
+  aws_eks_info:
     name: "{{ __all.clusters[1] }}"
     describe_cluster: true
 """
