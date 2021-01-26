@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Gets detailed information about the snapshot blocks."
+      aws_ebs_info:
+        list_snapshot_blocks: true
+        id: 'test-id'

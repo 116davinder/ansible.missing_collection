@@ -1,0 +1,20 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "Gets detailed information registry."
+      aws_ecr_info:
+
+    - name: "Gets detailed information about the repositories."
+      aws_ecr_info:
+        describe_repositories: true
+        id: 'test-registry-id'
+
+    - name: "Gets list of images for given repository and registry."
+      aws_ecr_info:
+        list_images: true
+        id: 'test-id'
+        name: 'test-repository-name'
+        tag_status: 'ANY'

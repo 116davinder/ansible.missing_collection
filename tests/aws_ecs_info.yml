@@ -1,0 +1,60 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of cluster arns."
+      aws_ecs_info:
+
+    - name: "get list of container instance arns"
+      aws_ecs_info:
+        list_container_instances: true
+        arn: 'cluster-arn'
+        container_instance_status: 'ACTIVE'
+
+    - name: "get list of service arns"
+      aws_ecs_info:
+        list_services: true
+        arn: 'cluster-arn'
+        launch_type: 'EC2'
+
+    - name: "get list of task definition arns"
+      aws_ecs_info:
+        list_task_definitions: true
+        task_definition_status: 'ACTIVE'
+
+    - name: "get list of task arns"
+      aws_ecs_info:
+        list_tasks: true
+        arn: 'cluster-arn'
+        launch_type: 'EC2'
+        task_desired_status: 'RUNNING'
+
+    - name: "get details of clusters"
+      aws_ecs_info:
+        describe_clusters: true
+        arns: ['test-arn']
+
+    - name: "get details of container instances"
+      aws_ecs_info:
+        describe_container_instances: true
+        arns: ['test-container-instance-arn']
+
+    - name: "get details of service"
+      aws_ecs_info:
+        describe_services: true
+        arn: 'cluster-arn'
+        names: ['test-service-name']
+
+    - name: "get details of task definition"
+      aws_ecs_info:
+        describe_task_definition: true
+        arn: 'cluster-arn'
+        arns: ['test-task-definition-arn']
+
+    - name: "get details of task"
+      aws_ecs_info:
+        describe_tasks: true
+        arn: 'cluster-arn'
+        tasks: ['test-task-arn']
