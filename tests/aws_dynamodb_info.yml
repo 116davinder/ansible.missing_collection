@@ -6,22 +6,34 @@
   tasks:
     - name: "get list of tables"
       aws_dynamodb_info:
+      register: _table
 
     - name: "get list of global tables"
       aws_dynamodb_info:
         list_global_tables: true
+      register: _g_table
+
+    - name: 'describe table'
+      aws_dynamodb_info:
+        describe_table: true
+        name: '{{ _table.tables[0] }}'
+
+    - name: 'describe global table'
+      aws_dynamodb_info:
+        describe_global_table: true
+        name: 'test-g-table'
 
     - name: "get list of export jobs"
       aws_dynamodb_info:
         list_exports: true
-        arn: 'test-arn'
+        arn: 'arn:aws:dynamodb:us-east-1:11111111111:table/test-table'
 
     - name: "get list of contributor insights"
       aws_dynamodb_info:
         list_contributor_insights: true
-        name: 'test-name'
+        name: '{{ _table.tables[0] }}'
 
     - name: "get list of backups"
       aws_dynamodb_info:
         list_backups: true
-        name: 'test-name'
+        name: '{{ _table.tables[0] }}'

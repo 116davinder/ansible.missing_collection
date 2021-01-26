@@ -7,44 +7,44 @@
     - name: "describe given directories"
       aws_ds_info:
         describe_directories: true
-        ids: []
+      register: _ds
 
     - name: "get list of certificates"
       aws_ds_info:
         list_certificates: true
-        id: 'test-id'
+        id: '{{ _ds.directories[0].alias }}'
 
     - name: "get list of ip routes"
       aws_ds_info:
         list_ip_routes: true
-        id: 'test-id'
+        id: '{{ _ds.directories[0].alias }}'
 
     - name: "get list of log subscriptions"
       aws_ds_info:
         list_log_subscriptions: true
-        id: 'test-id'
+        id: '{{ _ds.directories[0].alias }}'
 
     - name: "get list of schema extensions"
       aws_ds_info:
         list_schema_extensions: true
-        id: 'test-id'
+        id: '{{ _ds.directories[0].alias }}'
 
     - name: "describe domain controllers"
       aws_ds_info:
         describe_conditional_forwarders: true
-        id: 'test-id'
+        id: '{{ _ds.directories[0].alias }}'
 
     - name: "describe event topics"
       aws_ds_info:
         describe_event_topics: true
-        id: 'test-id'
+        id: '{{ _ds.directories[0].alias }}'
 
     - name: "describe snapshots"
       aws_ds_info:
         describe_snapshots: true
-        id: 'test-id'
+        id: '{{ _ds.directories[0].alias }}'
 
     - name: "describe trusts"
       aws_ds_info:
         describe_trusts: true
-        id: 'test-id'
+        id: '{{ _ds.directories[0].alias }}'

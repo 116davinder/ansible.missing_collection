@@ -20,14 +20,9 @@ options:
       - id of directory.
     required: false
     type: str
-  ids:
-    description:
-      - list of I(id) directory.
-    required: false
-    type: list
   describe_directories:
     description:
-      - do you want to describe given directories I(ids)?
+      - do you want to describe all directories?
     required: false
     type: bool
   list_certificates:
@@ -86,10 +81,9 @@ requirements:
 """
 
 EXAMPLES = """
-- name: "describe given directories"
+- name: "describe all directories"
   aws_ds_info:
     describe_directories: true
-    ids: []
 
 - name: "get list of certificates"
   aws_ds_info:
@@ -208,13 +202,9 @@ def _ds(client, module):
         if module.params['describe_directories']:
             if client.can_paginate('describe_directories'):
                 paginator = client.get_paginator('describe_directories')
-                return paginator.paginate(
-                    DirectoryIds=module.params['ids'],
-                ), True
+                return paginator.paginate(), True
             else:
-                return client.describe_directories(
-                    DirectoryIds=module.params['ids'],
-                ), False
+                return client.describe_directories(), False
         elif module.params['list_certificates']:
             if client.can_paginate('list_certificates'):
                 paginator = client.get_paginator('list_certificates')
@@ -313,7 +303,6 @@ def _ds(client, module):
 
 def main():
     argument_spec = dict(
-        ids=dict(required=False, type=list, aliases=['directory_ids']),
         id=dict(required=False, aliases=['directory_id']),
         describe_directories=dict(required=False, type=bool),
         list_certificates=dict(required=False, type=bool),
@@ -330,7 +319,6 @@ def main():
     module = AnsibleAWSModule(
         argument_spec=argument_spec,
         required_if=(
-            ('describe_directories', True, ['ids']),
             ('list_certificates', True, ['id']),
             ('list_ip_routes', True, ['id']),
             ('list_log_subscriptions', True, ['id']),

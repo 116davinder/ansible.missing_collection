@@ -54,6 +54,16 @@ options:
       - do you want to get list of backups for given I(name) and I(backup_type)?
     required: false
     type: bool
+  describe_table:
+    description:
+      - do you want to describe table I(name)?
+    required: false
+    type: bool
+  describe_global_table:
+    description:
+      - do you want to describe global table I(name)?
+    required: false
+    type: bool
 author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 extends_documentation_fragment:
@@ -67,29 +77,41 @@ requirements:
 EXAMPLES = """
 - name: "get list of tables"
   aws_dynamodb_info:
+  register: _table
 
 - name: "get list of global tables"
   aws_dynamodb_info:
     list_global_tables: true
+  register: _g_table
+
+- name: 'describe table'
+  aws_dynamodb_info:
+    describe_table: true
+    name: '{{ _table.tables[0] }}'
+
+- name: 'describe global table'
+  aws_dynamodb_info:
+    describe_global_table: true
+    name: 'test-g-table'
 
 - name: "get list of export jobs"
   aws_dynamodb_info:
     list_exports: true
-    arn: 'test-arn'
+    arn: 'arn:aws:dynamodb:us-east-1:11111111111:table/test-table'
 
 - name: "get list of contributor insights"
   aws_dynamodb_info:
     list_contributor_insights: true
-    name: 'test-name'
+    name: '{{ _table.tables[0] }}'
 
 - name: "get list of backups"
   aws_dynamodb_info:
     list_backups: true
-    name: 'test-name'
+    name: '{{ _table.tables[0] }}'
 """
 
 RETURN = """
-table_names:
+tables:
   description: list of tables.
   returned: when no arguments are defined and success
   type: list
@@ -109,6 +131,14 @@ backups:
   description: list of backups.
   returned: when `list_backups` is defined and success
   type: list
+table:
+  description: details about given table name.
+  returned: when `describe_table` is defined and success
+  type: dict
+global_table:
+  description: details about given global table name.
+  returned: when `describe_global_table` is defined and success
+  type: dict
 """
 
 try:
@@ -158,13 +188,13 @@ def _dynamodb(client, module):
                     TableArn=module.params['arn'],
                 ), False
         elif module.params['list_contributor_insights']:
-            if client.can_paginate('list_exports'):
-                paginator = client.get_paginator('list_exports')
+            if client.can_paginate('list_contributor_insights'):
+                paginator = client.get_paginator('list_contributor_insights')
                 return paginator.paginate(
                     TableName=module.params['name'],
                 ), True
             else:
-                return client.list_exports(
+                return client.list_contributor_insights(
                     TableName=module.params['name'],
                 ), False
         elif module.params['list_backups']:
@@ -179,6 +209,14 @@ def _dynamodb(client, module):
                     TableName=module.params['name'],
                     BackupType=module.params['backup_type'],
                 ), False
+        elif module.params['describe_table']:
+            return client.describe_table(
+                TableName=module.params['name'],
+            ), False
+        elif module.params['describe_global_table']:
+            return client.describe_global_table(
+                GlobalTableName=module.params['name'],
+            ), False
         else:
             if client.can_paginate('list_tables'):
                 paginator = client.get_paginator('list_tables')
@@ -191,8 +229,8 @@ def _dynamodb(client, module):
 
 def main():
     argument_spec = dict(
-        arn=dict(required=False, type=list, aliases=['table_arn']),
-        name=dict(required=False, type=list, aliases=['table_name']),
+        arn=dict(required=False, aliases=['table_arn']),
+        name=dict(required=False, aliases=['table_name']),
         backup_type=dict(
             required=False,
             choices=['USER', 'SYSTEM', 'AWS_BACKUP', 'ALL'],
@@ -202,6 +240,8 @@ def main():
         list_exports=dict(required=False, type=bool),
         list_contributor_insights=dict(required=False, type=bool),
         list_backups=dict(required=False, type=bool),
+        describe_table=dict(required=False, type=bool),
+        describe_global_table=dict(required=False, type=bool),
     )
 
     module = AnsibleAWSModule(
@@ -210,6 +250,8 @@ def main():
             ('list_exports', True, ['arn']),
             ('list_contributor_insights', True, ['name']),
             ('list_backups', True, ['name']),
+            ('describe_table', True, ['name']),
+            ('describe_global_table', True, ['name']),
         ),
         mutually_exclusive=[
             (
@@ -217,6 +259,8 @@ def main():
                 'list_exports',
                 'list_contributor_insights',
                 'list_backups',
+                'describe_table',
+                'describe_global_table'
             )
         ],
     )
@@ -232,8 +276,12 @@ def main():
         module.exit_json(contributor_insights=aws_response_list_parser(paginate, it, 'ContributorInsightsSummaries'))
     elif module.params['list_backups']:
         module.exit_json(backups=aws_response_list_parser(paginate, it, 'BackupSummaries'))
+    elif module.params['describe_table']:
+        module.exit_json(table=camel_dict_to_snake_dict(it['Table']))
+    elif module.params['describe_global_table']:
+        module.exit_json(global_table=camel_dict_to_snake_dict(it['GlobalTableDescription']))
     else:
-        module.exit_json(table_names=aws_response_list_parser(paginate, it, 'TableNames'))
+        module.exit_json(tables=aws_response_list_parser(paginate, it, 'TableNames'))
 
 
 if __name__ == '__main__':
