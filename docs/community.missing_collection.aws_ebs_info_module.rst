@@ -1,14 +1,14 @@
-.. _community.missing_collection.aws_eks_cluster_info_module:
+.. _community.missing_collection.aws_ebs_info_module:
 
 
-*************************************************
-community.missing_collection.aws_eks_cluster_info
-*************************************************
+*****************************************
+community.missing_collection.aws_ebs_info
+*****************************************
 
-**Get Information about AWS EKS Clusters.**
+**Get Information about Amazon Elastic Block Store (EBS).**
 
 
-Version added: 0.0.2
+Version added: 0.0.6
 
 .. contents::
    :local:
@@ -17,7 +17,8 @@ Version added: 0.0.2
 
 Synopsis
 --------
-- Get Information about AWS EKS Clusters.
+- Get Information about Amazon Elastic Block Store (EBS).
+- https://docs.aws.amazon.com/ebs/latest/APIReference/API_Operations.html
 
 
 
@@ -134,25 +135,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_cluster</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to describe / fetch all attributes of given eks cluster</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>ec2_url</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -169,64 +151,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_addons</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch addons for given eks cluster</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_fargate_profiles</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch fargate profiles for given eks cluster</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_nodegroups</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch node groups for given eks cluster</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>name</b>
+                    <b>id</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
@@ -235,8 +160,26 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>name of the eks cluster</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: cluster_name</div>
+                        <div>id of the snapshot.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_snapshot_blocks</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get details of snapshot blocks for given <em>id</em>?</div>
                 </td>
             </tr>
             <tr>
@@ -329,29 +272,10 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "get list of eks clusters"
-      aws_eks_cluster_info:
-      register: __all
-
-    - name: "get fargate profiles for given cluster"
-      aws_eks_cluster_info:
-        name: "{{ __all.clusters[1] }}"
-        list_fargate_profiles: true
-
-    - name: "get nodegroups for given cluster"
-      aws_eks_cluster_info:
-        name: "{{ __all.clusters[1] }}"
-        list_nodegroups: true
-
-    - name: "get list of addons for given cluster"
-      aws_eks_cluster_info:
-        name: "{{ __all.clusters[1] }}"
-        list_addons: true
-
-    - name: "get details about given cluster"
-      aws_eks_cluster_info:
-        name: "{{ __all.clusters[1] }}"
-        describe_cluster: true
+    - name: "Gets detailed information about the snapshot blocks."
+      aws_ebs_info:
+        list_snapshot_blocks: true
+        id: 'test-id'
 
 
 
@@ -370,86 +294,16 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>addons</b>
+                    <b>snapshot_blocks</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when <em>list_addons</em> and success</td>
+                <td>when `list_snapshot_blocks` and `id` are defined and success</td>
                 <td>
-                            <div>List of Addons for given EKS Cluster.</div>
+                            <div>detailed information about the snapshot blocks.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;test-addon&#x27;]</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>cluster</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                    </div>
-                </td>
-                <td>when <em>describe_cluster</em> and success</td>
-                <td>
-                            <div>List of Fargate Profiles for given EKS Cluster.</div>
-                    <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;arn&#x27;: &#x27;arn:aws:eks:us-east-1:xxxxxxxx:cluster/test-eks&#x27;, &#x27;certificate_authority&#x27;: {&#x27;data&#x27;: &#x27;xxxxxxxxxxxxxxxxxxxx&#x27;}, &#x27;created_at&#x27;: &#x27;2020-02-22T16:23:22.190000+02:00&#x27;, &#x27;endpoint&#x27;: &#x27;https://xxxxxxxxxxxxxx.us-east-1.eks.amazonaws.com&#x27;, &#x27;identity&#x27;: {&#x27;oidc&#x27;: {&#x27;issuer&#x27;: &#x27;https://oidc.eks.us-east-1.amazonaws.com/id/xxxxxxxxxxxx&#x27;}}, &#x27;kubernetes_network_config&#x27;: {&#x27;service_ipv4_cidr&#x27;: &#x27;172.20.0.0/16&#x27;}, &#x27;logging&#x27;: {&#x27;cluster_logging&#x27;: []}, &#x27;name&#x27;: &#x27;test-eks&#x27;, &#x27;platform_version&#x27;: &#x27;eks.5&#x27;, &#x27;resources_vpc_config&#x27;: {&#x27;cluster_security_group_id&#x27;: &#x27;sg-xxxxxxxx&#x27;, &#x27;endpoint_private_access&#x27;: True, &#x27;endpoint_public_access&#x27;: True, &#x27;public_access_cidrs&#x27;: [], &#x27;security_group_ids&#x27;: [], &#x27;subnet_ids&#x27;: [], &#x27;vpc_id&#x27;: &#x27;vpc-xxxxx&#x27;}, &#x27;role_arn&#x27;: &#x27;arn:aws:iam::xxxxxxxx:role/eks-cluster-service-role&#x27;, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;tags&#x27;: {}, &#x27;version&#x27;: &#x27;1.15&#x27;}</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>clusters</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when no argument is defined and success</td>
-                <td>
-                            <div>List of EKS Cluster.</div>
-                    <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;test-eks-cluster1&#x27;, &#x27;test-eks-cluster2&#x27;]</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>fargate_profile_names</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when <em>fargate_profile_names</em> and success</td>
-                <td>
-                            <div>List of Fargate Profiles for given EKS Cluster.</div>
-                    <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;test-fg&#x27;]</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>node_groups</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when <em>list_nodegroups</em> and success</td>
-                <td>
-                            <div>List of Node Groups for given EKS Cluster.</div>
-                    <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;test-ng&#x27;]</div>
                 </td>
             </tr>
     </table>

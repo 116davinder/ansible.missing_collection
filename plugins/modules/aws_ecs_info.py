@@ -118,17 +118,18 @@ requirements:
 EXAMPLES = """
 - name: "get list of cluster arns."
   aws_ecs_info:
+  register: _reg
 
 - name: "get list of container instance arns"
   aws_ecs_info:
     list_container_instances: true
-    arn: 'cluster-arn'
+    arn: '{{ _reg.cluster_arns[0] }}'
     container_instance_status: 'ACTIVE'
 
 - name: "get list of service arns"
   aws_ecs_info:
     list_services: true
-    arn: 'cluster-arn'
+    arn: '{{ _reg.cluster_arns[0] }}'
     launch_type: 'EC2'
 
 - name: "get list of task definition arns"
@@ -139,7 +140,7 @@ EXAMPLES = """
 - name: "get list of task arns"
   aws_ecs_info:
     list_tasks: true
-    arn: 'cluster-arn'
+    arn: '{{ _reg.cluster_arns[0] }}'
     launch_type: 'EC2'
     task_desired_status: 'RUNNING'
 
@@ -156,20 +157,20 @@ EXAMPLES = """
 - name: "get details of service"
   aws_ecs_info:
     describe_services: true
-    arn: 'cluster-arn'
+    arn: '{{ _reg.cluster_arns[0] }}'
     names: ['test-service-name']
 
 - name: "get details of task definition"
   aws_ecs_info:
     describe_task_definition: true
-    arn: 'cluster-arn'
+    arn: '{{ _reg.cluster_arns[0] }}'
     arns: ['test-task-definition-arn']
 
 - name: "get details of task"
   aws_ecs_info:
     describe_tasks: true
-    arn: 'cluster-arn'
-    tasks: ['test-task-arn']
+    arn: '{{ _reg.cluster_arns[0] }}'
+    arns: ['test-task-arn']
 """
 
 RETURN = """

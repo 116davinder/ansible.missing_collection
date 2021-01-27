@@ -48,16 +48,17 @@ requirements:
 EXAMPLES = """
 - name: "Gets detailed information registries."
   aws_ecr_public_info:
+  register: _reg
 
 - name: "Gets detailed information about the repositories."
   aws_ecr_public_info:
     describe_repositories: true
-    id: 'test-registry-id'
+    id: '{{ _reg.registries[0].registry_id }}'
 
 - name: "Gets list of images for given repository and registry."
   aws_ecr_public_info:
     describe_images: true
-    id: 'test-id'
+    id: '{{ _reg.registries[0].registry_id }}'
     name: 'test-repository-name'
 """
 
