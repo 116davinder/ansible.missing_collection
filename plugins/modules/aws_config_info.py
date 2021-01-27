@@ -82,8 +82,8 @@ except ImportError:
     pass    # Handled by AnsibleAWSModule
 
 from ansible_collections.amazon.aws.plugins.module_utils.core import AnsibleAWSModule
-from ansible_collections.amazon.aws.plugins.module_utils.ec2 import camel_dict_to_snake_dict
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
+from ansible_collections.community.missing_collection.plugins.module_utils.aws_response_parser import aws_response_list_parser
 
 
 @AWSRetry.exponential_backoff(retries=5, delay=5)
@@ -127,26 +127,10 @@ def main():
     __default_return = []
 
     _it, paginate = _config(config, module)
-    if _it is not None:
-        if module.params['list_configurations_profiles']:
-            if paginate:
-                for response in _it:
-                    for _app in response['Items']:
-                        __default_return.append(camel_dict_to_snake_dict(_app))
-            else:
-                for _app in _it['Items']:
-                    __default_return.append(camel_dict_to_snake_dict(_app))
-            module.exit_json(profiles=__default_return)
-        else:
-            if paginate:
-                for response in _it:
-                    for _app in response['Items']:
-                        __default_return.append(camel_dict_to_snake_dict(_app))
-            else:
-                for _app in _it['Items']:
-                    __default_return.append(camel_dict_to_snake_dict(_app))
-
-            module.exit_json(applications=__default_return)
+    if module.params['list_configurations_profiles']:
+        module.exit_json(profiles=aws_response_list_parser(paginate, _it, 'Items'))
+    else:
+        module.exit_json(applications=aws_response_list_parser(paginate, _it, 'Items'))
 
 
 if __name__ == '__main__':

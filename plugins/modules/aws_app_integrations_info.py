@@ -117,19 +117,7 @@ except ImportError:
 from ansible_collections.amazon.aws.plugins.module_utils.core import AnsibleAWSModule
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import camel_dict_to_snake_dict
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
-
-
-def aws_response_list_parser(paginate: bool, iterator, resource_field: str) -> list:
-    _return = []
-    if iterator is not None:
-        if paginate:
-            for response in iterator:
-                for _app in response[resource_field]:
-                    _return.append(camel_dict_to_snake_dict(_app))
-        else:
-            for _app in iterator[resource_field]:
-                _return.append(camel_dict_to_snake_dict(_app))
-    return _return
+from ansible_collections.community.missing_collection.plugins.module_utils.aws_response_parser import aws_response_list_parser
 
 
 def _appintegrations(client, module):

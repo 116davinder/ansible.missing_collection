@@ -1,7 +1,2 @@
 ---
 requires_ansible: '>=2.9.10'
-action_groups:
-  aws:
-
-plugin_routing:
-  modules:

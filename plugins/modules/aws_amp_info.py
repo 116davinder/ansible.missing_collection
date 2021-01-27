@@ -98,10 +98,11 @@ except ImportError:
 from ansible_collections.amazon.aws.plugins.module_utils.core import AnsibleAWSModule
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import camel_dict_to_snake_dict
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
+from ansible_collections.community.missing_collection.plugins.module_utils.aws_response_parser import aws_response_list_parser
 
 
 @AWSRetry.exponential_backoff(retries=5, delay=5)
-def _list_amp(client, module):
+def _amp(client, module):
     try:
         if client.can_paginate('list_workspaces'):
             paginator = client.get_paginator('list_workspaces')
@@ -131,24 +132,11 @@ def main():
         ]
     )
 
-    # remove below warning once service become GA
-    module.warn("aws amp service is preview on 25-12-2020")
-
     amp = module.client('amp', retry_decorator=AWSRetry.exponential_backoff())
+    _it, paginate = _amp(amp, module)
 
     if module.params['list_workspace']:
-        _it, paginate = _list_amp(amp, module)
-        _return = []
-        if _it is not None:
-            if paginate:
-                for response in _it:
-                    for _app in response['workspaces']:
-                        _return.append(camel_dict_to_snake_dict(_app))
-            else:
-                for _app in _it['workspaces']:
-                    _return.append(camel_dict_to_snake_dict(_app))
-
-            module.exit_json(workspaces=_return)
+        module.exit_json(workspaces=aws_response_list_parser(paginate, _it, 'workspaces'))
     elif module.params['describe_workspace']:
         try:
             _des = amp.describe_workspace(
