@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get details of accelerators"
+      aws_elastic_inference_info:
+        describe_accelerators: true
+        ids: []
+
+    - name: "get details of accelerators types"
+      aws_elastic_inference_info:
+        describe_accelerator_types: true
+
+    - name: "get details of accelerators offerings"
+      aws_elastic_inference_info:
+        describe_accelerator_offerings: true
+        location_type: 'region'
