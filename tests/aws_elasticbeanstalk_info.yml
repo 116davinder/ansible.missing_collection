@@ -1,0 +1,48 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of all environments."
+      aws_elasticbeanstalk_info:
+
+    - name: "get list of applications."
+      aws_elasticbeanstalk_info:
+        describe_applications: true
+        names: []
+
+    - name: "get list of application versions."
+      aws_elasticbeanstalk_info:
+        describe_application_versions: true
+        name: 'test-app'
+
+    - name: "get application configuration options."
+      aws_elasticbeanstalk_info:
+        describe_configuration_options: true
+        name: 'test-app'
+
+    - name: "get application configuration settings."
+      aws_elasticbeanstalk_info:
+        describe_configuration_settings: true
+        name: 'test-app'
+
+    - name: "get details of environment health."
+      aws_elasticbeanstalk_info:
+        describe_environment_health: true
+        name: 'test-env'
+
+    - name: "get list of environment managed actions."
+      aws_elasticbeanstalk_info:
+        describe_environment_managed_actions: true
+        name: 'test-env'
+
+    - name: "get environment resources."
+      aws_elasticbeanstalk_info:
+        describe_environment_resources: true
+        name: 'test-env'
+
+    - name: "get application events."
+      aws_elasticbeanstalk_info:
+        describe_events: true
+        name: 'test-app'
