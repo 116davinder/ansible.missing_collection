@@ -15,31 +15,35 @@ description:
   - U(https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_Operations.html)
 version_added: 0.0.6
 options:
-  id:
+  names:
     description:
-      - id of pipeline.
+      - list of name of load-balancers.
     required: false
     type: str
-  status:
+  arn:
     description:
-      - status of job.
+      - can be arn of load-balancer?
+      - can be arn of listener?
     required: false
     type: str
-    choices: ['Submitted', 'Progressing', 'Complete', 'Canceled', 'Error']
-    default: 'Submitted'
-  list_presets:
+  describe_listeners:
     description:
-      - do you want to get list of presets?
+      - do you want to get list of listeners for given LB I(arn)?
     required: false
     type: bool
-  list_jobs_by_pipeline:
+  describe_listener_certificates:
     description:
-      - do you want to get list of jobs for given pipeline I(id)?
+      - do you want to get list of listener certificates for given listener I(arn)?
     required: false
     type: bool
-  list_jobs_by_status:
+  describe_rules:
     description:
-      - do you want to get list of jobs for given I(status)?
+      - do you want to get list of rules for given listener I(arn)?
+    required: false
+    type: bool
+  describe_target_groups:
+    description:
+      - do you want to get list of target groups?
     required: false
     type: bool
 author:
@@ -55,25 +59,27 @@ requirements:
 EXAMPLES = """
 - name: "get details of all load balancers"
   aws_elbv2_info:
+  register: _reg
 
 - name: "get details of given load balancers."
   aws_elbv2_info:
-    names: ['test']
+    names: ['{{ _reg.load_balancers[0].load_balancer_name }}']
 
 - name: "get list of listeners for given elb"
   aws_elbv2_info:
     describe_listeners: true
-    arn: 'test-arn-elb'
+    arn: '{{ _reg.load_balancers[0].load_balancer_arn }}'
+  register: _reg_lis
 
 - name: "get list of listener certificates for given listener arn"
   aws_elbv2_info:
     describe_listener_certificates: true
-    arn: 'test-listener-arn'
+    arn: '{{ _reg_lis.listeners[0].listener_arn }}'
 
 - name: "get list of rules for given listener arn"
   aws_elbv2_info:
     describe_rules: true
-    arn: 'test-listener-arn'
+    arn: '{{ _reg_lis.listeners[0].listener_arn }}'
 
 - name: "get list of target groups"
   aws_elbv2_info:

@@ -1,0 +1,33 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get details of all load balancers"
+      aws_elbv2_info:
+      register: _reg
+
+    - name: "get details of given load balancers."
+      aws_elbv2_info:
+        names: ['{{ _reg.load_balancers[0].load_balancer_name }}']
+
+    - name: "get list of listeners for given elb"
+      aws_elbv2_info:
+        describe_listeners: true
+        arn: '{{ _reg.load_balancers[0].load_balancer_arn }}'
+      register: _reg_lis
+
+    - name: "get list of listener certificates for given listener arn"
+      aws_elbv2_info:
+        describe_listener_certificates: true
+        arn: '{{ _reg_lis.listeners[0].listener_arn }}'
+
+    - name: "get list of rules for given listener arn"
+      aws_elbv2_info:
+        describe_rules: true
+        arn: '{{ _reg_lis.listeners[0].listener_arn }}'
+
+    - name: "get list of target groups"
+      aws_elbv2_info:
+        describe_target_groups: true
