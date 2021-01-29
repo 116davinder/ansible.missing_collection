@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of all pipelines."
+      aws_elastictranscoder_info:
+
+    - name: "get list of presets."
+      aws_elastictranscoder_info:
+        list_presets: true
+
+    - name: "get list of jobs by pipelineId"
+      aws_elastictranscoder_info:
+        list_jobs_by_pipeline: true
+        id: 'test-pipeline-id'
+
+    - name: "get list of jobs by status"
+      aws_elastictranscoder_info:
+        list_jobs_by_status: true
+        status: 'Submitted'
