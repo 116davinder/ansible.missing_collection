@@ -1,0 +1,34 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of all emr clusters"
+      aws_emr_info:
+      register: _reg
+
+    - name: "get list of bootstrap actions"
+      aws_emr_info:
+        list_bootstrap_actions: true
+        id: 'test'
+
+    - name: "get list of instance fleets"
+      aws_emr_info:
+        list_instance_fleets: true
+        id: 'test'
+
+    - name: "get list of instance groups"
+      aws_emr_info:
+        list_instance_groups: true
+        id: 'test'
+
+    - name: "get list of steps"
+      aws_emr_info:
+        list_steps: true
+        id: 'test'
+
+    - name: "get list of studios"
+      aws_emr_info:
+        list_studios: true
+        id: 'test'
