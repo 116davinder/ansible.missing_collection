@@ -1,0 +1,20 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of all emr virtual clusters"
+      aws_emr_containers_info:
+
+    - name: "get list of job runs"
+      aws_emr_containers_info:
+        list_job_runs: true
+        id: 'test'
+        job_run_states: ['PENDING', 'SUBMITTED', 'RUNNING']
+
+    - name: "get list of managed endpoints"
+      aws_emr_containers_info:
+        list_managed_endpoints: true
+        id: 'test'
+        managed_endpoint_states: ['CREATING', 'ACTIVE']
