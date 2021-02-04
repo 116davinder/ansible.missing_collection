@@ -1,0 +1,23 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of all es domains"
+      aws_es_info:
+
+    - name: "get list of packages"
+      aws_es_info:
+        list_packages_for_domain: true
+        name: 'test'
+
+    - name: "get details of domain"
+      aws_es_info:
+        describe_elasticsearch_domain: true
+        name: 'test'
+
+    - name: "get details of domain config"
+      aws_es_info:
+        describe_elasticsearch_domain_config: true
+        name: 'test'
