@@ -1,0 +1,40 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of archives"
+      aws_events_info:
+        list_archives: true
+        name_prefix: 'test'
+
+    - name: "get list of event buses"
+      aws_events_info:
+        list_event_buses: true
+        name_prefix: 'test'
+
+    - name: "get list of event sources"
+      aws_events_info:
+        list_event_sources: true
+        name_prefix: 'test'
+
+    - name: "get list of partner event source accounts"
+      aws_events_info:
+        list_partner_event_source_accounts: true
+        event_source_name: 'test'
+
+    - name: "get list of partner event sources"
+      aws_events_info:
+        list_partner_event_sources: true
+        name_prefix: 'test'
+
+    - name: "get list of replays"
+      aws_events_info:
+        list_replays: true
+        name_prefix: 'test'
+
+    - name: "get list of rules"
+      aws_events_info:
+        list_rules: true
+        name_prefix: 'test'
