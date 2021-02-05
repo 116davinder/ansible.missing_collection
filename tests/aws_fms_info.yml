@@ -1,0 +1,28 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of apps list"
+      aws_fms_info:
+        list_apps_lists: true
+        default_lists: true
+
+    - name: "get list of policies"
+      aws_fms_info:
+        list_policies: true
+
+    - name: "get details of compliance status"
+      aws_fms_info:
+        list_compliance_status: true
+        policy_id: 'test'
+
+    - name: "get list of member accounts"
+      aws_fms_info:
+        list_member_accounts: true
+
+    - name: "get list of protocols lists"
+      aws_fms_info:
+        list_protocols_lists: true
+        default_lists: true
