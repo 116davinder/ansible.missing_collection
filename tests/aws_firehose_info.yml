@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of delivery stream"
+      aws_firehose_info:
+
+    - name: "get details of delivery stream"
+      aws_firehose_info:
+        describe_delivery_stream: true
+        name: 'test'
