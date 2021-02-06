@@ -34,3 +34,6 @@ jobs:
 
       - name: Run Automatic Doc Creation Tool
         run: collection_prep_add_docs -p . -b master
+
+      - name: Try to build collection with ansible-galaxy
+        run: ansible-galaxy collection build -v
