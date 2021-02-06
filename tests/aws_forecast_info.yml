@@ -1,0 +1,32 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of forecasts"
+      aws_forecast_info:
+
+    - name: "get list of dataset groups"
+      aws_forecast_info:
+        list_dataset_groups: true
+
+    - name: "get list of dataset import jobs"
+      aws_forecast_info:
+        list_dataset_import_jobs: true
+
+    - name: "get list of datasets"
+      aws_forecast_info:
+        list_datasets: true
+
+    - name: "get list of forecast export jobs"
+      aws_forecast_info:
+        list_forecast_export_jobs: true
+
+    - name: "get list of predictor backtest export jobs"
+      aws_forecast_info:
+        list_predictor_backtest_export_jobs: true
+
+    - name: "get list of predictors"
+      aws_forecast_info:
+        list_predictors: true

@@ -169,11 +169,7 @@ def _fms(client, module):
                     MaxResults=100
                 ), False
         else:
-            if client.can_paginate('list_domain_names'):
-                paginator = client.get_paginator('list_domain_names')
-                return paginator.paginate(), True
-            else:
-                return client.list_domain_names(), False
+            return None, False
     except (BotoCoreError, ClientError) as e:
         module.fail_json_aws(e, msg='Failed to fetch Amazon FMS details')
 

@@ -1,0 +1,42 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of detectors"
+      aws_frauddetector_info:
+        get_detectors: true
+
+    - name: "get list of get entity types"
+      aws_frauddetector_info:
+        get_entity_types: true
+
+    - name: "get list of event types"
+      aws_frauddetector_info:
+        get_event_types: true
+
+    - name: "get list of external models"
+      aws_frauddetector_info:
+        get_external_models: true
+
+    - name: "get list of labels"
+      aws_frauddetector_info:
+        get_labels: true
+
+    - name: "get list of models"
+      aws_frauddetector_info:
+        get_models: true
+
+    - name: "get list of outcomes"
+      aws_frauddetector_info:
+        get_outcomes: true
+
+    - name: "get list of rules"
+      aws_frauddetector_info:
+        get_rules: true
+        detector_id: 'test'
+
+    - name: "get list of variables"
+      aws_frauddetector_info:
+        get_variables: true
