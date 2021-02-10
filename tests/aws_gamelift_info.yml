@@ -1,0 +1,33 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get details of aliases"
+      aws_gamelift_info:
+        list_aliases: true
+        routing_strategy_type: 'SIMPLE'
+
+    - name: "get details of builds"
+      aws_gamelift_info:
+        list_builds: true
+        status: 'READY'
+
+    - name: "get details of fleets"
+      aws_gamelift_info:
+        list_fleets: true
+        build_id: 'test'
+
+    - name: "get details of game server groups"
+      aws_gamelift_info:
+        list_game_server_groups: true
+
+    - name: "get details of game server"
+      aws_gamelift_info:
+        list_game_servers: true
+        game_server_group_name: 'test'
+
+    - name: "get details of scripts"
+      aws_gamelift_info:
+        list_scripts: true
