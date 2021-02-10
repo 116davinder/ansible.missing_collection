@@ -1,0 +1,42 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of accelerators"
+      aws_globalaccelerator_info:
+        list_accelerators: true
+
+    - name: "get list of byoip cidrs"
+      aws_globalaccelerator_info:
+        list_byoip_cidrs: true
+
+    - name: "get list of custom routing accelerators"
+      aws_globalaccelerator_info:
+        list_custom_routing_accelerators: true
+
+    - name: "get list of custom routing endpoint groups"
+      aws_globalaccelerator_info:
+        list_custom_routing_endpoint_groups: true
+        arn: 'test-listener-arn'
+
+    - name: "get list of custom routing listeners"
+      aws_globalaccelerator_info:
+        list_custom_routing_listeners: true
+        arn: 'test-accelerator-arn'
+
+    - name: "get list of custom routing port mappings"
+      aws_globalaccelerator_info:
+        list_custom_routing_port_mappings: true
+        arn: 'test-accelerator-arn'
+
+    - name: "get list of endpoint groups"
+      aws_globalaccelerator_info:
+        list_endpoint_groups: true
+        arn: 'test-listener-arn'
+
+    - name: "get list of listeners"
+      aws_globalaccelerator_info:
+        list_listeners: true
+        arn: 'test-accelerator-arn'
