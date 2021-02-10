@@ -1,0 +1,24 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get details of vaults"
+      aws_glacier_info:
+        list_vaults: true
+
+    - name: "get details of provisioned capacity"
+      aws_glacier_info:
+        list_provisioned_capacity: true
+
+    - name: "get details of multipart uploads"
+      aws_glacier_info:
+        list_multipart_uploads: true
+        name: 'test'
+
+    - name: "get details of jobs"
+      aws_glacier_info:
+        list_jobs: true
+        name: 'test'
+        status: 'Succeeded'
