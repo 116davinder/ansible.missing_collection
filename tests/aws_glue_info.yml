@@ -1,0 +1,53 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of workflows"
+      aws_glue_info:
+        list_workflows: true
+
+    - name: "get list of triggers"
+      aws_glue_info:
+        list_triggers: true
+
+    - name: "get list of schemas"
+      aws_glue_info:
+        list_schemas: true
+        registry_name: 'test'
+
+    - name: "get list of registries"
+      aws_glue_info:
+        list_registries: true
+
+    - name: "get list of ml transforms"
+      aws_glue_info:
+        list_ml_transforms: true
+
+    - name: "get list of jobs"
+      aws_glue_info:
+        list_jobs: true
+
+    - name: "get list of dev_endpoints"
+      aws_glue_info:
+        list_dev_endpoints: true
+
+    - name: "get list of crawlers"
+      aws_glue_info:
+        list_crawlers: true
+
+    - name: "get list of databases"
+      aws_glue_info:
+        get_databases: true
+
+    - name: "get list of tables"
+      aws_glue_info:
+        get_tables: true
+        database_name: 'default'
+
+    - name: "get list of partitions"
+      aws_glue_info:
+        get_partitions: true
+        database_name: 'default'
+        table_name: 'test'
