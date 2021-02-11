@@ -1,0 +1,36 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of component_versions"
+      aws_greengrassv2_info:
+        list_component_versions: true
+        arn: 'component-arn'
+
+    - name: "get list of components"
+      aws_greengrassv2_info:
+        list_components: true
+        scope: 'PUBLIC'
+
+    - name: "get list of core devices"
+      aws_greengrassv2_info:
+        list_core_devices: true
+        status: 'HEALTHY'
+
+    - name: "get list of deployments"
+      aws_greengrassv2_info:
+        list_deployments: true
+        arn: 'target-arn'
+        history_filter: 'ALL'
+
+    - name: "get list of effective deployments"
+      aws_greengrassv2_info:
+        list_effective_deployments: true
+        name: 'core-device-thing-name'
+
+    - name: "get list of installed components"
+      aws_greengrassv2_info:
+        list_installed_components: true
+        name: 'core-device-thing-name'
