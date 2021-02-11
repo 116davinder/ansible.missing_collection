@@ -5,7 +5,7 @@
 community.missing_collection.aws_globalaccelerator_info
 *******************************************************
 
-**(WIP) Get Information about Amazon Global Accelerator.**
+**Get Information about Amazon Global Accelerator.**
 
 
 Version added: 0.0.6
@@ -19,6 +19,7 @@ Synopsis
 --------
 - Get Information about Amazon Global Accelerator.
 - https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/globalaccelerator.html
+- Use AWS US-WEST-2 / Oregon Region, if module fails with your region.
 
 
 

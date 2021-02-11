@@ -9,10 +9,11 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: aws_globalaccelerator_info
-short_description: (WIP) Get Information about Amazon Global Accelerator.
+short_description: Get Information about Amazon Global Accelerator.
 description:
   - Get Information about Amazon Global Accelerator.
   - U(https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/globalaccelerator.html)
+  - Use AWS US-WEST-2 / Oregon Region, if module fails with your region.
 version_added: 0.0.6
 options:
   arn:
