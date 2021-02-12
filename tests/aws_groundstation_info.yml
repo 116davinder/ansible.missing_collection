@@ -1,0 +1,25 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of configs"
+      aws_groundstation_info:
+        list_configs: true
+
+    - name: "get list of dataflow_endpoint_groups"
+      aws_groundstation_info:
+        list_dataflow_endpoint_groups: true
+
+    - name: "get list of ground stations"
+      aws_groundstation_info:
+        list_ground_stations: true
+
+    - name: "get list of mission_profiles"
+      aws_groundstation_info:
+        list_mission_profiles: true
+
+    - name: "get list of satellites"
+      aws_groundstation_info:
+        list_satellites: true
