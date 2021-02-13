@@ -1,0 +1,27 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of fhir_datastores"
+      aws_healthlake_info:
+        list_fhir_datastores: true
+        datastore_status: 'ACTIVE'
+
+    - name: "get details of fhir_datastore"
+      aws_healthlake_info:
+        describe_fhir_datastore: true
+        id: 'test'
+
+    - name: "get details of fhir_export_job"
+      aws_healthlake_info:
+        describe_fhir_export_job: true
+        id: 'test-datastore-id'
+        job_id: 'test'
+
+    - name: "get details of fhir_import_job"
+      aws_healthlake_info:
+        describe_fhir_import_job: true
+        id: 'test-datastore-id'
+        job_id: 'test'
