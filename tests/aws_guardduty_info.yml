@@ -1,0 +1,47 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of detectors"
+      aws_guardduty_info:
+        list_detectors: true
+    
+    - name: "get list of filters"
+      aws_guardduty_info:
+        list_filters: true
+        id: 'test'
+
+    - name: "get list of findings"
+      aws_guardduty_info:
+        list_findings: true
+        id: 'test'
+
+    - name: "get list of invitations"
+      aws_guardduty_info:
+        list_invitations: true
+
+    - name: "get list of ip_sets"
+      aws_guardduty_info:
+        list_ip_sets: true
+        id: 'test'
+
+    - name: "get list of members"
+      aws_guardduty_info:
+        list_members: true
+        id: 'test'
+
+    - name: "get list of organization admin accounts"
+      aws_guardduty_info:
+        list_organization_admin_accounts: true
+
+    - name: "get list of publishing destinations"
+      aws_guardduty_info:
+        list_publishing_destinations: true
+        id: 'test'
+
+    - name: "get list of threat intel sets"
+      aws_guardduty_info:
+        list_threat_intel_sets: true
+        id: 'test'
