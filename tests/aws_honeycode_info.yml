@@ -1,0 +1,23 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of tables"
+      aws_honeycode_info:
+        list_tables: true
+        id: 'workbook-id-test'
+
+    - name: "get list of table_rows"
+      aws_honeycode_info:
+        list_table_rows: true
+        id: 'workbook-id-test'
+        table_id: 'test-table-id'
+        row_ids: ['test']
+
+    - name: "get list of table_columns"
+      aws_honeycode_info:
+        list_table_columns: true
+        id: 'workbook-id-test'
+        table_id: 'test-table-id'
