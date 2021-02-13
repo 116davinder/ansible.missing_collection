@@ -1,0 +1,25 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of health_service_status_for_organization"
+      aws_health_info:
+        describe_health_service_status_for_organization: true
+
+    - name: "get list of events"
+      aws_health_info:
+        describe_events: true
+        event_type_categories: ['issue']
+        services: ['EC2']
+
+    - name: "get list of event_details"
+      aws_health_info:
+        describe_event_details: true
+        arns: ['test']
+
+    - name: "get list of affected_accounts_for_organization"
+      aws_health_info:
+        describe_affected_accounts_for_organization: true
+        arn: 'test'

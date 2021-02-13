@@ -7,7 +7,7 @@
     - name: "get list of detectors"
       aws_guardduty_info:
         list_detectors: true
-    
+
     - name: "get list of filters"
       aws_guardduty_info:
         list_filters: true
