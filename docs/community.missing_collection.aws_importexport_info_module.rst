@@ -1,14 +1,14 @@
-.. _community.missing_collection.aws_iam_access_analyzer_info_module:
+.. _community.missing_collection.aws_importexport_info_module:
 
 
-*********************************************************
-community.missing_collection.aws_iam_access_analyzer_info
-*********************************************************
+**************************************************
+community.missing_collection.aws_importexport_info
+**************************************************
 
-**Get Information about AWS IAM Access Analyzer.**
+**Get Information about AWS Import/Export.**
 
 
-Version added: 0.0.2
+Version added: 0.0.6
 
 .. contents::
    :local:
@@ -17,8 +17,8 @@ Version added: 0.0.2
 
 Synopsis
 --------
-- Get Information about AWS IAM Access Analyzer Resources.
-- https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_Operations.html
+- Get Information about AWS Import/Export.
+- https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/importexport.html
 
 
 
@@ -43,22 +43,6 @@ Parameters
             <th>Choices/<font color="blue">Defaults</font></th>
             <th width="100%">Comments</th>
         </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>arn</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>arn of the analyzer?</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: analyzer_arn</div>
-                </td>
-            </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
@@ -167,7 +151,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_analyzed_resources</b>
+                    <b>get_shipping_label</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -180,36 +164,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to fetch all analyzed resources?</div>
+                        <div>do you want to get shipping label for given <em>job_ids</em></div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_analyzed_resources_type</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>AWS::S3::Bucket</li>
-                                    <li>AWS::IAM::Role</li>
-                                    <li>AWS::SQS::Queue</li>
-                                    <li>AWS::Lambda::Function</li>
-                                    <li>AWS::Lambda::LayerVersion</li>
-                                    <li>AWS::KMS::Key</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch all analyzed resources?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_analyzers</b>
+                    <b>get_status</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -222,70 +183,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to fetch all analyzer?</div>
+                        <div>do you want to get job status for given <em>job_id</em>?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_analyzers_type</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>ACCOUNT</li>
-                                    <li>ORGANIZATION</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>which type of analyzer?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_archive_rules</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch all analyzer archive rules?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_findings</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch all analyzer findings?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>name</b>
+                    <b>job_id</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
@@ -294,8 +198,41 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>name of the analyzer?</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: analyzer_name</div>
+                        <div>id of aws import/export job.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>job_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>list of job ids for shipping label.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_jobs</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of jobs?</div>
                 </td>
             </tr>
             <tr>
@@ -388,27 +325,19 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "get list of aws iam analyzers"
-      aws_iam_access_analyzer_info:
-        list_analyzers: true
-        list_analyzers_type: 'ACCOUNT'
-      register: __iam_analyzer
+    - name: "get list of jobs"
+      aws_importexport_info:
+        list_jobs: true
 
-    - name: "get list of archive rules"
-      aws_iam_access_analyzer_info:
-        name: "{{ __iam_analyzer.analyzers[0].name }}"
-        list_archive_rules: true
+    - name: "get shipping label"
+      aws_importexport_info:
+        get_shipping_label: true
+        job_ids: ['test-job-id']
 
-    - name: "get list of findings"
-      aws_iam_access_analyzer_info:
-        arn: "{{ __iam_analyzer.analyzers[0].arn }}"
-        list_findings: true
-
-    - name: "get list of analyzed resources"
-      aws_iam_access_analyzer_info:
-        arn: "{{ __iam_analyzer.analyzers[0].arn }}"
-        list_analyzed_resources: true
-        list_analyzed_resources_type: 'AWS::S3::Bucket'
+    - name: "get job status"
+      aws_importexport_info:
+        get_status: true
+        job_id: 'test-id'
 
 
 
@@ -427,69 +356,46 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>analyzed_resources</b>
+                    <b>jobs</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when <em>list_analyzed_resources</em> and <em>list_analyzed_resources_type</em> and <em>arn</em> is defined and success</td>
+                <td>when `list_jobs` is defined and success.</td>
                 <td>
-                            <div>List of analyzed resources for given analyzer arn.</div>
+                            <div>list of jobs.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;resource_arn&#x27;: &#x27;arn:aws:s3:::test-s3-bucket&#x27;, &#x27;resource_owner_account&#x27;: &#x27;xxxxxxxx&#x27;, &#x27;resource_type&#x27;: &#x27;AWS::S3::Bucket&#x27;}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>analyzers</b>
+                    <b>shipping_label</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">list</span>
+                      <span style="color: purple">dictionary</span>
                     </div>
                 </td>
-                <td>when <em>list_analyzers</em> and <em>list_analyzers_type</em> is defined and success</td>
+                <td>when `get_shipping_label` is defined and success.</td>
                 <td>
-                            <div>List of analyzers from aws iam.</div>
+                            <div>list of shipping_label.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;arn&#x27;: &#x27;arn:aws:access-analyzer:us-east-1:xxxx:analyzer/ConsoleAnalyzer-xxxx-a0c3-2bcc56294763&#x27;, &#x27;created_at&#x27;: &#x27;2019-12-03T11:55:24+00:00&#x27;, &#x27;last_resource_analyzed&#x27;: &#x27;arn:aws:kms:us-east-1:xxxx:key/xxxxx-9c87-f17c48283fe7&#x27;, &#x27;last_resource_analyzed_at&#x27;: &#x27;2020-12-24T10:06:50.125000+00:00&#x27;, &#x27;name&#x27;: &#x27;ConsoleAnalyzer-xxxx-a0c3-2bcc56294763&#x27;, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;tags&#x27;: {}, &#x27;type&#x27;: &#x27;ACCOUNT&#x27;}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>archive_rules</b>
+                    <b>status</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">list</span>
+                      <span style="color: purple">dictionary</span>
                     </div>
                 </td>
-                <td>when <em>list_archive_rules</em> and <em>name</em> is defined and success</td>
+                <td>when `get_status` is defined and success.</td>
                 <td>
-                            <div>List of archive rules for given analyzer name.</div>
+                            <div>list of status.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;created_at&#x27;: &#x27;2020-12-24T10:20:44+00:00&#x27;, &#x27;filter&#x27;: {&#x27;is_public&#x27;: {&#x27;eq&#x27;: [&#x27;false&#x27;]}}, &#x27;rule_name&#x27;: &#x27;ArchiveRule-xxxxx-9d7d-c25e98a9b12f&#x27;, &#x27;updated_at&#x27;: &#x27;2020-12-24T10:20:44+00:00&#x27;}]</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>findings</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when <em>list_findings</em> and <em>arn</em> is defined and success</td>
-                <td>
-                            <div>List of findings for given analyzer arn.</div>
-                    <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;action&#x27;: [&#x27;sts:AssumeRole&#x27;], &#x27;analyzed_at&#x27;: &#x27;2020-12-23T23:33:51.497000+00:00&#x27;, &#x27;condition&#x27;: {}, &#x27;created_at&#x27;: &#x27;2019-12-03T11:55:26+00:00&#x27;, &#x27;id&#x27;: &#x27;xxxxxxxxx-adca-d617574e694c&#x27;, &#x27;is_public&#x27;: False, &#x27;principal&#x27;: {&#x27;aws&#x27;: &#x27;xxxxxx&#x27;}, &#x27;resource&#x27;: &#x27;arn:aws:iam::xxxxxxxxxx:role/Test-Integrations&#x27;, &#x27;resource_owner_account&#x27;: &#x27;xxxxxxxxx&#x27;, &#x27;resource_type&#x27;: &#x27;AWS::IAM::Role&#x27;, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;updated_at&#x27;: &#x27;2019-12-03T11:55:26+00:00&#x27;}]</div>
                 </td>
             </tr>
     </table>

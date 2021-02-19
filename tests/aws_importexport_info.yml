@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of jobs"
+      aws_importexport_info:
+        list_jobs: true
+
+    - name: "get shipping label"
+      aws_importexport_info:
+        get_shipping_label: true
+        job_ids: ['test-job-id']
+
+    - name: "get job status"
+      aws_importexport_info:
+        get_status: true
+        job_id: 'test-id'

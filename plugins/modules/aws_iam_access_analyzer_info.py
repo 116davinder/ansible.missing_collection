@@ -30,38 +30,32 @@ options:
   list_analyzers:
     description:
       - do you want to fetch all analyzer?
-      - U(https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListAnalyzers.html)
     required: false
     type: bool
   list_analyzers_type:
     description:
       - which type of analyzer?
-      - U(https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListAnalyzers.html)
     required: false
     choices: ['ACCOUNT', 'ORGANIZATION']
     type: str
   list_archive_rules:
     description:
       - do you want to fetch all analyzer archive rules?
-      - U(https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListArchiveRules.html)
     required: false
     type: bool
   list_findings:
     description:
       - do you want to fetch all analyzer findings?
-      - U(https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListFindings.html)
     required: false
     type: bool
   list_analyzed_resources:
     description:
       - do you want to fetch all analyzed resources?
-      - U(https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListAnalyzedResources.html)
     required: false
     type: bool
   list_analyzed_resources_type:
     description:
       - do you want to fetch all analyzed resources?
-      - U(https://docs.aws.amazon.com/access-analyzer/latest/APIReference/API_ListAnalyzedResources.html)
     required: false
     type: str
     choices: [

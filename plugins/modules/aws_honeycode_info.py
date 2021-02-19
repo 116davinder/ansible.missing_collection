@@ -29,7 +29,7 @@ options:
     description:
       - list of row ids to filter results.
     required: false
-    type: str
+    type: list
   list_tables:
     description:
       - do you want to get list of tables for given workbook I(id)?

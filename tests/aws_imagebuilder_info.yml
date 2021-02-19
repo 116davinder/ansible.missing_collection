@@ -8,7 +8,7 @@
       aws_imagebuilder_info:
         list_components: true
         owner: 'Self'
-    
+
     - name: "get list of container_recipes"
       aws_imagebuilder_info:
         list_container_recipes: true
