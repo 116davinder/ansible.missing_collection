@@ -1,0 +1,47 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of components"
+      aws_imagebuilder_info:
+        list_components: true
+        owner: 'Self'
+    
+    - name: "get list of container_recipes"
+      aws_imagebuilder_info:
+        list_container_recipes: true
+        owner: 'Self'
+
+    - name: "get list of distribution_configurations"
+      aws_imagebuilder_info:
+        list_distribution_configurations: true
+
+    - name: "get list of image_build_versions"
+      aws_imagebuilder_info:
+        list_image_build_versions: true
+        arn: 'test-image-arn'
+
+    - name: "get list of image_pipeline_images"
+      aws_imagebuilder_info:
+        list_image_pipeline_images: true
+        arn: 'test-image-pipeline-arn'
+
+    - name: "get list of image_pipelines"
+      aws_imagebuilder_info:
+        list_image_pipelines: true
+
+    - name: "get list of image_recipes"
+      aws_imagebuilder_info:
+        list_image_recipes: true
+        owner: 'Self'
+
+    - name: "get list of images"
+      aws_imagebuilder_info:
+        list_images: true
+        owner: 'Self'
+
+    - name: "get list of infrastructure_configurations"
+      aws_imagebuilder_info:
+        list_infrastructure_configurations: true
