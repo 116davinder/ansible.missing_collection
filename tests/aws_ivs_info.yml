@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of channels"
+      aws_ivs_info:
+        list_channels: true
+
+    - name: "get list of playback_key_pairs"
+      aws_ivs_info:
+        list_playback_key_pairs: true
+
+    - name: "get list of stream_keys"
+      aws_ivs_info:
+        list_stream_keys: true
+        arn: 'channel-arn'
+
+    - name: "get list of streams"
+      aws_ivs_info:
+        list_streams: true
