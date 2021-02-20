@@ -14,6 +14,8 @@ So I decided to host modules on my repository instead of ansible.
 * [Official Ansible PR: 1](https://github.com/ansible/ansible/pull/40029)
 * [Official Ansible PR: 2](https://github.com/ansible-collections/community.general/pull/876)
 * [Official Ansible PR: 3](https://github.com/ansible-collections/community.general/pull/1501)
+
+**Articles**
 * https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
 
 <!--start requires_ansible-->
@@ -32,14 +34,14 @@ $ ansible-galaxy collection install git+https://github.com/116davinder/ansible.m
 Starting galaxy collection install process
 Process install dependency map
 Starting collection install process
-Installing 'community.missing_collection:0.0.6' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
+Installing 'community.missing_collection:0.0.7' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
 Created collection for community.missing_collection at /home/dpal/.ansible/collections/ansible_collections/community/missing_collection
-community.missing_collection (0.0.4) was installed successfully
+community.missing_collection (0.0.7) was installed successfully
 
 $ ansible-galaxy collection list
 Collection                   Version
 ---------------------------- -------
-community.missing_collection 0.0.6
+community.missing_collection 0.0.7
 
 ```
 
@@ -140,6 +142,7 @@ Name | Description
 [community.missing_collection.aws_identitystore_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_identitystore_info_module.rst)|Get Information about AWS SSO Identity Store (IdentityStore).
 [community.missing_collection.aws_imagebuilder_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_imagebuilder_info_module.rst)|Get Information about EC2 Image Builder (imagebuilder).
 [community.missing_collection.aws_importexport_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_importexport_info_module.rst)|Get Information about AWS Import/Export.
+[community.missing_collection.aws_inspector_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_inspector_info_module.rst)|Get Information about Amazon Inspector.
 [community.missing_collection.aws_sns_platform_endpoint_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sns_platform_endpoint_info_module.rst)|Get Information about AWS SNS Platforms.
 [community.missing_collection.aws_sns_platform_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sns_platform_info_module.rst)|Get Information about AWS SNS Platforms.
 [community.missing_collection.aws_sns_subscriptions_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sns_subscriptions_info_module.rst)|Get Information about AWS SNS Subscriptions.

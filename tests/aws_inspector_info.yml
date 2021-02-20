@@ -1,0 +1,42 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of assessment run agents"
+      aws_inspector_info:
+        list_assessment_run_agents: true
+        arn: 'assessment_run_arn'
+
+    - name: "get list of assessment_runs"
+      aws_inspector_info:
+        list_assessment_runs: true
+        arns: []
+
+    - name: "get list of assessment_targets"
+      aws_inspector_info:
+        list_assessment_targets: true
+
+    - name: "get list of assessment_templates"
+      aws_inspector_info:
+        list_assessment_templates: true
+        arns: []
+
+    - name: "get list of event_subscriptions"
+      aws_inspector_info:
+        list_event_subscriptions: true
+
+    - name: "get list of exclusions"
+      aws_inspector_info:
+        list_exclusions: true
+        arn: 'assessment-run-arn'
+
+    - name: "get list of findings"
+      aws_inspector_info:
+        list_findings: true
+        arns: []
+
+    - name: "get list of rules_packages"
+      aws_inspector_info:
+        list_rules_packages: true
