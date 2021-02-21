@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of fragments"
+      aws_kinesis_video_archived_media_info:
+        list_fragments: true
+        name: 'stream-name'

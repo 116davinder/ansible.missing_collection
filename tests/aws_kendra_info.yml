@@ -1,0 +1,31 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of data_source_sync_jobs"
+      aws_kendra_info:
+        list_data_source_sync_jobs: true
+        id: 'datasource_id'
+        index_id: 'index_id'
+        status_filter: 'SUCCEEDED'
+
+    - name: "get list of data_sources"
+      aws_kendra_info:
+        list_data_sources: true
+        index_id: 'test-index-id'
+
+    - name: "get list of faqs"
+      aws_kendra_info:
+        list_faqs: true
+        index_id: 'test-index-id'
+
+    - name: "get list of indices"
+      aws_kendra_info:
+        list_indices: true
+
+    - name: "get list of thesauri"
+      aws_kendra_info:
+        list_thesauri: true
+        index_id: 'test-index-id'

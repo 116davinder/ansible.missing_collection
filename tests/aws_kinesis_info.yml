@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of shards"
+      aws_kinesis_info:
+        list_shards: true
+        name: 'stream-name'
+
+    - name: "get list of stream_consumers"
+      aws_kinesis_info:
+        list_stream_consumers: true
+        arn: 'stream-arn'
+
+    - name: "get list of streams"
+      aws_kinesis_info:
+        list_streams: true

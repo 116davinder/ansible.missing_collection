@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of streams"
+      aws_kinesisvideo_info:
+        list_streams: true
+
+    - name: "get list of signaling_channels"
+      aws_kinesisvideo_info:
+        list_signaling_channels: true

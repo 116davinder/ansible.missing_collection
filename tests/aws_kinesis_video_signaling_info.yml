@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get ice server config"
+      aws_kinesis_video_signaling_info:
+        get_ice_server_config: true
+        arn: 'channel-arn'

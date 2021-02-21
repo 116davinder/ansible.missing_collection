@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of applications"
+      aws_kinesisanalytics_info:
+        list_applications: true

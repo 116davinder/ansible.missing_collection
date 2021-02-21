@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of applications"
+      aws_kinesisanalyticsv2_info:
+        list_applications: true
+
+    - name: "get list of applications snapshots"
+      aws_kinesisanalyticsv2_info:
+        list_application_snapshots: true
+        name: 'test-application'

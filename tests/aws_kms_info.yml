@@ -1,0 +1,28 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of aliases"
+      aws_kms_info:
+        list_aliases: true
+
+    - name: "get list of grants"
+      aws_kms_info:
+        list_grants: true
+        id: 'key_id'
+
+    - name: "get list of key_policies"
+      aws_kms_info:
+        list_key_policies: true
+        id: 'key-id'
+
+    - name: "get list of keys"
+      aws_kms_info:
+        list_keys: true
+
+    - name: "get list of retirable_grants"
+      aws_kms_info:
+        list_retirable_grants: true
+        retiring_principal: 'test-retiring-principal'
