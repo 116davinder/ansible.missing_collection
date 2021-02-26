@@ -21,7 +21,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 bandit
+        run: pip3 install bandit
 
       - name: Static Analysis Scanning Tool (bandit)
         run: bandit -r plugins/
