@@ -1,0 +1,27 @@
+name: "SAST"
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  sast:
+    name: Sast
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install test dependencies.
+        run: pip3 bandit
+
+      - name: Static Analysis Scanning Tool (bandit)
+        run: bandit -r plugins/
