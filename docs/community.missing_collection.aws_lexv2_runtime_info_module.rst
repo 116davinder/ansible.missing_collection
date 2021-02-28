@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_lex_runtime_info_module:
+.. _community.missing_collection.aws_lexv2_runtime_info_module:
 
 
-*************************************************
-community.missing_collection.aws_lex_runtime_info
-*************************************************
+***************************************************
+community.missing_collection.aws_lexv2_runtime_info
+***************************************************
 
-**Get Information about Amazon Lex Runtime Service.**
+**Get Information about Amazon Lex Runtime Service (V2).**
 
 
 Version added: 0.0.7
@@ -17,8 +17,8 @@ Version added: 0.0.7
 
 Synopsis
 --------
-- Get Information about Amazon Lex Runtime Service.
-- https://docs.aws.amazon.com/lex/latest/dg/API_Operations_Amazon_Lex_Runtime_Service.html
+- Get Information about Amazon Lex Runtime Service (V2).
+- https://docs.aws.amazon.com/lexv2/latest/dg/API_Operations_Amazon_Lex_Runtime_V2.html
 
 
 
@@ -116,7 +116,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>bot_alias</b>
+                    <b>bot_alias_id</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
@@ -125,13 +125,13 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>bot alias.</div>
+                        <div>id of bot alias.</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>bot_name</b>
+                    <b>bot_id</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
@@ -140,7 +140,7 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>name of bot.</div>
+                        <div>id of bot.</div>
                 </td>
             </tr>
             <tr>
@@ -200,6 +200,21 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>locale_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>The locale where the session is in use.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>profile</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -252,7 +267,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>user_id</b>
+                    <b>session_id</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
@@ -261,7 +276,7 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>The ID of the client application user.</div>
+                        <div>id of session.</div>
                 </td>
             </tr>
             <tr>
@@ -303,11 +318,12 @@ Examples
 .. code-block:: yaml
 
     - name: "get session details"
-      aws_lex_runtime_info:
+      aws_lexv2_runtime_info:
         get_session: true
-        bot_name: 'test'
-        bot_alias: 'test'
-        user_id: 'test'
+        bot_id: 'test'
+        bot_alias_id: 'test'
+        locale_id: 'test'
+        session_id: 'test'
 
 
 

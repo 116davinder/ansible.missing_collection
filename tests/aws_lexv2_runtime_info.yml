@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get session details"
+      aws_lexv2_runtime_info:
+        get_session: true
+        bot_id: 'test'
+        bot_alias_id: 'test'
+        locale_id: 'test'
+        session_id: 'test'

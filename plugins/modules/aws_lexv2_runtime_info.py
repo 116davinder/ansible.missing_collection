@@ -8,26 +8,31 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: aws_lex_runtime_info
-short_description: Get Information about Amazon Lex Runtime Service.
+module: aws_lexv2_runtime_info
+short_description: Get Information about Amazon Lex Runtime Service (V2).
 description:
-  - Get Information about Amazon Lex Runtime Service.
-  - U(https://docs.aws.amazon.com/lex/latest/dg/API_Operations_Amazon_Lex_Runtime_Service.html)
+  - Get Information about Amazon Lex Runtime Service (V2).
+  - U(https://docs.aws.amazon.com/lexv2/latest/dg/API_Operations_Amazon_Lex_Runtime_V2.html)
 version_added: 0.0.7
 options:
-  bot_name:
+  bot_id:
     description:
-      - name of bot.
+      - id of bot.
     required: false
     type: str
-  bot_alias:
+  bot_alias_id:
     description:
-      - bot alias.
+      - id of bot alias.
     required: false
     type: str
-  user_id:
+  locale_id:
     description:
-      - The ID of the client application user.
+      - The locale where the session is in use.
+    required: false
+    type: str
+  session_id:
+    description:
+      - id of session.
     required: false
     type: str
   get_session:
@@ -47,11 +52,12 @@ requirements:
 
 EXAMPLES = """
 - name: "get session details"
-  aws_lex_runtime_info:
+  aws_lexv2_runtime_info:
     get_session: true
-    bot_name: 'test'
-    bot_alias: 'test'
-    user_id: 'test'
+    bot_id: 'test'
+    bot_alias_id: 'test'
+    locale_id: 'test'
+    session_id: 'test'
 """
 
 RETURN = """
@@ -71,38 +77,40 @@ from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
 from ansible.module_utils.common.dict_transformations import camel_dict_to_snake_dict
 
 
-def _lex_runtime(client, module):
+def _lexv2_runtime(client, module):
     try:
         if module.params['get_session']:
             return client.get_session(
-                botName=module.params['bot_name'],
-                botAlias=module.params['bot_alias'],
-                userId=module.params['user_id'],
+                botId=module.params['bot_id'],
+                botAliasId=module.params['bot_alias_id'],
+                localeId=module.params['locale_id'],
+                sessionId=module.params['session_id'],
             ), False
         else:
             return None, False
     except (BotoCoreError, ClientError) as e:
-        module.fail_json_aws(e, msg='Failed to fetch Amazon lex_runtime details')
+        module.fail_json_aws(e, msg='Failed to fetch Amazon lexv2_runtime details')
 
 
 def main():
     argument_spec = dict(
-        bot_name=dict(required=False),
-        bot_alias=dict(required=False),
-        user_id=dict(required=False),
+        bot_id=dict(required=False),
+        bot_alias_id=dict(required=False),
+        locale_id=dict(required=False),
+        session_id=dict(required=False),
         get_session=dict(required=False, type=bool),
     )
 
     module = AnsibleAWSModule(
         argument_spec=argument_spec,
         required_if=(
-            ('get_session', True, ['bot_name', 'bot_alias', 'user_id']),
+            ('get_session', True, ['bot_id', 'bot_alias_id', 'locale_id', 'session_id']),
         ),
         mutually_exclusive=[],
     )
 
-    client = module.client('lex-runtime', retry_decorator=AWSRetry.exponential_backoff())
-    it, paginate = _lex_runtime(client, module)
+    client = module.client('lexv2-runtime', retry_decorator=AWSRetry.exponential_backoff())
+    it, paginate = _lexv2_runtime(client, module)
 
     if module.params['get_session']:
         module.exit_json(session=camel_dict_to_snake_dict(it))
