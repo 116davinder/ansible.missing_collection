@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_lakeformation_info_module:
+.. _community.missing_collection.aws_lex_runtime_info_module:
 
 
-***************************************************
-community.missing_collection.aws_lakeformation_info
-***************************************************
+*************************************************
+community.missing_collection.aws_lex_runtime_info
+*************************************************
 
-**Get Information about AWS Lake Formation.**
+**Get Information about Amazon Lex Runtime Service.**
 
 
 Version added: 0.0.7
@@ -17,8 +17,8 @@ Version added: 0.0.7
 
 Synopsis
 --------
-- Get Information about AWS Lake Formation.
-- https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/lakeformation.html
+- Get Information about Amazon Lex Runtime Service.
+- https://docs.aws.amazon.com/lex/latest/dg/API_Operations_Amazon_Lex_Runtime_Service.html
 
 
 
@@ -116,7 +116,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>data_lake_principal_identifier</b>
+                    <b>bot_alias</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
@@ -125,7 +125,22 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>An identifier for the AWS Lake Formation principal.</div>
+                        <div>bot alias.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>bot_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>name of bot.</div>
                 </td>
             </tr>
             <tr>
@@ -166,7 +181,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_data_lake_settings</b>
+                    <b>get_session</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -179,61 +194,7 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get data_lake_settings for given key <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>id</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>catalog id.</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: catalog_id</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_permissions</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get list of permissions for given key <em>resource_type</em> &amp; <em>data_lake_principal_identifier</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_resources</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get list of resources?</div>
+                        <div>do you want to get session details?</div>
                 </td>
             </tr>
             <tr>
@@ -273,27 +234,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>resource_type</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>CATALOG</b>&nbsp;&larr;</div></li>
-                                    <li>DATABASE</li>
-                                    <li>TABLE</li>
-                                    <li>DATA_LOCATION</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>type of resource to filter list permissions.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>security_token</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -307,6 +247,21 @@ Parameters
                         <div>If <em>profile</em> is set this parameter is ignored.</div>
                         <div>Passing the <em>security_token</em> and <em>profile</em> options at the same time has been deprecated and the options will be made mutually exclusive after 2022-06-01.</div>
                         <div style="font-size: small; color: darkgreen"><br/>aliases: aws_security_token, access_token</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>user_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>The ID of the client application user.</div>
                 </td>
             </tr>
             <tr>
@@ -348,19 +303,11 @@ Examples
 .. code-block:: yaml
 
     - name: "get list of resources"
-      aws_lakeformation_info:
-        list_resources: true
-
-    - name: "get list of permissions"
-      aws_lakeformation_info:
-        list_permissions: true
-        data_lake_principal_identifier: 'test'
-        resource_type: 'CATALOG'
-
-    - name: "get data_lake_settings"
-      aws_lakeformation_info:
-        get_data_lake_settings: true
-        id: 'catalog-id'
+      aws_lex_runtime_info:
+        get_session: true
+        bot_name: 'test'
+        bot_alias: 'test'
+        user_id: 'test'
 
 
 
@@ -379,45 +326,15 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>data_lake_settings</b>
+                    <b>session</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">dictionary</span>
                     </div>
                 </td>
-                <td>when `get_data_lake_settings` is defined and success.</td>
+                <td>when `get_session` is defined and success.</td>
                 <td>
-                            <div>get data_lake_settings.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>permissions</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `list_permissions`is defined and success.</td>
-                <td>
-                            <div>list of permissions.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>resources</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `list_resources` is defined and success.</td>
-                <td>
-                            <div>list of resources.</div>
+                            <div>get session.</div>
                     <br/>
                 </td>
             </tr>

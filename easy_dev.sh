@@ -22,4 +22,4 @@ echo "Running Add Docs / Generate Readmes"
 collection_prep_add_docs -p . -b master
 
 echo "Show git Diff"
-git status && git status
+git status && git diff

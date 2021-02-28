@@ -12,7 +12,7 @@ module: aws_lakeformation_info
 short_description: Get Information about AWS Lake Formation.
 description:
   - Get Information about AWS Lake Formation.
-  - U(https://docs.aws.amazon.com/lakeformation/latest/APIReference/API_Operations.html)
+  - U(https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/lakeformation.html)
 version_added: 0.0.7
 options:
   id:

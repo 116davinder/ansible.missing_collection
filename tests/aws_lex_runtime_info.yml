@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of resources"
+      aws_lex_runtime_info:
+        get_session: true
+        bot_name: 'test'
+        bot_alias: 'test'
+        user_id: 'test'
