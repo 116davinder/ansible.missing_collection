@@ -9,7 +9,7 @@ on:
 
 jobs:
   sast:
-    name: Sast
+    name: SAST
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
@@ -23,5 +23,5 @@ jobs:
       - name: Install test dependencies.
         run: pip3 install bandit
 
-      - name: Static Analysis Scanning Tool (bandit)
-        run: bandit -r plugins/
+      - name: Python Static Analysis (bandit)
+        run: bandit -r -v plugins/
