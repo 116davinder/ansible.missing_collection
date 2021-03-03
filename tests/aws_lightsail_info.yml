@@ -1,0 +1,48 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of active_names"
+      aws_lightsail_info:
+        get_active_names: true
+
+    - name: "get list of alarms"
+      aws_lightsail_info:
+        list_alarms: true
+
+    - name: "get list of auto_snapshots"
+      aws_lightsail_info:
+        get_auto_snapshots: true
+        name: 'test-resource-name'
+
+    - name: "get list of blueprints"
+      aws_lightsail_info:
+        get_blueprints: true
+
+    - name: "get list of bundles"
+      aws_lightsail_info:
+        get_bundles: true
+
+    - name: "get list of certificates"
+      aws_lightsail_info:
+        get_certificates: true
+
+    - name: "get list of cloud_formation_stack_records"
+      aws_lightsail_info:
+        get_cloud_formation_stack_records: true
+
+    - name: "get list of contact_methods"
+      aws_lightsail_info:
+        get_contact_methods: true
+
+    - name: "get list of container_images"
+      aws_lightsail_info:
+        get_container_images: true
+        name: 'test-service-name'
+
+    - name: "get list of container_service_deployments"
+      aws_lightsail_info:
+        get_container_service_deployments: true
+        name: 'test-service-name'
