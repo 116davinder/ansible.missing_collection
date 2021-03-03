@@ -1,0 +1,49 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of associations_for_license_configuration"
+      aws_license_manager_info:
+        list_associations_for_license_configuration: true
+        arn: 'test-license-config-arn'
+
+    - name: "get list of distributed_grants"
+      aws_license_manager_info:
+        list_distributed_grants: true
+
+    - name: "get list of failures_for_license_configuration_operations"
+      aws_license_manager_info:
+        list_failures_for_license_configuration_operations: true
+        arn: 'test-license-config-arn'
+
+    - name: "get list of license_configurations"
+      aws_license_manager_info:
+        list_license_configurations: true
+
+    - name: "get list of license_versions"
+      aws_license_manager_info:
+        list_license_versions: true
+        arn: 'test-license-arn'
+
+    - name: "get list of licenses"
+      aws_license_manager_info:
+        list_licenses: true
+
+    - name: "get list of received_distributed_grants"
+      aws_license_manager_info:
+        list_received_distributed_grants: true
+
+    - name: "get list of received_licenses"
+      aws_license_manager_info:
+        list_received_licenses: true
+
+    - name: "get list of tokens"
+      aws_license_manager_info:
+        list_tokens: true
+
+    - name: "get list of usage_for_license_configuration"
+      aws_license_manager_info:
+        list_usage_for_license_configuration: true
+        arn: 'test-license-config-arn'
