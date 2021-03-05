@@ -4,30 +4,30 @@
   gather_facts: false
   ignore_errors: true
   tasks:
-- name: "get list of cluster_operations"
-  aws_kafka_info:
-    list_cluster_operations: true
-    arn: 'cluster-arn'
+    - name: "get list of cluster_operations"
+      aws_kafka_info:
+        list_cluster_operations: true
+        arn: 'cluster-arn'
 
-- name: "get list of clusters"
-  aws_kafka_info:
-    list_clusters: true
+    - name: "get list of clusters"
+      aws_kafka_info:
+        list_clusters: true
 
-- name: "get list of configuration_revisions"
-  aws_kafka_info:
-    list_configuration_revisions: true
-    arn: 'configuration-arn'
+    - name: "get list of configuration_revisions"
+      aws_kafka_info:
+        list_configuration_revisions: true
+        arn: 'configuration-arn'
 
-- name: "get list of configurations"
-  aws_kafka_info:
-    list_configurations: true
+    - name: "get list of configurations"
+      aws_kafka_info:
+        list_configurations: true
 
-- name: "get list of nodes"
-  aws_kafka_info:
-    list_nodes: true
-    arn: 'cluster-arn'
+    - name: "get list of nodes"
+      aws_kafka_info:
+        list_nodes: true
+        arn: 'cluster-arn'
 
-- name: "get list of scram_secrets"
-  aws_kafka_info:
-    list_scram_secrets: true
-    arn: 'cluster-arn'
+    - name: "get list of scram_secrets"
+      aws_kafka_info:
+        list_scram_secrets: true
+        arn: 'cluster-arn'

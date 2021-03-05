@@ -262,7 +262,7 @@ def _license_manager(client, module):
 
 def main():
     argument_spec = dict(
-        arn=dict(required=False, associations_for_license_configuration=['license_configuration_arn', 'license_arn']),
+        arn=dict(required=False, aliases=['license_configuration_arn', 'license_arn']),
         list_associations_for_license_configuration=dict(required=False, type=bool),
         list_distributed_distributed_grants=dict(required=False, type=bool),
         list_failures_for_license_configuration_operations=dict(required=False, type=bool),

@@ -1,0 +1,31 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of geofence_collections"
+      aws_location_info:
+        list_geofence_collections: true
+
+    - name: "get list of geofences"
+      aws_location_info:
+        list_geofences: true
+        name: 'test-collection-name'
+
+    - name: "get list of maps"
+      aws_location_info:
+        list_maps: true
+
+    - name: "get list of place_indexes"
+      aws_location_info:
+        list_place_indexes: true
+
+    - name: "get list of tracker_consumers"
+      aws_location_info:
+        list_tracker_consumers: true
+        name: 'test-tracker-name'
+
+    - name: "get list of trackers"
+      aws_location_info:
+        list_trackers: true

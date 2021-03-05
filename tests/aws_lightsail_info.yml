@@ -10,7 +10,7 @@
 
     - name: "get list of alarms"
       aws_lightsail_info:
-        list_alarms: true
+        get_alarms: true
 
     - name: "get list of auto_snapshots"
       aws_lightsail_info:

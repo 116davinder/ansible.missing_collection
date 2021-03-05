@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_lightsail_info_module:
+.. _community.missing_collection.aws_location_info_module:
 
 
-***********************************************
-community.missing_collection.aws_lightsail_info
-***********************************************
+**********************************************
+community.missing_collection.aws_location_info
+**********************************************
 
-**Get Information about Amazon Lightsail.**
+**Get Information about Amazon Location Service.**
 
 
 Version added: 0.0.7
@@ -17,8 +17,8 @@ Version added: 0.0.7
 
 Synopsis
 --------
-- Get Information about Amazon Lightsail.
-- https://docs.aws.amazon.com/lightsail/2016-11-28/api-reference/API_Operations.html
+- Get Information about Amazon Location Service.
+- https://docs.aws.amazon.com/location/index.html
 
 
 
@@ -43,23 +43,6 @@ Parameters
             <th>Choices/<font color="blue">Defaults</font></th>
             <th width="100%">Comments</th>
         </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>arn</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>can be arn of resource name ?</div>
-                        <div>can be arn of service name?</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: resource_name, service_name</div>
-                </td>
-            </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
@@ -168,7 +151,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_active_names</b>
+                    <b>list_geofence_collections</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -181,13 +164,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of active_names?</div>
+                        <div>do you want to get list of geofence_collections?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_auto_snapshots</b>
+                    <b>list_geofences</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -200,13 +183,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of key policies for given key resource <em>name</em>?</div>
+                        <div>do you want to get list of geofences for given collection <em>name</em>?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_blueprints</b>
+                    <b>list_maps</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -219,13 +202,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of blueprints?</div>
+                        <div>do you want to get list of maps?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_bundles</b>
+                    <b>list_place_indexes</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -238,13 +221,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of bundles?</div>
+                        <div>do you want to get list of place_indexes?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_cloud_formation_stack_records</b>
+                    <b>list_tracker_consumers</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -257,13 +240,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of cloud_formation_stack_records?</div>
+                        <div>do you want to get list of tracker_consumers for given tracker <em>name</em>?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_contact_methods</b>
+                    <b>list_trackers</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -276,64 +259,24 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of contact_methods?</div>
+                        <div>do you want to get list of trackers?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_container_images</b>
+                    <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
+                        <span style="color: purple">string</span>
                     </div>
                 </td>
                 <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of container_images for given service <em>name</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_container_service_deployments</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get list of container_service_deployments for given service <em>name</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_alarms</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get list of alarms?</div>
+                        <div>can be name of collection?</div>
+                        <div>can be name of tracker?</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: collection_name, tracker_name</div>
                 </td>
             </tr>
             <tr>
@@ -426,48 +369,31 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "get list of active_names"
-      aws_lightsail_info:
-        get_active_names: true
+    - name: "get list of geofence_collections"
+      aws_location_info:
+        list_geofence_collections: true
 
-    - name: "get list of alarms"
-      aws_lightsail_info:
-        get_alarms: true
+    - name: "get list of geofences"
+      aws_location_info:
+        list_geofences: true
+        name: 'test-collection-name'
 
-    - name: "get list of auto_snapshots"
-      aws_lightsail_info:
-        get_auto_snapshots: true
-        name: 'test-resource-name'
+    - name: "get list of maps"
+      aws_location_info:
+        list_maps: true
 
-    - name: "get list of blueprints"
-      aws_lightsail_info:
-        get_blueprints: true
+    - name: "get list of place_indexes"
+      aws_location_info:
+        list_place_indexes: true
 
-    - name: "get list of bundles"
-      aws_lightsail_info:
-        get_bundles: true
+    - name: "get list of tracker_consumers"
+      aws_location_info:
+        list_tracker_consumers: true
+        name: 'test-tracker-name'
 
-    - name: "get list of certificates"
-      aws_lightsail_info:
-        get_certificates: true
-
-    - name: "get list of cloud_formation_stack_records"
-      aws_lightsail_info:
-        get_cloud_formation_stack_records: true
-
-    - name: "get list of contact_methods"
-      aws_lightsail_info:
-        get_contact_methods: true
-
-    - name: "get list of container_images"
-      aws_lightsail_info:
-        get_container_images: true
-        name: 'test-service-name'
-
-    - name: "get list of container_service_deployments"
-      aws_lightsail_info:
-        get_container_service_deployments: true
-        name: 'test-service-name'
+    - name: "get list of trackers"
+      aws_location_info:
+        list_trackers: true
 
 
 
@@ -486,150 +412,90 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>active_names</b>
+                    <b>geofence_collections</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `get_active_names` is defined and success.</td>
+                <td>when `list_geofence_collections` is defined and success.</td>
                 <td>
-                            <div>list of active_names.</div>
+                            <div>list of geofence_collections.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>alarms</b>
+                    <b>geofences</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_alarms` is defined and success.</td>
+                <td>when `list_geofences` is defined and success.</td>
                 <td>
-                            <div>list of alarms.</div>
+                            <div>list of geofences.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>auto_snapshots</b>
+                    <b>maps</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `get_auto_snapshots` is defined and success.</td>
+                <td>when `list_maps` is defined and success.</td>
                 <td>
-                            <div>list of auto_snapshots.</div>
+                            <div>list of maps.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>blueprints</b>
+                    <b>place_indexes</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `get_blueprints` is defined and success.</td>
+                <td>when `list_place_indexes` is defined and success.</td>
                 <td>
-                            <div>list of blueprints.</div>
+                            <div>list of place_indexes.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>bundles</b>
+                    <b>tracker_consumers</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `get_bundles` is defined and success.</td>
+                <td>when `list_tracker_consumers` is defined and success.</td>
                 <td>
-                            <div>list of bundles.</div>
+                            <div>list of tracker_consumers.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>certificates</b>
+                    <b>trackers</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `get_certificates` is defined and success.</td>
+                <td>when `list_trackers` is defined and success.</td>
                 <td>
-                            <div>list of certificates.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>cloud_formation_stack_records</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `get_cloud_formation_stack_records` is defined and success.</td>
-                <td>
-                            <div>list of cloud_formation_stack_records.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>contact_methods</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `get_contact_methods` is defined and success.</td>
-                <td>
-                            <div>list of contact_methods.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>container_images</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `get_container_images` is defined and success.</td>
-                <td>
-                            <div>list of container_images.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>container_service_deployments</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `get_container_service_deployments` is defined and success.</td>
-                <td>
-                            <div>list of container_service_deployments.</div>
+                            <div>list of trackers.</div>
                     <br/>
                 </td>
             </tr>

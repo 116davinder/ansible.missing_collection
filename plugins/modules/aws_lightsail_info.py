@@ -84,7 +84,7 @@ EXAMPLES = """
 
 - name: "get list of alarms"
   aws_lightsail_info:
-    list_alarms: true
+    get_alarms: true
 
 - name: "get list of auto_snapshots"
   aws_lightsail_info:
@@ -293,7 +293,7 @@ def main():
         ],
     )
 
-    client = module.client('license-manager', retry_decorator=AWSRetry.exponential_backoff())
+    client = module.client('lightsail', retry_decorator=AWSRetry.exponential_backoff())
     it, paginate = _lightsail(client, module)
 
     if module.params['get_active_names']:
