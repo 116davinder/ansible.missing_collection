@@ -1,0 +1,29 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of batch_predictions"
+      aws_machinelearning_info:
+        describe_batch_predictions: true
+        filter_variable_prediction: 'Status'
+        eq: 'COMPLETED'
+
+    - name: "get list of data_sources"
+      aws_machinelearning_info:
+        describe_data_sources: true
+        filter_variable_prediction: 'Status'
+        eq: 'COMPLETED'
+
+    - name: "get list of evaluations"
+      aws_machinelearning_info:
+        describe_evaluations: true
+        filter_variable_prediction: 'Status'
+        eq: 'COMPLETED'
+
+    - name: "get list of ml_models"
+      aws_machinelearning_info:
+        describe_ml_models: true
+        filter_variable_prediction: 'Status'
+        eq: 'COMPLETED'
