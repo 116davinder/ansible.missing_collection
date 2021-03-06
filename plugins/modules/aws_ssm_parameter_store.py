@@ -179,7 +179,7 @@ def create_update_parameter(client, module):
     try:
         existing_parameter = client.get_parameter(Name=args['Name'], WithDecryption=True)
     except Exception:
-        pass
+        existing_parameter = False
 
     if existing_parameter:
         if (module.params.get('overwrite_value') == 'always'):

@@ -1,0 +1,20 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of dataset_entries"
+      aws_lookoutvision_info:
+        list_dataset_entries: true
+        name: 'test-project-name'
+        dataset_type: 'train'
+
+    - name: "get list of models"
+      aws_lookoutvision_info:
+        list_models: true
+        name: 'test-project-name'
+
+    - name: "get list of projects"
+      aws_lookoutvision_info:
+        list_projects: true

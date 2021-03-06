@@ -1,0 +1,34 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of log_groups"
+      aws_logs_info:
+        describe_log_groups: true
+      register: _reg
+
+    - name: "get list of destinations"
+      aws_logs_info:
+        describe_destinations: true
+
+    - name: "get list of export_tasks"
+      aws_logs_info:
+        describe_export_tasks: true
+        task_status: 'COMPLETED'
+
+    - name: "get list of log_streams"
+      aws_logs_info:
+        describe_log_streams: true
+        name: '{{ _reg.log_groups[0].logGroupName }}'
+
+    - name: "get list of metric_filters"
+      aws_logs_info:
+        describe_metric_filters: true
+        name: '{{ _reg.log_groups[0].logGroupName }}'
+
+    - name: "get list of queries"
+      aws_logs_info:
+        describe_queries: true
+        name: '{{ _reg.log_groups[0].logGroupName }}'
+        query_status: 'Complete'
