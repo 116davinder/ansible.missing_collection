@@ -1,0 +1,43 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of channels"
+      aws_medialive_info:
+        list_channels: true
+
+    - name: "get list of input_device_transfers"
+      aws_medialive_info:
+        list_input_device_transfers: true
+        transfer_type: 'INCOMING'
+
+    - name: "get list of input_devices"
+      aws_medialive_info:
+        list_input_devices: true
+
+    - name: "get list of input_security_groups"
+      aws_medialive_info:
+        list_input_security_groups: true
+
+    - name: "get list of inputs"
+      aws_medialive_info:
+        list_inputs: true
+
+    - name: "get list of multiplex_programs"
+      aws_medialive_info:
+        list_multiplex_programs: true
+        id: 'mutliplex-id'
+
+    - name: "get list of multiplexes"
+      aws_medialive_info:
+        list_multiplexes: true
+
+    - name: "get list of offerings"
+      aws_medialive_info:
+        list_offerings: true
+
+    - name: "get list of reservations"
+      aws_medialive_info:
+        list_reservations: true
