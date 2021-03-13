@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of entitlements"
+      aws_marketplace_entitlement_info:
+        get_entitlements: true
+        product_code: 'test-product-code'

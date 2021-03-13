@@ -23,5 +23,5 @@ bandit -r -v plugins/
 echo "Running Add Docs / Generate Readmes"
 collection_prep_add_docs -p . -b master
 
-echo "Show git Diff"
-git status && git diff
+echo "Show git status"
+git status

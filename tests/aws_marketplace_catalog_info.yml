@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of change_sets"
+      aws_marketplace_catalog_info:
+        list_change_sets: true
+        catalog: 'AWSMarketplace'
+
+    - name: "get list of entities"
+      aws_marketplace_catalog_info:
+        list_entities: true
+        catalog: 'AWSMarketplace'
+        entity_type: 'test-entity-type'
