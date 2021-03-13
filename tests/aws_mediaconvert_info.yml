@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of job_templates"
+      aws_mediaconvert_info:
+        list_job_templates: true
+
+    - name: "get list of jobs"
+      aws_mediaconvert_info:
+        list_jobs: true
+        job_status: 'COMPLETE'
+
+    - name: "get list of presets"
+      aws_mediaconvert_info:
+        list_presets: true
+
+    - name: "get list of queues"
+      aws_mediaconvert_info:
+        list_queues: true

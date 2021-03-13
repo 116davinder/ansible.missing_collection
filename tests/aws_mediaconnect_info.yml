@@ -1,0 +1,21 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of entitlements"
+      aws_mediaconnect_info:
+        list_entitlements: true
+
+    - name: "get list of flows"
+      aws_mediaconnect_info:
+        list_flows: true
+
+    - name: "get list of offerings"
+      aws_mediaconnect_info:
+        list_offerings: true
+
+    - name: "get list of reservations"
+      aws_mediaconnect_info:
+        list_reservations: true
