@@ -1,0 +1,30 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of classification_jobs"
+      aws_macie2_info:
+        list_classification_jobs: true
+        job_status: 'RUNNING'
+
+    - name: "get list of custom_data_identifiers"
+      aws_macie2_info:
+        list_custom_data_identifiers: true
+
+    - name: "get list of findings_filters"
+      aws_macie2_info:
+        list_findings_filters: true
+
+    - name: "get list of Invitations"
+      aws_macie2_info:
+        list_invitations: true
+
+    - name: "get list of members"
+      aws_macie2_info:
+        list_members: true
+
+    - name: "get list of organization_admin_accounts"
+      aws_macie2_info:
+        list_organization_admin_accounts: true

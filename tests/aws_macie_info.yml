@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of member_accounts"
+      aws_macie_info:
+        list_member_accounts: true
+
+    - name: "get list of s3_resources"
+      aws_macie_info:
+        list_s3_resources: true
+        id: 'member-account-id'

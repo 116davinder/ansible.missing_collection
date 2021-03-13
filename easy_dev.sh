@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o errexit
+
 test -d plugins
 
 if [ $? -eq 1 ]
