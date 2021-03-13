@@ -14,6 +14,7 @@ So I decided to host modules on my repository instead of ansible.
 * [Official Ansible PR: 1](https://github.com/ansible/ansible/pull/40029)
 * [Official Ansible PR: 2](https://github.com/ansible-collections/community.general/pull/876)
 * [Official Ansible PR: 3](https://github.com/ansible-collections/community.general/pull/1501)
+* [Official Ansible PR: 4](https://github.com/ansible-collections/community.aws/pull/305)
 
 **Articles**
 * https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
