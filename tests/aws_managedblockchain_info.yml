@@ -1,0 +1,34 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of invitations"
+      aws_managedblockchain_info:
+        list_invitations: true
+
+    - name: "get list of members"
+      aws_managedblockchain_info:
+        list_members: true
+        id: 'network-id'
+
+    - name: "get list of networks"
+      aws_managedblockchain_info:
+        list_networks: true
+
+    - name: "get list of nodes"
+      aws_managedblockchain_info:
+        list_nodes: true
+        id: 'network-id'
+
+    - name: "get list of proposal_votes"
+      aws_managedblockchain_info:
+        list_proposal_votes: true
+        id: 'network-id'
+        proposal_id: 'proposal-id'
+
+    - name: "get list of proposals"
+      aws_managedblockchain_info:
+        list_proposals: true
+        id: 'network-id'
