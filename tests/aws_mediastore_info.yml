@@ -1,0 +1,24 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of channels"
+      aws_mediastore_info:
+        list_containers: true
+
+    - name: "get container_policy"
+      aws_mediastore_info:
+        get_container_policy: true
+        name: 'container-name'
+
+    - name: "get list of cors_policy"
+      aws_mediastore_info:
+        get_cors_policy: true
+        name: 'container-name'
+
+    - name: "get lifecycle_policy"
+      aws_mediastore_info:
+        get_lifecycle_policy: true
+        name: 'container-name'

@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of assets"
+      aws_mediapackage_vod_info:
+        list_assets: true
+        id: 'packaging_group_id'
+
+    - name: "get list of packaging_configurations"
+      aws_mediapackage_vod_info:
+        list_packaging_configurations: true
+        id: 'packaging_group_id'
+
+    - name: "get list of packaging_groups"
+      aws_mediapackage_vod_info:
+        list_packaging_groups: true

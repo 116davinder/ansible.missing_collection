@@ -18,7 +18,7 @@ echo "Running Yamllint"
 yamllint tests/
 
 echo "Running Static Analysis Tools ( bandit )"
-bandit -r -v plugins/
+bandit -r plugins/
 
 echo "Running Add Docs / Generate Readmes"
 collection_prep_add_docs -p . -b master

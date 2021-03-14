@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of channels"
+      aws_mediapackage_info:
+        list_channels: true
+
+    - name: "get list of harvest_jobs"
+      aws_mediapackage_info:
+        list_harvest_jobs: true
+        job_status: 'SUCCEEDED'
+
+    - name: "get list of origin_endpoints"
+      aws_mediapackage_info:
+        list_origin_endpoints: true
+        id: 'channel_id'
