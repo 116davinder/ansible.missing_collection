@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of home_region_controls"
+      aws_migrationhub_config_info:
+        describe_home_region_controls: true
+        region: 'us-west-2'

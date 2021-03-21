@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of channels"
+      aws_mediatailor_info:
+        list_channels: true
+
+    - name: "get playback_configurations"
+      aws_mediatailor_info:
+        list_playback_configurations: true
+
+    - name: "get list of source_locations"
+      aws_mediatailor_info:
+        list_source_locations: true
+
+    - name: "get vod_sources"
+      aws_mediatailor_info:
+        list_vod_sources: true
+        name: 'source-location-name'

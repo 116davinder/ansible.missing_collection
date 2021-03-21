@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_mediastore_info_module:
+.. _community.missing_collection.aws_mgh_info_module:
 
 
-************************************************
-community.missing_collection.aws_mediastore_info
-************************************************
+*****************************************
+community.missing_collection.aws_mgh_info
+*****************************************
 
-**Get Information about AWS Elemental MediaStore.**
+**Get Information about AWS Migration Hub.**
 
 
 Version added: 0.0.7
@@ -17,8 +17,8 @@ Version added: 0.0.7
 
 Synopsis
 --------
-- Get Information about AWS Elemental MediaStore.
-- https://docs.aws.amazon.com/mediastore/latest/api/resources.html
+- Get Information about AWS Migration Hub.
+- https://docs.aws.amazon.com/migrationhub/latest/ug/API_Operations.html
 
 
 
@@ -151,7 +151,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_container_policy</b>
+                    <b>list_application_states</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -164,13 +164,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get container_policy for given <em>name</em>?</div>
+                        <div>do you want to get list of application_states?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_cors_policy</b>
+                    <b>list_created_artifacts</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -183,13 +183,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of cors_policy for given <em>name</em>?</div>
+                        <div>do you want to get created_artifacts for given migration task <em>name</em> and <em>progress_update_stream</em>?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_lifecycle_policy</b>
+                    <b>list_discovered_resources</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -202,13 +202,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get lifecycle_policy for given <em>name</em>?</div>
+                        <div>do you want to get list of discovered_resources for given migration task <em>name</em> and <em>progress_update_stream</em>?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_containers</b>
+                    <b>list_migration_tasks</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -221,7 +221,7 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of channels?</div>
+                        <div>do you want to get migration_tasks?</div>
                 </td>
             </tr>
             <tr>
@@ -236,8 +236,8 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>container name.</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: container_name</div>
+                        <div>migration task name.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: migration_task_name</div>
                 </td>
             </tr>
             <tr>
@@ -256,6 +256,21 @@ Parameters
                         <div>Using <em>profile</em> will override <em>aws_access_key</em>, <em>aws_secret_key</em> and <em>security_token</em> and support for passing them at the same time as <em>profile</em> has been deprecated.</div>
                         <div><em>aws_access_key</em>, <em>aws_secret_key</em> and <em>security_token</em> will be made mutually exclusive with <em>profile</em> after 2022-06-01.</div>
                         <div style="font-size: small; color: darkgreen"><br/>aliases: aws_profile</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>progress_update_stream</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>name of progress_update_stream.</div>
                 </td>
             </tr>
             <tr>
@@ -330,24 +345,26 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "get list of channels"
-      aws_mediastore_info:
-        list_containers: true
+    - name: "get list of application_states"
+      aws_mgh_info:
+        list_application_states: true
 
-    - name: "get container_policy"
-      aws_mediastore_info:
-        get_container_policy: true
-        name: 'container-name'
+    - name: "get created_artifacts"
+      aws_mgh_info:
+        list_created_artifacts: true
+        name: 'migration_task_name'
+        progress_update_stream: 'name of progress_update_stream'
 
-    - name: "get list of cors_policy"
-      aws_mediastore_info:
-        get_cors_policy: true
-        name: 'container-name'
+    - name: "get list of discovered_resources"
+      aws_mgh_info:
+        list_discovered_resources: true
+        name: 'migration_task_name'
+        progress_update_stream: 'name of progress_update_stream'
 
-    - name: "get lifecycle_policy"
-      aws_mediastore_info:
-        get_lifecycle_policy: true
-        name: 'container-name'
+    - name: "get migration_tasks"
+      aws_mgh_info:
+        list_migration_tasks: true
+        name: 'source-location-name'
 
 
 
@@ -366,60 +383,60 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>container_policy</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                    </div>
-                </td>
-                <td>when `get_container_policy` is defined and success.</td>
-                <td>
-                            <div>get of container_policy.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>containers</b>
+                    <b>application_states</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_containers` is defined and success.</td>
+                <td>when `list_application_states` is defined and success.</td>
                 <td>
-                            <div>list of containers.</div>
+                            <div>list of application_states.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>cors_policy</b>
+                    <b>created_artifacts</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `get_cors_policy` is defined and success.</td>
+                <td>when `list_created_artifacts` is defined and success.</td>
                 <td>
-                            <div>list of cors_policy.</div>
+                            <div>get of created_artifacts.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>lifecycle_policy</b>
+                    <b>discovered_resources</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `get_lifecycle_policy` is defined and success.</td>
+                <td>when `list_discovered_resources` is defined and success.</td>
                 <td>
-                            <div>get of lifecycle_policy.</div>
+                            <div>list of discovered_resources.</div>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>migration_tasks</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `list_migration_tasks` is defined and success.</td>
+                <td>
+                            <div>list of migration_tasks.</div>
                     <br/>
                 </td>
             </tr>

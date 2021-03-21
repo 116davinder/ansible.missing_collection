@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of application_states"
+      aws_mgh_info:
+        list_application_states: true
+
+    - name: "get created_artifacts"
+      aws_mgh_info:
+        list_created_artifacts: true
+        name: 'migration_task_name'
+        progress_update_stream: 'name of progress_update_stream'
+
+    - name: "get list of discovered_resources"
+      aws_mgh_info:
+        list_discovered_resources: true
+        name: 'migration_task_name'
+        progress_update_stream: 'name of progress_update_stream'
+
+    - name: "get migration_tasks"
+      aws_mgh_info:
+        list_migration_tasks: true
+        name: 'source-location-name'

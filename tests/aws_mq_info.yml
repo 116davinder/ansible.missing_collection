@@ -1,0 +1,18 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of brokers"
+      aws_mq_info:
+        list_brokers: true
+
+    - name: "get configurations"
+      aws_mq_info:
+        list_configurations: true
+
+    - name: "get list of users"
+      aws_mq_info:
+        list_users: true
+        id: 'broker_id'

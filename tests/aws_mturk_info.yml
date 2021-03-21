@@ -1,0 +1,23 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of assignments_for_hit"
+      aws_mturk_info:
+        list_assignments_for_hit: true
+        id: 'hit_id'
+
+    - name: "get bonus_payments"
+      aws_mturk_info:
+        list_bonus_payments: true
+        id: 'hit_id'
+
+    - name: "get list of hits"
+      aws_mturk_info:
+        list_hits: true
+
+    - name: "get worker_blocks"
+      aws_mturk_info:
+        list_worker_blocks: true

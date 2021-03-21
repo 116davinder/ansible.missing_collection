@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_mediastore_info_module:
+.. _community.missing_collection.aws_migrationhub_config_info_module:
 
 
-************************************************
-community.missing_collection.aws_mediastore_info
-************************************************
+*********************************************************
+community.missing_collection.aws_migrationhub_config_info
+*********************************************************
 
-**Get Information about AWS Elemental MediaStore.**
+**Get Information about AWS Migration Hub Config.**
 
 
 Version added: 0.0.7
@@ -17,8 +17,8 @@ Version added: 0.0.7
 
 Synopsis
 --------
-- Get Information about AWS Elemental MediaStore.
-- https://docs.aws.amazon.com/mediastore/latest/api/resources.html
+- Get Information about AWS Migration Hub Config.
+- https://docs.aws.amazon.com/migrationhub-home-region/latest/APIReference/API_Operations.html
 
 
 
@@ -135,6 +135,25 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>describe_home_region_controls</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of home_region_controls for given <em>region</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>ec2_url</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -146,98 +165,6 @@ Parameters
                 <td>
                         <div>Url to use to connect to EC2 or your Eucalyptus cloud (by default the module will use EC2 endpoints). Ignored for modules where region is required. Must be specified for all other modules if region is not used. If not set then the value of the EC2_URL environment variable, if any, is used.</div>
                         <div style="font-size: small; color: darkgreen"><br/>aliases: aws_endpoint_url, endpoint_url</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_container_policy</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get container_policy for given <em>name</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_cors_policy</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get list of cors_policy for given <em>name</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_lifecycle_policy</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get lifecycle_policy for given <em>name</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_containers</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get list of channels?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>container name.</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: container_name</div>
                 </td>
             </tr>
             <tr>
@@ -270,8 +197,8 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>The AWS region to use. If not specified then the value of the AWS_REGION or EC2_REGION environment variable, if any, is used. See <a href='http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region'>http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region</a></div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: aws_region, ec2_region</div>
+                        <div>migration hub region.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: home_region</div>
                 </td>
             </tr>
             <tr>
@@ -330,24 +257,10 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "get list of channels"
-      aws_mediastore_info:
-        list_containers: true
-
-    - name: "get container_policy"
-      aws_mediastore_info:
-        get_container_policy: true
-        name: 'container-name'
-
-    - name: "get list of cors_policy"
-      aws_mediastore_info:
-        get_cors_policy: true
-        name: 'container-name'
-
-    - name: "get lifecycle_policy"
-      aws_mediastore_info:
-        get_lifecycle_policy: true
-        name: 'container-name'
+    - name: "get list of home_region_controls"
+      aws_migrationhub_config_info:
+        describe_home_region_controls: true
+        region: 'us-west-2'
 
 
 
@@ -366,60 +279,15 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>container_policy</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                    </div>
-                </td>
-                <td>when `get_container_policy` is defined and success.</td>
-                <td>
-                            <div>get of container_policy.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>containers</b>
+                    <b>home_region_controls</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_containers` is defined and success.</td>
+                <td>when `describe_home_region_controls` is defined and success.</td>
                 <td>
-                            <div>list of containers.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>cors_policy</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `get_cors_policy` is defined and success.</td>
-                <td>
-                            <div>list of cors_policy.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>lifecycle_policy</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                    </div>
-                </td>
-                <td>when `get_lifecycle_policy` is defined and success.</td>
-                <td>
-                            <div>get of lifecycle_policy.</div>
+                            <div>list of home_region_controls.</div>
                     <br/>
                 </td>
             </tr>

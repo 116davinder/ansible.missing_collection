@@ -20,6 +20,7 @@ options:
       - container name.
     required: false
     type: str
+    aliases: ['container_name']
   list_containers:
     description:
       - do you want to get list of channels?
@@ -72,8 +73,8 @@ EXAMPLES = """
 """
 
 RETURN = """
-channels:
-  description: list of channels.
+containers:
+  description: list of containers.
   returned: when `list_containers` is defined and success.
   type: list
 container_policy:

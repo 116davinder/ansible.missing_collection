@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_mediastore_info_module:
+.. _community.missing_collection.aws_mobile_info_module:
 
 
-************************************************
-community.missing_collection.aws_mediastore_info
-************************************************
+********************************************
+community.missing_collection.aws_mobile_info
+********************************************
 
-**Get Information about AWS Elemental MediaStore.**
+**Get Information about AWS Mobile.**
 
 
 Version added: 0.0.7
@@ -17,8 +17,8 @@ Version added: 0.0.7
 
 Synopsis
 --------
-- Get Information about AWS Elemental MediaStore.
-- https://docs.aws.amazon.com/mediastore/latest/api/resources.html
+- Get Information about AWS Mobile.
+- https://docs.aws.amazon.com/migrationhub/latest/ug/API_Operations.html
 
 
 
@@ -151,7 +151,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_container_policy</b>
+                    <b>list_bundles</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -164,13 +164,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get container_policy for given <em>name</em>?</div>
+                        <div>do you want to get list of bundles?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_cors_policy</b>
+                    <b>list_projects</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -183,61 +183,7 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of cors_policy for given <em>name</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_lifecycle_policy</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get lifecycle_policy for given <em>name</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_containers</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get list of channels?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>container name.</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: container_name</div>
+                        <div>do you want to get projects?</div>
                 </td>
             </tr>
             <tr>
@@ -330,24 +276,13 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "get list of channels"
-      aws_mediastore_info:
-        list_containers: true
+    - name: "get list of bundles"
+      aws_mobile_info:
+        list_bundles: true
 
-    - name: "get container_policy"
-      aws_mediastore_info:
-        get_container_policy: true
-        name: 'container-name'
-
-    - name: "get list of cors_policy"
-      aws_mediastore_info:
-        get_cors_policy: true
-        name: 'container-name'
-
-    - name: "get lifecycle_policy"
-      aws_mediastore_info:
-        get_lifecycle_policy: true
-        name: 'container-name'
+    - name: "get projects"
+      aws_mobile_info:
+        list_projects: true
 
 
 
@@ -366,60 +301,30 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>container_policy</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                    </div>
-                </td>
-                <td>when `get_container_policy` is defined and success.</td>
-                <td>
-                            <div>get of container_policy.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>containers</b>
+                    <b>bundles</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_containers` is defined and success.</td>
+                <td>when `list_bundles` is defined and success.</td>
                 <td>
-                            <div>list of containers.</div>
+                            <div>list of bundles.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>cors_policy</b>
+                    <b>projects</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `get_cors_policy` is defined and success.</td>
+                <td>when `list_projects` is defined and success.</td>
                 <td>
-                            <div>list of cors_policy.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>lifecycle_policy</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
-                    </div>
-                </td>
-                <td>when `get_lifecycle_policy` is defined and success.</td>
-                <td>
-                            <div>get of lifecycle_policy.</div>
+                            <div>get of projects.</div>
                     <br/>
                 </td>
             </tr>

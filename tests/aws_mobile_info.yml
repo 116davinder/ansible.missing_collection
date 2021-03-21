@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of bundles"
+      aws_mobile_info:
+        list_bundles: true
+
+    - name: "get projects"
+      aws_mobile_info:
+        list_projects: true
