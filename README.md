@@ -14,7 +14,7 @@ So I decided to host modules on my repository instead of ansible.
 * [Official Ansible PR: 1](https://github.com/ansible/ansible/pull/40029)
 * [Official Ansible PR: 2](https://github.com/ansible-collections/community.general/pull/876)
 * [Official Ansible PR: 3](https://github.com/ansible-collections/community.general/pull/1501)
-* [Official Ansible PR: 4](https://github.com/ansible-collections/community.aws/pull/305)
+* [~~Official Ansible PR: 4~~](https://github.com/ansible-collections/community.aws/pull/305)
 
 **Articles**
 * https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
@@ -40,15 +40,14 @@ $ ansible-galaxy collection install git+https://github.com/116davinder/ansible.m
 Starting galaxy collection install process
 Process install dependency map
 Starting collection install process
-Installing 'community.missing_collection:0.0.7' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
+Installing 'community.missing_collection:0.0.8' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
 Created collection for community.missing_collection at /home/dpal/.ansible/collections/ansible_collections/community/missing_collection
-community.missing_collection (0.0.7) was installed successfully
+community.missing_collection (0.0.8) was installed successfully
 
 $ ansible-galaxy collection list
 Collection                   Version
 ---------------------------- -------
-community.missing_collection 0.0.7
-
+community.missing_collection 0.0.8
 ```
 
 <!--start collection content-->
