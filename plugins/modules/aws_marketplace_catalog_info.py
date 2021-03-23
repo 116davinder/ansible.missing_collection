@@ -115,8 +115,8 @@ def main():
     module = AnsibleAWSModule(
         argument_spec=argument_spec,
         required_if=(
-            ('list_change_sets', True, ['catalog', 'entity_type']),
-            ('list_entities', True, ['catalog']),
+            ('list_change_sets', True, ['catalog']),
+            ('list_entities', True, ['catalog', 'entity_type']),
         ),
         mutually_exclusive=[
             (

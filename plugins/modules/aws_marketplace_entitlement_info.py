@@ -88,14 +88,10 @@ def main():
         required_if=(
             ('get_entitlements', True, ['product_code']),
         ),
-        mutually_exclusive=[
-            (
-                'get_entitlements',
-            )
-        ],
+        mutually_exclusive=[],
     )
 
-    client = module.client('marketplace-catalog', retry_decorator=AWSRetry.exponential_backoff())
+    client = module.client('marketplace-entitlement', retry_decorator=AWSRetry.exponential_backoff())
     it, paginate = _marketplace_entitlement(client, module)
 
     if module.params['get_entitlements']:

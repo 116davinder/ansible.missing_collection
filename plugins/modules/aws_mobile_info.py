@@ -77,15 +77,9 @@ def _mobile(client, module):
         elif module.params['list_projects']:
             if client.can_paginate('list_projects'):
                 paginator = client.get_paginator('list_projects')
-                return paginator.paginate(
-                    MigrationTaskName=module.params['name'],
-                    ProgressUpdateStream=module.params['progress_update_stream']
-                ), True
+                return paginator.paginate(), True
             else:
-                return client.list_projects(
-                    MigrationTaskName=module.params['name'],
-                    ProgressUpdateStream=module.params['progress_update_stream']
-                ), False
+                return client.list_projects(), False
         else:
             return None, False
     except (BotoCoreError, ClientError) as e:
