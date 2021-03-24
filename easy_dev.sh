@@ -15,7 +15,7 @@ echo "Running Pycodestyle"
 pycodestyle --config=.pycodestyle plugins/module_utils/ plugins/modules
 
 echo "Running Yamllint"
-yamllint tests/
+yamllint tests/integration/aws
 
 echo "Running Static Analysis Tools ( bandit )"
 bandit -r plugins/
