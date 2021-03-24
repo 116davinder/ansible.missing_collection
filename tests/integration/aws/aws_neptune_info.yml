@@ -1,0 +1,41 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of db_cluster_endpoints"
+      aws_neptune_info:
+        describe_db_cluster_endpoints: true
+        id: 'db_cluster_identifier'
+
+    - name: "get db_cluster_parameter_groups"
+      aws_neptune_info:
+        describe_db_cluster_parameter_groups: true
+
+    - name: "get list of db_cluster_parameters"
+      aws_neptune_info:
+        describe_db_cluster_parameters: true
+        name: 'db_cluster_parameter_group_name'
+
+    - name: "get db_cluster_snapshots"
+      aws_neptune_info:
+        describe_db_cluster_snapshots: true
+        id: 'db_cluster_identifier'
+
+    - name: "get db_clusters"
+      aws_neptune_info:
+        describe_db_clusters: true
+
+    - name: "get db_instances"
+      aws_neptune_info:
+        describe_db_instances: true
+        id: 'db_cluster_identifier'
+
+    - name: "get db_parameter_groups"
+      aws_neptune_info:
+        describe_db_parameter_groups: true
+
+    - name: "get db_subnet_groups"
+      aws_neptune_info:
+        describe_db_subnet_groups: true
