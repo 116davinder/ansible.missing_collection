@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of account_attributes"
+      aws_opsworkscm_info:
+        describe_account_attributes: true
+
+    - name: "get backups"
+      aws_opsworkscm_info:
+        describe_backups: true
+
+    - name: "get list of servers"
+      aws_opsworkscm_info:
+        describe_servers: true

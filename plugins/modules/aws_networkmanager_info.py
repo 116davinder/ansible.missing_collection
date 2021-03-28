@@ -244,7 +244,6 @@ def _networkmanager(client, module):
 def main():
     argument_spec = dict(
         id=dict(required=False, aliases=['global_network_id']),
-        name=dict(required=False, aliases=['db_cluster_parameter_group_name']),
         describe_global_networks=dict(required=False, type=bool),
         get_connections=dict(required=False, type=bool),
         get_customer_gateway_associations=dict(required=False, type=bool),

@@ -291,7 +291,6 @@ def _opsworks(client, module):
 def main():
     argument_spec = dict(
         id=dict(required=False, aliases=['stack_id']),
-        name=dict(required=False, aliases=['db_cluster_parameter_group_name']),
         describe_apps=dict(required=False, type=bool),
         describe_deployments=dict(required=False, type=bool),
         describe_ecs_clusters=dict(required=False, type=bool),
