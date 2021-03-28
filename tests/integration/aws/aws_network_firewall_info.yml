@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of firewall_policies"
+      aws_network_firewall_info:
+        list_firewall_policies: true
+
+    - name: "get firewalls"
+      aws_network_firewall_info:
+        list_firewalls: true
+
+    - name: "get list of rule_groups"
+      aws_network_firewall_info:
+        list_rule_groups: true

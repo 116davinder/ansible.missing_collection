@@ -1,0 +1,53 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of apps"
+      aws_opsworks_info:
+        describe_apps: true
+        id: 'stack_id'
+
+    - name: "get deployments"
+      aws_opsworks_info:
+        describe_deployments: true
+        id: 'stack_id'
+
+    - name: "get list of ecs_clusters"
+      aws_opsworks_info:
+        describe_ecs_clusters: true
+        id: 'stack_id'
+
+    - name: "get elastic_ips"
+      aws_opsworks_info:
+        describe_elastic_ips: true
+        id: 'stack_id'
+
+    - name: "get elastic_load_balancers"
+      aws_opsworks_info:
+        describe_elastic_load_balancers: true
+
+    - name: "get instances"
+      aws_opsworks_info:
+        describe_instances: true
+        id: 'stack_id'
+
+    - name: "get layers"
+      aws_opsworks_info:
+        describe_layers: true
+        id: 'stack_id'
+
+    - name: "get raid_arrays"
+      aws_opsworks_info:
+        describe_raid_arrays: true
+        id: 'stack_id'
+
+    - name: "get rds_db_instances"
+      aws_opsworks_info:
+        describe_rds_db_instances: true
+        id: 'stack_id'
+
+    - name: "get stacks"
+      aws_opsworks_info:
+        describe_stacks: true

@@ -1,0 +1,44 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of global_networks"
+      aws_networkmanager_info:
+        describe_global_networks: true
+
+    - name: "get connections"
+      aws_networkmanager_info:
+        get_connections: true
+        id: 'global_network_id'
+
+    - name: "get list of customer_gateway_associations"
+      aws_networkmanager_info:
+        get_customer_gateway_associations: true
+        id: 'global_network_id'
+
+    - name: "get devices"
+      aws_networkmanager_info:
+        get_devices: true
+        id: 'global_network_id'
+
+    - name: "get link_associations"
+      aws_networkmanager_info:
+        get_link_associations: true
+        id: 'global_network_id'
+
+    - name: "get links"
+      aws_networkmanager_info:
+        get_links: true
+        id: 'global_network_id'
+
+    - name: "get sites"
+      aws_networkmanager_info:
+        get_sites: true
+        id: 'global_network_id'
+
+    - name: "get transit_gateway_registrations"
+      aws_networkmanager_info:
+        get_transit_gateway_registrations: true
+        id: 'global_network_id'
