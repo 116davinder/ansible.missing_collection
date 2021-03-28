@@ -1,0 +1,34 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of batch_inference_jobs"
+      aws_personalize_info:
+        list_batch_inference_jobs: true
+        arn: 'solution-version-arn'
+
+    - name: "get campaigns"
+      aws_personalize_info:
+        list_campaigns: true
+        arn: 'solution-arn'
+
+    - name: "get list of dataset_groups"
+      aws_personalize_info:
+        list_dataset_groups: true
+
+    - name: "get dataset_import_jobs"
+      aws_personalize_info:
+        list_dataset_import_jobs: true
+        arn: 'dataset_arn'
+
+    - name: "get datasets"
+      aws_personalize_info:
+        list_datasets: true
+        arn: 'dataset_group_arn'
+
+    - name: "get solutions"
+      aws_personalize_info:
+        list_solutions: true
+        arn: 'dataset_group_arn'

@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of outposts"
+      aws_outposts_info:
+        list_outposts: true
+
+    - name: "get sites"
+      aws_outposts_info:
+        list_sites: true
