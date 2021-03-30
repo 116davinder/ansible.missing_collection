@@ -1,0 +1,44 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get adm_channel"
+      aws_pinpoint_info:
+        get_adm_channel: true
+        id: 'application-id'
+
+    - name: "get apns_channel"
+      aws_pinpoint_info:
+        get_apns_channel: true
+        id: 'application-id'
+
+    - name: "get application_settings"
+      aws_pinpoint_info:
+        get_application_settings: true
+        id: 'application-id'
+
+    - name: "get list of apps"
+      aws_pinpoint_info:
+        get_apps: true
+
+    - name: "get baidu_channel"
+      aws_pinpoint_info:
+        get_baidu_channel: true
+        id: 'application-id'
+
+    - name: "get list of campaigns"
+      aws_pinpoint_info:
+        get_campaigns: true
+        id: 'application-id'
+
+    - name: "get export jobs"
+      aws_pinpoint_info:
+        get_export_jobs: true
+        id: 'application-id'
+
+    - name: "get import jobs"
+      aws_pinpoint_info:
+        get_import_jobs: true
+        id: 'application-id'
