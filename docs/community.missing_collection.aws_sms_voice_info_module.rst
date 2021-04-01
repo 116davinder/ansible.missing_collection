@@ -1,8 +1,8 @@
-.. _community.missing_collection.aws_sms-voice_info_module:
+.. _community.missing_collection.aws_sms_voice_info_module:
 
 
 ***********************************************
-community.missing_collection.aws_sms-voice_info
+community.missing_collection.aws_sms_voice_info
 ***********************************************
 
 **Get Information about Amazon PinPoint Sms Voice.**

@@ -8,7 +8,7 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: aws_sms-voice_info
+module: aws_sms_voice_info
 short_description: Get Information about Amazon PinPoint Sms Voice.
 description:
   - Get Information about Amazon PinPoint Sms Voice.
