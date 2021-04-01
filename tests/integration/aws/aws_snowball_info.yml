@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of cluster_jobs"
+      aws_snowball_info:
+        list_cluster_jobs: true
+        id: 'cluster-id'
+
+    - name: "get clusters"
+      aws_snowball_info:
+        list_clusters: true
+
+    - name: "get list of compatible_images"
+      aws_snowball_info:
+        list_compatible_images: true
+
+    - name: "get jobs"
+      aws_snowball_info:
+        list_jobs: true

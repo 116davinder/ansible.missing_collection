@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get configuration_sets"
+      aws_pinpoint_email_info:
+        list_configuration_sets: true
+
+    - name: "get dedicated_ip_pools"
+      aws_pinpoint_email_info:
+        list_dedicated_ip_pools: true
+
+    - name: "get deliverability_test_reports"
+      aws_pinpoint_email_info:
+        list_deliverability_test_reports: true
