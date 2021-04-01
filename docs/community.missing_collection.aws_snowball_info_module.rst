@@ -1,14 +1,14 @@
-.. _community.missing_collection.aws_ssm_parameter_store_module:
+.. _community.missing_collection.aws_snowball_info_module:
 
 
-****************************************************
-community.missing_collection.aws_ssm_parameter_store
-****************************************************
+**********************************************
+community.missing_collection.aws_snowball_info
+**********************************************
 
-**Manage key-value pairs in aws parameter store.**
+**Get Information about Amazon Snowball.**
 
 
-Version added: 0.0.1
+Version added: 0.0.8
 
 .. contents::
    :local:
@@ -17,7 +17,8 @@ Version added: 0.0.1
 
 Synopsis
 --------
-- Manage key-value pairs in aws parameter store.
+- Get Information about Amazon Snowball.
+- https://docs.aws.amazon.com/snowball/latest/apiref/API_Operations.html
 
 
 
@@ -134,40 +135,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>decryption</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li><div style="color: blue"><b>yes</b>&nbsp;&larr;</div></li>
-                        </ul>
-                </td>
-                <td>
-                        <div>Work with SecureString type to get plain text secrets</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>description</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">-</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>parameter key description.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>ec2_url</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -184,55 +151,93 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>key_id</b>
+                    <b>id</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">-</span>
+                        <span style="color: purple">string</span>
                     </div>
                 </td>
                 <td>
-                        <b>Default:</b><br/><div style="color: blue">"aws/ssm (this key is automatically generated at the first parameter created)."</div>
                 </td>
                 <td>
-                        <div>aws KMS key to decrypt the secrets.</div>
+                        <div>cluster id.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: cluster_id</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>name</b>
+                    <b>list_cluster_jobs</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">-</span>
-                         / <span style="color: red">required</span>
+                        <span style="color: purple">boolean</span>
                     </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>parameter key name.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>overwrite_value</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">-</span>
-                    </div>
-                    <div style="font-style: italic; font-size: small; color: darkgreen">added in 2.6</div>
                 </td>
                 <td>
                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>never</li>
-                                    <li><div style="color: blue"><b>changed</b>&nbsp;&larr;</div></li>
-                                    <li>always</li>
+                                    <li>no</li>
+                                    <li>yes</li>
                         </ul>
                 </td>
                 <td>
-                        <div>Option to overwrite an existing value if it already exists.</div>
-                        <div>String</div>
+                        <div>do you want to get list of cluster_jobs for given <em>id</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_clusters</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of clusters?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_compatible_images</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of compatible_images?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_jobs</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get jobs?</div>
                 </td>
             </tr>
             <tr>
@@ -259,13 +264,14 @@ Parameters
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">-</span>
+                        <span style="color: purple">string</span>
                     </div>
                 </td>
                 <td>
                 </td>
                 <td>
-                        <div>region.</div>
+                        <div>The AWS region to use. If not specified then the value of the AWS_REGION or EC2_REGION environment variable, if any, is used. See <a href='http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region'>http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region</a></div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: aws_region, ec2_region</div>
                 </td>
             </tr>
             <tr>
@@ -289,66 +295,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>state</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">-</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>present</b>&nbsp;&larr;</div></li>
-                                    <li>absent</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>Creates or modifies an existing parameter</div>
-                        <div>Deletes a parameter</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>string_type</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">-</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>String</b>&nbsp;&larr;</div></li>
-                                    <li>StringList</li>
-                                    <li>SecureString</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>Parameter String type</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>tier</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>Standard</b>&nbsp;&larr;</div></li>
-                                    <li>Advanced</li>
-                                    <li>Intelligent-Tiering</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>Parameter Store Tier Type</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>validate_certs</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -363,21 +309,6 @@ Parameters
                 </td>
                 <td>
                         <div>When set to &quot;no&quot;, SSL certificates will not be validated for boto versions &gt;= 2.6.0.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>value</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">-</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>Parameter value.</div>
                 </td>
             </tr>
     </table>
@@ -399,49 +330,22 @@ Examples
 
 .. code-block:: yaml
 
-    - name: Create or update key/value pair in aws parameter store
-      aws_ssm_parameter_store:
-        name: "Hello"
-        description: "This is your first key"
-        value: "World"
+    - name: "get list of cluster_jobs"
+      aws_snowball_info:
+        list_cluster_jobs: true
+        id: 'cluster-id'
 
-    - name: Delete the key
-      aws_ssm_parameter_store:
-        name: "Hello"
-        state: absent
+    - name: "get clusters"
+      aws_snowball_info:
+        list_clusters: true
 
-    - name: Create or update secure key/value pair with default kms key (aws/ssm)
-      aws_ssm_parameter_store:
-        name: "Hello"
-        description: "This is your first key"
-        string_type: "SecureString"
-        value: "World"
+    - name: "get list of compatible_images"
+      aws_snowball_info:
+        list_compatible_images: true
 
-    - name: Create or update secure key/value pair with nominated kms key
-      aws_ssm_parameter_store:
-        name: "Hello"
-        description: "This is your first key"
-        string_type: "SecureString"
-        key_id: "alias/demo"
-        value: "World"
-
-    - name: Always update a parameter store value and create a new version
-      aws_ssm_parameter_store:
-        name: "overwrite_example"
-        description: "This example will always overwrite the value"
-        string_type: "String"
-        value: "Test1234"
-        overwrite_value: "always"
-
-    - name: Create or update key/value pair in aws parameter store with tier
-      community.aws.aws_ssm_parameter_store:
-        name: "Hello"
-        description: "This is your first key"
-        value: "World"
-        tier: "Advanced"
-
-    - name: recommend to use with aws_ssm lookup plugin
-      debug: msg="{{ lookup('aws_ssm', 'hello') }}"
+    - name: "get jobs"
+      aws_snowball_info:
+        list_jobs: true
 
 
 
@@ -460,30 +364,60 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>delete_parameter</b>
+                    <b>cluster_jobs</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>success</td>
+                <td>when `list_cluster_jobs` is defined and success.</td>
                 <td>
-                            <div>Delete a parameter from the system.</div>
+                            <div>list of cluster_jobs.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>put_parameter</b>
+                    <b>clusters</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>success</td>
+                <td>when `list_clusters` is defined and success.</td>
                 <td>
-                            <div>Add one or more parameters to the system.</div>
+                            <div>get of clusters.</div>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>compatible_images</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `list_compatible_images` is defined and success.</td>
+                <td>
+                            <div>list of compatible_images.</div>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>jobs</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when `list_jobs` is defined and success.</td>
+                <td>
+                            <div>list of jobs.</div>
                     <br/>
                 </td>
             </tr>
@@ -499,6 +433,3 @@ Authors
 ~~~~~~~
 
 - Davinder Pal (@116davinder) <dpsangwal@gmail.com>
-- Nathan Webster (@nathanwebsterdotme)
-- Bill Wang (@ozbillwang) <ozbillwang@gmail.com>
-- Michael De La Rue (@mikedlr)
