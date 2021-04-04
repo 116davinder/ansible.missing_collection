@@ -1,9 +1,9 @@
-.. _community.missing_collection.aws_sms_voice_info_module:
+.. _community.missing_collection.aws_pinpoint_sms_voice_info_module:
 
 
-***********************************************
-community.missing_collection.aws_sms_voice_info
-***********************************************
+********************************************************
+community.missing_collection.aws_pinpoint_sms_voice_info
+********************************************************
 
 **Get Information about Amazon PinPoint Sms Voice.**
 
@@ -18,7 +18,7 @@ Version added: 0.0.8
 Synopsis
 --------
 - Get Information about Amazon PinPoint Sms Voice.
-- https://docs.aws.amazon.com/pinpoint-sms-voice/latest/APIReference/resources.html
+- https://docs.aws.amazon.com/pinpoint-pinpoint_sms_voice/latest/APIReference/resources.html
 
 
 
@@ -274,7 +274,7 @@ Examples
 .. code-block:: yaml
 
     - name: "get list of configuration_set_event_destinations"
-      aws_sms-voice_info:
+      aws_pinpoint_sms_voice_info:
         get_configuration_set_event_destinations: true
         name: 'configuration_set_name'
 

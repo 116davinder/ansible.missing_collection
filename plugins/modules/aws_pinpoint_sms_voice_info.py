@@ -8,11 +8,11 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: aws_sms_voice_info
+module: aws_pinpoint_sms_voice_info
 short_description: Get Information about Amazon PinPoint Sms Voice.
 description:
   - Get Information about Amazon PinPoint Sms Voice.
-  - U(https://docs.aws.amazon.com/pinpoint-sms-voice/latest/APIReference/resources.html)
+  - U(https://docs.aws.amazon.com/pinpoint-pinpoint_sms_voice/latest/APIReference/resources.html)
 version_added: 0.0.8
 options:
   name:
@@ -38,7 +38,7 @@ requirements:
 
 EXAMPLES = """
 - name: "get list of configuration_set_event_destinations"
-  aws_sms-voice_info:
+  aws_pinpoint_sms_voice_info:
     get_configuration_set_event_destinations: true
     name: 'configuration_set_name'
 """
@@ -75,7 +75,7 @@ def _sms_voice(client, module):
         else:
             return None, False
     except (BotoCoreError, ClientError) as e:
-        module.fail_json_aws(e, msg='Failed to fetch AWS PinPoint Sms-voice details')
+        module.fail_json_aws(e, msg='Failed to fetch AWS PinPoint Sms Voice details')
 
 
 def main():
@@ -92,7 +92,7 @@ def main():
         mutually_exclusive=[],
     )
 
-    client = module.client('sms-voice', retry_decorator=AWSRetry.exponential_backoff())
+    client = module.client('pinpoint-sms-voice', retry_decorator=AWSRetry.exponential_backoff())
     it, paginate = _sms_voice(client, module)
 
     if module.params['get_configuration_set_event_destinations']:
