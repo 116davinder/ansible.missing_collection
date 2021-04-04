@@ -1,0 +1,27 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of databases"
+      aws_redshift_data_info:
+        list_databases: true
+        id: 'cluster_id'
+
+    - name: "get list of schemas"
+      aws_redshift_data_info:
+        list_schemas: true
+        id: 'cluster_id'
+        name: 'database_name'
+
+    - name: "get list of statements"
+      aws_redshift_data_info:
+        list_statements: true
+        status: 'ALL'
+
+    - name: "get list of tables"
+      aws_redshift_data_info:
+        list_tables: true
+        id: 'cluster_id'
+        name: 'database_name'

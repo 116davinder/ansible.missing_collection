@@ -1,0 +1,32 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of pending_invitation_resources"
+      aws_ram_info:
+        list_pending_invitation_resources: true
+        arn: 'resource_share_invitation_arn'
+
+    - name: "get permissions"
+      aws_ram_info:
+        list_permissions: true
+
+    - name: "get list of principals"
+      aws_ram_info:
+        list_principals: true
+        resource_owner: 'SELF'
+
+    - name: "get resource_share_permissions"
+      aws_ram_info:
+        list_resource_share_permissions: true
+        arn: 'resource_share_arn'
+
+    - name: "get resource_types"
+      aws_ram_info:
+        list_resource_types: true
+
+    - name: "get resources"
+      aws_ram_info:
+        list_resources: true
+        resource_owner: 'SELF'
