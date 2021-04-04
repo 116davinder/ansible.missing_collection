@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of ledgers"
+      aws_qldb_info:
+        list_ledgers: true
+
+    - name: "get journal_s3_exports_for_ledger"
+      aws_qldb_info:
+        list_journal_s3_exports_for_ledger: true
+        name: 'ledger-name'
+
+    - name: "get list of journal_s3_exports"
+      aws_qldb_info:
+        list_journal_s3_exports: true
+
+    - name: "get journal_kinesis_streams_for_ledger"
+      aws_qldb_info:
+        list_journal_kinesis_streams_for_ledger: true
+        name: 'ledger-name'

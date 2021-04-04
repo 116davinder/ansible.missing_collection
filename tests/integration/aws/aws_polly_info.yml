@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of lexicons"
+      aws_polly_info:
+        list_lexicons: true
+
+    - name: "get speech_synthesis_tasks"
+      aws_polly_info:
+        list_speech_synthesis_tasks: true
+        status: 'inProgress'
