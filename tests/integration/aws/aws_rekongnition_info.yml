@@ -1,0 +1,18 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of collections"
+      aws_rekognition_info:
+        list_collections: true
+
+    - name: "get list of faces"
+      aws_rekognition_info:
+        list_faces: true
+        id: 'collection_id'
+
+    - name: "get list of stream_processors"
+      aws_rekognition_info:
+        list_stream_processors: true

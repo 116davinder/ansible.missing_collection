@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of domains"
+      aws_route53domains_info:
+        list_domains: true
+
+    - name: "get domain_detail"
+      aws_route53domains_info:
+        get_domain_detail: true
+        name: 'example.com'

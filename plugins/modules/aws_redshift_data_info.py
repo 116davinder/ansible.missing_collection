@@ -117,7 +117,7 @@ from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
 from ansible_collections.community.missing_collection.plugins.module_utils.aws_response_parser import aws_response_list_parser
 
 
-def _personalize(client, module):
+def _redshift_data(client, module):
     try:
         if module.params['list_databases']:
             if client.can_paginate('list_databases'):
@@ -198,7 +198,7 @@ def main():
     )
 
     client = module.client('redshift-data', retry_decorator=AWSRetry.exponential_backoff())
-    it, paginate = _personalize(client, module)
+    it, paginate = _redshift_data(client, module)
 
     if module.params['list_databases']:
         module.exit_json(databases=aws_response_list_parser(paginate, it, 'Databases'))

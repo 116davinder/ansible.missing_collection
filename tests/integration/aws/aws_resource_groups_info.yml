@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of groups"
+      aws_resource_groups_info:
+        list_groups: true
+
+    - name: "get list of group_resources"
+      aws_resource_groups_info:
+        list_group_resources: true
+        name: 'group_name'
