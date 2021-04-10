@@ -1,0 +1,30 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of access_points"
+      aws_s3control_info:
+        list_access_points: true
+        id: 'account_id'
+
+    - name: "get access_points_for_object_lambda"
+      aws_s3control_info:
+        list_access_points_for_object_lambda: true
+        id: 'account_id'
+
+    - name: "get list of jobs"
+      aws_s3control_info:
+        list_jobs: true
+        id: 'account_id'
+
+    - name: "get regional_buckets"
+      aws_s3control_info:
+        list_regional_buckets: true
+        id: 'account_id'
+
+    - name: "get storage_lens_configurations"
+      aws_s3control_info:
+        list_storage_lens_configurations: true
+        id: 'account_id'

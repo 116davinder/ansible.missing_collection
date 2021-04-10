@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of applications"
+      aws_servicecatalog_appregistry_info:
+        list_applications: true
+
+    - name: "get associated_attribute_groups"
+      aws_servicecatalog_appregistry_info:
+        list_associated_attribute_groups: true
+        id: 'application_id'
+
+    - name: "get list of associated_resources"
+      aws_servicecatalog_appregistry_info:
+        list_associated_resources: true
+        id: 'application_id'

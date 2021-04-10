@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of application_dependencies"
+      aws_serverlessrepo_info:
+        list_application_dependencies: true
+        id: 'application_id'
+
+    - name: "get application_versions"
+      aws_serverlessrepo_info:
+        list_application_versions: true
+        id: 'application_id'
+
+    - name: "get list of applications"
+      aws_serverlessrepo_info:
+        list_applications: true

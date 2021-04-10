@@ -1,0 +1,21 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of enabled_products_for_import"
+      aws_securityhub_info:
+        list_enabled_products_for_import: true
+
+    - name: "get invitations"
+      aws_securityhub_info:
+        list_invitations: true
+
+    - name: "get list of members"
+      aws_securityhub_info:
+        list_members: true
+
+    - name: "get organization_admin_accounts"
+      aws_securityhub_info:
+        list_organization_admin_accounts: true
