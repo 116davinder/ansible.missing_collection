@@ -8,7 +8,7 @@ community.missing_collection.aws_secretsmanager_info
 **Get Information about AWS Secrets Manager.**
 
 
-Version added: 0.0.8
+Version added: 0.0.9
 
 .. contents::
    :local:

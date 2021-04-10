@@ -13,7 +13,7 @@ short_description: Get Information about AWS Secrets Manager.
 description:
   - Get Information about AWS Secrets Manager.
   - U(https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_Operations.html)
-version_added: 0.0.8
+version_added: 0.0.9
 options:
   describe_secret:
     description:
