@@ -19,6 +19,7 @@ Synopsis
 --------
 - Get Information about Amazon Route 53 Domains.
 - https://docs.aws.amazon.com/Route53/latest/APIReference/API_Operations_Amazon_Route_53_Domains.html
+- AWS Region should be us-east-1 only.
 
 
 

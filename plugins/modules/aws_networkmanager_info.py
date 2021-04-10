@@ -13,6 +13,7 @@ short_description: Get Information about AWS Network Manager (NetworkManager).
 description:
   - Get Information about AWS Network Manager (NetworkManager).
   - U(https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Operations.html)
+  - AWS Region should be set to us-west-2 only.
 version_added: 0.0.8
 options:
   id:

@@ -1,0 +1,35 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of firewall_configs"
+      aws_route53resolver_info:
+        list_firewall_configs: true
+
+    - name: "get firewall_domain_lists"
+      aws_route53resolver_info:
+        list_firewall_domain_lists: true
+
+    - name: "get list of firewall_rule_groups"
+      aws_route53resolver_info:
+        list_firewall_rule_groups: true
+
+    - name: "get firewall_rules"
+      aws_route53resolver_info:
+        list_firewall_rules: true
+        id: 'firewall_rule_group_id'
+
+    - name: "get resolver_dnssec_configs"
+      aws_route53resolver_info:
+        list_resolver_dnssec_configs: true
+
+    - name: "get resolver_endpoint_ip_addresses"
+      aws_route53resolver_info:
+        list_resolver_endpoint_ip_addresses: true
+        id: 'resolver_endpoint_id'
+
+    - name: "get resolver_endpoints"
+      aws_route53resolver_info:
+        list_resolver_endpoints: true

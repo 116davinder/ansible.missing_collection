@@ -107,13 +107,9 @@ def _rekognition(client, module):
         elif module.params['list_stream_processors']:
             if client.can_paginate('list_stream_processors'):
                 paginator = client.get_paginator('list_stream_processors')
-                return paginator.paginate(
-                    Status=module.params['status']
-                ), True
+                return paginator.paginate(), True
             else:
-                return client.list_stream_processors(
-                    Status=module.params['status']
-                ), False
+                return client.list_stream_processors(), False
         else:
             return None, False
     except (BotoCoreError, ClientError) as e:

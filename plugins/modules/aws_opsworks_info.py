@@ -105,6 +105,7 @@ EXAMPLES = """
 - name: "get elastic_load_balancers"
   aws_opsworks_info:
     describe_elastic_load_balancers: true
+    id: 'stack_id'
 
 - name: "get instances"
   aws_opsworks_info:

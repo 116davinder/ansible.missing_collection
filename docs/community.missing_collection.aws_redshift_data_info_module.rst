@@ -116,6 +116,37 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>database</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>name of the database.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: database_name</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>database_user</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>name of the database user.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>debug_botocore_endpoint_logs</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -180,7 +211,7 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of databases for given <em>id</em>?</div>
+                        <div>do you want to get list of databases for given <em>id</em> and <em>database_user</em>?</div>
                 </td>
             </tr>
             <tr>
@@ -199,7 +230,7 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get schemas for given <em>id</em> and database <em>name</em>?</div>
+                        <div>do you want to get schemas for given <em>id</em>, database <em>name</em>, and <em>database_user</em>??</div>
                 </td>
             </tr>
             <tr>
@@ -237,23 +268,7 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get tables for given <em>id</em> and database <em>name</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>name</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>name of the database.</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: database_name</div>
+                        <div>do you want to get tables for given <em>id</em>, database <em>name</em>, and <em>database_user</em>??</div>
                 </td>
             </tr>
             <tr>
@@ -374,12 +389,14 @@ Examples
       aws_redshift_data_info:
         list_databases: true
         id: 'cluster_id'
+        database_user: 'dpal'
 
     - name: "get list of schemas"
       aws_redshift_data_info:
         list_schemas: true
         id: 'cluster_id'
-        name: 'database_name'
+        database: 'database_name'
+        database_user: 'dpal'
 
     - name: "get list of statements"
       aws_redshift_data_info:
@@ -390,7 +407,8 @@ Examples
       aws_redshift_data_info:
         list_tables: true
         id: 'cluster_id'
-        name: 'database_name'
+        database: 'database_name'
+        database_user: 'dpal'
 
 
 

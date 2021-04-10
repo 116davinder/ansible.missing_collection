@@ -21,12 +21,17 @@ options:
     required: false
     type: str
     aliases: ['cluster_identifier']
-  name:
+  database:
     description:
       - name of the database.
     required: false
     type: str
     aliases: ['database_name']
+  database_user:
+    description:
+      - name of the database user.
+    required: false
+    type: str
   status:
     description:
       - status of statements.
@@ -36,12 +41,12 @@ options:
     default: 'ALL'
   list_databases:
     description:
-      - do you want to get list of databases for given I(id)?
+      - do you want to get list of databases for given I(id) and I(database_user)?
     required: false
     type: bool
   list_schemas:
     description:
-      - do you want to get schemas for given I(id) and database I(name)?
+      - do you want to get schemas for given I(id), database I(name), and I(database_user)??
     required: false
     type: bool
   list_statements:
@@ -51,7 +56,7 @@ options:
     type: bool
   list_tables:
     description:
-      - do you want to get tables for given I(id) and database I(name)?
+      - do you want to get tables for given I(id), database I(name), and I(database_user)??
     required: false
     type: bool
 author:
@@ -69,12 +74,14 @@ EXAMPLES = """
   aws_redshift_data_info:
     list_databases: true
     id: 'cluster_id'
+    database_user: 'dpal'
 
 - name: "get list of schemas"
   aws_redshift_data_info:
     list_schemas: true
     id: 'cluster_id'
-    name: 'database_name'
+    database: 'database_name'
+    database_user: 'dpal'
 
 - name: "get list of statements"
   aws_redshift_data_info:
@@ -85,7 +92,8 @@ EXAMPLES = """
   aws_redshift_data_info:
     list_tables: true
     id: 'cluster_id'
-    name: 'database_name'
+    database: 'database_name'
+    database_user: 'dpal'
 """
 
 RETURN = """
@@ -123,23 +131,27 @@ def _redshift_data(client, module):
             if client.can_paginate('list_databases'):
                 paginator = client.get_paginator('list_databases')
                 return paginator.paginate(
-                    ClusterIdentifier=module.params['id']
+                    ClusterIdentifier=module.params['id'],
+                    DbUser=module.params['database_user']
                 ), True
             else:
                 return client.list_databases(
-                    ClusterIdentifier=module.params['id']
+                    ClusterIdentifier=module.params['id'],
+                    DbUser=module.params['database_user']
                 ), False
         elif module.params['list_schemas']:
             if client.can_paginate('list_schemas'):
                 paginator = client.get_paginator('list_schemas')
                 return paginator.paginate(
                     ClusterIdentifier=module.params['id'],
-                    Database=module.params['name']
+                    Database=module.params['database'],
+                    DbUser=module.params['database_user']
                 ), True
             else:
                 return client.list_schemas(
                     ClusterIdentifier=module.params['id'],
-                    Database=module.params['name']
+                    Database=module.params['database'],
+                    DbUser=module.params['database_user']
                 ), False
         elif module.params['list_statements']:
             if client.can_paginate('list_statements'):
@@ -156,12 +168,14 @@ def _redshift_data(client, module):
                 paginator = client.get_paginator('list_tables')
                 return paginator.paginate(
                     ClusterIdentifier=module.params['id'],
-                    Database=module.params['name']
+                    Database=module.params['database'],
+                    DbUser=module.params['database_user']
                 ), True
             else:
                 return client.list_tables(
                     ClusterIdentifier=module.params['id'],
-                    Database=module.params['name']
+                    Database=module.params['database'],
+                    DbUser=module.params['database_user']
                 ), False
         else:
             return None, False
@@ -173,6 +187,7 @@ def main():
     argument_spec = dict(
         id=dict(required=False, aliases=['cluster_identifier']),
         database=dict(required=False, aliases=['database_name']),
+        database_user=dict(required=False),
         status=dict(required=False, choices=['SUBMITTED', 'PICKED', 'STARTED', 'FINISHED', 'ABORTED', 'FAILED', 'ALL'], default='ALL'),
         list_databases=dict(required=False, type=bool),
         list_schemas=dict(required=False, type=bool),
@@ -183,9 +198,9 @@ def main():
     module = AnsibleAWSModule(
         argument_spec=argument_spec,
         required_if=(
-            ('list_databases', True, ['id']),
-            ('list_schemas', True, ['id', 'name']),
-            ('list_tables', True, ['id', 'name']),
+            ('list_databases', True, ['id', 'database_user']),
+            ('list_schemas', True, ['id', 'database', 'database_user']),
+            ('list_tables', True, ['id', 'database', 'database_user']),
         ),
         mutually_exclusive=[
             (

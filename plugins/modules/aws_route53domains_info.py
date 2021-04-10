@@ -13,6 +13,7 @@ short_description: Get Information about Amazon Route 53 Domains.
 description:
   - Get Information about Amazon Route 53 Domains.
   - U(https://docs.aws.amazon.com/Route53/latest/APIReference/API_Operations_Amazon_Route_53_Domains.html)
+  - AWS Region should be us-east-1 only.
 version_added: 0.0.8
 options:
   name:

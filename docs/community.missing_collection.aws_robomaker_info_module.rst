@@ -367,7 +367,6 @@ Examples
     - name: "get robots"
       aws_robomaker_info:
         list_robots: true
-        id: 'db_cluster_identifier'
 
     - name: "get simulation_jobs"
       aws_robomaker_info:

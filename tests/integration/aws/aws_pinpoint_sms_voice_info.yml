@@ -5,6 +5,6 @@
   ignore_errors: true
   tasks:
     - name: "get list of configuration_set_event_destinations"
-      aws_sms-voice_info:
+      aws_pinpoint_sms_voice_info:
         get_configuration_set_event_destinations: true
         name: 'configuration_set_name'

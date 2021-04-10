@@ -19,6 +19,7 @@ Synopsis
 --------
 - Get Information about AWS Network Manager (NetworkManager).
 - https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Operations.html
+- AWS Region should be set to us-west-2 only.
 
 
 

@@ -8,12 +8,14 @@
       aws_redshift_data_info:
         list_databases: true
         id: 'cluster_id'
+        database_user: 'dpal'
 
     - name: "get list of schemas"
       aws_redshift_data_info:
         list_schemas: true
         id: 'cluster_id'
-        name: 'database_name'
+        database: 'database_name'
+        database_user: 'dpal'
 
     - name: "get list of statements"
       aws_redshift_data_info:
@@ -24,4 +26,5 @@
       aws_redshift_data_info:
         list_tables: true
         id: 'cluster_id'
-        name: 'database_name'
+        database: 'database_name'
+        database_user: 'dpal'

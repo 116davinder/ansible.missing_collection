@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_opsworks_info_module:
+.. _community.missing_collection.aws_route53resolver_info_module:
 
 
-**********************************************
-community.missing_collection.aws_opsworks_info
-**********************************************
+*****************************************************
+community.missing_collection.aws_route53resolver_info
+*****************************************************
 
-**Get Information about Amazon OpsWorks.**
+**Get Information about Amazon Route 53 Resolver.**
 
 
 Version added: 0.0.8
@@ -17,8 +17,8 @@ Version added: 0.0.8
 
 Synopsis
 --------
-- Get Information about Amazon OpsWorks.
-- https://docs.aws.amazon.com/opsworks/latest/apiref/API_Operations.html
+- Get Information about Amazon Route 53 Resolver.
+- https://docs.aws.amazon.com/Route53/latest/APIReference/API_Operations_Amazon_Route_53_Resolver.html
 
 
 
@@ -135,196 +135,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_apps</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get list of apps for given <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_deployments</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get deployments for given <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_ecs_clusters</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get list of ecs_clusters for given <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_elastic_ips</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get elastic_ips for given <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_elastic_load_balancers</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get elastic_load_balancers for given <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_instances</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get instances for given <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_layers</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get layers for given <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_raid_arrays</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get raid_arrays for given <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_rds_db_instances</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get rds_db_instances for given <em>id</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>describe_stacks</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get stacks?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>ec2_url</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -350,8 +160,142 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>id of opsworks stack.</div>
-                        <div style="font-size: small; color: darkgreen"><br/>aliases: stack_id</div>
+                        <div>can be id of firewall rule group?</div>
+                        <div>can be id of resolver endpoint?</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: firewall_rule_group_id, resolver_endpoint_id</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_firewall_configs</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of firewall_configs?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_firewall_domain_lists</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get firewall_domain_lists?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_firewall_rule_groups</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of firewall_rule_groups?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_firewall_rules</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get firewall_rules for given <em>id</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_resolver_dnssec_configs</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get resolver_dnssec_configs?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_resolver_endpoint_ip_addresses</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get resolver_endpoint_ip_addresses for given <em>id</em>?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_resolver_endpoints</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get resolver_endpoints?</div>
                 </td>
             </tr>
             <tr>
@@ -444,54 +388,35 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "get list of apps"
-      aws_opsworks_info:
-        describe_apps: true
-        id: 'stack_id'
+    - name: "get list of firewall_configs"
+      aws_route53resolver_info:
+        list_firewall_configs: true
 
-    - name: "get deployments"
-      aws_opsworks_info:
-        describe_deployments: true
-        id: 'stack_id'
+    - name: "get firewall_domain_lists"
+      aws_route53resolver_info:
+        list_firewall_domain_lists: true
 
-    - name: "get list of ecs_clusters"
-      aws_opsworks_info:
-        describe_ecs_clusters: true
-        id: 'stack_id'
+    - name: "get list of firewall_rule_groups"
+      aws_route53resolver_info:
+        list_firewall_rule_groups: true
 
-    - name: "get elastic_ips"
-      aws_opsworks_info:
-        describe_elastic_ips: true
-        id: 'stack_id'
+    - name: "get firewall_rules"
+      aws_route53resolver_info:
+        list_firewall_rules: true
+        id: 'firewall_rule_group_id'
 
-    - name: "get elastic_load_balancers"
-      aws_opsworks_info:
-        describe_elastic_load_balancers: true
-        id: 'stack_id'
+    - name: "get resolver_dnssec_configs"
+      aws_route53resolver_info:
+        list_resolver_dnssec_configs: true
 
-    - name: "get instances"
-      aws_opsworks_info:
-        describe_instances: true
-        id: 'stack_id'
+    - name: "get resolver_endpoint_ip_addresses"
+      aws_route53resolver_info:
+        list_resolver_endpoint_ip_addresses: true
+        id: 'resolver_endpoint_id'
 
-    - name: "get layers"
-      aws_opsworks_info:
-        describe_layers: true
-        id: 'stack_id'
-
-    - name: "get raid_arrays"
-      aws_opsworks_info:
-        describe_raid_arrays: true
-        id: 'stack_id'
-
-    - name: "get rds_db_instances"
-      aws_opsworks_info:
-        describe_rds_db_instances: true
-        id: 'stack_id'
-
-    - name: "get stacks"
-      aws_opsworks_info:
-        describe_stacks: true
+    - name: "get resolver_endpoints"
+      aws_route53resolver_info:
+        list_resolver_endpoints: true
 
 
 
@@ -510,150 +435,105 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>apps</b>
+                    <b>firewall_configs</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `describe_apps` is defined and success.</td>
+                <td>when `list_firewall_configs` is defined and success.</td>
                 <td>
-                            <div>list of apps.</div>
+                            <div>list of firewall_configs.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>deployments</b>
+                    <b>firewall_domain_lists</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `describe_deployments` is defined and success.</td>
+                <td>when `list_firewall_domain_lists` is defined and success.</td>
                 <td>
-                            <div>get of deployments.</div>
+                            <div>get of firewall_domain_lists.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>ecs_clusters</b>
+                    <b>firewall_rule_groups</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `describe_ecs_clusters` is defined and success.</td>
+                <td>when `list_firewall_rule_groups` is defined and success.</td>
                 <td>
-                            <div>list of ecs_clusters.</div>
+                            <div>list of firewall_rule_groups.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>elastic_ips</b>
+                    <b>firewall_rules</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `describe_elastic_ips` is defined and success.</td>
+                <td>when `list_firewall_rules` is defined and success.</td>
                 <td>
-                            <div>list of elastic_ips.</div>
+                            <div>list of firewall_rules.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>elastic_load_balancers</b>
+                    <b>resolver_dnssec_configs</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `describe_elastic_load_balancers` is defined and success.</td>
+                <td>when `list_resolver_dnssec_configs` is defined and success.</td>
                 <td>
-                            <div>list of elastic_load_balancers.</div>
+                            <div>list of resolver_dnssec_configs.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>instances</b>
+                    <b>resolver_endpoint_ip_addresses</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `describe_instances` is defined and success.</td>
+                <td>when `list_resolver_endpoint_ip_addresses` is defined and success.</td>
                 <td>
-                            <div>list of instances.</div>
+                            <div>list of resolver_endpoint_ip_addresses.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>layers</b>
+                    <b>resolver_endpoints</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `describe_layers` is defined and success.</td>
+                <td>when `list_resolver_endpoints` is defined and success.</td>
                 <td>
-                            <div>list of layers.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>raid_arrays</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `describe_raid_arrays` is defined and success.</td>
-                <td>
-                            <div>list of raid_arrays.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>rds_db_instances</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `describe_rds_db_instances` is defined and success.</td>
-                <td>
-                            <div>list of rds_db_instances.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>stacks</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `describe_stacks` is defined and success.</td>
-                <td>
-                            <div>list of stacks.</div>
+                            <div>list of resolver_endpoints.</div>
                     <br/>
                 </td>
             </tr>

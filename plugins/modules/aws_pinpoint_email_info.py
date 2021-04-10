@@ -125,7 +125,7 @@ def main():
         ],
     )
 
-    client = module.client('pinpoint_email', retry_decorator=AWSRetry.exponential_backoff())
+    client = module.client('pinpoint-email', retry_decorator=AWSRetry.exponential_backoff())
     it, paginate = _pinpoint_email(client, module)
 
     if module.params['list_configuration_sets']:
