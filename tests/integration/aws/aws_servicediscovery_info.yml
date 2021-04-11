@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of instances"
+      aws_servicediscovery_info:
+        list_instances: true
+        id: 'service_id'
+
+    - name: "get list of namespaces"
+      aws_servicediscovery_info:
+        list_namespaces: true
+
+    - name: "get list of services"
+      aws_servicediscovery_info:
+        list_services: true
+        id: 'namespace_id'

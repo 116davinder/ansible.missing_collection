@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of configuration_sets"
+      aws_ses_info:
+        list_configuration_sets: true
+
+    - name: "get custom_verification_email_templates"
+      aws_ses_info:
+        list_custom_verification_email_templates: true
+
+    - name: "get list of identities"
+      aws_ses_info:
+        list_identities: true
+        identity_type: 'EmailAddress'
+
+    - name: "get receipt_rule_sets"
+      aws_ses_info:
+        list_receipt_rule_sets: true
+
+    - name: "get templates"
+      aws_ses_info:
+        list_templates: true

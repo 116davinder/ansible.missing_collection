@@ -1,0 +1,34 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of configuration_sets"
+      aws_sesv2_info:
+        list_configuration_sets: true
+
+    - name: "get contact_lists"
+      aws_sesv2_info:
+        list_contact_lists: true
+
+    - name: "get list of contacts"
+      aws_sesv2_info:
+        list_contacts: true
+        name: 'contact_list_name'
+
+    - name: "get custom_verification_email_templates"
+      aws_sesv2_info:
+        list_custom_verification_email_templates: true
+
+    - name: "get dedicated_ip_pools"
+      aws_sesv2_info:
+        list_dedicated_ip_pools: true
+
+    - name: "get deliverability_test_reports"
+      aws_sesv2_info:
+        list_deliverability_test_reports: true
+
+    - name: "get email_identities"
+      aws_sesv2_info:
+        list_email_identities: true

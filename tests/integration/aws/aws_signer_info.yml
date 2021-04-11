@@ -1,0 +1,18 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of profile_permissions"
+      aws_signer_info:
+        list_profile_permissions: true
+        name: 'profile_name'
+
+    - name: "get signing_platforms"
+      aws_signer_info:
+        list_signing_platforms: true
+
+    - name: "get list of signing_profiles"
+      aws_signer_info:
+        list_signing_profiles: true
+        status: 'Active'

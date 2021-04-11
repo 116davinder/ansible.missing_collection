@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of protection_groups"
+      aws_shield_info:
+        list_protection_groups: true
+
+    - name: "get protections"
+      aws_shield_info:
+        list_protections: true
+
+    - name: "get list of resources_in_protection_group"
+      aws_shield_info:
+        list_resources_in_protection_group: true
+        id: 'protection_group_id'
