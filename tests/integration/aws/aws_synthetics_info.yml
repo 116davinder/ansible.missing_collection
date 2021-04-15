@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of canaries"
+      aws_synthetics_info:
+        describe_canaries: true
+
+    - name: "get canaries_last_run"
+      aws_synthetics_info:
+        describe_canaries_last_run: true
+
+    - name: "get list of runtime_versions"
+      aws_synthetics_info:
+        describe_runtime_versions: true

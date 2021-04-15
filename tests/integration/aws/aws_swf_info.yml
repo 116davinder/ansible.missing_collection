@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of activity_types"
+      aws_swf_info:
+        list_activity_types: true
+        domain: 'domain_name'
+        registration_status: 'REGISTERED'
+
+    - name: "get domains"
+      aws_swf_info:
+        list_domains: true
+        registration_status: 'REGISTERED'
+
+    - name: "get list of workflow_types"
+      aws_swf_info:
+        list_workflow_types: true
+        domain: 'domain_name'
+        registration_status: 'REGISTERED'
