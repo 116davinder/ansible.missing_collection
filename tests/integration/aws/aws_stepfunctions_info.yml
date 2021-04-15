@@ -1,0 +1,24 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of activities"
+      aws_stepfunctions_info:
+        list_activities: true
+
+    - name: "get executions"
+      aws_stepfunctions_info:
+        list_executions: true
+        arn: 'state_machine_arn'
+        status_filter: 'RUNNING'
+
+    - name: "get list of state_machines"
+      aws_stepfunctions_info:
+        list_state_machines: true
+
+    - name: "get state_machine details"
+      aws_stepfunctions_info:
+        describe_state_machine: true
+        arn: 'state_machine_arn'

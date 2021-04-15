@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of account_roles"
+      aws_sso_info:
+        list_account_roles: true
+        access_token: 'access_token'
+        account_id: '1234567890123'
+
+    - name: "get accounts"
+      aws_sso_info:
+        list_accounts: true
+        access_token: 'access_token'

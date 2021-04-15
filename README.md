@@ -225,6 +225,8 @@ Name | Description
 [community.missing_collection.aws_sns_platform_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sns_platform_info_module.rst)|Get Information about AWS SNS Platforms.
 [community.missing_collection.aws_sns_subscriptions_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sns_subscriptions_info_module.rst)|Get Information about AWS SNS Subscriptions.
 [community.missing_collection.aws_sqs_queue_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sqs_queue_info_module.rst)|Get information about AWS SQS queues.
+[community.missing_collection.aws_sso_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_sso_info_module.rst)|Get Information about AWS Single Sign-On (SSO).
+[community.missing_collection.aws_stepfunctions_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_stepfunctions_info_module.rst)|Get Information about AWS Step Functions (SFN).
 [community.missing_collection.mapr_service](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_service_module.rst)|Manage MapR Services by rest api.
 [community.missing_collection.newrelic_deployment](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.newrelic_deployment_module.rst)|Notify newrelic about app deployments via v2 api.
 
