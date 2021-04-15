@@ -1,0 +1,51 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of account_assignment_creation_status"
+      aws_sso_admin_info:
+        list_account_assignment_creation_status: true
+        instance_arn: 'test_arn'
+        status: 'IN_PROGRESS'
+
+    - name: "get account_assignment_deletion_status"
+      aws_sso_admin_info:
+        list_account_assignment_deletion_status: true
+        instance_arn: 'test_arn'
+        status: 'IN_PROGRESS'
+
+    - name: "get list of account_assignments"
+      aws_sso_admin_info:
+        list_account_assignments: true
+        instance_arn: 'test_arn'
+        permission_set_arn: 'test_arn'
+        account_id: '1234567890'
+
+    - name: "get accounts_for_provisioned_permission_set"
+      aws_sso_admin_info:
+        list_accounts_for_provisioned_permission_set: true
+        instance_arn: 'test_arn'
+        permission_set_arn: 'test_arn'
+
+    - name: "get instances"
+      aws_sso_admin_info:
+        list_instances: true
+
+    - name: "get managed_policies_in_permission_set"
+      aws_sso_admin_info:
+        list_managed_policies_in_permission_set: true
+        instance_arn: 'test_arn'
+        permission_set_arn: 'test_arn'
+
+    - name: "get permission_set_provisioning_status"
+      aws_sso_admin_info:
+        list_permission_set_provisioning_status: true
+        instance_arn: 'test_arn'
+        status: 'IN_PROGRESS'
+
+    - name: "get permission_sets"
+      aws_sso_admin_info:
+        list_permission_sets: true
+        instance_arn: 'test_arn'
