@@ -42,14 +42,14 @@ $ ansible-galaxy collection install git+https://github.com/116davinder/ansible.m
 Starting galaxy collection install process
 Process install dependency map
 Starting collection install process
-Installing 'community.missing_collection:0.0.9' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
+Installing 'community.missing_collection:0.1.0' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
 Created collection for community.missing_collection at /home/dpal/.ansible/collections/ansible_collections/community/missing_collection
-community.missing_collection (0.0.9) was installed successfully
+community.missing_collection (0.1.0) was installed successfully
 
 $ ansible-galaxy collection list
 Collection                   Version
 ---------------------------- -------
-community.missing_collection 0.0.9
+community.missing_collection 0.1.0
 ```
 
 <!--start collection content-->

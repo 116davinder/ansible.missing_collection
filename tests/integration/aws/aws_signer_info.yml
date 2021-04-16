@@ -2,6 +2,7 @@
 
 - hosts: localhost
   gather_facts: false
+  ignore_errors: true
   tasks:
     - name: "get list of profile_permissions"
       aws_signer_info:

@@ -2,6 +2,7 @@
 
 - hosts: localhost
   gather_facts: false
+  ignore_errors: true
   tasks:
     - name: "get list of protection_groups"
       aws_shield_info:
