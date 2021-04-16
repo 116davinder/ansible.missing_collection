@@ -1,0 +1,43 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of automatic_tape_creation_policies"
+      aws_storagegateway_info:
+        list_automatic_tape_creation_policies: true
+        arn: 'gateway_arn'
+
+    - name: "get list of file_shares"
+      aws_storagegateway_info:
+        list_file_shares: true
+        arn: 'gateway_arn'
+
+    - name: "get list of file_system_associations"
+      aws_storagegateway_info:
+        list_file_system_associations: true
+        arn: 'gateway_arn'
+
+    - name: "get list of gateways"
+      aws_storagegateway_info:
+        list_gateways: true
+
+    - name: "get list of local_disks"
+      aws_storagegateway_info:
+        list_local_disks: true
+        arn: 'gateway_arn'
+
+    - name: "get list of tape_pools"
+      aws_storagegateway_info:
+        list_tape_pools: true
+        arn: 'gateway_arn'
+
+    - name: "get list of tapes"
+      aws_storagegateway_info:
+        list_tapes: true
+
+    - name: "get list of volumes"
+      aws_storagegateway_info:
+        list_volumes: true
+        arn: 'gateway_arn'
