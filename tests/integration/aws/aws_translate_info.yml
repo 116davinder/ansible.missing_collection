@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of parallel_data"
+      aws_translate_info:
+        list_parallel_data: true
+
+    - name: "get terminologies"
+      aws_translate_info:
+        list_terminologies: true
+
+    - name: "get list of text_translation_jobs"
+      aws_translate_info:
+        list_text_translation_jobs: true

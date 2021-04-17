@@ -231,6 +231,11 @@ Name | Description
 [community.missing_collection.aws_storagegateway_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_storagegateway_info_module.rst)|Get Information about AWS Storage Gateway.
 [community.missing_collection.aws_swf_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_swf_info_module.rst)|Get Information about Amazon Simple Workflow Service (SWF).
 [community.missing_collection.aws_synthetics_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_synthetics_info_module.rst)|Get Information about Amazon Cloudwatch Synthetics.
+[community.missing_collection.aws_timestream_query_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_timestream_query_info_module.rst)|Get Information about Amazon Timestream Query.
+[community.missing_collection.aws_timestream_write_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_timestream_write_info_module.rst)|Get Information about Amazon Timestream Write.
+[community.missing_collection.aws_transcribe_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_transcribe_info_module.rst)|Get Information about Amazon Transcribe Service.
+[community.missing_collection.aws_transfer_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_transfer_info_module.rst)|Get Information about AWS Transfer Family.
+[community.missing_collection.aws_translate_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_translate_info_module.rst)|Get Information about Amazon Translate.
 [community.missing_collection.mapr_service](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_service_module.rst)|Manage MapR Services by rest api.
 [community.missing_collection.newrelic_deployment](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.newrelic_deployment_module.rst)|Notify newrelic about app deployments via v2 api.
 

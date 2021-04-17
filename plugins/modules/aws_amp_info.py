@@ -101,7 +101,6 @@ from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
 from ansible_collections.community.missing_collection.plugins.module_utils.aws_response_parser import aws_response_list_parser
 
 
-@AWSRetry.exponential_backoff(retries=5, delay=5)
 def _amp(client, module):
     try:
         if client.can_paginate('list_workspaces'):

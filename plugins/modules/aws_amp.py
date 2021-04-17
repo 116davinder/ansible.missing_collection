@@ -126,9 +126,6 @@ def main():
         argument_spec=argument_spec,
     )
 
-    # remove below warning once amp service become GA
-    module.warn("aws amp service is in open preview on 25-12-2020")
-
     amp = module.client('amp', retry_decorator=AWSRetry.exponential_backoff())
 
     if module.params['state'] == 'present':

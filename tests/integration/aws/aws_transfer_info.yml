@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: "get list of security_policies"
+      aws_transfer_info:
+        list_security_policies: true
+
+    - name: "get servers"
+      aws_transfer_info:
+        list_servers: true
+
+    - name: "get list of users"
+      aws_transfer_info:
+        list_users: true
+        server_id: 'test'

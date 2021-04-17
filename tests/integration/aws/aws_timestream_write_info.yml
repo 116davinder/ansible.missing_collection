@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of databases"
+      aws_timestream_write_info:
+        list_databases: true
+
+    - name: "get tables"
+      aws_timestream_write_info:
+        list_tables: true
+        database_name: 'test'

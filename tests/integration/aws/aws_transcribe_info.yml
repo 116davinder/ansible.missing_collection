@@ -1,0 +1,27 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of language_models"
+      aws_transcribe_info:
+        list_language_models: true
+        status: 'COMPLETED'
+        name_contains: 'test-model'
+
+    - name: "get medical_transcription_jobs"
+      aws_transcribe_info:
+        list_medical_transcription_jobs: true
+        status: 'COMPLETED'
+        name_contains: 'test-jobs'
+
+    - name: "get list of transcription_jobs"
+      aws_transcribe_info:
+        list_transcription_jobs: true
+        status: 'COMPLETED'
+        name_contains: 'test-jobs'
+
+    - name: "get vocabulary_filters details"
+      aws_transcribe_info:
+        list_vocabulary_filters: true

@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of endpoints"
+      aws_timestream_query_info:
+        describe_endpoints: true
