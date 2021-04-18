@@ -1,0 +1,46 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of activated_rules_in_rule_group"
+      aws_waf_info:
+        list_activated_rules_in_rule_group: true
+        id: 'rule_group_id'
+
+    - name: "get byte_match_sets"
+      aws_waf_info:
+        list_byte_match_sets: true
+
+    - name: "get list of geo_match_sets"
+      aws_waf_info:
+        list_geo_match_sets: true
+
+    - name: "get ip_sets"
+      aws_waf_info:
+        list_ip_sets: true
+
+    - name: "get logging_configurations"
+      aws_waf_info:
+        list_logging_configurations: true
+
+    - name: "get rate_based_rules"
+      aws_waf_info:
+        list_rate_based_rules: true
+
+    - name: "get regex_match_sets"
+      aws_waf_info:
+        list_regex_match_sets: true
+
+    - name: "get rule_groups"
+      aws_waf_info:
+        list_rule_groups: true
+
+    - name: "get rules"
+      aws_waf_info:
+        list_rules: true
+
+    - name: "get size_constraint_sets"
+      aws_waf_info:
+        list_size_constraint_sets: true

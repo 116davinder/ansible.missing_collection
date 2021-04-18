@@ -236,6 +236,8 @@ Name | Description
 [community.missing_collection.aws_transcribe_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_transcribe_info_module.rst)|Get Information about Amazon Transcribe Service.
 [community.missing_collection.aws_transfer_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_transfer_info_module.rst)|Get Information about AWS Transfer Family.
 [community.missing_collection.aws_translate_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_translate_info_module.rst)|Get Information about Amazon Translate.
+[community.missing_collection.aws_waf_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_waf_info_module.rst)|Get Information about AWS WAF Classic (V1).
+[community.missing_collection.aws_waf_regional_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_waf_regional_info_module.rst)|Get Information about AWS WAF Classic Regional.
 [community.missing_collection.mapr_service](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_service_module.rst)|Manage MapR Services by rest api.
 [community.missing_collection.newrelic_deployment](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.newrelic_deployment_module.rst)|Notify newrelic about app deployments via v2 api.
 
