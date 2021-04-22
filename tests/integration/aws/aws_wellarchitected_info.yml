@@ -1,0 +1,24 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of lenses"
+      aws_wellarchitected_info:
+        list_lenses: true
+
+    - name: "get milestones"
+      aws_wellarchitected_info:
+        list_milestones: true
+        id: 'workload_id'
+
+    - name: "get notifications"
+      aws_wellarchitected_info:
+        list_notifications: true
+        id: 'workload_id'
+
+    - name: "get workloads"
+      aws_wellarchitected_info:
+        list_workloads: true
+        prefix: 'workload_name_prefix'
