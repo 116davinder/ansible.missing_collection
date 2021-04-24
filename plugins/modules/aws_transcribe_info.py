@@ -180,7 +180,6 @@ def main():
             ('list_language_models', True, ['name_contains']),
             ('list_medical_transcription_jobs', True, ['name_contains']),
             ('list_transcription_jobs', True, ['name_contains']),
-            ('list_vocabulary_filters', True, ['arn']),
         ),
         mutually_exclusive=[
             (

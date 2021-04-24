@@ -8,19 +8,20 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: aws_waf2_info
+module: aws_wafv2_info
 short_description: Get Information about AWS WAFV2.
 description:
   - Get Information about AWS WAFV2.
   - U(https://docs.aws.amazon.com/waf/latest/APIReference/API_Operations_AWS_WAFV2.html)
 version_added: 0.1.0
 options:
-  id:
+  scope:
     description:
-      - id of the rule group.
+      - scope of waf.
     required: false
     type: str
-    aliases: ['rule_group_id']
+    choices: ['CLOUDFRONT', 'REGIONAL']
+    default: 'CLOUDFRONT'
   list_available_managed_rule_groups:
     description:
       - do you want to get list of available_managed_rule_groups for given I(scope)?
@@ -63,32 +64,32 @@ requirements:
 
 EXAMPLES = """
 - name: "get list of available_managed_rule_groups"
-  aws_waf2_info:
+  aws_wafv2_info:
     list_available_managed_rule_groups: true
     scope: 'CLOUDFRONT'
 
 - name: "get ip_sets"
-  aws_waf2_info:
+  aws_wafv2_info:
     list_ip_sets: true
     scope: 'CLOUDFRONT'
 
 - name: "get logging_configurations"
-  aws_waf2_info:
+  aws_wafv2_info:
     list_logging_configurations: true
     scope: 'CLOUDFRONT'
 
 - name: "get regex_pattern_sets"
-  aws_waf2_info:
+  aws_wafv2_info:
     list_regex_pattern_sets: true
     scope: 'CLOUDFRONT'
 
 - name: "get rule_groups"
-  aws_waf2_info:
+  aws_wafv2_info:
     list_rule_groups: true
     scope: 'CLOUDFRONT'
 
 - name: "get web_acls"
-  aws_waf2_info:
+  aws_wafv2_info:
     list_web_acls: true
     scope: 'CLOUDFRONT'
 """
@@ -130,7 +131,7 @@ from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
 from ansible_collections.community.missing_collection.plugins.module_utils.aws_response_parser import aws_response_list_parser
 
 
-def _waf2(client, module):
+def _wafv2(client, module):
     try:
         if module.params['list_available_managed_rule_groups']:
             if client.can_paginate('list_available_managed_rule_groups'):
@@ -224,8 +225,8 @@ def main():
         ],
     )
 
-    client = module.client('waf2', retry_decorator=AWSRetry.exponential_backoff())
-    it, paginate = _waf2(client, module)
+    client = module.client('wafv2', retry_decorator=AWSRetry.exponential_backoff())
+    it, paginate = _wafv2(client, module)
 
     if module.params['list_available_managed_rule_groups']:
         module.exit_json(available_managed_rule_groups=aws_response_list_parser(paginate, it, 'ManagedRuleGroups'))

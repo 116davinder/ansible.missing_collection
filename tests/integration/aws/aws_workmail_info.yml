@@ -1,0 +1,39 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of access_control_rules"
+      aws_workmail_info:
+        list_access_control_rules: true
+        id: 'organization_id'
+
+    - name: "get groups"
+      aws_workmail_info:
+        list_groups: true
+        id: 'organization_id'
+
+    - name: "get mailbox_export_jobs"
+      aws_workmail_info:
+        list_mailbox_export_jobs: true
+        id: 'organization_id'
+
+    - name: "get mobile_device_access_rules"
+      aws_workmail_info:
+        list_mobile_device_access_rules: true
+        id: 'organization_id'
+
+    - name: "get organizations"
+      aws_workmail_info:
+        list_organizations: true
+
+    - name: "get resources"
+      aws_workmail_info:
+        list_resources: true
+        id: 'organization_id'
+
+    - name: "get users"
+      aws_workmail_info:
+        list_users: true
+        id: 'organization_id'

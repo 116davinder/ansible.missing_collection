@@ -116,7 +116,7 @@ def main():
         ],
     )
 
-    client = module.client('timestream_write', retry_decorator=AWSRetry.exponential_backoff())
+    client = module.client('timestream-write', retry_decorator=AWSRetry.exponential_backoff())
     it, paginate = _timestream_write(client, module)
 
     if module.params['list_databases']:

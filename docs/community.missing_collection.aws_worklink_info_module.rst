@@ -1,11 +1,11 @@
-.. _community.missing_collection.aws_waf2_info_module:
+.. _community.missing_collection.aws_worklink_info_module:
 
 
-******************************************
-community.missing_collection.aws_waf2_info
-******************************************
+**********************************************
+community.missing_collection.aws_worklink_info
+**********************************************
 
-**Get Information about AWS WAFV2.**
+**Get Information about Amazon WorkLink.**
 
 
 Version added: 0.1.0
@@ -17,8 +17,8 @@ Version added: 0.1.0
 
 Synopsis
 --------
-- Get Information about AWS WAFV2.
-- https://docs.aws.amazon.com/waf/latest/APIReference/API_Operations_AWS_WAFV2.html
+- Get Information about Amazon WorkLink.
+- https://docs.aws.amazon.com/worklink/latest/api/API_Operations.html
 
 
 
@@ -43,6 +43,22 @@ Parameters
             <th>Choices/<font color="blue">Defaults</font></th>
             <th width="100%">Comments</th>
         </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>arn</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>arn of fleet.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: fleet_arn</div>
+                </td>
+            </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
@@ -151,7 +167,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_available_managed_rule_groups</b>
+                    <b>list_devices</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -164,13 +180,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get list of available_managed_rule_groups for given <em>scope</em>?</div>
+                        <div>do you want to get list of devices?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_ip_sets</b>
+                    <b>list_domains</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -183,13 +199,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get ip_sets for given <em>scope</em>?</div>
+                        <div>do you want to get domains for given <em>arn</em>?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_logging_configurations</b>
+                    <b>list_fleets</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -202,13 +218,13 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get logging_configurations for given <em>scope</em>?</div>
+                        <div>do you want to get fleets for given <em>arn</em>?</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_regex_pattern_sets</b>
+                    <b>list_website_authorization_providers</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">boolean</span>
@@ -221,45 +237,7 @@ Parameters
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to get regex_pattern_sets for given <em>scope</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_rule_groups</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get rule_groups for given <em>scope</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>list_web_acls</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>no</li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to get web_acls for given <em>scope</em>?</div>
+                        <div>do you want to get website_authorization_providers for given <em>arn</em>?</div>
                 </td>
             </tr>
             <tr>
@@ -294,25 +272,6 @@ Parameters
                 <td>
                         <div>The AWS region to use. If not specified then the value of the AWS_REGION or EC2_REGION environment variable, if any, is used. See <a href='http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region'>http://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region</a></div>
                         <div style="font-size: small; color: darkgreen"><br/>aliases: aws_region, ec2_region</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>scope</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>CLOUDFRONT</b>&nbsp;&larr;</div></li>
-                                    <li>REGIONAL</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>scope of waf.</div>
                 </td>
             </tr>
             <tr>
@@ -371,35 +330,25 @@ Examples
 
 .. code-block:: yaml
 
-    - name: "get list of available_managed_rule_groups"
-      aws_waf2_info:
-        list_available_managed_rule_groups: true
-        scope: 'CLOUDFRONT'
+    - name: "get list of devices"
+      aws_worklink_info:
+        list_devices: true
+        arn: 'fleet_arn'
 
-    - name: "get ip_sets"
-      aws_waf2_info:
-        list_ip_sets: true
-        scope: 'CLOUDFRONT'
+    - name: "get domains"
+      aws_worklink_info:
+        list_domains: true
+        arn: 'fleet_arn'
 
-    - name: "get logging_configurations"
-      aws_waf2_info:
-        list_logging_configurations: true
-        scope: 'CLOUDFRONT'
+    - name: "get fleets"
+      aws_worklink_info:
+        list_fleets: true
+        arn: 'fleet_arn'
 
-    - name: "get regex_pattern_sets"
-      aws_waf2_info:
-        list_regex_pattern_sets: true
-        scope: 'CLOUDFRONT'
-
-    - name: "get rule_groups"
-      aws_waf2_info:
-        list_rule_groups: true
-        scope: 'CLOUDFRONT'
-
-    - name: "get web_acls"
-      aws_waf2_info:
-        list_web_acls: true
-        scope: 'CLOUDFRONT'
+    - name: "get website_authorization_providers"
+      aws_worklink_info:
+        list_website_authorization_providers: true
+        arn: 'fleet_arn'
 
 
 
@@ -418,90 +367,60 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>available_managed_rule_groups</b>
+                    <b>devices</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_available_managed_rule_groups` is defined and success.</td>
+                <td>when `list_devices` is defined and success.</td>
                 <td>
-                            <div>list of available_managed_rule_groups.</div>
+                            <div>list of devices.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>ip_sets</b>
+                    <b>domains</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_ip_sets` is defined and success.</td>
+                <td>when `list_domains` is defined and success.</td>
                 <td>
-                            <div>list of ip_sets.</div>
+                            <div>list of domains.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>logging_configurations</b>
+                    <b>fleets</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_logging_configurations` is defined and success.</td>
+                <td>when `list_fleets` is defined and success.</td>
                 <td>
-                            <div>list of logging_configurations.</div>
+                            <div>list of fleets.</div>
                     <br/>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>regex_pattern_sets</b>
+                    <b>website_authorization_providers</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when `list_regex_pattern_sets` is defined and success.</td>
+                <td>when `list_website_authorization_providers` is defined and success.</td>
                 <td>
-                            <div>list of regex_pattern_sets.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>rule_groups</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `list_rule_groups` is defined and success.</td>
-                <td>
-                            <div>list of rule_groups.</div>
-                    <br/>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>web_acls</b>
-                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
-                    <div style="font-size: small">
-                      <span style="color: purple">list</span>
-                    </div>
-                </td>
-                <td>when `list_web_acls` is defined and success.</td>
-                <td>
-                            <div>list of web_acls.</div>
+                            <div>list of website_authorization_providers.</div>
                     <br/>
                 </td>
             </tr>

@@ -8,5 +8,5 @@ No need to use full collection name in test playbook code.
 
 `ansible-galaxy collection install git+https://github.com/116davinder/ansible.missing_collection.git --force`
 * update the code in `plugins/modules/<module>.py`
-* export ANSIBLE_LIBRARY=`<clone repository path>/plugins/modules`
-* create/update test playbook in `tests/<module>.yml`
+* export ANSIBLE_LIBRARY=`<cloned repository path>/plugins/modules`
+* create/update test playbook in `tests/integration/<cloud-provider>/<module>.yml`

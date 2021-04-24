@@ -1,0 +1,25 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of devices"
+      aws_worklink_info:
+        list_devices: true
+        arn: 'fleet_arn'
+
+    - name: "get domains"
+      aws_worklink_info:
+        list_domains: true
+        arn: 'fleet_arn'
+
+    - name: "get fleets"
+      aws_worklink_info:
+        list_fleets: true
+        arn: 'fleet_arn'
+
+    - name: "get website_authorization_providers"
+      aws_worklink_info:
+        list_website_authorization_providers: true
+        arn: 'fleet_arn'
