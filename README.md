@@ -1,4 +1,5 @@
 ## Ansible Missing Collection 
+![Github Latest Release](https://img.shields.io/github/v/release/116davinder/ansible.missing_collection?include_prereleases)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/116davinder/ansible.missing_collection/CI%20Testing)
 ![Lines of code](https://img.shields.io/tokei/lines/github/116davinder/ansible.missing_collection)
 ![GitHub contributors](https://img.shields.io/github/contributors/116davinder/ansible.missing_collection)
