@@ -1,9 +1,9 @@
-.. _community.missing_collection.aws_waf2_info_module:
+.. _community.missing_collection.aws_wafv2_info_module:
 
 
-******************************************
-community.missing_collection.aws_waf2_info
-******************************************
+*******************************************
+community.missing_collection.aws_wafv2_info
+*******************************************
 
 **Get Information about AWS WAFV2.**
 
@@ -372,32 +372,32 @@ Examples
 .. code-block:: yaml
 
     - name: "get list of available_managed_rule_groups"
-      aws_waf2_info:
+      aws_wafv2_info:
         list_available_managed_rule_groups: true
         scope: 'CLOUDFRONT'
 
     - name: "get ip_sets"
-      aws_waf2_info:
+      aws_wafv2_info:
         list_ip_sets: true
         scope: 'CLOUDFRONT'
 
     - name: "get logging_configurations"
-      aws_waf2_info:
+      aws_wafv2_info:
         list_logging_configurations: true
         scope: 'CLOUDFRONT'
 
     - name: "get regex_pattern_sets"
-      aws_waf2_info:
+      aws_wafv2_info:
         list_regex_pattern_sets: true
         scope: 'CLOUDFRONT'
 
     - name: "get rule_groups"
-      aws_waf2_info:
+      aws_wafv2_info:
         list_rule_groups: true
         scope: 'CLOUDFRONT'
 
     - name: "get web_acls"
-      aws_waf2_info:
+      aws_wafv2_info:
         list_web_acls: true
         scope: 'CLOUDFRONT'
 
