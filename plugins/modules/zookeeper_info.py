@@ -41,6 +41,17 @@ EXAMPLES = '''
     command: stats
 '''
 
+RETURN = """
+commands:
+  description: list of zookeeper admin server commands.
+  returned: when no args are passed.
+  type: str
+output:
+  description: output of given zookeeper admin server command.
+  returned: when `command` is set.
+  type: dict
+"""
+
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import fetch_url
 import json
@@ -66,9 +77,9 @@ def main():
         module.fail_json(msg="Something Failed")
     elif info['status'] == 200:
         if module.params['command'] is None:
-            module.exit_json(output=resp.read())
+            module.exit_json(commands=resp.read())
         else:
-            module.exit_json(output=json.loads(resp.read()), changed=True)
+            module.exit_json(output=json.loads(resp.read()))
 
 
 if __name__ == '__main__':
