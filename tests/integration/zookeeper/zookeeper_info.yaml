@@ -1,0 +1,15 @@
+---
+
+- name: fetch list of zookeeper commands
+  community.missing_collection.zookeeper_info:
+    url: http://localhost:8080
+
+- name: fetch stats of zookeeper
+  community.missing_collection.zookeeper_info:
+    url: http://localhost:8080
+    command: stats
+
+- name: fetch environment data of zookeeper
+  community.missing_collection.zookeeper_info:
+    url: http://localhost:8080
+    command: environment
