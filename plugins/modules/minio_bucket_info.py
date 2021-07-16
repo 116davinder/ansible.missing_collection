@@ -152,6 +152,14 @@ EXAMPLES = """
     password: minioadmin
     get_bucket_encryption: true
     bucket: 'test'
+
+- name: get encryption details of given bucket
+  minio_bucket_info:
+    endpoint: "localhost:9000"
+    username: minioadmin
+    password: minioadmin
+    get_object_lock_config: true
+    bucket: 'test'
 """
 
 RETURN = """
@@ -186,6 +194,10 @@ notification:
 encryption:
   description: status of bucket encryption.
   returned: when `get_encryption` is defined and success.
+  type: dict
+object_lock_config:
+  description: status of bucket object locking.
+  returned: when `get_object_lock_config` is defined and success.
   type: dict
 """
 
@@ -244,6 +256,14 @@ def _minio_bucket(client, module):
                 return {
                     "status": "disabled"
                 }
+        elif module.params['get_object_lock_config']:
+            _res = client.get_object_lock_config(module.params['bucket'])
+            if _res is not None:
+                return {
+                    "duration": _res.duration,
+                    "mode": _res.mode
+                }
+
     except S3Error as e:
         module.fail_json({"error_code": e.code, "error_message": e.message})
 
@@ -263,6 +283,7 @@ def main():
         get_bucket_policy=dict(required=False, type=bool),
         get_bucket_notification=dict(required=False, type=bool),
         get_bucket_encryption=dict(required=False, type=bool),
+        get_object_lock_config=dict(required=False, type=bool),
     )
 
     module = AnsibleModule(
@@ -275,6 +296,7 @@ def main():
             ('get_bucket_policy', True, ['bucket']),
             ('get_bucket_notification', True, ['bucket']),
             ('get_bucket_encryption', True, ['bucket']),
+            ('get_object_lock_config', True, ['bucket']),
         ),
         mutually_exclusive=[
             (
@@ -286,6 +308,7 @@ def main():
                 'get_bucket_policy',
                 'get_bucket_notification',
                 'get_bucket_encryption',
+                'get_object_lock_config'
             )
         ],
     )
@@ -314,6 +337,8 @@ def main():
         module.exit_json(notification=response)
     elif module.params['get_bucket_encryption']:
         module.exit_json(encryption=response)
+    elif module.params['get_object_lock_config']:
+        module.exit_json(object_lock_config=response)
     else:
         module.fail_json("unknown options are passed")
 

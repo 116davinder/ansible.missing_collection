@@ -348,6 +348,14 @@ Examples
         get_bucket_encryption: true
         bucket: 'test'
 
+    - name: get encryption details of given bucket
+      minio_bucket_info:
+        endpoint: "localhost:9000"
+        username: minioadmin
+        password: minioadmin
+        get_object_lock_config: true
+        bucket: 'test'
+
 
 
 Return Values
@@ -419,6 +427,21 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
                 <td>when `get_bucket_notification` is defined and success.</td>
                 <td>
                             <div>list of bucket notification.</div>
+                    <br/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>object_lock_config</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                    </div>
+                </td>
+                <td>when `get_object_lock_config` is defined and success.</td>
+                <td>
+                            <div>status of bucket object locking.</div>
                     <br/>
                 </td>
             </tr>

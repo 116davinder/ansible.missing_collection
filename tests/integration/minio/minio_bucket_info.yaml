@@ -2,6 +2,7 @@
 
 - hosts: localhost
   gather_facts: false
+  ignore_errors: true
   tasks:
     - name: get list of sort buckets
       minio_bucket_info:
@@ -64,4 +65,12 @@
         username: minioadmin
         password: minioadmin
         get_bucket_encryption: true
+        bucket: 'test'
+
+    - name: get encryption details of given bucket
+      minio_bucket_info:
+        endpoint: "localhost:9000"
+        username: minioadmin
+        password: minioadmin
+        get_object_lock_config: true
         bucket: 'test'
