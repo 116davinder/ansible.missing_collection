@@ -25,13 +25,13 @@ options:
       - minio api endpoint username.
     required: true
     type: str
-    aliaser: ['access_key']
+    aliases: ['access_key']
   password:
     description:
       - minio api endpoint password.
     required: true
     type: str
-    aliaser: ['secret_key']
+    aliases: ['secret_key']
   secure:
     description:
       - do you want to enable https/tls connection?
@@ -91,14 +91,14 @@ requirements:
 
 EXAMPLES = """
 - name: get list of sort buckets
-    minio_bucket_info:
+  community.missing_collection.minio_bucket_info:
     endpoint: "localhost:9000"
     username: minioadmin
     password: minioadmin
     list_buckets: true
 
 - name: get version status of given bucket
-    minio_bucket_info:
+  community.missing_collection.minio_bucket_info:
     endpoint: "localhost:9000"
     username: minioadmin
     password: minioadmin
@@ -106,7 +106,7 @@ EXAMPLES = """
     bucket: 'test'
 
 - name: get replication status of given bucket
-    minio_bucket_info:
+  community.missing_collection.minio_bucket_info:
     endpoint: "localhost:9000"
     username: minioadmin
     password: minioadmin
@@ -114,7 +114,7 @@ EXAMPLES = """
     bucket: 'test'
 
 - name: get lifecycle rules & their status of given bucket
-    minio_bucket_info:
+  community.missing_collection.minio_bucket_info:
     endpoint: "localhost:9000"
     username: minioadmin
     password: minioadmin
@@ -122,7 +122,7 @@ EXAMPLES = """
     bucket: 'test'
 
 - name: get tags of given bucket
-    minio_bucket_info:
+  community.missing_collection.minio_bucket_info:
     endpoint: "localhost:9000"
     username: minioadmin
     password: minioadmin
@@ -130,7 +130,7 @@ EXAMPLES = """
     bucket: 'test'
 
 - name: get policy of given bucket
-    minio_bucket_info:
+  community.missing_collection.minio_bucket_info:
     endpoint: "localhost:9000"
     username: minioadmin
     password: minioadmin
@@ -138,7 +138,7 @@ EXAMPLES = """
     bucket: 'test'
 
 - name: get notification details of given bucket
-    minio_bucket_info:
+  community.missing_collection.minio_bucket_info:
     endpoint: "localhost:9000"
     username: minioadmin
     password: minioadmin
@@ -146,7 +146,7 @@ EXAMPLES = """
     bucket: 'test'
 
 - name: get encryption details of given bucket
-    minio_bucket_info:
+  community.missing_collection.minio_bucket_info:
     endpoint: "localhost:9000"
     username: minioadmin
     password: minioadmin
@@ -154,7 +154,7 @@ EXAMPLES = """
     bucket: 'test'
 
 - name: get encryption details of given bucket
-  minio_bucket_info:
+  community.missing_collection.minio_bucket_info:
     endpoint: "localhost:9000"
     username: minioadmin
     password: minioadmin

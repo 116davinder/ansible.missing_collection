@@ -237,6 +237,7 @@ Parameters
                 </td>
                 <td>
                         <div>minio api endpoint password.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: secret_key</div>
                 </td>
             </tr>
             <tr>
@@ -272,6 +273,7 @@ Parameters
                 </td>
                 <td>
                         <div>minio api endpoint username.</div>
+                        <div style="font-size: small; color: darkgreen"><br/>aliases: access_key</div>
                 </td>
             </tr>
     </table>
@@ -286,14 +288,14 @@ Examples
 .. code-block:: yaml
 
     - name: get list of sort buckets
-        minio_bucket_info:
+      community.missing_collection.minio_bucket_info:
         endpoint: "localhost:9000"
         username: minioadmin
         password: minioadmin
         list_buckets: true
 
     - name: get version status of given bucket
-        minio_bucket_info:
+      community.missing_collection.minio_bucket_info:
         endpoint: "localhost:9000"
         username: minioadmin
         password: minioadmin
@@ -301,7 +303,7 @@ Examples
         bucket: 'test'
 
     - name: get replication status of given bucket
-        minio_bucket_info:
+      community.missing_collection.minio_bucket_info:
         endpoint: "localhost:9000"
         username: minioadmin
         password: minioadmin
@@ -309,7 +311,7 @@ Examples
         bucket: 'test'
 
     - name: get lifecycle rules & their status of given bucket
-        minio_bucket_info:
+      community.missing_collection.minio_bucket_info:
         endpoint: "localhost:9000"
         username: minioadmin
         password: minioadmin
@@ -317,7 +319,7 @@ Examples
         bucket: 'test'
 
     - name: get tags of given bucket
-        minio_bucket_info:
+      community.missing_collection.minio_bucket_info:
         endpoint: "localhost:9000"
         username: minioadmin
         password: minioadmin
@@ -325,7 +327,7 @@ Examples
         bucket: 'test'
 
     - name: get policy of given bucket
-        minio_bucket_info:
+      community.missing_collection.minio_bucket_info:
         endpoint: "localhost:9000"
         username: minioadmin
         password: minioadmin
@@ -333,7 +335,7 @@ Examples
         bucket: 'test'
 
     - name: get notification details of given bucket
-        minio_bucket_info:
+      community.missing_collection.minio_bucket_info:
         endpoint: "localhost:9000"
         username: minioadmin
         password: minioadmin
@@ -341,7 +343,7 @@ Examples
         bucket: 'test'
 
     - name: get encryption details of given bucket
-        minio_bucket_info:
+      community.missing_collection.minio_bucket_info:
         endpoint: "localhost:9000"
         username: minioadmin
         password: minioadmin
@@ -349,7 +351,7 @@ Examples
         bucket: 'test'
 
     - name: get encryption details of given bucket
-      minio_bucket_info:
+      community.missing_collection.minio_bucket_info:
         endpoint: "localhost:9000"
         username: minioadmin
         password: minioadmin
