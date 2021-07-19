@@ -43,7 +43,7 @@ options:
       - use SSL for rethinkdb connection.
       - may not work!.
     required: false
-    type: bool
+    type: dict
     default: None
   state:
     description:
@@ -119,7 +119,7 @@ def main():
         port=dict(required=False, type=int, default=28015),
         user=dict(required=False, default='admin'),
         password=dict(required=False, default=''),
-        ssl=dict(required=False, default=None),
+        ssl=dict(required=False, type=dict, default=None),
         state=dict(
             required=False,
             choices=['present', 'absent'],
