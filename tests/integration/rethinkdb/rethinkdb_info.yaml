@@ -1,0 +1,21 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get server status from rethinkdb
+      rethinkdb_info:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        table: 'server_status'
+
+    - name: get user list from rethinkdb
+      rethinkdb_info:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        table: 'users'

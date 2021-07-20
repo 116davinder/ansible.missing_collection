@@ -110,7 +110,7 @@ error:
 from ansible.module_utils.basic import AnsibleModule
 import json
 from rethinkdb import RethinkDB
-from rethinkdb.errors import ReqlOpFailedError
+from rethinkdb.errors import ReqlOpFailedError, ReqlAuthError
 
 
 def main():
@@ -133,14 +133,15 @@ def main():
     )
 
     client = RethinkDB()
-    conn = client.connect(
-        host=module.params['host'],
-        port=module.params['port'],
-        user=module.params['user'],
-        password=module.params['password'],
-        ssl=module.params['ssl']
-    )
+
     try:
+        conn = client.connect(
+            host=module.params['host'],
+            port=module.params['port'],
+            user=module.params['user'],
+            password=module.params['password'],
+            ssl=module.params['ssl']
+        )
         if module.params['state'].lower() == 'present':
             _res = client.db_create(module.params['database']).run(conn)
         else:
@@ -152,8 +153,11 @@ def main():
         elif module.params['state'] == 'absent' and "does not exist" in e.message:
             module.exit_json(changed=False, result=e.message)
         else:
-            module.fail_json(error=e.message)
-    conn.close(noreply_wait=False)
+            module.fail_json(msg=e.message)
+    except ReqlAuthError as e:
+        module.fail_json(msg=e.message)
+    finally:
+        conn.close(noreply_wait=False)
 
 
 if __name__ == '__main__':
