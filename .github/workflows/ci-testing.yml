@@ -23,7 +23,7 @@ jobs:
       - name: Install test dependencies.
         run: pip3 install pycodestyle yamllint
 
-      - name: Yaml Lint AWS Integration code.
+      - name: Yaml Lint Integration Code.
         run: yamllint tests/integration/aws
         
       - name: Pycodestyle Lint Module
