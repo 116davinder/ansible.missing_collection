@@ -1,0 +1,47 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: rebalance database
+      rethinkdb_admin:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        command: 'rebalance'
+        database: 'database1'
+
+    - name: rebalance given table of database only
+      rethinkdb_admin:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        command: 'rebalance'
+        database: 'database1'
+        table: 'table1'
+
+    - name: reconfigure database
+      rethinkdb_admin:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        command: 'reconfigure'
+        database: 'database1'
+        shards: 3
+        replicas: 1
+
+    - name: reconfigure given table of database only
+      rethinkdb_admin:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        command: 'reconfigure'
+        database: 'database2'
+        table: 'table1'
+        shards: 4
+        replicas: 1

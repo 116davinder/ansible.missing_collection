@@ -1,11 +1,11 @@
-.. _community.missing_collection.rethinkdb_info_module:
+.. _community.missing_collection.rethinkdb_admin_module:
 
 
-*******************************************
-community.missing_collection.rethinkdb_info
-*******************************************
+********************************************
+community.missing_collection.rethinkdb_admin
+********************************************
 
-**Get information from RethinkDB Database.**
+**Admin Operations of RethinkDB Database/Table.**
 
 
 Version added: 0.1.1
@@ -17,8 +17,9 @@ Version added: 0.1.1
 
 Synopsis
 --------
-- Get information from RethinkDB Database.
-- https://rethinkdb.com/docs/system-tables/#overview
+- Manual Rebalance of Database/Table Trigger.
+- Reconfigure Shards/Replicas of Database/Table.
+- https://rethinkdb.com/api/python/
 
 
 
@@ -43,6 +44,41 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>command</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>rebalance</li>
+                                    <li>reconfigure</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>name of the admin command.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>database</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                         / <span style="color: red">required</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>name of the database</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>host</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -54,23 +90,6 @@ Parameters
                 </td>
                 <td>
                         <div>hostname of rethinkdb.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>limit</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">integer</span>
-                         / <span style="color: red">required</span>
-                    </div>
-                </td>
-                <td>
-                        <b>Default:</b><br/><div style="color: blue">10</div>
-                </td>
-                <td>
-                        <div>limit number of results to fetch.</div>
                 </td>
             </tr>
             <tr>
@@ -108,6 +127,39 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>replicas</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>number of replicas.</div>
+                        <div>it can&#x27;t be more than number of servers in cluster.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>shards</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>number of shards.</div>
+                        <div>it can&#x27;t be more than 64.</div>
+                        <div><a href='https://rethinkdb.com/api/python/reconfigure'>https://rethinkdb.com/api/python/reconfigure</a></div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>ssl</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -132,23 +184,10 @@ Parameters
                     </div>
                 </td>
                 <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>table_config</li>
-                                    <li>server_config</li>
-                                    <li>db_config</li>
-                                    <li>cluster_config</li>
-                                    <li>table_status</li>
-                                    <li><div style="color: blue"><b>server_status</b>&nbsp;&larr;</div></li>
-                                    <li>current_issues</li>
-                                    <li>users</li>
-                                    <li>permissions</li>
-                                    <li>jobs</li>
-                                    <li>stats</li>
-                                    <li>logs</li>
-                        </ul>
                 </td>
                 <td>
-                        <div>name of the system table.</div>
+                        <div>name of the database table</div>
+                        <div>if <em>table</em> is set then <em>command</em> will run on specified table only.</div>
                 </td>
             </tr>
             <tr>
@@ -178,21 +217,47 @@ Examples
 
 .. code-block:: yaml
 
-    - name: get server status from rethinkdb
-      community.missing_collection.rethinkdb_info:
+    - name: rebalance database
+      community.missing_collection.rethinkdb_admin:
         host: 'localhost'
         port: 28015
         user: 'admin'
         password: ''
-        table: 'server_status'
+        command: 'rebalance'
+        database: 'database1'
 
-    - name: get user list from rethinkdb
-      community.missing_collection.rethinkdb_info:
+    - name: rebalance given table of database only
+      community.missing_collection.rethinkdb_admin:
         host: 'localhost'
         port: 28015
         user: 'admin'
         password: ''
-        table: 'users'
+        command: 'rebalance'
+        database: 'database1'
+        table: 'table1'
+
+    - name: reconfigure database
+      community.missing_collection.rethinkdb_admin:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        command: 'reconfigure'
+        database: 'database2'
+        shards: 3
+        replicas: 1
+
+    - name: reconfigure given table of database only
+      community.missing_collection.rethinkdb_admin:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        command: 'reconfigure'
+        database: 'database2'
+        table: 'table1'
+        shards: 4
+        replicas: 1
 
 
 
@@ -214,15 +279,13 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
                     <b>result</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">list</span>
+                      <span style="color: purple">dictionary</span>
                     </div>
                 </td>
                 <td>when success.</td>
                 <td>
-                            <div>result of the database query.</div>
+                            <div>result of the database admin command.</div>
                     <br/>
-                        <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;id&#x27;: &#x27;f3389b47-3a78-4108-b85e-45cd06bcc69a&#x27;, &#x27;name&#x27;: &#x27;555e32d208e5_mgu&#x27;, &#x27;network&#x27;: {&#x27;canonical_addresses&#x27;: [{&#x27;host&#x27;: &#x27;127.0.0.1&#x27;, &#x27;port&#x27;: 29015}, {&#x27;host&#x27;: &#x27;172.17.0.2&#x27;, &#x27;port&#x27;: 29015}], &#x27;cluster_port&#x27;: 29015, &#x27;connected_to&#x27;: {}, &#x27;hostname&#x27;: &#x27;555e32d208e5&#x27;, &#x27;http_admin_port&#x27;: 8080, &#x27;reql_port&#x27;: 28015, &#x27;time_connected&#x27;: &#x27;2021-07-20T16:35:58.725000+00:00&#x27;}, &#x27;process&#x27;: {&#x27;argv&#x27;: [&#x27;rethinkdb&#x27;, &#x27;--bind&#x27;, &#x27;all&#x27;], &#x27;cache_size_mb&#x27;: 11712.3125, &#x27;pid&#x27;: 1, &#x27;time_started&#x27;: &#x27;2021-07-20T16:35:58.723000+00:00&#x27;, &#x27;version&#x27;: &#x27;rethinkdb 2.4.1~0buster (CLANG 7.0.1 (tags/RELEASE_701/final))&#x27;}}]</div>
                 </td>
             </tr>
     </table>

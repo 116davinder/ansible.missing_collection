@@ -50,7 +50,8 @@ options:
       - name of the system table.
     required: false
     type: str
-    choices: ['table_config',
+    choices: [
+      'table_config',
       'server_config',
       'db_config',
       'cluster_config',
@@ -125,17 +126,12 @@ result:
       "version": "rethinkdb 2.4.1~0buster (CLANG 7.0.1 (tags/RELEASE_701/final))"
     }
   }]
-msg:
-  description: error message.
-  returned: when failure occurs.
-  type: str
-  sample: "Could not connect to localhost:28015, Unknown user"
 """
 
 from ansible.module_utils.basic import AnsibleModule
 import json
 from rethinkdb import RethinkDB
-from rethinkdb.errors import ReqlAuthError
+from rethinkdb.errors import ReqlOpFailedError, ReqlAuthError
 from rethinkdb.net import DefaultCursorEmpty
 
 
@@ -172,17 +168,18 @@ def main():
     )
 
     client = RethinkDB()
+    _params = {
+        'host': module.params['host'],
+        'port': module.params['port'],
+        'user': module.params['user'],
+        'password': module.params['password'],
+        'ssl': module.params['ssl'],
+        'db': 'rethinkdb'
+    }
     __res = []
 
     try:
-        conn = client.connect(
-            host=module.params['host'],
-            port=module.params['port'],
-            user=module.params['user'],
-            password=module.params['password'],
-            ssl=module.params['ssl'],
-            db='rethinkdb'
-        )
+        conn = client.connect(**_params)
         _res = client.table(module.params['table']).limit(module.params['limit']).run(conn)
         while True:
             try:
@@ -190,7 +187,7 @@ def main():
             except DefaultCursorEmpty as e:
                 break
         module.exit_json(result=__res)
-    except ReqlAuthError as e:
+    except (ReqlAuthError, ReqlOpFailedError) as e:
         module.fail_json(msg=e.message)
     finally:
         conn.close(noreply_wait=False)

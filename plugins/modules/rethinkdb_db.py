@@ -101,10 +101,6 @@ result:
     "dbs_dropped": 1,
     "tables_dropped": 0
   }
-error:
-  description: error message
-  returned: when failure for state `present/absent`.
-  type: dict
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -133,28 +129,29 @@ def main():
     )
 
     client = RethinkDB()
+    _params = {
+        'host': module.params['host'],
+        'port': module.params['port'],
+        'user': module.params['user'],
+        'password': module.params['password'],
+        'ssl': module.params['ssl']
+    }
 
     try:
-        conn = client.connect(
-            host=module.params['host'],
-            port=module.params['port'],
-            user=module.params['user'],
-            password=module.params['password'],
-            ssl=module.params['ssl']
-        )
+        conn = client.connect(**_params)
         if module.params['state'].lower() == 'present':
             _res = client.db_create(module.params['database']).run(conn)
         else:
             _res = client.db_drop(module.params['database']).run(conn)
         module.exit_json(changed=True, result=_res)
     except ReqlOpFailedError as e:
-        if module.params['state'].lower() == 'present' and "already exists" in e.message:
+        if module.params['state'].lower() == 'present' and 'already exists' in e.message:
             module.exit_json(changed=False, result=e.message)
-        elif module.params['state'] == 'absent' and "does not exist" in e.message:
+        elif module.params['state'] == 'absent' and 'does not exist' in e.message:
             module.exit_json(changed=False, result=e.message)
         else:
             module.fail_json(msg=e.message)
-    except ReqlAuthError as e:
+    except (ReqlAuthError, ReqlOpFailedError) as e:
         module.fail_json(msg=e.message)
     finally:
         conn.close(noreply_wait=False)
