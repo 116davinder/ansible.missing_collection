@@ -1,0 +1,31 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: list all database in rethinkdb cluster
+      rethinkdb_db_info:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        list_databases: true
+
+    - name: get information about given rethinkdb database
+      rethinkdb_db_info:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        list_database_config: true
+        database: 'database1'
+
+    - name: get list of tables of given rethinkdb database
+      rethinkdb_db_info:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        list_tables: true
+        database: 'database1'

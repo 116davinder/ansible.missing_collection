@@ -1,9 +1,9 @@
-.. _community.missing_collection.rethinkdb_info_module:
+.. _community.missing_collection.rethinkdb_admin_info_module:
 
 
-*******************************************
-community.missing_collection.rethinkdb_info
-*******************************************
+*************************************************
+community.missing_collection.rethinkdb_admin_info
+*************************************************
 
 **Get information from RethinkDB Database.**
 
@@ -179,7 +179,7 @@ Examples
 .. code-block:: yaml
 
     - name: get server status from rethinkdb
-      community.missing_collection.rethinkdb_info:
+      community.missing_collection.rethinkdb_admin_info:
         host: 'localhost'
         port: 28015
         user: 'admin'
@@ -187,7 +187,7 @@ Examples
         table: 'server_status'
 
     - name: get user list from rethinkdb
-      community.missing_collection.rethinkdb_info:
+      community.missing_collection.rethinkdb_admin_info:
         host: 'localhost'
         port: 28015
         user: 'admin'

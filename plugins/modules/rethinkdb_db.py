@@ -151,7 +151,7 @@ def main():
             module.exit_json(changed=False, result=e.message)
         else:
             module.fail_json(msg=e.message)
-    except (ReqlAuthError, ReqlOpFailedError) as e:
+    except ReqlAuthError as e:
         module.fail_json(msg=e.message)
     finally:
         conn.close(noreply_wait=False)

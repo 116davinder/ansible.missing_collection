@@ -8,7 +8,7 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: rethinkdb_info
+module: rethinkdb_admin_info
 short_description: Get information from RethinkDB Database.
 description:
   - Get information from RethinkDB Database.
@@ -79,7 +79,7 @@ requirements:
 
 EXAMPLES = """
 - name: get server status from rethinkdb
-  community.missing_collection.rethinkdb_info:
+  community.missing_collection.rethinkdb_admin_info:
     host: 'localhost'
     port: 28015
     user: 'admin'
@@ -87,7 +87,7 @@ EXAMPLES = """
     table: 'server_status'
 
 - name: get user list from rethinkdb
-  community.missing_collection.rethinkdb_info:
+  community.missing_collection.rethinkdb_admin_info:
     host: 'localhost'
     port: 28015
     user: 'admin'
