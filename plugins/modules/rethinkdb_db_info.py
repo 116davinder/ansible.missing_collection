@@ -4,6 +4,7 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
@@ -127,8 +128,8 @@ def main():
     argument_spec = dict(
         host=dict(required=True),
         port=dict(required=False, type=int, default=28015),
-        user=dict(required=False, default='admin'),
-        password=dict(required=False, default=''),
+        user=dict(required=False, default="admin"),
+        password=dict(required=False, default=""),
         ssl=dict(required=False, type=dict, default=None),
         database=dict(required=False),
         list_databases=dict(required=False, type=bool),
@@ -139,38 +140,32 @@ def main():
     module = AnsibleModule(
         argument_spec=argument_spec,
         required_if=(
-            ('list_database_config', True, ['database']),
-            ('list_tables', True, ['database']),
+            ("list_database_config", True, ["database"]),
+            ("list_tables", True, ["database"]),
         ),
-        mutually_exclusive=[
-            (
-                'list_databases',
-                'list_database_config',
-                'list_tables'
-            )
-        ]
+        mutually_exclusive=[("list_databases", "list_database_config", "list_tables")],
     )
 
     client = RethinkDB()
     _params = {
-        'host': module.params['host'],
-        'port': module.params['port'],
-        'user': module.params['user'],
-        'password': module.params['password'],
-        'ssl': module.params['ssl'],
-        'db': 'rethinkdb'
+        "host": module.params["host"],
+        "port": module.params["port"],
+        "user": module.params["user"],
+        "password": module.params["password"],
+        "ssl": module.params["ssl"],
+        "db": "rethinkdb",
     }
 
     try:
         conn = client.connect(**_params)
-        if module.params['list_databases']:
+        if module.params["list_databases"]:
             _res = client.db_list().run(conn)
             module.exit_json(databases=_res)
-        elif module.params['list_database_config']:
-            _res = client.db(module.params['database']).config().run(conn)
+        elif module.params["list_database_config"]:
+            _res = client.db(module.params["database"]).config().run(conn)
             module.exit_json(database_config=_res)
-        elif module.params['list_tables']:
-            _res = client.db(module.params['database']).table_list().run(conn)
+        elif module.params["list_tables"]:
+            _res = client.db(module.params["database"]).table_list().run(conn)
             module.exit_json(tables=_res)
         else:
             module.fail_json("unknown options")
@@ -180,5 +175,5 @@ def main():
         conn.close(noreply_wait=False)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

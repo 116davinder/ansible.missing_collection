@@ -4,6 +4,7 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
@@ -147,13 +148,10 @@ def main():
     argument_spec = dict(
         host=dict(required=True),
         port=dict(required=False, type=int, default=28015),
-        user=dict(required=False, default='admin'),
-        password=dict(required=False, default=''),
+        user=dict(required=False, default="admin"),
+        password=dict(required=False, default=""),
         ssl=dict(required=False, type=dict, default=None),
-        command=dict(
-            required=False,
-            choices=['rebalance', 'reconfigure']
-        ),
+        command=dict(required=False, choices=["rebalance", "reconfigure"]),
         database=dict(required=True),
         table=dict(required=False),
         shards=dict(required=False, type=int),
@@ -166,42 +164,51 @@ def main():
 
     client = RethinkDB()
     _params = {
-        'host': module.params['host'],
-        'port': module.params['port'],
-        'user': module.params['user'],
-        'password': module.params['password'],
-        'ssl': module.params['ssl'],
-        'db': 'rethinkdb'
+        "host": module.params["host"],
+        "port": module.params["port"],
+        "user": module.params["user"],
+        "password": module.params["password"],
+        "ssl": module.params["ssl"],
+        "db": "rethinkdb",
     }
 
     try:
         conn = client.connect(**_params)
 
-        if module.params['command'].lower() == 'rebalance':
-            if module.params['table'] is None:
-                _res = client.db(module.params['database']) \
-                             .rebalance() \
-                             .run(conn)
+        if module.params["command"].lower() == "rebalance":
+            if module.params["table"] is None:
+                _res = client.db(module.params["database"]).rebalance().run(conn)
             else:
-                _res = client.db(module.params['database']) \
-                             .table(module.params['table']) \
-                             .rebalance() \
-                             .run(conn)
-
-            if _res['rebalanced'] > 0:
+                _res = (
+                    client.db(module.params["database"])
+                    .table(module.params["table"])
+                    .rebalance()
+                    .run(conn)
+                )
+            if "rebalanced" in _res and _res["rebalanced"] > 0:
                 module.exit_json(changed=True, result=_res)
             else:
                 module.exit_json(result=_res)
-        elif module.params['command'].lower() == 'reconfigure':
-            if module.params['table'] is None:
-                _res = client.db(module.params['database']) \
-                             .reconfigure(shards=module.params['shards'], replicas=module.params['replicas']) \
-                             .run(conn)
+        elif module.params["command"].lower() == "reconfigure":
+            if module.params["table"] is None:
+                _res = (
+                    client.db(module.params["database"])
+                    .reconfigure(
+                        shards=module.params["shards"],
+                        replicas=module.params["replicas"],
+                    )
+                    .run(conn)
+                )
             else:
-                _res = client.db(module.params['database']) \
-                             .table(module.params['table']) \
-                             .reconfigure(shards=module.params['shards'], replicas=module.params['replicas']) \
-                             .run(conn)
+                _res = (
+                    client.db(module.params["database"])
+                    .table(module.params["table"])
+                    .reconfigure(
+                        shards=module.params["shards"],
+                        replicas=module.params["replicas"],
+                    )
+                    .run(conn)
+                )
             module.exit_json(changed=True, result=_res)
 
     except (ReqlAuthError, ReqlOpFailedError) as e:
@@ -210,5 +217,5 @@ def main():
         conn.close(noreply_wait=False)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -1,0 +1,25 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create table in rethinkdb
+      rethinkdb_table:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        state: present
+        database: 'database1'
+        table: 'table1'
+
+    - name: delete table in rethinkdb
+      rethinkdb_table:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        state: absent
+        database: 'database1'
+        table: 'table1'

@@ -12,7 +12,7 @@ then
 fi
 
 echo "Running Pycodestyle"
-pycodestyle --config=.pycodestyle plugins/module_utils/ plugins/modules
+pycodestyle --config=.pycodestyle plugins/module_utils/ plugins/modules --show-source
 
 echo "Running Yamllint"
 yamllint tests/integration

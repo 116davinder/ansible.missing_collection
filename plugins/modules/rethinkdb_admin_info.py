@@ -4,6 +4,7 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
@@ -139,28 +140,28 @@ def main():
     argument_spec = dict(
         host=dict(required=True),
         port=dict(required=False, type=int, default=28015),
-        user=dict(required=False, default='admin'),
-        password=dict(required=False, default=''),
+        user=dict(required=False, default="admin"),
+        password=dict(required=False, default=""),
         ssl=dict(required=False, type=dict, default=None),
         table=dict(
             required=False,
             choices=[
-                'table_config',
-                'server_config',
-                'db_config',
-                'cluster_config',
-                'table_status',
-                'server_status',
-                'current_issues',
-                'users',
-                'permissions',
-                'jobs',
-                'stats',
-                'logs'
+                "table_config",
+                "server_config",
+                "db_config",
+                "cluster_config",
+                "table_status",
+                "server_status",
+                "current_issues",
+                "users",
+                "permissions",
+                "jobs",
+                "stats",
+                "logs",
             ],
-            default='server_status'
+            default="server_status",
         ),
-        limit=dict(required=False, type=int, default=10)
+        limit=dict(required=False, type=int, default=10),
     )
 
     module = AnsibleModule(
@@ -169,18 +170,20 @@ def main():
 
     client = RethinkDB()
     _params = {
-        'host': module.params['host'],
-        'port': module.params['port'],
-        'user': module.params['user'],
-        'password': module.params['password'],
-        'ssl': module.params['ssl'],
-        'db': 'rethinkdb'
+        "host": module.params["host"],
+        "port": module.params["port"],
+        "user": module.params["user"],
+        "password": module.params["password"],
+        "ssl": module.params["ssl"],
+        "db": "rethinkdb",
     }
     __res = []
 
     try:
         conn = client.connect(**_params)
-        _res = client.table(module.params['table']).limit(module.params['limit']).run(conn)
+        _res = (
+            client.table(module.params["table"]).limit(module.params["limit"]).run(conn)
+        )
         while True:
             try:
                 __res.append(_res.next())
@@ -193,5 +196,5 @@ def main():
         conn.close(noreply_wait=False)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
