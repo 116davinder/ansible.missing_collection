@@ -252,6 +252,8 @@ Name | Description
 [community.missing_collection.rethinkdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_db_module.rst)|Create/Delete RethinkDB Database.
 [community.missing_collection.rethinkdb_db_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_db_info_module.rst)|Get information about RethinkDB Database.
 [community.missing_collection.rethinkdb_table](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_table_module.rst)|Create/Delete RethinkDB Table.
+[community.missing_collection.rethinkdb_table_index](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_table_index_module.rst)|Create/Delete RethinkDB Table Secondary Index.
+[community.missing_collection.rethinkdb_table_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_table_info_module.rst)|Get information about RethinkDB Table.
 [community.missing_collection.zookeeper_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.zookeeper_info_module.rst)|Get Information about Zookeeper Instance.
 
 <!--end collection content-->
