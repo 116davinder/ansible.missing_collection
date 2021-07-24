@@ -1,0 +1,46 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get secondary indexes list in rethinkdb
+      rethinkdb_table_info:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        database: 'test'
+        table: 'test1'
+        index_list: true
+
+    - name: get status of all secondary index in rethinkdb
+      rethinkdb_table_info:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        database: 'test'
+        table: 'test1'
+        index_status: true
+
+    - name: get status of given secondary index in rethinkdb
+      rethinkdb_table_info:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        database: 'test'
+        table: 'test1'
+        index_status: true
+        index_name: 'test_id'
+
+    - name: get write hook details in rethinkdb
+      rethinkdb_table_info:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        database: 'test'
+        table: 'test1'
+        get_write_hook: true

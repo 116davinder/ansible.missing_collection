@@ -60,7 +60,7 @@ options:
 '''
 
 EXAMPLES = '''
-- mapr_service:
+- community.missing_collection.mapr_service:
     username: mapr
     password: mapr
     service_name: nfs

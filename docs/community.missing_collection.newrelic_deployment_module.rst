@@ -155,7 +155,7 @@ Examples
 .. code-block:: yaml
 
     - name:  Notify newrelic about an app deployment
-      newrelic_deployment:
+      community.missing_collection.newrelic_deployment:
         token: XXXXXXXXX
         app_name: ansible_app
         user: ansible_deployment_user

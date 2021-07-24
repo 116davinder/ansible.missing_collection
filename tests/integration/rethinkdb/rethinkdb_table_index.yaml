@@ -1,0 +1,39 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create table secondary index in rethinkdb
+      rethinkdb_table_index:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        state: present
+        database: 'test'
+        table: 'test1'
+        key: 'test_id'
+
+    - name: rename table secondary index named test_id in rethinkdb
+      rethinkdb_table_index:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        state: rename
+        database: 'test'
+        table: 'test1'
+        key: 'test_id'
+        new_key: 'test_new_key'
+
+    - name: delete table secondary index named test_id in rethinkdb
+      rethinkdb_table_index:
+        host: 'localhost'
+        port: 28015
+        user: 'admin'
+        password: ''
+        state: absent
+        database: 'test'
+        table: 'test1'
+        key: 'test_new_key'
