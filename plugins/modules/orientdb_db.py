@@ -110,8 +110,6 @@ RETURN = """
 
 from ansible.module_utils.basic import AnsibleModule
 from pyorient import OrientDB
-from pyorient import DB_TYPE_GRAPH, DB_TYPE_DOCUMENT
-from pyorient import STORAGE_TYPE_MEMORY, STORAGE_TYPE_PLOCAL
 from pyorient.exceptions import PyOrientDatabaseException
 from pyorient.exceptions import PyOrientCommandException
 
@@ -143,20 +141,11 @@ def main():
             password=module.params["password"]
         )
 
-        if module.params["type"] == "document":
-            _type = DB_TYPE_DOCUMENT
-        else:
-            _type = DB_TYPE_GRAPH
-
-        if module.params["storage_type"] == "plocal":
-            _storage = STORAGE_TYPE_PLOCAL
-        else:
-            _storage = STORAGE_TYPE_MEMORY
         if module.params["state"].lower() == "present":
             client.db_create(
                 name=module.params["database"],
-                type=_type,
-                storage=_storage
+                type=module.params["type"],
+                storage=module.params["storage_type"]
             )
         else:
             client.db_drop(module.params["database"])
