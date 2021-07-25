@@ -181,7 +181,6 @@ write_hook:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-import json
 from rethinkdb import RethinkDB
 from rethinkdb.errors import ReqlOpFailedError, ReqlAuthError
 
