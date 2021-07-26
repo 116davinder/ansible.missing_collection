@@ -24,7 +24,7 @@ jobs:
         run: pip3 install pycodestyle yamllint
 
       - name: Yaml Lint Integration Code.
-        run: yamllint tests/integration/aws
+        run: yamllint tests/integration
         
       - name: Pycodestyle Lint Module
         run: pycodestyle --config=.pycodestyle plugins/modules/
