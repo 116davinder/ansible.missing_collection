@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get list of autoscaling configurations of apprunner"
+      aws_apprunner_info:
+        list_auto_scaling_configurations: true
+
+    - name: "get list of connections of apprunner"
+      aws_apprunner_info:
+        list_connections: true
+
+    - name: "get list of operations of apprunner"
+      aws_apprunner_info:
+        list_operations: true
+        arn: 'test:arn'
+
+    - name: "get list of services of apprunner"
+      aws_apprunner_info:
+        list_services: true
