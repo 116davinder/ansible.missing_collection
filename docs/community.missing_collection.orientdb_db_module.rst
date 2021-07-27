@@ -5,7 +5,7 @@
 community.missing_collection.orientdb_db
 ****************************************
 
-**Create/Delete OrientDB 2.x Database.**
+**Create/Delete OrientDB Database.**
 
 
 Version added: 0.1.1
@@ -17,7 +17,7 @@ Version added: 0.1.1
 
 Synopsis
 --------
-- Create/Delete OrientDB 2.x Database.
+- Create/Delete OrientDB Database.
 - https://orientdb.org/docs/3.0.x/pyorient/PyOrient-Client.html
 
 

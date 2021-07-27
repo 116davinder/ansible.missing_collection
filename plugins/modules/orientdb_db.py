@@ -10,9 +10,9 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: orientdb_db
-short_description: Create/Delete OrientDB 2.x Database.
+short_description: Create/Delete OrientDB Database.
 description:
-  - Create/Delete OrientDB 2.x Database.
+  - Create/Delete OrientDB Database.
   - U(https://orientdb.org/docs/3.0.x/pyorient/PyOrient-Client.html)
 version_added: 0.1.1
 options:
@@ -136,7 +136,7 @@ def main():
     )
 
     try:
-        session_id = client.connect(
+        client.connect(
             user=module.params["user"],
             password=module.params["password"]
         )
