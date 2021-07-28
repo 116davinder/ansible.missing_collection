@@ -248,6 +248,8 @@ Name | Description
 [community.missing_collection.minio_bucket](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.minio_bucket_module.rst)|Create/Update/Delete Minio Buckets.
 [community.missing_collection.minio_bucket_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.minio_bucket_info_module.rst)|Get Information about Minio Bucket.
 [community.missing_collection.newrelic_deployment](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.newrelic_deployment_module.rst)|Notify newrelic about app deployments via v2 api.
+[community.missing_collection.orientdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.orientdb_db_module.rst)|Create/Delete OrientDB Database.
+[community.missing_collection.orientdb_db_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.orientdb_db_info_module.rst)|Get information from OrientDB Database.
 [community.missing_collection.rethinkdb_admin](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_admin_module.rst)|Admin Operations of RethinkDB Database/Table.
 [community.missing_collection.rethinkdb_admin_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_admin_info_module.rst)|Get information from RethinkDB Database.
 [community.missing_collection.rethinkdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_db_module.rst)|Create/Delete RethinkDB Database.

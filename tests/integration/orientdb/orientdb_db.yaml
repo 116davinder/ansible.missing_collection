@@ -1,0 +1,37 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create database in orientdb
+      orientdb_db:
+        host: 'localhost'
+        port: 2424
+        user: 'root'
+        password: 'root'
+        state: present
+        database: 'test1'
+
+    - name: create database in orientdb
+      orientdb_db:
+        host: 'localhost'
+        port: 2424
+        user: 'root'
+        password: 'root'
+        state: present
+        database: 'test2'
+        type: 'graph'
+        storage_type: 'memory'
+
+    - name: delete database in orientdb
+      orientdb_db:
+        host: 'localhost'
+        port: 2424
+        user: 'root'
+        password: 'root'
+        state: absent
+        database: '{{ item }}'
+      loop:
+        - 'test1'
+        - 'test2'

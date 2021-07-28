@@ -1,0 +1,49 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: list all orientdb databases
+      orientdb_db_info:
+        host: 'localhost'
+        port: 2424
+        user: 'root'
+        password: 'root'
+        db_list: true
+
+    - name: get database size in orientdb
+      orientdb_db_info:
+        host: 'localhost'
+        port: 2424
+        user: 'root'
+        password: 'root'
+        db_size: 'true'
+        database: 'test2'
+
+    - name: check database existence in orientdb
+      orientdb_db_info:
+        host: 'localhost'
+        port: 2424
+        user: 'root'
+        password: 'root'
+        db_exists: true
+        database: 'test2'
+        storage_type: 'plocal'
+
+    - name: get total number of records in orientdb database
+      orientdb_db_info:
+        host: 'localhost'
+        port: 2424
+        user: 'root'
+        password: 'root'
+        db_count_records: true
+        database: 'test2'
+
+    - name: get list of database with default credentials
+      orientdb_db_info:
+        host: 'localhost'
+        port: 2424
+        user: 'root'
+        password: 'root'
+        check_default_credentials: true
