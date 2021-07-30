@@ -1,0 +1,25 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create database in couchdb
+      couchdb_db:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        state: 'present'
+        database: 'test1'
+
+    - name: delete database in couchdb
+      couchdb_db:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        state: 'absent'
+        database: 'test1'
