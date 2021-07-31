@@ -123,7 +123,7 @@ def main():
         host=dict(default="localhost"),
         port=dict(default="5984"),
         user=dict(default="admin"),
-        password=dict(default="password"),
+        password=dict(default="password", no_log=True),
         state=dict(choices=["present", "absent"], default="present"),
         database=dict(required=True),
         shards=dict(type=int, default=8),
@@ -135,21 +135,28 @@ def main():
         argument_spec=argument_spec,
     )
 
-    url = module.params["scheme"] + "://" + module.params["user"] + ":" \
-        + module.params["password"] + "@" + module.params["host"] + ":" \
+    _auth = (
+        module.params["user"],
+        module.params["password"]
+    )
+
+    _url = module.params["scheme"] + "://" + module.params["host"] + ":" \
         + module.params["port"] + "/" + module.params["database"]
-
-    data = {
-        "q": module.params["shards"],
-        "n": module.params["replicas"]
-    }
-
-    if module.params["partitioned"]:
-        data["partitioned"] = "true"
 
     headers = {"Content-Type": "application/json"}
     if module.params["state"].lower() == "present":
-        r = requests.put(url, params=data, headers=headers)
+        _data = {
+            "q": module.params["shards"],
+            "n": module.params["replicas"]
+        }
+        if module.params["partitioned"]:
+            _data["partitioned"] = "true"
+        r = requests.put(
+            _url,
+            auth=_auth,
+            params=_data,
+            headers=headers
+        )
         if r.status_code == 201:
             module.exit_json(changed=True, result=r.text)
         elif r.status_code == 412:
@@ -157,7 +164,11 @@ def main():
         else:
             module.fail_json(msg=r.text)
     else:
-        r = requests.delete(url, headers=headers)
+        r = requests.delete(
+            _url,
+            auth=_auth,
+            headers=headers
+        )
         if r.status_code == 200:
             module.exit_json(changed=True, result=r.text)
         elif r.status_code == 404:
