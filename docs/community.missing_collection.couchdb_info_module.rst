@@ -1,11 +1,11 @@
-.. _community.missing_collection.couchdb_db_info_module:
+.. _community.missing_collection.couchdb_info_module:
 
 
-********************************************
-community.missing_collection.couchdb_db_info
-********************************************
+*****************************************
+community.missing_collection.couchdb_info
+*****************************************
 
-**Get information about Couchdb Database.**
+**Get information about Couchdb Cluster.**
 
 
 Version added: 0.1.1
@@ -17,7 +17,7 @@ Version added: 0.1.1
 
 Synopsis
 --------
-- Get information about Couchdb Database.
+- Get information about Couchdb Cluster.
 - https://docs.couchdb.org/en/stable/api/index.html
 
 
@@ -43,93 +43,24 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>database</b>
+                    <b>command</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                         / <span style="color: red">required</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>name of the database.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_db_explain</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
                     </div>
                 </td>
                 <td>
                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                    <li>yes</li>
+                                    <li><div style="color: blue"><b>all_dbs</b>&nbsp;&larr;</div></li>
+                                    <li>active_tasks</li>
+                                    <li>membership</li>
+                                    <li>scheduler/jobs</li>
+                                    <li>scheduler/docs</li>
+                                    <li>up</li>
                         </ul>
                 </td>
                 <td>
-                        <div>do you want to fetch database explain info for <em>database</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_db_info</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch database info for <em>database</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_db_security</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch database security info for <em>database</em>?</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_db_shards</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>do you want to fetch database shard info for <em>database</em>?</div>
+                        <div>commands to fetch cluster information.</div>
                 </td>
             </tr>
             <tr>
@@ -226,45 +157,59 @@ Examples
 
 .. code-block:: yaml
 
-    - name: get database info
-      community.missing_collection.couchdb_db_info:
+    - name: get list of databases
+      community.missing_collection.couchdb_info:
         scheme: 'http'
         host: 'localhost'
         port: '5984'
         user: 'admin'
         password: 'password'
-        get_db_info: true
-        database: "_users"
+        command: 'all_dbs'
 
-    - name: get database explain info
-      community.missing_collection.couchdb_db_info:
+    - name: get list of active tasks
+      community.missing_collection.couchdb_info:
         scheme: 'http'
         host: 'localhost'
         port: '5984'
         user: 'admin'
         password: 'password'
-        get_db_explain: true
-        database: "_users"
+        command: 'active_tasks'
 
-    - name: get database security info
-      community.missing_collection.couchdb_db_info:
+    - name: get list of nodes in cluster
+      community.missing_collection.couchdb_info:
         scheme: 'http'
         host: 'localhost'
         port: '5984'
         user: 'admin'
         password: 'password'
-        get_db_security: true
-        database: "_users"
+        command: 'membership'
 
-    - name: get database shards info
-      community.missing_collection.couchdb_db_info:
+    - name: get list of scheduled jobs
+      community.missing_collection.couchdb_info:
         scheme: 'http'
         host: 'localhost'
         port: '5984'
         user: 'admin'
         password: 'password'
-        get_db_shards: true
-        database: "_users"
+        command: 'scheduler/jobs'
+
+    - name: get list of scheduler docs
+      community.missing_collection.couchdb_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        command: 'scheduler/docs'
+
+    - name: get node status
+      community.missing_collection.couchdb_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        command: 'up'
 
 
 
@@ -283,69 +228,103 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>database</b>
+                    <b>active_tasks</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when <em>get_db_info</em> is defined and success.</td>
+                <td>when command <em>active_tasks</em> is defined and success.</td>
                 <td>
-                            <div>get database info from couchdb.</div>
+                            <div>list of active tasks.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster&#x27;: {&#x27;n&#x27;: 3, &#x27;q&#x27;: 8, &#x27;r&#x27;: 2, &#x27;w&#x27;: 2}, &#x27;compact_running&#x27;: False, &#x27;db_name&#x27;: &#x27;receipts&#x27;, &#x27;disk_format_version&#x27;: 6, &#x27;doc_count&#x27;: 6146, &#x27;doc_del_count&#x27;: 64637, &#x27;instance_start_time&#x27;: &#x27;0&#x27;, &#x27;props&#x27;: {}, &#x27;purge_seq&#x27;: 0, &#x27;sizes&#x27;: {&#x27;active&#x27;: 65031503, &#x27;external&#x27;: 66982448, &#x27;file&#x27;: 137433211}, &#x27;update_seq&#x27;: &#x27;292786-g1AAAAF...&#x27;}</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;changes_done&#x27;: 64438, &#x27;database&#x27;: &#x27;mailbox&#x27;, &#x27;pid&#x27;: &#x27;&lt;0.12986.1&gt;&#x27;, &#x27;progress&#x27;: 84, &#x27;started_on&#x27;: 1376116576, &#x27;total_changes&#x27;: 76215, &#x27;type&#x27;: &#x27;database_compaction&#x27;, &#x27;updated_on&#x27;: 1376116619}]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>explain</b>
+                    <b>dbs</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dictionary</span>
+                      <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when <em>get_db_explain</em> is defined and success.</td>
+                <td>when command <em>all_dbs</em> is defined and success.</td>
                 <td>
-                            <div>get database explain from couchdb.</div>
+                            <div>list of all databases.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;dbname&#x27;: &#x27;movies&#x27;, &#x27;index&#x27;: {}, &#x27;selector&#x27;: {}, &#x27;opts&#x27;: {}, &#x27;limit&#x27;: 2, &#x27;skip&#x27;: 0, &#x27;fields&#x27;: [], &#x27;range&#x27;: {}}</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;_replicator&#x27;, &#x27;_users&#x27;, &#x27;test&#x27;]</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>security</b>
+                    <b>docs</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">dictionary</span>
                     </div>
                 </td>
-                <td>when <em>get_db_security</em> is defined and success.</td>
+                <td>when command <em>scheduler/docs</em> is defined and success.</td>
                 <td>
-                            <div>get members and there permissions in database from couchdb.</div>
+                            <div>list of all scheduler docs.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;admins&#x27;: {&#x27;names&#x27;: [], &#x27;roles&#x27;: []}, &#x27;members&#x27;: {&#x27;names&#x27;: [], &#x27;roles&#x27;: []}}</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;docs&#x27;: [{&#x27;database&#x27;: &#x27;_replicator&#x27;, &#x27;doc_id&#x27;: &#x27;cdyno-0000001-0000002&#x27;, &#x27;error_count&#x27;: 0, &#x27;id&#x27;: &#x27;e327d79214831ca4c11550b4a453c9ba+continuous&#x27;, &#x27;info&#x27;: {}, &#x27;last_updated&#x27;: &#x27;2017-04-29T05:01:37Z&#x27;, &#x27;node&#x27;: &#x27;node2@127.0.0.1&#x27;, &#x27;source_proxy&#x27;: None, &#x27;target_proxy&#x27;: None, &#x27;source&#x27;: &#x27;http://myserver.com/foo&#x27;, &#x27;start_time&#x27;: &#x27;2017-04-29T05:01:37Z&#x27;, &#x27;state&#x27;: &#x27;running&#x27;, &#x27;target&#x27;: &#x27;http://adm:*****@localhost:15984/cdyno-0000002/&#x27;}], &#x27;offset&#x27;: 0, &#x27;total_rows&#x27;: 1}</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>shards</b>
+                    <b>jobs</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">dictionary</span>
                     </div>
                 </td>
-                <td>when <em>get_db_shards</em> is defined and success.</td>
+                <td>when command <em>scheduler/jobs</em> is defined and success.</td>
                 <td>
-                            <div>get shard info of database from couchdb.</div>
+                            <div>list of all scheduler jobs.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;00000000-7fffffff&#x27;: [&#x27;nonode@nohost&#x27;], &#x27;80000000-ffffffff&#x27;: [&#x27;nonode@nohost&#x27;]}</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;jobs&#x27;: [{&#x27;database&#x27;: &#x27;_replicator&#x27;, &#x27;doc_id&#x27;: &#x27;cdyno-0000001-0000003&#x27;, &#x27;history&#x27;: [], &#x27;id&#x27;: &#x27;8f5b1bd0be6f9166ccfd36fc8be8fc22+continuous&#x27;, &#x27;info&#x27;: {}, &#x27;node&#x27;: &#x27;node1@127.0.0.1&#x27;, &#x27;pid&#x27;: &#x27;&lt;0.1850.0&gt;&#x27;, &#x27;source&#x27;: &#x27;http://myserver.com/foo&#x27;, &#x27;start_time&#x27;: &#x27;2017-04-29T05:01:37Z&#x27;, &#x27;target&#x27;: &#x27;http://adm:*****@localhost:15984/cdyno-0000003/&#x27;, &#x27;user&#x27;: None}], &#x27;offset&#x27;: 0, &#x27;total_rows&#x27;: 1}</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>membership</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                    </div>
+                </td>
+                <td>when command <em>membership</em> is defined and success.</td>
+                <td>
+                            <div>list of members in the cluster.</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;all_nodes&#x27;: [&#x27;node1@127.0.0.1&#x27;, &#x27;node2@127.0.0.1&#x27;, &#x27;node3@127.0.0.1&#x27;], &#x27;cluster_nodes&#x27;: [&#x27;node1@127.0.0.1&#x27;, &#x27;node2@127.0.0.1&#x27;, &#x27;node3@127.0.0.1&#x27;]}</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>up</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                    </div>
+                </td>
+                <td>when command <em>up</em> is defined and success.</td>
+                <td>
+                            <div>status of node.</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;status&#x27;: &#x27;ok&#x27;, &#x27;seeds&#x27;: {}}</div>
                 </td>
             </tr>
     </table>

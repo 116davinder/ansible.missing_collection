@@ -53,12 +53,6 @@ options:
       - name of the database.
     required: true
     type: str
-  list_databases:
-    description:
-      - do you want to fetch list of databases?
-    required: false
-    type: bool
-    default: false
   get_db_info:
     description:
       - do you want to fetch database info for I(database)?
@@ -90,15 +84,6 @@ requirements:
 """
 
 EXAMPLES = """
-- name: list all databases
-  community.missing_collection.couchdb_db_info:
-    scheme: 'http'
-    host: 'localhost'
-    port: '5984'
-    user: 'admin'
-    password: 'password'
-    list_databases: true
-
 - name: get database info
   community.missing_collection.couchdb_db_info:
     scheme: 'http'
@@ -141,11 +126,6 @@ EXAMPLES = """
 """
 
 RETURN = """
-databases:
-  description: list of all databases from couchdb.
-  returned: when I(list_databases) is defined and success.
-  type: list
-  sample: ["_replicator","_users","test"]
 database:
   description: get database info from couchdb.
   returned: when I(get_db_info) is defined and success.
@@ -223,7 +203,6 @@ def main():
         user=dict(default="admin"),
         password=dict(default="password", no_log=True),
         database=dict(),
-        list_databases=dict(type=bool),
         get_db_info=dict(type=bool),
         get_db_explain=dict(type=bool),
         get_db_security=dict(type=bool),
@@ -240,7 +219,6 @@ def main():
         ),
         mutually_exclusive=[
             (
-                "list_databases",
                 "get_db_info",
                 "get_db_explain",
                 "get_db_security",
@@ -258,16 +236,7 @@ def main():
     )
 
     headers = {"Content-Type": "application/json"}
-    if module.params["list_databases"]:
-        r = requests.get(
-            _url + "_all_dbs",
-            auth=_auth,
-            headers=headers)
-        if r.status_code == 200:
-            module.exit_json(databases=r.text)
-        else:
-            module.fail_json(msg=r.text)
-    elif module.params["get_db_info"]:
+    if module.params["get_db_info"]:
         r = requests.get(
             _url + module.params["database"],
             auth=_auth,

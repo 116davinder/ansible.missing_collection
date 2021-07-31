@@ -4,15 +4,6 @@
   gather_facts: false
   ignore_errors: true
   tasks:
-    - name: list all databases
-      couchdb_db_info:
-        scheme: 'http'
-        host: 'localhost'
-        port: '5984'
-        user: 'admin'
-        password: 'password'
-        list_databases: true
-
     - name: get database info
       couchdb_db_info:
         scheme: 'http'
