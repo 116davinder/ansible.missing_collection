@@ -190,7 +190,7 @@ def main():
         host=dict(required=True),
         port=dict(type=int, default=28015),
         user=dict(default="admin"),
-        password=dict(default=""),
+        password=dict(default="", no_log=True),
         ssl=dict(type=dict, default=None),
         database=dict(required=True),
         table=dict(required=True),

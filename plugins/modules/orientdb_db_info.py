@@ -160,8 +160,6 @@ default_credential_dbs:
 
 from ansible.module_utils.basic import AnsibleModule
 from pyorient import OrientDB
-from pyorient.exceptions import PyOrientDatabaseException
-from pyorient.exceptions import PyOrientCommandException
 
 
 def main():
@@ -169,7 +167,7 @@ def main():
         host=dict(required=True),
         port=dict(type=int, default=2424),
         user=dict(default="root"),
-        password=dict(default="root"),
+        password=dict(default="root", no_log=True),
         database=dict(),
         storage_type=dict(choices=["plocal", "memory"]),
         db_list=dict(type=bool),

@@ -204,7 +204,6 @@ object_lock_config:
 from ansible.module_utils.basic import AnsibleModule
 from minio import Minio
 from minio.error import S3Error
-import json
 
 
 def _minio_bucket(client, module):
@@ -272,7 +271,7 @@ def main():
     argument_spec = dict(
         endpoint=dict(required=True),
         username=dict(required=True, aliases=['access_key']),
-        password=dict(required=True, aliases=['secret_key']),
+        password=dict(required=True, aliases=['secret_key'], no_log=True),
         secure=dict(required=False, type=bool, default=False),
         bucket=dict(required=False, type=str),
         list_buckets=dict(required=False, type=bool),
