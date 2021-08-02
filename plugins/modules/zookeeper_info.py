@@ -28,6 +28,8 @@ options:
     type: string
 author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
+requirements:
+  - requests
 '''
 
 EXAMPLES = '''
@@ -53,8 +55,7 @@ output:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.urls import fetch_url
-import json
+import requests
 
 
 def main():
@@ -71,15 +72,15 @@ def main():
     else:
         complete_url = module.params['url'] + "/commands/" + module.params['command']
 
-    (resp, info) = fetch_url(module, complete_url)
+    r = requests.get(complete_url)
 
-    if info['status'] != 200:
-        module.fail_json(msg="Something Failed")
-    elif info['status'] == 200:
+    if r.status_code != 200:
+        module.fail_json(msg=r.json())
+    elif r.status_code == 200:
         if module.params['command'] is None:
-            module.exit_json(commands=resp.read())
+            module.exit_json(commands=r.text)
         else:
-            module.exit_json(output=json.loads(resp.read()))
+            module.exit_json(output=r.json())
 
 
 if __name__ == '__main__':
