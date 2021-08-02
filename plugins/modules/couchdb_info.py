@@ -4,8 +4,6 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
-from ansible import module_utils
-
 __metaclass__ = type
 
 
@@ -59,6 +57,7 @@ author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 requirements:
   - requests
+  - urllib
 """
 
 EXAMPLES = """
@@ -212,6 +211,7 @@ up:
 
 from ansible.module_utils.basic import AnsibleModule
 import requests
+from urllib import parse
 
 
 def main():
@@ -236,33 +236,39 @@ def main():
         module.params["password"]
     )
 
-    _url = module.params["scheme"] + "://" + module.params["host"] + ":" \
-        + module.params["port"] + "/_" + module.params["command"]
+    _url = parse.ParseResult(
+        scheme=module.params["scheme"],
+        netloc=module.params["host"] + ":" + module.params["port"],
+        path="/_" + module.params["command"],
+        params=None,
+        query=None,
+        fragment=None
+    )
 
     headers = {"Content-Type": "application/json"}
 
     r = requests.get(
-        _url,
+        _url.geturl(),
         auth=_auth,
         headers=headers
     )
     if r.status_code == 200:
         if module.params["command"] == "all_dbs":
-            module.exit_json(dbs=r.text)
+            module.exit_json(dbs=r.json())
         elif module.params["command"] == "active_tasks":
-            module.exit_json(active_tasks=r.text)
+            module.exit_json(active_tasks=r.json())
         elif module.params["command"] == "membership":
-            module.exit_json(membership=r.text)
+            module.exit_json(membership=r.json())
         elif module.params["command"] == "scheduler/jobs":
-            module.exit_json(jobs=r.text)
+            module.exit_json(jobs=r.json())
         elif module.params["command"] == "scheduler/docs":
-            module.exit_json(docs=r.text)
+            module.exit_json(docs=r.json())
         elif module.params["command"] == "up":
-            module.exit_json(up=r.text)
+            module.exit_json(up=r.json())
         else:
             module.fail_json(msg="unknown parameters")
     else:
-        module.fail_json(msg=r.text)
+        module.fail_json(msg=r.json())
 
 
 if __name__ == "__main__":

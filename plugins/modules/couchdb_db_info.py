@@ -4,8 +4,6 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
-from ansible import module_utils
-
 __metaclass__ = type
 
 
@@ -192,7 +190,6 @@ shards:
 
 from ansible.module_utils.basic import AnsibleModule
 import requests
-import json
 
 
 def main():
@@ -243,9 +240,9 @@ def main():
             headers=headers
         )
         if r.status_code == 200:
-            module.exit_json(database=r.text)
+            module.exit_json(database=r.json())
         else:
-            module.fail_json(msg=r.text)
+            module.fail_json(msg=r.json())
     elif module.params["get_db_explain"]:
         r = requests.post(
             _url + module.params["database"] + "/_explain",
@@ -254,9 +251,9 @@ def main():
             headers=headers
         )
         if r.status_code == 200:
-            module.exit_json(explain=r.text)
+            module.exit_json(explain=r.json())
         else:
-            module.fail_json(msg=r.text)
+            module.fail_json(msg=r.json())
     elif module.params["get_db_security"]:
         r = requests.get(
             _url + module.params["database"] + "/_security",
@@ -264,9 +261,9 @@ def main():
             headers=headers
         )
         if r.status_code == 200:
-            module.exit_json(security=r.text)
+            module.exit_json(security=r.json())
         else:
-            module.fail_json(msg=r.text)
+            module.fail_json(msg=r.json())
     elif module.params["get_db_shards"]:
         r = requests.get(
             _url + module.params["database"] + "/_shards",
@@ -274,9 +271,9 @@ def main():
             headers=headers
         )
         if r.status_code == 200:
-            module.exit_json(shards=json.dumps(json.loads(r.text)["shards"]))
+            module.exit_json(shards=r.json()["shards"])
         else:
-            module.fail_json(msg=r.text)
+            module.fail_json(msg=r.json())
     else:
         module.fail_json(msg="unknown parameters are passed")
 

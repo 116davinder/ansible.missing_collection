@@ -4,8 +4,6 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
-from ansible import module_utils
-
 __metaclass__ = type
 
 
@@ -158,11 +156,11 @@ def main():
             headers=headers
         )
         if r.status_code == 201:
-            module.exit_json(changed=True, result=r.text)
+            module.exit_json(changed=True, result=r.json())
         elif r.status_code == 412:
-            module.exit_json(changed=False, result=r.text)
+            module.exit_json(changed=False, result=r.json())
         else:
-            module.fail_json(msg=r.text)
+            module.fail_json(msg=r.json())
     else:
         r = requests.delete(
             _url,
@@ -170,11 +168,11 @@ def main():
             headers=headers
         )
         if r.status_code == 200:
-            module.exit_json(changed=True, result=r.text)
+            module.exit_json(changed=True, result=r.json())
         elif r.status_code == 404:
-            module.exit_json(changed=False, result=r.text)
+            module.exit_json(changed=False, result=r.json())
         else:
-            module.fail_json(msg=r.text)
+            module.fail_json(msg=r.json())
 
 
 if __name__ == "__main__":
