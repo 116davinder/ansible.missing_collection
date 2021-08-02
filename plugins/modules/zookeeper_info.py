@@ -46,11 +46,11 @@ EXAMPLES = '''
 RETURN = """
 commands:
   description: list of zookeeper admin server commands.
-  returned: when no args are passed.
+  returned: when no args and success.
   type: str
 output:
   description: output of given zookeeper admin server command.
-  returned: when `command` is set.
+  returned: when I(command) is defined and success.
   type: dict
 """
 
@@ -74,13 +74,13 @@ def main():
 
     r = requests.get(complete_url)
 
-    if r.status_code != 200:
-        module.fail_json(msg=r.json())
-    elif r.status_code == 200:
+    if r.status_code == 200:
         if module.params['command'] is None:
             module.exit_json(commands=r.text)
         else:
             module.exit_json(output=r.json())
+    else:
+        module.fail_json(msg=r.json())
 
 
 if __name__ == '__main__':

@@ -115,7 +115,7 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
                       <span style="color: purple">string</span>
                     </div>
                 </td>
-                <td>when no args are passed.</td>
+                <td>when no args and success.</td>
                 <td>
                             <div>list of zookeeper admin server commands.</div>
                     <br/>
@@ -130,7 +130,7 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
                       <span style="color: purple">dictionary</span>
                     </div>
                 </td>
-                <td>when `command` is set.</td>
+                <td>when <em>command</em> is defined and success.</td>
                 <td>
                             <div>output of given zookeeper admin server command.</div>
                     <br/>
