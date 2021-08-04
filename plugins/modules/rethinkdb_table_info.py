@@ -13,7 +13,7 @@ short_description: Get information about RethinkDB Table.
 description:
   - Get information about RethinkDB Table.
   - U(https://rethinkdb.com/api/python/)
-version_added: 0.1.1
+version_added: 0.2.0
 options:
   host:
     description:

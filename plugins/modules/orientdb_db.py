@@ -13,7 +13,7 @@ short_description: Create/Delete OrientDB Database.
 description:
   - Create/Delete OrientDB Database.
   - U(https://orientdb.org/docs/3.0.x/pyorient/PyOrient-Client.html)
-version_added: 0.1.1
+version_added: 0.2.0
 options:
   host:
     description:

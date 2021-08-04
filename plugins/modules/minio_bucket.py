@@ -13,7 +13,7 @@ short_description: Create/Update/Delete Minio Buckets.
 description:
   - Create/Update/Delete Minio Buckets.
   - U(https://docs.min.io/docs/python-client-api-reference.html)
-version_added: 0.1.1
+version_added: 0.2.0
 options:
   endpoint:
     description:

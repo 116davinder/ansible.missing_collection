@@ -12,7 +12,7 @@ module: aws_apprunner_info
 short_description: Get Information about AWS Apprunner.
 description:
   - Get Information about AWS Apprunner.
-version_added: 0.1.1
+version_added: 0.2.0
 options:
   arn:
     description:

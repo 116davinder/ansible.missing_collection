@@ -8,7 +8,7 @@ community.missing_collection.rethinkdb_table_index
 **Create/Delete RethinkDB Table Secondary Index.**
 
 
-Version added: 0.1.1
+Version added: 0.2.0
 
 .. contents::
    :local:

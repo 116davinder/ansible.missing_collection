@@ -13,7 +13,7 @@ short_description: Create/Delete Couchdb Database.
 description:
   - Create/Delete Couchdb Database.
   - U(https://docs.couchdb.org/en/stable/api/index.html)
-version_added: 0.1.1
+version_added: 0.2.0
 options:
   scheme:
     description:

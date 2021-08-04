@@ -1,6 +1,6 @@
 namespace: community
 name: missing_collection
-version: 0.1.1
+version: 0.2.0
 readme: README.md
 authors:
   - Davinder Pal (@116davinder) <dpsangwal@gmail.com>
