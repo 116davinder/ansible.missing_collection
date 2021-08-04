@@ -42,18 +42,18 @@ PEP440 is the schema used to describe the versions of Ansible.
 
 ### Install Missing Collection with one command
 ```bash
-$ ansible-galaxy collection install git+https://github.com/116davinder/ansible.missing_collection.git,refs/tags/0.1.1 --no-deps
+$ ansible-galaxy collection install git+https://github.com/116davinder/ansible.missing_collection.git,refs/tags/0.2.0 --no-deps
 Starting galaxy collection install process
 Process install dependency map
 Starting collection install process
-Installing 'community.missing_collection:0.1.1' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
+Installing 'community.missing_collection:0.2.0' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
 Created collection for community.missing_collection at /home/dpal/.ansible/collections/ansible_collections/community/missing_collection
-community.missing_collection (0.1.1) was installed successfully
+community.missing_collection (0.2.0) was installed successfully
 
 $ ansible-galaxy collection list
 Collection                   Version
 ---------------------------- -------
-community.missing_collection 0.1.1
+community.missing_collection 0.2.0
 ```
 ### Install Missing Collection with collections.yaml
 Save Below Mentioned yaml into your `collections.yaml` file.
@@ -61,7 +61,7 @@ Save Below Mentioned yaml into your `collections.yaml` file.
 collections:
   - name: https://github.com/116davinder/ansible.missing_collection.git
     type: git
-    version: 0.1.1
+    version: 0.2.0
 ```
 ```bash
 ansible-galaxy collection install -r collections.yaml --no-deps

@@ -14,7 +14,7 @@ description:
   - Manual Rebalance of Database/Table Trigger.
   - Reconfigure Shards/Replicas of Database/Table.
   - U(https://rethinkdb.com/api/python/)
-version_added: 0.1.1
+version_added: 0.2.0
 options:
   host:
     description:

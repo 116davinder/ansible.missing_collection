@@ -8,7 +8,7 @@ community.missing_collection.minio_bucket
 **Create/Update/Delete Minio Buckets.**
 
 
-Version added: 0.1.1
+Version added: 0.2.0
 
 .. contents::
    :local:

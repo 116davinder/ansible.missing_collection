@@ -8,7 +8,7 @@ community.missing_collection.orientdb_db_info
 **Get information from OrientDB Database.**
 
 
-Version added: 0.1.1
+Version added: 0.2.0
 
 .. contents::
    :local:
