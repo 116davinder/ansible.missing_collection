@@ -211,7 +211,6 @@ up:
 
 from ansible.module_utils.basic import AnsibleModule
 import requests
-from urllib import parse
 
 
 def main():
@@ -236,19 +235,13 @@ def main():
         module.params["password"]
     )
 
-    _url = parse.ParseResult(
-        scheme=module.params["scheme"],
-        netloc=module.params["host"] + ":" + module.params["port"],
-        path="/_" + module.params["command"],
-        params=None,
-        query=None,
-        fragment=None
-    )
+    _url = module.params["scheme"] + "://" + module.params["host"] + ":" \
+        + module.params["port"] + "/_" + module.params["command"]
 
     headers = {"Content-Type": "application/json"}
 
     r = requests.get(
-        _url.geturl(),
+        _url,
         auth=_auth,
         headers=headers
     )

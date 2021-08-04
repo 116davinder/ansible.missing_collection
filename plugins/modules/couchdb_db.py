@@ -143,16 +143,16 @@ def main():
 
     headers = {"Content-Type": "application/json"}
     if module.params["state"].lower() == "present":
-        _data = {
+        _params = {
             "q": module.params["shards"],
             "n": module.params["replicas"]
         }
         if module.params["partitioned"]:
-            _data["partitioned"] = "true"
+            _params["partitioned"] = "true"
         r = requests.put(
             _url,
             auth=_auth,
-            params=_data,
+            params=_params,
             headers=headers
         )
         if r.status_code == 201:
