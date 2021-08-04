@@ -12,11 +12,10 @@ Anyone who want to contribute, please feel free to create PR / Bug Report / Feat
 Ansible Community reviewers takes too much time and have too hard restrictions.
 So I decided to host modules on my repository instead of ansible.
 
-**Examples:**
-* [Official Ansible PR: 1](https://github.com/ansible/ansible/pull/40029)
-* [Official Ansible PR: 2](https://github.com/ansible-collections/community.general/pull/876)
-* [Official Ansible PR: 3](https://github.com/ansible-collections/community.general/pull/1501)
-* [~~Official Ansible PR: 4~~](https://github.com/ansible-collections/community.aws/pull/305)
+**Failed Attempts Examples:**
+* [~~Official Ansible PR: 1~~](https://github.com/ansible/ansible/pull/40029)
+* [~~Official Ansible PR: 2~~](https://github.com/ansible-collections/community.general/pull/876)
+* [~~Official Ansible PR: 3~~](https://github.com/ansible-collections/community.general/pull/1501)
 
 **Articles**
 * https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
@@ -37,20 +36,35 @@ A collection may contain metadata that identifies these versions.
 PEP440 is the schema used to describe the versions of Ansible.
 <!--end requires_ansible-->
 
-## How to Install Ansible Missing Collection
+## How to Install 
+**Note*:**
+* `--no-deps` is required till version `0.1.0` bcz I fucked up `galaxy.yml`.
+
+### Install Missing Collection with one command
 ```bash
-$ ansible-galaxy collection install git+https://github.com/116davinder/ansible.missing_collection.git
+$ ansible-galaxy collection install git+https://github.com/116davinder/ansible.missing_collection.git,refs/tags/0.1.1 --no-deps
 Starting galaxy collection install process
 Process install dependency map
 Starting collection install process
-Installing 'community.missing_collection:0.1.0' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
+Installing 'community.missing_collection:0.1.1' to '/home/dpal/.ansible/collections/ansible_collections/community/missing_collection'
 Created collection for community.missing_collection at /home/dpal/.ansible/collections/ansible_collections/community/missing_collection
-community.missing_collection (0.1.0) was installed successfully
+community.missing_collection (0.1.1) was installed successfully
 
 $ ansible-galaxy collection list
 Collection                   Version
 ---------------------------- -------
-community.missing_collection 0.1.0
+community.missing_collection 0.1.1
+```
+### Install Missing Collection with collections.yaml
+Save Below Mentioned yaml into your `collections.yaml` file.
+```yaml
+collections:
+  - name: https://github.com/116davinder/ansible.missing_collection.git
+    type: git
+    version: 0.1.1
+```
+```bash
+ansible-galaxy collection install -r collections.yaml --no-deps
 ```
 
 <!--start collection content-->
@@ -244,6 +258,9 @@ Name | Description
 [community.missing_collection.aws_wellarchitected_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_wellarchitected_info_module.rst)|Get Information about AWS Well-Architected Tool.
 [community.missing_collection.aws_worklink_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_worklink_info_module.rst)|Get Information about Amazon WorkLink.
 [community.missing_collection.aws_workmail_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_workmail_info_module.rst)|Get Information about Amazon WorkMail.
+[community.missing_collection.couchdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_module.rst)|Create/Delete Couchdb Database.
+[community.missing_collection.couchdb_db_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_info_module.rst)|Get information about Couchdb Database.
+[community.missing_collection.couchdb_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_info_module.rst)|Get information about Couchdb Cluster.
 [community.missing_collection.mapr_service](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_service_module.rst)|Manage MapR Services by rest api.
 [community.missing_collection.minio_bucket](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.minio_bucket_module.rst)|Create/Update/Delete Minio Buckets.
 [community.missing_collection.minio_bucket_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.minio_bucket_info_module.rst)|Get Information about Minio Bucket.
@@ -260,23 +277,3 @@ Name | Description
 [community.missing_collection.zookeeper_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.zookeeper_info_module.rst)|Get Information about Zookeeper Instance.
 
 <!--end collection content-->
-
-### Install ansible automatic doc creation tool ?
-```bash
-$ pip3 install git+https://github.com/ansible-network/collection_prep.git
-```
-
-### Generate docs from ansible tool ?
-```bash
-$ collection_prep_add_docs -p . -b master
-INFO      Setting collection name to community.missing_collection
-INFO      Setting GitHub repository url to https://github.com/116davinder/ansible.missing_collection
-INFO      Purging content from directory /home/dpal/python-projects/ansible.missing_collection/docs
-INFO      Making docs directory /home/dpal/python-projects/ansible.missing_collection/docs
-INFO      Process content in /home/dpal/python-projects/ansible.missing_collection/plugins/modules
-INFO      Processing /home/dpal/python-projects/ansible.missing_collection/plugins/modules/aws_amp_info.py
-..............
-INFO      Processing 'modules' for README
-ERROR     README.md not found in ./ansible.missing_collection
-ERROR     README.md not updated
-```

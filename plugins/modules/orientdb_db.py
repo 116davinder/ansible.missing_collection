@@ -4,7 +4,6 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
-
 __metaclass__ = type
 
 
@@ -119,7 +118,7 @@ def main():
         host=dict(required=True),
         port=dict(required=False, type=int, default=2424),
         user=dict(required=False, default="root"),
-        password=dict(required=False, default="root"),
+        password=dict(required=False, default="root", no_log=True),
         state=dict(required=False, choices=["present", "absent"], default="present"),
         database=dict(required=True),
         type=dict(choices=["document", "graph"], default="document"),

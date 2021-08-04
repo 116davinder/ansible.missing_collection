@@ -1,0 +1,45 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get database info
+      couchdb_db_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        get_db_info: true
+        database: "_users"
+
+    - name: get database explain info
+      couchdb_db_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        get_db_explain: true
+        database: "_users"
+
+    - name: get database security info
+      couchdb_db_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        get_db_security: true
+        database: "_users"
+
+    - name: get database shards info
+      couchdb_db_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        get_db_shards: true
+        database: "_users"

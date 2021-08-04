@@ -4,7 +4,6 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
-
 __metaclass__ = type
 
 
@@ -130,7 +129,6 @@ result:
 """
 
 from ansible.module_utils.basic import AnsibleModule
-import json
 from rethinkdb import RethinkDB
 from rethinkdb.errors import ReqlOpFailedError, ReqlAuthError
 from rethinkdb.net import DefaultCursorEmpty
@@ -141,7 +139,7 @@ def main():
         host=dict(required=True),
         port=dict(required=False, type=int, default=28015),
         user=dict(required=False, default="admin"),
-        password=dict(required=False, default=""),
+        password=dict(required=False, default="", no_log=True),
         ssl=dict(required=False, type=dict, default=None),
         table=dict(
             required=False,

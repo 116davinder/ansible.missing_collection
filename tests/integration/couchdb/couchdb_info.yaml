@@ -1,0 +1,59 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get list of databases
+      couchdb_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        command: 'all_dbs'
+
+    - name: get list of active tasks
+      couchdb_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        command: 'active_tasks'
+
+    - name: get list of nodes in cluster
+      couchdb_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        command: 'membership'
+
+    - name: get list of scheduled jobs
+      couchdb_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        command: 'scheduler/jobs'
+
+    - name: get list of scheduler docs
+      couchdb_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        command: 'scheduler/docs'
+
+    - name: get node status
+      couchdb_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '5984'
+        user: 'admin'
+        password: 'password'
+        command: 'up'
