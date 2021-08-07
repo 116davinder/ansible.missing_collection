@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get health of prometheus
+      prometheus_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '9090'
+        command: 'healthy'
+
+    - name: get ready of prometheus
+      prometheus_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '9090'
+        command: 'ready'

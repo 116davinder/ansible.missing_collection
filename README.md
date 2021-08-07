@@ -71,6 +71,8 @@ ansible-galaxy collection install -r collections.yaml --no-deps
 ### Modules
 Name | Description
 --- | ---
+[community.missing_collection.alertmanager](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.alertmanager_module.rst)|Management of the Alertmanager.
+[community.missing_collection.alertmanager_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.alertmanager_info_module.rst)|Get information from Alertmanager.
 [community.missing_collection.aws_amp](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_amp_module.rst)|Create / Update AWS Prometheus Service.
 [community.missing_collection.aws_amp_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_amp_info_module.rst)|Get details about AWS Prometheus Service.
 [community.missing_collection.aws_api_gateway_management_api](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_api_gateway_management_api_module.rst)|Manage Resources of Amazon API Gateway Management API.
@@ -267,6 +269,8 @@ Name | Description
 [community.missing_collection.newrelic_deployment](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.newrelic_deployment_module.rst)|Notify newrelic about app deployments via v2 api.
 [community.missing_collection.orientdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.orientdb_db_module.rst)|Create/Delete OrientDB Database.
 [community.missing_collection.orientdb_db_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.orientdb_db_info_module.rst)|Get information from OrientDB Database.
+[community.missing_collection.prometheus](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.prometheus_module.rst)|Management of the Prometheus.
+[community.missing_collection.prometheus_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.prometheus_info_module.rst)|Get information from Prometheus.
 [community.missing_collection.rethinkdb_admin](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_admin_module.rst)|Admin Operations of RethinkDB Database/Table.
 [community.missing_collection.rethinkdb_admin_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_admin_info_module.rst)|Get information from RethinkDB Database.
 [community.missing_collection.rethinkdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_db_module.rst)|Create/Delete RethinkDB Database.
