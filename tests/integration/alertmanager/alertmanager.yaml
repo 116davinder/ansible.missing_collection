@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: reload alertmanager config
+      alertmanager:
+        scheme: 'http'
+        host: 'localhost'
+        port: '9093'
+        command: 'reload'

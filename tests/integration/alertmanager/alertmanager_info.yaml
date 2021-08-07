@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get health of alertmanager
+      alertmanager_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '9093'
+        command: 'healthy'
+
+    - name: get ready of alertmanager
+      alertmanager_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: '9093'
+        command: 'ready'
