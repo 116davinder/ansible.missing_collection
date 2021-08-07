@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: reload prometheus config
+      prometheus:
+        scheme: 'http'
+        host: 'localhost'
+        port: '9090'
+        command: 'reload'
+
+    - name: quit/shutdown prometheus
+      prometheus:
+        scheme: 'http'
+        host: 'localhost'
+        port: '9090'
+        command: 'quit'
