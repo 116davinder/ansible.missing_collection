@@ -8,19 +8,19 @@ __metaclass__ = type
 
 
 DOCUMENTATION = """
-module: statuscake_pagespeed_info
-short_description: Get information from Status Cake (Pagespeed).
+module: statuscake_ssl_info
+short_description: Get information from Status Cake (SSL).
 description:
-  - Get information from Status Cake (Pagespeed).
-  - U(https://www.statuscake.com/api/v1/#tag/pagespeed)
+  - Get information from Status Cake (SSL).
+  - U(https://www.statuscake.com/api/v1/#tag/ssl)
 version_added: 0.3.0
 options:
   url:
     description:
-      - statuscake pagespeed api.
+      - statuscake ssl api.
     required: false
     type: str
-    default: 'https://api.statuscake.com/v1/pagespeed/'
+    default: 'https://api.statuscake.com/v1/ssl/'
   api_key:
     description:
       - api key for statuscake.
@@ -28,22 +28,17 @@ options:
     type: str
   id:
     description:
-      - id of pagespeed test.
+      - id of ssl test.
     required: false
     type: str
   get_all_tests:
     description:
-      - get list of all pagespeed tests.
+      - get list of all ssl tests.
     required: false
     type: bool
   get_one_test:
     description:
       - fetch info about one specific test I(id).
-    required: false
-    type: bool
-  get_test_histroy:
-    description:
-      - fetch history info about one specific test I(id).
     required: false
     type: bool
 author:
@@ -53,22 +48,16 @@ requirements:
 """
 
 EXAMPLES = """
-- name: get all pagespeed tests
-  community.missing_collection.statuscake_pagespeed_info:
+- name: get all ssl tests
+  community.missing_collection.statuscake_ssl_info:
     api_key: 'Ohxxxxxxxxxxxxxxxxpi'
     get_all_tests: true
   register: __tests
 
-- name: get info about one pagespeed test
-  community.missing_collection.statuscake_pagespeed_info:
+- name: get info about one ssl test
+  community.missing_collection.statuscake_ssl_info:
     api_key: 'Ohxxxxxxxxxxxxxxxxpi'
     get_one_test: true
-    id: '{{ __tests.data[0].id }}'
-
-- name: get history about one pagespeed test
-  community.missing_collection.statuscake_pagespeed_info:
-    api_key: 'Ohxxxxxxxxxxxxxxxxpi'
-    get_test_histroy: true
     id: '{{ __tests.data[0].id }}'
 """
 
@@ -79,23 +68,38 @@ data:
   type: dict/list
   sample: [
     {
-      "alert_bigger": 0,
-      "alert_slower": 0,
-      "alert_smaller": 0,
-      "check_rate": 1440,
+      "alert_at": [1, 7, 30],
+      "alert_broken": false,
+      "alert_expiry": false,
+      "alert_mixed": false,
+      "alert_reminder": false,
+      "certificate_score": 95,
+      "certificate_status": "CERT_OK",
+      "check_rate": 999999,
+      "cipher": "TLS_CHACHA20_POLY1305_SHA256",
+      "cipher_score": 100,
       "contact_groups": [],
-      "id": "88176",
-      "latest_stats": {
-        "filesize_kb": 251.284,
-        "has_issue": false,
-        "latest_issue": "",
-        "loadtime_ms": 344,
-        "requests": 6
+      "flags": {
+        "follow_redirects": false,
+        "has_mixed": false,
+        "has_pfs": true,
+        "is_broken": false,
+        "is_expired": false,
+        "is_extended": false,
+        "is_missing": false,
+        "is_revoked": false
       },
-      "location": "PAGESPD-US4",
-      "location_iso": "US",
-      "name": "google_test_new",
+      "follow_redirects": false,
+      "hostname": "new_google_ssl_test",
+      "id": "238191",
+      "issuer_common_name": "GTS CA 1C",
+      "last_reminder": 0,
+      "mixed_content": [],
       "paused": false,
+      "updated_at": "2021-08-12T20:06:55+00:00",
+      "user_agent": "",
+      "valid_from": "2021-07-12T03:48:00+00:00",
+      "valid_until": "2021-10-04T03:48:00+00:00",
       "website_url": "https://www.google.com"
     }
   ]
@@ -107,25 +111,22 @@ import requests
 
 def main():
     argument_spec = dict(
-        url=dict(default="https://api.statuscake.com/v1/pagespeed/"),
+        url=dict(default="https://api.statuscake.com/v1/ssl/"),
         id=dict(),
         api_key=dict(required=True, no_log=True),
         get_all_tests=dict(type=bool),
         get_one_test=dict(type=bool),
-        get_test_histroy=dict(type=bool),
     )
 
     module = AnsibleModule(
         argument_spec=argument_spec,
         required_if=(
             ("get_one_test", True, ["id"]),
-            ("get_test_histroy", True, ["id"]),
         ),
         mutually_exclusive=[
             (
                 "get_all_tests",
                 "get_one_test",
-                "get_test_histroy"
             )
         ]
     )
@@ -135,16 +136,12 @@ def main():
     }
     if module.params["get_all_tests"]:
         r = requests.get(module.params["url"], headers=headers)
-    elif module.params["get_one_test"]:
+    else:
         r = requests.get(
             module.params["url"] + module.params["id"],
             headers=headers
         )
-    else:
-        r = requests.get(
-            module.params["url"] + module.params["id"] + "/history",
-            headers=headers
-        )
+
     if r.status_code == 200:
         module.exit_json(data=r.json()["data"])
     else:
