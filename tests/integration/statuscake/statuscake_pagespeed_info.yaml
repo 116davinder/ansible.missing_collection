@@ -1,0 +1,23 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all pagespeed tests
+      statuscake_pagespeed_info:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        get_all_tests: true
+      register: __tests
+
+    - name: get info about one pagespeed test
+      statuscake_pagespeed_info:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        get_one_test: true
+        id: '{{ __tests.data[0].id }}'
+    
+    - name: get history about one pagespeed test
+      statuscake_pagespeed_info:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        get_test_histroy: true
+        id: '{{ __tests.data[0].id }}'

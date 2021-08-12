@@ -278,6 +278,8 @@ Name | Description
 [community.missing_collection.rethinkdb_table](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_table_module.rst)|Create/Delete RethinkDB Table.
 [community.missing_collection.rethinkdb_table_index](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_table_index_module.rst)|Create/Delete RethinkDB Table Secondary Index.
 [community.missing_collection.rethinkdb_table_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.rethinkdb_table_info_module.rst)|Get information about RethinkDB Table.
+[community.missing_collection.statuscake_pagespeed](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.statuscake_pagespeed_module.rst)|Management of the Status Cake (Pagespeed).
+[community.missing_collection.statuscake_pagespeed_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.statuscake_pagespeed_info_module.rst)|Get information from Status Cake (Pagespeed).
 [community.missing_collection.zookeeper_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.zookeeper_info_module.rst)|Get Information about Zookeeper Instance.
 
 <!--end collection content-->
