@@ -1,0 +1,29 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create uptime test
+      statuscake_uptime:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        command: 'create'
+        website_url: 'https://www.google.com'
+        test_type: 'HTTP'
+        check_rate: 60
+        name: 'google_http_check'
+      register: __id
+
+    - name: update uptime test check rate and name
+      statuscake_uptime:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        command: 'update'
+        id: '{{ __id.id }}'
+        name: "new_google_http_check"
+        check_rate: 86400
+
+    - name: delete uptime test
+      statuscake_uptime:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        command: 'delete'
+        id: '{{ __id.id }}'
