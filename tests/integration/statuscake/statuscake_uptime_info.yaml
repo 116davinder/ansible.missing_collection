@@ -1,0 +1,35 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all uptime tests
+      statuscake_uptime_info:
+        api_key: 'sxxxxxxxxxxxx6y'
+        get_all_tests: true
+      register: __tests
+
+    - name: get info about one uptime test
+      statuscake_uptime_info:
+        api_key: 'sxxxxxxxxxxxx6y'
+        get_one: true
+        id: '{{ __tests.data[0].id }}'
+    
+    - name: get history about one uptime test
+      statuscake_uptime_info:
+        api_key: 'sxxxxxxxxxxxx6y'
+        get_histroy: true
+        id: '{{ __tests.data[0].id }}'
+
+    - name: get all periods about one uptime test
+      statuscake_uptime_info:
+        api_key: 'sxxxxxxxxxxxx6y'
+        get_all_periods: true
+        id: '{{ __tests.data[0].id }}'
+
+    - name: get all alerts about one uptime test
+      statuscake_uptime_info:
+        api_key: 'sxxxxxxxxxxxx6y'
+        get_all_alerts: true
+        id: '{{ __tests.data[0].id }}'

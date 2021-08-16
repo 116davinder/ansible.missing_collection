@@ -283,6 +283,7 @@ Name | Description
 [community.missing_collection.statuscake_ssl](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.statuscake_ssl_module.rst)|Management of the Status Cake (SSL).
 [community.missing_collection.statuscake_ssl_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.statuscake_ssl_info_module.rst)|Get information from Status Cake (SSL).
 [community.missing_collection.statuscake_uptime](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.statuscake_uptime_module.rst)|Management of the Status Cake (Uptime).
+[community.missing_collection.statuscake_uptime_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.statuscake_uptime_info_module.rst)|Get information from Status Cake (Uptime).
 [community.missing_collection.zookeeper_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.zookeeper_info_module.rst)|Get Information about Zookeeper Instance.
 
 <!--end collection content-->
