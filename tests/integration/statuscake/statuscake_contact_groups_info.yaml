@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all contact groups
+      statuscake_contact_groups_info:
+        api_key: 'sGxxxxxxxxxxxx6y'

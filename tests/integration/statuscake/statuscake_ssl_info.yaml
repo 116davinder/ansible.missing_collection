@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all ssl tests
+      statuscake_ssl_info:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        get_all_tests: true
+      register: __tests
+
+    - name: get info about one ssl test
+      statuscake_ssl_info:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        get_one_test: true
+        id: '{{ __tests.data[0].id }}'

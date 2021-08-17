@@ -1,0 +1,15 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: list all uptime locations
+      statuscake_locations_info:
+        api_key: 'sGxxxxxxxxxxxx6y'
+        command: 'uptime'
+
+    - name: list all pagespeed locations
+      statuscake_locations_info:
+        api_key: 'sGxxxxxxxxxxxx6y'
+        command: 'pagespeed'

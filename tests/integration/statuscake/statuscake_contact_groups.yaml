@@ -1,0 +1,27 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create contact groups test
+      statuscake_contact_groups:
+        api_key: 'sGxxxxxxxxxxxx6y'
+        command: 'create'
+        ping_url: 'https://www.google.com'
+        name: "google_contact_groups_test"
+        email_addresses_csv: "786spartan@gmail.com"
+      register: __id
+
+    - name: update contact groups name
+      statuscake_contact_groups:
+        api_key: 'sGxxxxxxxxxxxx6y'
+        command: 'update'
+        id: '{{ __id.id }}'
+        name: "new_google_contact_groups_test"
+
+    - name: delete contact groups test
+      statuscake_contact_groups:
+        api_key: 'sGxxxxxxxxxxxx6y'
+        command: 'delete'
+        id: '{{ __id.id }}'

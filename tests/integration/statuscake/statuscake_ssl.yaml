@@ -1,0 +1,29 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create ssl test
+      statuscake_ssl:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        command: 'create'
+        website_url: 'https://www.google.com'
+        alert_at_csv: "30,7,1"
+        hostname: "google_ssl_test"
+        check_rate: 300
+      register: __id
+
+    - name: update ssl test check rate and hostname
+      statuscake_ssl:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        command: 'update'
+        id: '{{ __id.id }}'
+        hostname: "new_google_ssl_test"
+        check_rate: 86400
+
+    - name: delete ssl test
+      statuscake_ssl:
+        api_key: 'Ohxxxxxxxxxxxxxxxxpi'
+        command: 'delete'
+        id: '{{ __id.id }}'
