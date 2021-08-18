@@ -9,9 +9,9 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: checkly_check_statuses_info
-short_description: Get information from checkly about check status.
+short_description: Get information from checkly about check statuses.
 description:
-  - Get information from checkly about check status.
+  - Get information from checkly about check statuses.
   - U(https://www.checklyhq.com/docs/api#tag/Check-status)
 version_added: 0.3.0
 options:

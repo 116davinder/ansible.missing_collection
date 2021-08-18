@@ -5,7 +5,7 @@
 community.missing_collection.checkly_check_statuses_info
 ********************************************************
 
-**Get information from checkly about check status.**
+**Get information from checkly about check statuses.**
 
 
 Version added: 0.3.0
@@ -17,7 +17,7 @@ Version added: 0.3.0
 
 Synopsis
 --------
-- Get information from checkly about check status.
+- Get information from checkly about check statuses.
 - https://www.checklyhq.com/docs/api#tag/Check-status
 
 
