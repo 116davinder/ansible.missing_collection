@@ -1,0 +1,35 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create alert channel
+      checkly_alert_channels:
+        api_key: 'a8f08873c494445ba156e572e1324300'
+        command: 'create'
+        config:
+          address: 'dpsangwal@gmail.com'
+      register: __
+
+    - name: update a alert channel aka email address
+      checkly_alert_channels:
+        api_key: 'a8f08873c494445ba156e572e1324300'
+        command: 'update'
+        id: '{{ __.result.id }}'
+        config:
+          address: 'example1@gmail.com'
+
+    - name: update a alert channel subcriptions only
+      checkly_alert_channels:
+        api_key: 'a8f08873c494445ba156e572e1324300'
+        command: 'update-sub'
+        id: '{{ __.result.id }}'
+        activated: true
+        check_id: '1ceaff6c-12ce-4322-9ac1-2dd2c14a2967'
+
+    - name: delete a alert channel
+      checkly_alert_channels:
+        api_key: 'a8f08873c494445ba156e572e1324300'
+        command: 'delete'
+        id: '{{ __.result.id }}'

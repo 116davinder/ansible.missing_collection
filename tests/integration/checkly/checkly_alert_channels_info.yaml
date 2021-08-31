@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all alert channels from checkly
+      checkly_alert_channels_info:
+        api_key: 'a8f08873c494445ba156e572e1324300'
+        get_all_alert_channels: true
+
+    - name: get one alert channel from checkly
+      checkly_alert_channels_info:
+        api_key: 'a8f08873c494445ba156e572e1324300'
+        get_one_alert_channel: true
+        id: 39308
