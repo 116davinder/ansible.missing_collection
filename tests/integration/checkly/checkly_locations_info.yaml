@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get location details from checkly
+      checkly_locations_info:
+        api_key: '95e3814891ef433298150a539750076e'
