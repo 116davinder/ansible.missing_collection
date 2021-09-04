@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all linux capabilities for ping binary
+      capabilities_info:
+        path: '/usr/bin/ping'
+
+    - name: get all linux capabilities for top binary
+      capabilities_info:
+        path: '/usr/bin/top'
