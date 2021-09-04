@@ -196,18 +196,18 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>id</b>
+                    <b>result</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">string</span>
+                      <span style="color: purple">list/dict</span>
                     </div>
                 </td>
-                <td>when command is `create` and success.</td>
+                <td>when success.</td>
                 <td>
-                            <div>id of contact-groups test.</div>
+                            <div>result of checkly api.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">230089</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;id&#x27;: 0, &#x27;type&#x27;: &#x27;string&#x27;, &#x27;config&#x27;: {}, &#x27;subscriptions&#x27;: [], &#x27;sendRecovery&#x27;: True, &#x27;sendFailure&#x27;: True, &#x27;sendDegraded&#x27;: True, &#x27;sslExpiry&#x27;: False, &#x27;sslExpiryThreshold&#x27;: 30, &#x27;created_at&#x27;: &#x27;2019-08-24T14:15:22Z&#x27;, &#x27;updated_at&#x27;: &#x27;2019-08-24T14:15:22Z&#x27;}]</div>
                 </td>
             </tr>
     </table>

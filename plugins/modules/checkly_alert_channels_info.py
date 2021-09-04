@@ -75,11 +75,25 @@ EXAMPLES = """
 """
 
 RETURN = """
-id:
-  description: id of contact-groups test.
-  returned: when command is `create` and success.
-  type: str
-  sample: 230089
+result:
+  description: result of checkly api.
+  returned: when success.
+  type: list/dict
+  sample: [
+    {
+      "id": 0,
+      "type": "string",
+      "config": {},
+      "subscriptions": [],
+      "sendRecovery": true,
+      "sendFailure": true,
+      "sendDegraded": true,
+      "sslExpiry": false,
+      "sslExpiryThreshold": 30,
+      "created_at": "2019-08-24T14:15:22Z",
+      "updated_at": "2019-08-24T14:15:22Z"
+    }
+  ]
 """
 
 from ansible.module_utils.basic import AnsibleModule
