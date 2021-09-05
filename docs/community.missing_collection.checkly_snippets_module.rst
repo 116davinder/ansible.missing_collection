@@ -1,11 +1,11 @@
-.. _community.missing_collection.checkly_variables_info_module:
+.. _community.missing_collection.checkly_snippets_module:
 
 
-***************************************************
-community.missing_collection.checkly_variables_info
-***************************************************
+*********************************************
+community.missing_collection.checkly_snippets
+*********************************************
 
-**Get information about checkly environment variables.**
+**Management of the checkly Snippets.**
 
 
 Version added: 0.3.0
@@ -17,8 +17,8 @@ Version added: 0.3.0
 
 Synopsis
 --------
-- Get information about checkly environment variables.
-- https://www.checklyhq.com/docs/api#tag/Environment-variables
+- Management of the checkly Snippets
+- https://www.checklyhq.com/docs/api#tag/Snippets
 
 
 
@@ -59,45 +59,27 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_all_variables</b>
+                    <b>command</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
+                        <span style="color: purple">string</span>
                     </div>
                 </td>
                 <td>
                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                    <li>yes</li>
+                                    <li><div style="color: blue"><b>create</b>&nbsp;&larr;</div></li>
+                                    <li>update</li>
+                                    <li>delete</li>
                         </ul>
                 </td>
                 <td>
-                        <div>get information about all environment variables given <em>limit</em> and <em>page</em>.</div>
+                        <div>type of operation on snippets.</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>get_one_variable</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>get information about one environment variable given <em>key</em>.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>key</b>
+                    <b>id</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
@@ -106,39 +88,37 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>key of environment variable.</div>
+                        <div>id of snippet.</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>limit</b>
+                    <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">integer</span>
+                        <span style="color: purple">string</span>
                     </div>
                 </td>
                 <td>
-                        <b>Default:</b><br/><div style="color: blue">100</div>
                 </td>
                 <td>
-                        <div>number of environment variable retrieved in one call.</div>
+                        <div>name of snippet.</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>page</b>
+                    <b>script</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">integer</span>
+                        <span style="color: purple">string</span>
                     </div>
                 </td>
                 <td>
-                        <b>Default:</b><br/><div style="color: blue">1</div>
                 </td>
                 <td>
-                        <div>page number of environment variables retrieve call.</div>
+                        <div>raw string of script code.</div>
                 </td>
             </tr>
             <tr>
@@ -151,7 +131,7 @@ Parameters
                     </div>
                 </td>
                 <td>
-                        <b>Default:</b><br/><div style="color: blue">"https://api.checklyhq.com/v1/variables/"</div>
+                        <b>Default:</b><br/><div style="color: blue">"https://api.checklyhq.com/v1/snippets/"</div>
                 </td>
                 <td>
                         <div>checkly api.</div>
@@ -168,16 +148,26 @@ Examples
 
 .. code-block:: yaml
 
-    - name: get all alert channels from checkly
-      community.missing_collection.checkly_variables_info:
-        api_key: 'a8f08873c494445ba156e572e1324300'
-        get_all_variables: true
+    - name: create snippet
+      community.missing_collection.checkly_snippets:
+        api_key: 'b8155af5c45a476fb60c294c33ff549e'
+        command: 'create'
+        name: 'consoleTest'
+        script: "console.log('test');"
 
-    - name: get one alert channel from checkly
-      community.missing_collection.checkly_variables_info:
-        api_key: 'a8f08873c494445ba156e572e1324300'
-        get_one_variable: true
-        key: 'GITHUB_TOKEN'
+    - name: update snippet code
+      community.missing_collection.checkly_snippets:
+        api_key: 'b8155af5c45a476fb60c294c33ff549e'
+        command: 'update'
+        id: '1704'
+        name: 'consoleTest'
+        script: "console.log('test1');"
+
+    - name: delete snippet
+      community.missing_collection.checkly_snippets:
+        api_key: 'b8155af5c45a476fb60c294c33ff549e'
+        command: 'delete'
+        id: '1704'
 
 
 
@@ -199,15 +189,15 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
                     <b>result</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">list/dict</span>
+                      <span style="color: purple">dictionary</span>
                     </div>
                 </td>
-                <td>when success.</td>
+                <td>when command is <em>create</em>/<em>update</em> and success.</td>
                 <td>
                             <div>result of checkly api.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;key&#x27;: &#x27;string&#x27;, &#x27;value&#x27;: &#x27;&#x27;, &#x27;locked&#x27;: False}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;created_at&#x27;: &#x27;2021-09-05T21:51:23.164Z&#x27;, &#x27;id&#x27;: 1705, &#x27;name&#x27;: &#x27;consoleTest&#x27;, &#x27;script&#x27;: &quot;console.log(&#x27;test&#x27;);&quot;}</div>
                 </td>
             </tr>
     </table>

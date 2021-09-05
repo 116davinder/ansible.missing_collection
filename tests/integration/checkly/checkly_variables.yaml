@@ -11,16 +11,16 @@
         key: 'GITHUB_TOKEN1'
         value: '95e3814891ef43329815'
 
-    # - name: update value of key and locked
-    #   checkly_variables:
-    #     api_key: '95e3814891ef433298150a539750076e'
-    #     command: 'update'
-    #     key: 'GITHUB_TOKEN'
-    #     value: '33298150a539750076e'
-    #     locked: true
+    - name: update value of key and locked
+      checkly_variables:
+        api_key: '95e3814891ef433298150a539750076e'
+        command: 'update'
+        key: 'GITHUB_TOKEN'
+        value: '33298150a539750076e'
+        locked: true
 
-    # - name: delete key
-    #   checkly_variables:
-    #     api_key: '95e3814891ef433298150a539750076e'
-    #     command: 'delete'
-    #     key: 'GITHUB_TOKEN'
+    - name: delete key
+      checkly_variables:
+        api_key: '95e3814891ef433298150a539750076e'
+        command: 'delete'
+        key: 'GITHUB_TOKEN'

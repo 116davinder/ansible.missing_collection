@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create snippet
+      checkly_snippets:
+        api_key: 'b8155af5c45a476fb60c294c33ff549e'
+        command: 'create'
+        name: 'consoleTest'
+        script: "console.log('test');"
+
+    - name: update snippet code
+      checkly_snippets:
+        api_key: 'b8155af5c45a476fb60c294c33ff549e'
+        command: 'update'
+        id: '1704'
+        name: 'consoleTest'
+        script: "console.log('test1');"
+
+    - name: delete snippet
+      checkly_snippets:
+        api_key: 'b8155af5c45a476fb60c294c33ff549e'
+        command: 'delete'
+        id: '1704'
