@@ -31,12 +31,6 @@ options:
       - runtime id/name.
     required: false
     type: str
-  get_one_runtimes:
-    description:
-      - get the details of all included NPM packages and their version for one specific runtime I(id).
-    required: false
-    type: bool
-    default: false
 author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 requirements:
@@ -53,7 +47,6 @@ EXAMPLES = """
   community.missing_collection.checkly_runtimes_info:
     api_key: 'a8f0xxxxxxxxxxx00'
     id: '{{ __.data[0].name }}'
-    get_one_runtimes: true
 """
 
 RETURN = """
@@ -80,7 +73,6 @@ def main():
         url=dict(default="https://api.checklyhq.com/v1/runtimes/"),
         api_key=dict(required=True, no_log=True),
         id=dict(),
-        get_one_runtimes=dict(type=bool, default=False),
     )
 
     module = AnsibleModule(
@@ -94,7 +86,7 @@ def main():
         "Content-Type": "application/json"
     }
 
-    if module.params["get_one_runtimes"]:
+    if not module.params["id"]:
         r = requests.get(module.params["url"] + module.params["id"], headers=headers)
     else:
         r = requests.get(module.params["url"], headers=headers)

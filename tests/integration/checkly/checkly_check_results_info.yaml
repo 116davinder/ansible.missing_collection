@@ -10,11 +10,9 @@
         check_id: '1ceaff6c-12ce-4322-9ac1-2dd2c14a2967'
         page: 1
         from_date: "{{ ('2021-09-04 06:50:00'|to_datetime).strftime('%s') }}"
-        get_all_results: true
 
     - name: get one check result detail from checkly
       checkly_check_results_info:
         api_key: '95e3814891ef433298150a539750076e'
         check_id: '1ceaff6c-12ce-4322-9ac1-2dd2c14a2967'
         check_result_id: 'c826dca7-6543-4649-ad47-ade94367f5b1'
-        get_one_result: true

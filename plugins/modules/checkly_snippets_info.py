@@ -43,18 +43,6 @@ options:
     required: false
     type: int
     default: 1
-  get_all_snippets:
-    description:
-      - get information about all snippets given I(limit) and I(page).
-    required: false
-    type: bool
-    default: false
-  get_one_snippet:
-    description:
-      - get information about one snippet given I(id).
-    required: false
-    type: bool
-    default: false
 author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 requirements:
@@ -65,12 +53,10 @@ EXAMPLES = """
 - name: get all alert channels from checkly
   community.missing_collection.checkly_snippets_info:
     api_key: 'a8f08873c494445ba156e572e1324300'
-    get_all_snippets: true
 
 - name: get one alert channel from checkly
   community.missing_collection.checkly_snippets_info:
     api_key: 'a8f08873c494445ba156e572e1324300'
-    get_one_snippet: true
     id: '1706'
 """
 
@@ -101,8 +87,6 @@ def main():
         id=dict(),
         limit=dict(type=int, default=100),
         page=dict(type=int, default=1),
-        get_all_snippets=dict(type=bool, default=False),
-        get_one_snippet=dict(type=bool, default=False),
     )
 
     module = AnsibleModule(
@@ -112,19 +96,18 @@ def main():
         "Authorization": "Bearer {}".format(module.params["api_key"]),
         "Content-Type": "application/json"
     }
-    if module.params["get_all_snippets"]:
+    if not module.params["id"]:
         data = {
             "page": module.params["page"],
             "limit": module.params["limit"]
         }
         r = requests.get(module.params["url"], data=data, headers=headers)
-    elif module.params["get_one_snippet"]:
+    else:
         r = requests.get(
             module.params["url"] + module.params["id"],
             headers=headers
         )
-    else:
-        module.fail_json(msg="unknown parameters passed")
+
     if r.status_code == 200:
         module.exit_json(result=r.json())
     else:

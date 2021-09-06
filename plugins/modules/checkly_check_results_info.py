@@ -157,8 +157,6 @@ def main():
         location=dict(),
         page=dict(type=int),
         to_date=dict(),
-        get_all_results=dict(type=bool),
-        get_one_result=dict(type=bool),
     )
 
     module = AnsibleModule(
@@ -186,19 +184,17 @@ def main():
     if module.params["to_date"]:
         params["to_date"] = module.params["to_date"]
 
-    if module.params["get_all_results"]:
+    if not module.params["check_result_id"]:
         r = requests.get(
             module.params["url"] + module.params["check_id"],
             params=params,
             headers=headers
         )
-    elif module.params["get_one_result"]:
+    else:
         r = requests.get(
             module.params["url"] + module.params["check_id"] + "/" + module.params["check_result_id"],
             headers=headers
         )
-    else:
-        module.fail_json("unknown option are passed")
 
     if r.status_code == 200:
         module.exit_json(data=r.json())

@@ -31,12 +31,6 @@ options:
       - check id.
     required: false
     type: str
-  get_one_check:
-    description:
-      - get the current status information for a specific check I(id).
-    required: false
-    type: bool
-    default: false
 author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 requirements:
@@ -53,7 +47,6 @@ EXAMPLES = """
   community.missing_collection.checkly_check_statuses_info:
     api_key: 'a8f0xxxxxxxxxxx00'
     id: '{{ __.data[0].checkId }}'
-    get_one_check: true
 """
 
 RETURN = """
@@ -88,7 +81,6 @@ def main():
         url=dict(default="https://api.checklyhq.com/v1/check-statuses/"),
         api_key=dict(required=True, no_log=True),
         id=dict(),
-        get_one_check=dict(type=bool, default=False),
     )
 
     module = AnsibleModule(
@@ -102,7 +94,7 @@ def main():
         "Content-Type": "application/json"
     }
 
-    if module.params["get_one_check"]:
+    if not module.params["id"]:
         r = requests.get(module.params["url"] + module.params["id"], headers=headers)
     else:
         r = requests.get(module.params["url"], headers=headers)

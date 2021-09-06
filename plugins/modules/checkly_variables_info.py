@@ -43,18 +43,6 @@ options:
     required: false
     type: int
     default: 1
-  get_all_variables:
-    description:
-      - get information about all environment variables given I(limit) and I(page).
-    required: false
-    type: bool
-    default: false
-  get_one_variable:
-    description:
-      - get information about one environment variable given I(key).
-    required: false
-    type: bool
-    default: false
 author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 requirements:
@@ -65,12 +53,10 @@ EXAMPLES = """
 - name: get all alert channels from checkly
   community.missing_collection.checkly_variables_info:
     api_key: 'a8f08873c494445ba156e572e1324300'
-    get_all_variables: true
 
 - name: get one alert channel from checkly
   community.missing_collection.checkly_variables_info:
     api_key: 'a8f08873c494445ba156e572e1324300'
-    get_one_variable: true
     key: 'GITHUB_TOKEN'
 """
 
@@ -99,8 +85,6 @@ def main():
         key=dict(),
         limit=dict(type=int, default=100),
         page=dict(type=int, default=1),
-        get_all_variables=dict(type=bool, default=False),
-        get_one_variable=dict(type=bool, default=False),
     )
 
     module = AnsibleModule(
@@ -110,19 +94,18 @@ def main():
         "Authorization": "Bearer {}".format(module.params["api_key"]),
         "Content-Type": "application/json"
     }
-    if module.params["get_all_variables"]:
+    if not module.params["key"]:
         data = {
             "page": module.params["page"],
             "limit": module.params["limit"]
         }
         r = requests.get(module.params["url"], data=data, headers=headers)
-    elif module.params["get_one_variable"]:
+    else:
         r = requests.get(
             module.params["url"] + module.params["key"],
             headers=headers
         )
-    else:
-        module.fail_json(msg="unknown parameters passed")
+
     if r.status_code == 200:
         module.exit_json(result=r.json())
     else:

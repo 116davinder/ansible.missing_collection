@@ -48,7 +48,7 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>path of the binary/file to check.</div>
+                        <div>path of the file.</div>
                 </td>
             </tr>
     </table>

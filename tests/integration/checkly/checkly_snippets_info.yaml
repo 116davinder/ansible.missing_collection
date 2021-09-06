@@ -7,10 +7,8 @@
     - name: get all environment snippets
       checkly_snippets_info:
         api_key: 'b8155af5c45a476fb60c294c33ff549e'
-        get_all_snippets: true
 
     - name: get one environment snippets
       checkly_snippets_info:
         api_key: 'b8155af5c45a476fb60c294c33ff549e'
-        get_one_snippet: true
         id: '1706'
