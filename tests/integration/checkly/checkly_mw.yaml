@@ -1,0 +1,37 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create maintenance window
+      checkly_mw:
+        api_key: 'f7b0813b3428419d8b9c5ebb86fcca52'
+        command: 'create'
+        name: 'testMW'
+        ends_at: "2021-09-07"
+        start_at: "2021-09-06"
+        repeat_unit: "DAY"
+        repeat_ends_at: "2021-09-24"
+        repeat_interval: "1"
+        tags: "api"
+      register: __
+
+    - name: update maintenance window
+      checkly_mw:
+        api_key: 'f7b0813b3428419d8b9c5ebb86fcca52'
+        command: 'update'
+        id: "{{ __.result.id }}"
+        name: 'testNewMW'
+        ends_at: "2021-09-07"
+        start_at: "2021-09-06"
+        repeat_unit: "DAY"
+        repeat_ends_at: "2021-09-28"
+        repeat_interval: "2"
+        tags: "api,prod-api"
+
+    - name: delete maintenance window
+      checkly_mw:
+        api_key: 'f7b0813b3428419d8b9c5ebb86fcca52'
+        command: 'delete'
+        id: "{{ __.result.id }}"
