@@ -46,11 +46,11 @@ EXAMPLES = """
 - name: get details of one specific runtimes
   community.missing_collection.checkly_runtimes_info:
     api_key: 'a8f0xxxxxxxxxxx00'
-    id: '{{ __.data[0].name }}'
+    id: '{{ __.result[0].name }}'
 """
 
 RETURN = """
-data:
+result:
   description: result of the api.
   returned: when success.
   type: dict/list
@@ -92,7 +92,7 @@ def main():
         r = requests.get(module.params["url"], headers=headers)
 
     if r.status_code == 200:
-        module.exit_json(data=r.json())
+        module.exit_json(result=r.json())
     else:
         module.fail_json(msg=r.text)
 

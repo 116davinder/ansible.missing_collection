@@ -1,11 +1,11 @@
-.. _community.missing_collection.checkly_check_statuses_info_module:
+.. _community.missing_collection.checkly_dashboards_info_module:
 
 
-********************************************************
-community.missing_collection.checkly_check_statuses_info
-********************************************************
+****************************************************
+community.missing_collection.checkly_dashboards_info
+****************************************************
 
-**Get information from checkly about check statuses.**
+**Get information about checkly dashboards.**
 
 
 Version added: 0.3.0
@@ -17,8 +17,8 @@ Version added: 0.3.0
 
 Synopsis
 --------
-- Get information from checkly about check statuses.
-- https://www.checklyhq.com/docs/api#tag/Check-status
+- Get information about checkly dashboards.
+- https://www.checklyhq.com/docs/api#tag/Dashboards
 
 
 
@@ -68,7 +68,39 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>check id.</div>
+                        <div>id of dashboard.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>limit</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                    </div>
+                </td>
+                <td>
+                        <b>Default:</b><br/><div style="color: blue">100</div>
+                </td>
+                <td>
+                        <div>number of dashboards retrieved in one call.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>page</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                    </div>
+                </td>
+                <td>
+                        <b>Default:</b><br/><div style="color: blue">1</div>
+                </td>
+                <td>
+                        <div>page number of dashboards retrieve call.</div>
                 </td>
             </tr>
             <tr>
@@ -81,7 +113,7 @@ Parameters
                     </div>
                 </td>
                 <td>
-                        <b>Default:</b><br/><div style="color: blue">"https://api.checklyhq.com/v1/check-statuses/"</div>
+                        <b>Default:</b><br/><div style="color: blue">"https://api.checklyhq.com/v1/dashboards/"</div>
                 </td>
                 <td>
                         <div>checkly api.</div>
@@ -98,15 +130,14 @@ Examples
 
 .. code-block:: yaml
 
-    - name: get details of all checkly check statuses
-      community.missing_collection.checkly_check_statuses_info:
-        api_key: 'a8f0xxxxxxxxxxx00'
-      register: __
+    - name: get all dashboards from checkly
+      community.missing_collection.checkly_dashboards_info:
+        api_key: 'a8f08873c494445ba156e572e1324300'
 
-    - name: get details of one specific check statuses
-      community.missing_collection.checkly_check_statuses_info:
-        api_key: 'a8f0xxxxxxxxxxx00'
-        id: '{{ __.result[0].checkId }}'
+    - name: get one dashboard from checkly
+      community.missing_collection.checkly_dashboards_info:
+        api_key: 'a8f08873c494445ba156e572e1324300'
+        id: 'bfffd643'
 
 
 
@@ -128,15 +159,15 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
                     <b>result</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">dict/list</span>
+                      <span style="color: purple">list/dict</span>
                     </div>
                 </td>
                 <td>when success.</td>
                 <td>
-                            <div>result of the api.</div>
+                            <div>result of checkly api.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;name&#x27;: &#x27;string&#x27;, &#x27;checkId&#x27;: &#x27;string&#x27;, &#x27;hasFailures&#x27;: True, &#x27;hasErrors&#x27;: True, &#x27;isDegraded&#x27;: True, &#x27;longestRun&#x27;: 0, &#x27;shortestRun&#x27;: 0, &#x27;lastRunLocation&#x27;: &#x27;string&#x27;, &#x27;lastCheckRunId&#x27;: &#x27;string&#x27;, &#x27;sslDaysRemaining&#x27;: 0, &#x27;created_at&#x27;: &#x27;2019-08-24&#x27;, &#x27;updated_at&#x27;: &#x27;2019-08-24T14:15:22Z&#x27;}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;customUrl&#x27;: &#x27;string&#x27;, &#x27;customDomain&#x27;: &#x27;string&#x27;, &#x27;logo&#x27;: &#x27;string&#x27;, &#x27;header&#x27;: &#x27;string&#x27;, &#x27;width&#x27;: &#x27;FULL&#x27;, &#x27;refreshRate&#x27;: 60, &#x27;paginate&#x27;: True, &#x27;paginationRate&#x27;: 30, &#x27;tags&#x27;: [], &#x27;hideTags&#x27;: False, &#x27;dashboardId&#x27;: &#x27;string&#x27;}]</div>
                 </td>
             </tr>
     </table>

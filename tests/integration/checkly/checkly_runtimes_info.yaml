@@ -12,4 +12,4 @@
     - name: get details of one specific runtimes
       checkly_runtimes_info:
         api_key: 'a8f0xxxxxxxxxxx00'
-        id: '{{ __.data[0].name }}'
+        id: '{{ __.result[0].name }}'

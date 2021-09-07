@@ -46,11 +46,11 @@ EXAMPLES = """
 - name: get details of one specific check statuses
   community.missing_collection.checkly_check_statuses_info:
     api_key: 'a8f0xxxxxxxxxxx00'
-    id: '{{ __.data[0].checkId }}'
+    id: '{{ __.result[0].checkId }}'
 """
 
 RETURN = """
-data:
+result:
   description: result of the api.
   returned: when success.
   type: dict/list
@@ -100,7 +100,7 @@ def main():
         r = requests.get(module.params["url"], headers=headers)
 
     if r.status_code == 200:
-        module.exit_json(data=r.json())
+        module.exit_json(result=r.json())
     else:
         module.fail_json(msg=r.text)
 
