@@ -39,7 +39,7 @@ EXAMPLES = """
 """
 
 RETURN = """
-data:
+result:
   description: result of the api.
   returned: when success.
   type: dict
@@ -69,7 +69,7 @@ def main():
 
     r = requests.get(module.params["url"], headers=headers)
     if r.status_code == 200:
-        module.exit_json(data=r.json())
+        module.exit_json(result=r.json())
     else:
         module.fail_json(msg=r.text)
 
