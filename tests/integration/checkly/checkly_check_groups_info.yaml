@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all check groups from checkly
+      checkly_check_groups_info:
+        api_key: 'a8f08873c494445ba156e572e1324300'
+
+    - name: get one check group from checkly
+      checkly_check_groups_info:
+        api_key: 'a8f08873c494445ba156e572e1324300'
+        id: 39308
