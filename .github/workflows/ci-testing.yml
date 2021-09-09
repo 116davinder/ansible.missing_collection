@@ -19,6 +19,18 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Run ansible-lint
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: |
+            tests/*.yaml
+            tests/*/*.yaml
+            tests/*/*/*.yaml
+        env:
+          ANSIBLE_MODULE_UTILS: plugins/module_utils
+          ANSIBLE_LIBRARY: plugins/modules
+          ANSIBLE_DOC_FRAGMENT_PLUGINS: plugins/doc_fragments
+
       - name: Install test dependencies.
         run: pip3 install pycodestyle yamllint
 
