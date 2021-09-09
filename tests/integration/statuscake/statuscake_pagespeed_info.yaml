@@ -15,7 +15,7 @@
         api_key: 'Ohxxxxxxxxxxxxxxxxpi'
         get_one_test: true
         id: '{{ __tests.data[0].id }}'
-    
+
     - name: get history about one pagespeed test
       statuscake_pagespeed_info:
         api_key: 'Ohxxxxxxxxxxxxxxxxpi'
