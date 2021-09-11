@@ -56,7 +56,6 @@
     #       method: "GET"
     #       url: "https://example.com/"
 
-    - pause:
     - name: delete a check
       checkly_checks:
         api_key: 'c18803aafff44ec091558db24aa87098'
