@@ -46,7 +46,6 @@
           - 'axway'
       register: __
 
-    - pause:
     - name: update a check group
       checkly_check_groups:
         api_key: 'f9a037281de04a36b74534dd973c3a78'
