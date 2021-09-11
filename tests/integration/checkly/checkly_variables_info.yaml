@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all environment variables
+      checkly_variables_info:
+        api_key: '95e3814891ef433298150a539750076e'
+
+    - name: get one environment variables
+      checkly_variables_info:
+        api_key: '95e3814891ef433298150a539750076e'
+        key: 'GITHUB_TOKEN'

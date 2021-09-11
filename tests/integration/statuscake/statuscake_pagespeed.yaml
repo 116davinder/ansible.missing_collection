@@ -19,7 +19,7 @@
         command: 'update'
         id: '{{ __id.id }}'
         name: 'google_test_new'
-    
+
     - name: delete pagespeed test
       statuscake_pagespeed:
         api_key: 'Ohxxxxxxxxxxxxxxxxpi'

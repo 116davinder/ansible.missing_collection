@@ -15,7 +15,7 @@
         api_key: 'sxxxxxxxxxxxx6y'
         get_one: true
         id: '{{ __tests.data[0].id }}'
-    
+
     - name: get history about one uptime test
       statuscake_uptime_info:
         api_key: 'sxxxxxxxxxxxx6y'

@@ -1,0 +1,37 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create a dashboard
+      checkly_dashboards:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
+        command: 'create'
+        custom_domain: '6605c28f.axway.com'
+        custom_url: "6605c28f"
+        header: 'Managed by Ansible Automation'
+        tags:
+          - 'api'
+          - 'axway'
+        logo: 'https://upload.wikimedia.org/wikipedia/en/8/8a/Axway_Software_logo_June_2017.png'
+      register: __
+
+    - name: update a dashboard
+      checkly_dashboards:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
+        command: 'update'
+        custom_domain: '6605c28f.axway.com'
+        custom_url: "6605c28f"
+        header: 'Managed by Ansible Automation'
+        tags:
+          - 'api'
+          - 'axway'
+        id: '{{ __.result.dashboardId }}'
+        logo: 'https://upload.wikimedia.org/wikipedia/en/8/8a/Axway_Software_logo_June_2017.png'
+
+    - name: delete a dashboard
+      checkly_dashboards:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
+        command: 'delete'
+        id: '{{ __.result.dashboardId }}'

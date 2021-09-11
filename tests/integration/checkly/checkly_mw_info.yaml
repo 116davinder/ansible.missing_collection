@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all maintenance windows from checkly
+      checkly_mw_info:
+        api_key: 'f7b0813b3428419d8b9c5ebb86fcca52'
+
+    - name: get one maintenance window from checkly
+      checkly_mw_info:
+        api_key: 'f7b0813b3428419d8b9c5ebb86fcca52'
+        id: '426'

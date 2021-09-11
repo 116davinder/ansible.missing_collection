@@ -1,0 +1,60 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create a check group
+      checkly_check_groups:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
+        command: 'create'
+        name: 'Ansible API Check Group'
+        api_check_defaults:
+          assertions:
+            - comparison: "EQUALS"
+              property: ""
+              source: "STATUS_CODE"
+              target: "200"
+          basicAuth:
+            password: ""
+            username: ""
+          body: ""
+          bodyType: "NONE"
+          followRedirects: true
+          headers: []
+          method: "GET"
+          queryParameters: []
+          url: "https://www.axway.com/"
+        alert_channel_subscriptions:
+          - activated: true
+            alertChannelId: 39739
+        alert_settings:
+          escalationType: "RUN_BASED"
+          reminders:
+            amount: 0
+            interval: 5
+          runBasedEscalation:
+            failedRunThreshold: 1
+          sslCertificates:
+            alertThreshold: 30
+            enabled: true
+          timeBasedEscalation:
+            minutesFailingThreshold: 5
+        use_global_alert_settings: false
+        tags:
+          - 'api'
+          - 'axway'
+      register: __
+
+    - name: update a check group
+      checkly_check_groups:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
+        command: 'update'
+        name: 'New Ansible API Check Group'
+        id: '{{ __.result.id }}'
+
+    - name: delete a check group
+      checkly_check_groups:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
+        command: 'delete'
+        id: '{{ __.result.id }}'

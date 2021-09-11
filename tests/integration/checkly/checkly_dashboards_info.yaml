@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get details of all checkly dashboards
+      checkly_dashboards_info:
+        api_key: '4a7734debb54464e9fefe8b4f14b896e'
+
+    - name: get details of one specific dashboard
+      checkly_dashboards_info:
+        api_key: '4a7734debb54464e9fefe8b4f14b896e'
+        id: 'bfffd643'

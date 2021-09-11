@@ -1,0 +1,15 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get details of all checkly check statuses
+      checkly_check_statuses_info:
+        api_key: 'a8f0xxxxxxxxxxx00'
+      register: __
+
+    - name: get details of one specific check statuses
+      checkly_check_statuses_info:
+        api_key: 'a8f0xxxxxxxxxxx00'
+        id: '{{ __.result[0].checkId }}'

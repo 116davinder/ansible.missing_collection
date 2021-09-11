@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get account detail from checkly
+      checkly_account_info:
+        api_key: 'a8f0xxxxxxxxxxx00'

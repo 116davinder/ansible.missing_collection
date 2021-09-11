@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: generate report for last 24 hours
+      checkly_reporting_info:
+        api_key: '95e3814891ef433298150a539750076e'
+        preset_window: 'last24Hrs'
+
+    - name: generate report for specific period
+      checkly_reporting_info:
+        api_key: '95e3814891ef433298150a539750076e'
+        from_date: "{{ ('2021-09-02 06:50:00'|to_datetime).strftime('%s') }}"
+        to_date: "{{ ('2021-09-04 06:50:00'|to_datetime).strftime('%s') }}"

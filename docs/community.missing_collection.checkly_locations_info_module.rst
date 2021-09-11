@@ -1,11 +1,11 @@
-.. _community.missing_collection.capabilities_info_module:
+.. _community.missing_collection.checkly_locations_info_module:
 
 
-**********************************************
-community.missing_collection.capabilities_info
-**********************************************
+***************************************************
+community.missing_collection.checkly_locations_info
+***************************************************
 
-**Get information about linux capability of given file.**
+**Get information from checkly about Locations.**
 
 
 Version added: 0.3.0
@@ -17,11 +17,16 @@ Version added: 0.3.0
 
 Synopsis
 --------
-- Get information about linux capability of given file.
-- https://reposcope.com/package/libcap
-- It requires **libcap** package.
+- Get information from checkly about Locations.
+- https://www.checklyhq.com/docs/api#tag/Location
 
 
+
+Requirements
+------------
+The below requirements are needed on the host that executes this module.
+
+- requests
 
 
 Parameters
@@ -38,7 +43,7 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>path</b>
+                    <b>api_key</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
@@ -48,7 +53,23 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>path of the file.</div>
+                        <div>api key for checkly.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>url</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                    </div>
+                </td>
+                <td>
+                        <b>Default:</b><br/><div style="color: blue">"https://api.checklyhq.com/v1/locations"</div>
+                </td>
+                <td>
+                        <div>checkly api.</div>
                 </td>
             </tr>
     </table>
@@ -62,9 +83,9 @@ Examples
 
 .. code-block:: yaml
 
-    - name: get all linux capabilities for ping binary
-      community.missing_collection.capabilities_info:
-        path: '/usr/bin/ping'
+    - name: get details about account
+      community.missing_collection.checkly_locations_info:
+        api_key: 'sGxxxxxxxxxxxx6y'
 
 
 
@@ -83,7 +104,7 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>capabilities</b>
+                    <b>result</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
@@ -91,10 +112,10 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
                 </td>
                 <td>when success.</td>
                 <td>
-                            <div>list of the linux capabilites.</div>
+                            <div>result of the api.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[&#x27;cap_net_bind_service&#x27;, &#x27;cap_net_admin=ep&#x27;]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;region&#x27;: &#x27;string&#x27;, &#x27;name&#x27;: &#x27;string&#x27;, &#x27;flag&#x27;: &#x27;string&#x27;, &#x27;color&#x27;: &#x27;string&#x27;}]</div>
                 </td>
             </tr>
     </table>

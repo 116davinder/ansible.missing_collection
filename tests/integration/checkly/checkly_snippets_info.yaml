@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all environment snippets
+      checkly_snippets_info:
+        api_key: 'b8155af5c45a476fb60c294c33ff549e'
+
+    - name: get one environment snippets
+      checkly_snippets_info:
+        api_key: 'b8155af5c45a476fb60c294c33ff549e'
+        id: '1706'

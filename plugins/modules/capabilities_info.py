@@ -18,7 +18,7 @@ version_added: 0.3.0
 options:
   path:
     description:
-      - path of the binary/file to check.
+      - path of the file.
     required: true
     type: str
 author:
