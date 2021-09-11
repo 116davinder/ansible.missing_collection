@@ -6,9 +6,10 @@
   tasks:
     - name: get all checks from checkly
       checkly_checks_info:
-        api_key: 'a8f08873c494445ba156e572e1324300'
+        api_key: 'c18803aafff44ec091558db24aa87098'
+      register: __
 
     - name: get one checks from checkly
       checkly_checks_info:
-        api_key: 'a8f08873c494445ba156e572e1324300'
-        id: 39308
+        api_key: 'c18803aafff44ec091558db24aa87098'
+        id: '{{ __.result[0].id }}'

@@ -1,0 +1,64 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create a check
+      checkly_checks:
+        api_key: 'c18803aafff44ec091558db24aa87098'
+        command: 'create'
+        name: 'Ansible API Check'
+        check_type: "API"
+        request:
+          assertions:
+            - comparison: "EQUALS"
+              property: ""
+              source: "STATUS_CODE"
+              target: "200"
+          basicAuth:
+            password: ""
+            username: ""
+          body: ""
+          bodyType: "NONE"
+          followRedirects: true
+          headers: []
+          method: "GET"
+          queryParameters: []
+          url: "https://www.axway.com/"
+        alert_channel_subscriptions:
+          - activated: true
+            alertChannelId: 39739
+        alert_settings:
+          escalationType: "RUN_BASED"
+          reminders:
+            amount: 0
+            interval: 5
+          runBasedEscalation:
+            failedRunThreshold: 1
+          sslCertificates:
+            alertThreshold: 30
+            enabled: true
+          timeBasedEscalation:
+            minutesFailingThreshold: 5
+        use_global_alert_settings: false
+        tags: 'api,axway'
+      register: __
+
+    # doesn't work yet
+    # - name: update a check
+    #   checkly_checks:
+    #     api_key: 'c18803aafff44ec091558db24aa87098'
+    #     command: 'update'
+    #     name: 'New Ansible API Check'
+    #     id: '{{ __.result.id }}'
+    #     request:
+    #       method: "GET"
+    #       url: "https://example.com/"
+
+    - pause:
+    - name: delete a check
+      checkly_checks:
+        api_key: 'c18803aafff44ec091558db24aa87098'
+        command: 'delete'
+        id: '{{ __.result.id }}'
