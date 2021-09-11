@@ -1,11 +1,11 @@
-.. _community.missing_collection.checkly_checks_module:
+.. _community.missing_collection.checkly_check_groups_module:
 
 
-*******************************************
-community.missing_collection.checkly_checks
-*******************************************
+*************************************************
+community.missing_collection.checkly_check_groups
+*************************************************
 
-**Management of the checkly Checks.**
+**Management of the checkly Check Groups.**
 
 
 Version added: 0.3.0
@@ -17,8 +17,8 @@ Version added: 0.3.0
 
 Synopsis
 --------
-- Management of the checkly Checks.
-- https://www.checklyhq.com/docs/api#tag/Checks
+- Management of the checkly Check Groups.
+- https://www.checklyhq.com/docs/api#tag/Check-groups
 
 
 
@@ -94,6 +94,22 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>api_check_defaults</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                    </div>
+                </td>
+                <td>
+                        <b>Default:</b><br/><div style="color: blue">{}</div>
+                </td>
+                <td>
+                        <div>default settings for all checks which will be part of this group.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>api_key</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -129,20 +145,16 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>check_type</b>
+                    <b>browser_check_defaults</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">string</span>
+                        <span style="color: purple">dictionary</span>
                     </div>
                 </td>
                 <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>BROWSER</li>
-                                    <li><div style="color: blue"><b>API</b>&nbsp;&larr;</div></li>
-                        </ul>
                 </td>
                 <td>
-                        <div>The type of the check.</div>
+                        <div>default settings for all checks which will be part of this group.</div>
                 </td>
             </tr>
             <tr>
@@ -168,17 +180,18 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>degraded_response_time</b>
+                    <b>concurrency</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
                     </div>
                 </td>
                 <td>
-                        <b>Default:</b><br/><div style="color: blue">10000</div>
+                        <b>Default:</b><br/><div style="color: blue">3</div>
                 </td>
                 <td>
-                        <div>The response time in milliseconds where a check should be considered degraded.</div>
+                        <div>Determines how many checks are invoked concurrently</div>
+                        <div>when triggering a check group from CI/CD or through the API.</div>
                 </td>
             </tr>
             <tr>
@@ -215,76 +228,6 @@ Parameters
                 </td>
                 <td>
                         <div>Key/value pairs for setting environment variables during check execution.</div>
-                        <div>These are only relevant for Browser checks.</div>
-                        <div>Use global environment variables whenever possible.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>frequency</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">integer</span>
-                    </div>
-                </td>
-                <td>
-                        <b>Default:</b><br/><div style="color: blue">60</div>
-                </td>
-                <td>
-                        <div>how often the check should run in minutes.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>frequency_offset</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">integer</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>Used for setting seconds for check frequencies under 1 minutes (only for API checks)</div>
-                        <div>and spreading checks over a time range for frequencies over 1 minute.</div>
-                        <div>This works as follows Checks with a frequency of 0 can have a frequencyOffset of 10, 20 or 30 meaning they will run every 10, 20 or 30 seconds.</div>
-                        <div>Checks with a frequency lower than and equal to 60 can have a frequencyOffset between 1 and a max value based on the formula &quot;Math.floor(frequency * 10)&quot;,</div>
-                        <div>i.e. for a check that runs every 5 minutes the max frequencyOffset is 50.</div>
-                        <div>Checks with a frequency higher than 60 can have a frequencyOffset between 1 and a max value based on the formula &quot;Math.ceil(frequency / 60)&quot;,</div>
-                        <div>i.e. for a check that runs every 720 minutes, the max frequencyOffset is 12.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>group_id</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">integer</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>The id of the check group this check is part of.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>group_order</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">integer</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>The position of this check in a check group.</div>
-                        <div>It determines in what order checks are run when a group is triggered from the API or from CI/CD.</div>
                 </td>
             </tr>
             <tr>
@@ -299,7 +242,7 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>id of check.</div>
+                        <div>id of check group.</div>
                         <div>required only for <em>delete</em> and <em>update</em>.</div>
                 </td>
             </tr>
@@ -352,22 +295,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>max_response_time</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">integer</span>
-                    </div>
-                </td>
-                <td>
-                        <b>Default:</b><br/><div style="color: blue">20000</div>
-                </td>
-                <td>
-                        <div>The response time in milliseconds where a check should be considered failing.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>muted</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -396,22 +323,7 @@ Parameters
                 <td>
                 </td>
                 <td>
-                        <div>name of the check.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>request</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">dictionary</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>request object.</div>
+                        <div>name of the check group.</div>
                 </td>
             </tr>
             <tr>
@@ -436,22 +348,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>script</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                    </div>
-                </td>
-                <td>
-                </td>
-                <td>
-                        <div>nodejs based script.</div>
-                        <div>nothing mentioned in api docs.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>setup_snippet_id</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -467,45 +363,6 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>should_fail</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>Allows to invert the behaviour of when a check is considered to fail.</div>
-                        <div>Allows for validating error status like 404.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>ssl_check</b>
-                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">boolean</span>
-                    </div>
-                </td>
-                <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li><div style="color: blue"><b>no</b>&nbsp;&larr;</div></li>
-                                    <li>yes</li>
-                        </ul>
-                </td>
-                <td>
-                        <div>Determines if the SSL certificate should be validated for expiry.</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-"></div>
                     <b>tags</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
@@ -513,7 +370,7 @@ Parameters
                     </div>
                 </td>
                 <td>
-                        <b>Default:</b><br/><div style="color: blue">[]</div>
+                        <b>Default:</b><br/><div style="color: blue">""</div>
                 </td>
                 <td>
                         <div>A list of one or more tags that filter which checks to display on the dashboard.</div>
@@ -544,7 +401,7 @@ Parameters
                     </div>
                 </td>
                 <td>
-                        <b>Default:</b><br/><div style="color: blue">"https://api.checklyhq.com/v1/checks/"</div>
+                        <b>Default:</b><br/><div style="color: blue">"https://api.checklyhq.com/v1/check-groups/"</div>
                 </td>
                 <td>
                         <div>checkly api.</div>
@@ -581,13 +438,12 @@ Examples
 
 .. code-block:: yaml
 
-    - name: create a check
-      community.missing_collection.checkly_checks:
-        api_key: 'c18803aafff44ec091558db24aa87098'
+    - name: create a check group with apicheckDefaults
+      community.missing_collection.checkly_check_groups:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
         command: 'create'
-        name: 'Ansible API Check'
-        check_type: "API"
-        request:
+        name: 'Ansible API Check Group'
+        api_check_defaults:
           assertions:
             - comparison: "EQUALS"
               property: ""
@@ -624,20 +480,16 @@ Examples
           - 'axway'
       register: __
 
-    # doesn't work yet - Internal Server Error
-    - name: update a check
-      community.missing_collection.checkly_checks:
-        api_key: 'c18803aafff44ec091558db24aa87098'
+    - name: update a check group
+      community.missing_collection.checkly_check_groups:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
         command: 'update'
-        name: 'New Ansible API Check'
+        name: 'New Ansible API Check Group'
         id: '{{ __.result.id }}'
-        request:
-          method: "GET"
-          url: "https://example.com/"
 
-    - name: delete a check
-      community.missing_collection.checkly_checks:
-        api_key: 'c18803aafff44ec091558db24aa87098'
+    - name: delete a check group
+      community.missing_collection.checkly_check_groups:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
         command: 'delete'
         id: '{{ __.result.id }}'
 
@@ -669,7 +521,7 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
                             <div>result of checkly api.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;id&#x27;: &#x27;string&#x27;, &#x27;name&#x27;: &#x27;string&#x27;, &#x27;checkType&#x27;: &#x27;BROWSER&#x27;, &#x27;frequency&#x27;: 10, &#x27;frequencyOffset&#x27;: 1, &#x27;activated&#x27;: True, &#x27;muted&#x27;: False, &#x27;doubleCheck&#x27;: True, &#x27;sslCheck&#x27;: True, &#x27;shouldFail&#x27;: True, &#x27;locations&#x27;: [], &#x27;request&#x27;: {}, &#x27;script&#x27;: &#x27;string&#x27;, &#x27;environmentVariables&#x27;: [], &#x27;tags&#x27;: [], &#x27;setupSnippetId&#x27;: 0, &#x27;tearDownSnippetId&#x27;: 0, &#x27;localSetupScript&#x27;: &#x27;string&#x27;, &#x27;localTearDownScript&#x27;: &#x27;string&#x27;, &#x27;alertSettings&#x27;: {}, &#x27;useGlobalAlertSettings&#x27;: True, &#x27;degradedResponseTime&#x27;: 10000, &#x27;maxResponseTime&#x27;: 20000, &#x27;groupId&#x27;: 0, &#x27;groupOrder&#x27;: 0, &#x27;runtimeId&#x27;: &#x27;2021.06&#x27;, &#x27;alertChannelSubscriptions&#x27;: [], &#x27;alertChannels&#x27;: {}, &#x27;created_at&#x27;: &#x27;2019-08-24&#x27;, &#x27;updated_at&#x27;: &#x27;2019-08-24T14:15:22Z&#x27;}</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;id&#x27;: 0, &#x27;name&#x27;: &#x27;string&#x27;, &#x27;activated&#x27;: True, &#x27;muted&#x27;: True, &#x27;tags&#x27;: [], &#x27;locations&#x27;: [], &#x27;concurrency&#x27;: 3, &#x27;apiCheckDefaults&#x27;: {}, &#x27;browserCheckDefaults&#x27;: {}, &#x27;environmentVariables&#x27;: [], &#x27;doubleCheck&#x27;: True, &#x27;useGlobalAlertSettings&#x27;: True, &#x27;alertSettings&#x27;: {}, &#x27;alertChannelSubscriptions&#x27;: [], &#x27;setupSnippetId&#x27;: 0, &#x27;tearDownSnippetId&#x27;: 0, &#x27;localSetupScript&#x27;: &#x27;string&#x27;, &#x27;localTearDownScript&#x27;: &#x27;string&#x27;, &#x27;runtimeId&#x27;: &#x27;2021.06&#x27;, &#x27;created_at&#x27;: &#x27;2019-08-24&#x27;, &#x27;updated_at&#x27;: &#x27;2019-08-24T14:15:22Z&#x27;}</div>
                 </td>
             </tr>
     </table>

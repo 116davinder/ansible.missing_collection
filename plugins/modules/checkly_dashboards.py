@@ -92,10 +92,9 @@ options:
   tags:
     description:
       - A list of one or more tags that filter which checks to display on the dashboard.
-      - comma separated list.
     required: false
-    type: str
-    default: ""
+    type: list
+    default: []
   width:
     description:
       - Determines whether to use the full screen or focus in the center.
@@ -117,7 +116,9 @@ EXAMPLES = """
     custom_domain: '6605c28f.axway.com'
     custom_url: "6605c28f"
     header: 'Managed by Ansible Automation'
-    tags: 'api'
+    tags:
+      - 'api'
+      - 'axway'
     logo: 'https://upload.wikimedia.org/wikipedia/en/8/8a/Axway_Software_logo_June_2017.png'
   register: __
 
@@ -128,7 +129,9 @@ EXAMPLES = """
     custom_domain: '6605c28f.axway.com'
     custom_url: "6605c28f"
     header: 'Managed by Ansible Automation'
-    tags: 'api'
+    tags:
+      - 'api'
+      - 'axway'
     id: '{{ __.result.dashboardId }}'
     logo: 'https://upload.wikimedia.org/wikipedia/en/8/8a/Axway_Software_logo_June_2017.png'
 
@@ -153,8 +156,9 @@ result:
     "refreshRate": 60,
     "paginate": true,
     "paginationRate": 30,
-    "tags": ["string"],
-    "hideTags": false
+    "tags": [],
+    "hideTags": false,
+    "dashboardId": "string"
   }
 """
 
@@ -176,7 +180,7 @@ def main():
         paginate=dict(type=bool, default=True),
         pagination_rate=dict(type=int, choices=[30, 60, 300], default=60),
         refresh_rate=dict(type=int, choices=[60, 300, 600], default=60),
-        tags=dict(default=""),
+        tags=dict(type=list, default=[]),
         width=dict(choices=["FULL", "960PX"], default="FULL"),
     )
 
@@ -193,7 +197,7 @@ def main():
         "paginate": module.params["paginate"],
         "paginationRate": module.params["pagination_rate"],
         "refreshRate": module.params["refresh_rate"],
-        "tags": module.params["tags"].split(","),
+        "tags": module.params["tags"],
         "width": module.params["width"]
     }
     if module.params["custom_domain"]:

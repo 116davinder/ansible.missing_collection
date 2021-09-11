@@ -4,13 +4,12 @@
   gather_facts: false
   ignore_errors: true
   tasks:
-    - name: create a check
-      checkly_checks:
+    - name: create a check group
+      checkly_check_groups:
         api_key: 'f9a037281de04a36b74534dd973c3a78'
         command: 'create'
-        name: 'Ansible API Check'
-        check_type: "API"
-        request:
+        name: 'Ansible API Check Group'
+        api_check_defaults:
           assertions:
             - comparison: "EQUALS"
               property: ""
@@ -47,19 +46,16 @@
           - 'axway'
       register: __
 
-    # doesn't work yet
-    # - name: update a check
-    #   checkly_checks:
-    #     api_key: 'c18803aafff44ec091558db24aa87098'
-    #     command: 'update'
-    #     name: 'New Ansible API Check'
-    #     id: '{{ __.result.id }}'
-    #     request:
-    #       method: "GET"
-    #       url: "https://example.com/"
+    - pause:
+    - name: update a check group
+      checkly_check_groups:
+        api_key: 'f9a037281de04a36b74534dd973c3a78'
+        command: 'update'
+        name: 'New Ansible API Check Group'
+        id: '{{ __.result.id }}'
 
-    - name: delete a check
-      checkly_checks:
+    - name: delete a check group
+      checkly_check_groups:
         api_key: 'f9a037281de04a36b74534dd973c3a78'
         command: 'delete'
         id: '{{ __.result.id }}'

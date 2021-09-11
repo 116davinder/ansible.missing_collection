@@ -240,15 +240,14 @@ Parameters
                     <b>tags</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">string</span>
+                        <span style="color: purple">list</span>
                     </div>
                 </td>
                 <td>
-                        <b>Default:</b><br/><div style="color: blue">""</div>
+                        <b>Default:</b><br/><div style="color: blue">[]</div>
                 </td>
                 <td>
                         <div>A list of one or more tags that filter which checks to display on the dashboard.</div>
-                        <div>comma separated list.</div>
                 </td>
             </tr>
             <tr>
@@ -304,7 +303,9 @@ Examples
         custom_domain: '6605c28f.axway.com'
         custom_url: "6605c28f"
         header: 'Managed by Ansible Automation'
-        tags: 'api'
+        tags:
+          - 'api'
+          - 'axway'
         logo: 'https://upload.wikimedia.org/wikipedia/en/8/8a/Axway_Software_logo_June_2017.png'
       register: __
 
@@ -315,7 +316,9 @@ Examples
         custom_domain: '6605c28f.axway.com'
         custom_url: "6605c28f"
         header: 'Managed by Ansible Automation'
-        tags: 'api'
+        tags:
+          - 'api'
+          - 'axway'
         id: '{{ __.result.dashboardId }}'
         logo: 'https://upload.wikimedia.org/wikipedia/en/8/8a/Axway_Software_logo_June_2017.png'
 
@@ -353,7 +356,7 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
                             <div>result of checkly api.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;customUrl&#x27;: &#x27;string&#x27;, &#x27;customDomain&#x27;: &#x27;string&#x27;, &#x27;logo&#x27;: &#x27;string&#x27;, &#x27;header&#x27;: &#x27;string&#x27;, &#x27;width&#x27;: &#x27;FULL&#x27;, &#x27;refreshRate&#x27;: 60, &#x27;paginate&#x27;: True, &#x27;paginationRate&#x27;: 30, &#x27;tags&#x27;: [&#x27;string&#x27;], &#x27;hideTags&#x27;: False}</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;customUrl&#x27;: &#x27;string&#x27;, &#x27;customDomain&#x27;: &#x27;string&#x27;, &#x27;logo&#x27;: &#x27;string&#x27;, &#x27;header&#x27;: &#x27;string&#x27;, &#x27;width&#x27;: &#x27;FULL&#x27;, &#x27;refreshRate&#x27;: 60, &#x27;paginate&#x27;: True, &#x27;paginationRate&#x27;: 30, &#x27;tags&#x27;: [], &#x27;hideTags&#x27;: False, &#x27;dashboardId&#x27;: &#x27;string&#x27;}</div>
                 </td>
             </tr>
     </table>

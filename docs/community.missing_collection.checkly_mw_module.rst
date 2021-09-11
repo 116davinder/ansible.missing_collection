@@ -196,14 +196,14 @@ Parameters
                     <b>tags</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">string</span>
+                        <span style="color: purple">list</span>
                     </div>
                 </td>
                 <td>
+                        <b>Default:</b><br/><div style="color: blue">[]</div>
                 </td>
                 <td>
                         <div>The names of the checks and groups maintenance window should apply to.</div>
-                        <div>comma separated list.</div>
                 </td>
             </tr>
             <tr>
@@ -243,7 +243,8 @@ Examples
         repeat_unit: "DAY"
         repeat_ends_at: "2021-09-24"
         repeat_interval: "1"
-        tags: "api"
+        tags:
+          - 'api'
       register: __
 
     - name: update maintenance window
@@ -257,7 +258,9 @@ Examples
         repeat_unit: "DAY"
         repeat_ends_at: "2021-09-28"
         repeat_interval: "2"
-        tags: "api,prod-api"
+        tags:
+          - 'api'
+          - 'axway'
 
     - name: delete maintenance window
       community.missing_collection.checkly_mw:

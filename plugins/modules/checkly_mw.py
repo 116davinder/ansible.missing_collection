@@ -63,9 +63,9 @@ options:
   tags:
     description:
       - The names of the checks and groups maintenance window should apply to.
-      - comma separated list.
     required: false
-    type: str
+    type: list
+    default: []
   repeat_ends_at:
     description:
       - The end date where the maintenance window should stop repeating.
@@ -95,7 +95,8 @@ EXAMPLES = """
     repeat_unit: "DAY"
     repeat_ends_at: "2021-09-24"
     repeat_interval: "1"
-    tags: "api"
+    tags:
+      - 'api'
   register: __
 
 - name: update maintenance window
@@ -109,7 +110,9 @@ EXAMPLES = """
     repeat_unit: "DAY"
     repeat_ends_at: "2021-09-28"
     repeat_interval: "2"
-    tags: "api,prod-api"
+    tags:
+      - 'api'
+      - 'axway'
 
 - name: delete maintenance window
   community.missing_collection.checkly_mw:
@@ -148,7 +151,7 @@ def main():
         name=dict(),
         repeat_unit=dict(choices=["DAY", "WEEK", "MONTH"]),
         start_at=dict(),
-        tags=dict(),
+        tags=dict(type=list, default=[]),
         repeat_ends_at=dict(),
         repeat_interval=dict(),
     )
@@ -166,7 +169,7 @@ def main():
             "endsAt": module.params["ends_at"],
             "repeatUnit": module.params["repeat_unit"],
             "startsAt": module.params["start_at"],
-            "tags": module.params["tags"].split(","),
+            "tags": module.params["tags"]
         }
         if module.params["repeat_ends_at"]:
             data["repeatEndsAt"] = module.params["repeat_ends_at"]
