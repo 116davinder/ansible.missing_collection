@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  become: false
+  tasks:
+    - name: send sms using aws sns
+      aws_sms:
+        phone: '+359888XXXXX'
+        message: 'I am using ansible missing collection'

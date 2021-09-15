@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: "get sms sandbox account status"
+      aws_sms_info:
+        get_sms_sandbox_account_status: true
+
+    - name: "get list of phones opted out"
+      aws_sms_info:
+        list_phone_numbers_opted_out: true
+
+    - name: "get list of sandbox registered numbers"
+      aws_sms_info:
+        list_sms_sandbox_phone_numbers: true

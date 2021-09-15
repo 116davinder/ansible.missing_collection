@@ -32,10 +32,10 @@ requirements:
 
 EXAMPLES = """
 - name: Get list of SNS Subscriptions.
-  community.aws.sns_subscriptions_info:
+  community.missing_collection.sns_subscriptions_info:
 
 - name: Get list of SNS Subscriptions for given topic.
-  community.aws.sns_subscriptions_info:
+  community.missing_collection.sns_subscriptions_info:
     arn: 'arn:aws:sns:us-east-1:xxx:test'
 """
 

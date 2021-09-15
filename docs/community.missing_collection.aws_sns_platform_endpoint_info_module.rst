@@ -274,11 +274,11 @@ Examples
 .. code-block:: yaml
 
     - name: Get list of Endpoints SNS platform Endpoints.
-      community.aws.sns_platform_endpoint_info:
+      community.missing_collection.sns_platform_endpoint_info:
         arn: arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app
 
     - name: Get list of Endpoints SNS platform Endpoints but enabled only.
-      community.aws.sns_platform_endpoint_info:
+      community.missing_collection.sns_platform_endpoint_info:
         arn: arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app
         enabled: 'true'
 

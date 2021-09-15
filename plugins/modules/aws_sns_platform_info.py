@@ -32,10 +32,10 @@ requirements:
 
 EXAMPLES = """
 - name: Get list of SNS platform applications.
-  community.aws.sns_platform_info:
+  community.missing_collection.sns_platform_info:
 
 - name: Get list of SNS platform applications but enabled only.
-  community.aws.sns_platform_info:
+  community.missing_collection.sns_platform_info:
     enabled: 'true'
 """
 

@@ -1,14 +1,14 @@
-.. _community.missing_collection.aws_sns_platform_info_module:
+.. _community.missing_collection.aws_sms_info_module:
 
 
-**************************************************
-community.missing_collection.aws_sns_platform_info
-**************************************************
+*****************************************
+community.missing_collection.aws_sms_info
+*****************************************
 
-**Get Information about AWS SNS Platforms.**
+**Get Information about Amazon SNS SMS.**
 
 
-Version added: 0.0.1
+Version added: 0.4.0
 
 .. contents::
    :local:
@@ -17,7 +17,7 @@ Version added: 0.0.1
 
 Synopsis
 --------
-- Get Information about AWS SNS Platforms.
+- Get Information about Amazon SNS SMS.
 
 
 
@@ -150,20 +150,58 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>enabled</b>
+                    <b>get_sms_sandbox_account_status</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
-                        <span style="color: purple">string</span>
+                        <span style="color: purple">boolean</span>
                     </div>
                 </td>
                 <td>
                         <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>true</li>
-                                    <li>false</li>
+                                    <li>no</li>
+                                    <li>yes</li>
                         </ul>
                 </td>
                 <td>
-                        <div>filter to look for enabled or disabled endpoints?</div>
+                        <div>do you want to get sandbox account status?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_phone_numbers_opted_out</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of phone number opted out?</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>list_sms_sandbox_phone_numbers</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>
+                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                    <li>no</li>
+                                    <li>yes</li>
+                        </ul>
+                </td>
+                <td>
+                        <div>do you want to get list of phone numbers registered with account?</div>
                 </td>
             </tr>
             <tr>
@@ -256,12 +294,17 @@ Examples
 
 .. code-block:: yaml
 
-    - name: Get list of SNS platform applications.
-      community.missing_collection.sns_platform_info:
+    - name: "get sms sandbox account status"
+      community.missing_collection.aws_sms_info:
+        get_sms_sandbox_account_status: true
 
-    - name: Get list of SNS platform applications but enabled only.
-      community.missing_collection.sns_platform_info:
-        enabled: 'true'
+    - name: "get list of phones opted out"
+      community.missing_collection.aws_sms_info:
+        list_phone_numbers_opted_out: true
+
+    - name: "get list of sandbox registered numbers"
+      community.missing_collection.aws_sms_info:
+        list_sms_sandbox_phone_numbers: true
 
 
 
@@ -280,18 +323,50 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>platforms</b>
+                    <b>is_in_sandbox</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                    </div>
+                </td>
+                <td>when <em>get_sms_sandbox_account_status</em> is defined and success.</td>
+                <td>
+                            <div>sms sandbox account status.</div>
+                    <br/>
+                        <div style="font-size: smaller"><b>Sample:</b></div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>phone_numbers</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">list</span>
                     </div>
                 </td>
-                <td>when success</td>
+                <td>when <em>list_sms_sandbox_phone_numbers</em> is defined and success.</td>
                 <td>
-                            <div>List of SNS Platform Applications.</div>
+                            <div>list of sandbox registered numbers.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;attributes&#x27;: {&#x27;apple_certificate_expiration_date&#x27;: &#x27;2021-10-10T16:56:51Z&#x27;, &#x27;enabled&#x27;: &#x27;true&#x27;, &#x27;success_feedback_sample_rate&#x27;: &#x27;100&#x27;}, &#x27;platform_application_arn&#x27;: &#x27;arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app&#x27;}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;phone_number&#x27;: &#x27;+359888XXXXX&#x27;, &#x27;status&#x27;: &#x27;Verified&#x27;}]</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-"></div>
+                    <b>phone_numbers_opted_out</b>
+                    <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                    </div>
+                </td>
+                <td>when <em>list_phone_numbers_opted_out</em> is defined and success.</td>
+                <td>
+                            <div>list of phones opted out.</div>
+                    <br/>
                 </td>
             </tr>
     </table>
