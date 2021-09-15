@@ -1,14 +1,14 @@
-.. _community.missing_collection.aws_sns_platform_info_module:
+.. _community.missing_collection.aws_sms_module:
 
 
-**************************************************
-community.missing_collection.aws_sns_platform_info
-**************************************************
+************************************
+community.missing_collection.aws_sms
+************************************
 
-**Get Information about AWS SNS Platforms.**
+**Send Mobile SMS with AWS SNS.**
 
 
-Version added: 0.0.1
+Version added: 0.4.0
 
 .. contents::
    :local:
@@ -17,7 +17,7 @@ Version added: 0.0.1
 
 Synopsis
 --------
-- Get Information about AWS SNS Platforms.
+- Send Mobile SMS with AWS SNS.
 
 
 
@@ -150,20 +150,42 @@ Parameters
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-"></div>
-                    <b>enabled</b>
+                    <b>message</b>
                     <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
+                         / <span style="color: red">required</span>
                     </div>
                 </td>
                 <td>
-                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                    <li>true</li>
-                                    <li>false</li>
-                        </ul>
                 </td>
                 <td>
-                        <div>filter to look for enabled or disabled endpoints?</div>
+                        <div>For SMS, each message can contain up to 140 characters.</div>
+                        <div>This character limit depends on the encoding schema.</div>
+                        <div>For example, an SMS message can contain 160 GSM characters,</div>
+                        <div>140 ASCII characters, or 70 UCS-2 characters.</div>
+                        <div>If you publish a message that exceeds this size limit,</div>
+                        <div>Amazon SNS sends the message as multiple messages,</div>
+                        <div>each fitting within the size limit.</div>
+                        <div>Messages aren&#x27;t truncated mid-word but are cut off at whole-word boundaries.</div>
+                        <div>The total size limit for a single SMS Publish action is 1,600 characters.</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-"></div>
+                    <b>phone</b>
+                    <a class="ansibleOptionLink" href="#parameter-" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                         / <span style="color: red">required</span>
+                    </div>
+                </td>
+                <td>
+                </td>
+                <td>
+                        <div>The phone number to which you want to deliver an SMS message.</div>
+                        <div>Use E.164 format.</div>
                 </td>
             </tr>
             <tr>
@@ -256,12 +278,10 @@ Examples
 
 .. code-block:: yaml
 
-    - name: Get list of SNS platform applications.
-      community.missing_collection.sns_platform_info:
-
-    - name: Get list of SNS platform applications but enabled only.
-      community.missing_collection.sns_platform_info:
-        enabled: 'true'
+    - name: send sms using aws sns
+      community.missing_collection.aws_sms:
+        phone: '+359888XXXXXX'
+        message: 'I am using ansible missing collection'
 
 
 
@@ -280,18 +300,18 @@ Common return values are documented `here <https://docs.ansible.com/ansible/late
             <tr>
                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-"></div>
-                    <b>platforms</b>
+                    <b>result</b>
                     <a class="ansibleOptionLink" href="#return-" title="Permalink to this return value"></a>
                     <div style="font-size: small">
-                      <span style="color: purple">list</span>
+                      <span style="color: purple">dictionary</span>
                     </div>
                 </td>
                 <td>when success</td>
                 <td>
-                            <div>List of SNS Platform Applications.</div>
+                            <div>response of aws sns api.</div>
                     <br/>
                         <div style="font-size: smaller"><b>Sample:</b></div>
-                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;attributes&#x27;: {&#x27;apple_certificate_expiration_date&#x27;: &#x27;2021-10-10T16:56:51Z&#x27;, &#x27;enabled&#x27;: &#x27;true&#x27;, &#x27;success_feedback_sample_rate&#x27;: &#x27;100&#x27;}, &#x27;platform_application_arn&#x27;: &#x27;arn:aws:sns:us-east-1:xxxxx:app/APNS/xxxxx-platform-app&#x27;}]</div>
+                        <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;message_id&#x27;: &#x27;string&#x27;}</div>
                 </td>
             </tr>
     </table>
