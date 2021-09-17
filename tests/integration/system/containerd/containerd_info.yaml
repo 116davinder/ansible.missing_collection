@@ -1,0 +1,20 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  become: true
+  tasks:
+    - name: get all containerd namespaces
+      containerd_info:
+        list_namespaces: true
+
+    - name: get all images names from moby namespace
+      containerd_info:
+        list_images: true
+        namespace: 'moby'
+
+    - name: get all container ids from moby namespace
+      containerd_info:
+        list_containers: true
+        namespace: 'moby'
