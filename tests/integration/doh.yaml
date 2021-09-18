@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: fetch A record from cloudflare DNS over HTTPS
+      doh:
+        source: "cloudflare"
+        domain_name: "example.com"
+        type: "A"
+
+    - name: fetch NS record from Google DNS over HTTPS
+      doh:
+        source: "google"
+        name: "example.com"
+        type: "NS"
+
+    - name: fetch MX record from Quad9 DNS over HTTPS
+      doh:
+        source: "quad9"
+        name: "example.com"
+        type: "MX"
