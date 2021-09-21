@@ -1,0 +1,31 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: connection test
+      docker_registry_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: 5000
+
+    - name: get all docker repositories
+      docker_registry_info:
+        scheme: 'http'
+        host: 'localhost'
+        port: 5000
+        list_repos: true
+      register: '__'
+
+    - name: get all docker repository tags
+      docker_registry_info:
+        list_tags: true
+        repo_name: '{{ __.result.repositories[0] }}'
+      register: 'tags'
+
+    - name: get image tag manifest
+      docker_registry_info:
+        get_manifest: true
+        repo_name: '{{ __.result.repositories[0] }}'
+        tag_name: '{{ tags.result.tags[0] }}'

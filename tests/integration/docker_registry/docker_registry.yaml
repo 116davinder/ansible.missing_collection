@@ -1,0 +1,11 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: delete image by digest
+      docker_registry:
+        command: 'delete'
+        repo_name: 'test-timedb'
+        tag_digest: 'sha256:157c270646500f0be63cb8eb809e1d192ad24646562bba2942e7b75418bb63e4'
