@@ -1,9 +1,9 @@
-## Ansible Missing Collection 
+## Ansible Missing Collection
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/de12dacf2a4644259d3a9ab87d3eaa5b)](https://www.codacy.com/gh/116davinder/ansible.missing_collection/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=116davinder/ansible.missing_collection&amp;utm_campaign=Badge_Grade)
 ![Github Latest Release](https://img.shields.io/github/v/release/116davinder/ansible.missing_collection?include_prereleases)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/116davinder/ansible.missing_collection/CI%20Testing)
 ![Lines of code](https://img.shields.io/tokei/lines/github/116davinder/ansible.missing_collection)
 ![GitHub contributors](https://img.shields.io/github/contributors/116davinder/ansible.missing_collection)
-![GitHub all releases](https://img.shields.io/github/downloads/116davinder/ansible.missing_collection/total)
 
 It will host all new modules which doesn't exists in Official Ansible Collections and takes years to publish something new.
 Anyone who want to contribute, please feel free to create PR / Bug Report / Feature Request.
