@@ -288,6 +288,8 @@ Name | Description
 [community.missing_collection.couchdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_module.rst)|Create/Delete Couchdb Database.
 [community.missing_collection.couchdb_db_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_info_module.rst)|Get information about Couchdb Database.
 [community.missing_collection.couchdb_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_info_module.rst)|Get information about Couchdb Cluster.
+[community.missing_collection.docker_hub_personal_token](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_personal_token_module.rst)|Management of the Status Cake (contact-groups).
+[community.missing_collection.docker_hub_token](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_token_module.rst)|Get Authentication Token aka JWT Token from Docker Hub.
 [community.missing_collection.docker_registry](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_registry_module.rst)|Management operation of Docker Registry (v2).
 [community.missing_collection.docker_registry_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_registry_info_module.rst)|Get information from Docker Registry (v2).
 [community.missing_collection.doh](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.doh_module.rst)|DNS Lookup over HTTPS.
