@@ -13,18 +13,17 @@ Ansible Community reviewers takes too much time and have too hard restrictions.
 So I decided to host modules on my repository instead of ansible.
 
 **Failed Attempts Examples:**
-* [~~Official Ansible PR: 1~~](https://github.com/ansible/ansible/pull/40029)
-* [~~Official Ansible PR: 2~~](https://github.com/ansible-collections/community.general/pull/876)
-* [~~Official Ansible PR: 3~~](https://github.com/ansible-collections/community.general/pull/1501)
+*  [~~Official Ansible PR: 1~~](https://github.com/ansible/ansible/pull/40029)
+*  [~~Official Ansible PR: 2~~](https://github.com/ansible-collections/community.general/pull/876)
+*  [~~Official Ansible PR: 3~~](https://github.com/ansible-collections/community.general/pull/1501)
 
-**Articles**
-* https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
+## Medium Articles
+*  https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
 
 ## Notes
-* **Please Prefix Example Code with community.missing_collection.<module-name> otherwise it won't work.**
-* **master** branch is always under-development, please use tags for production use.
-* [easy_dev.sh](./easy_dev.sh)
-  It is being used for local basic testing.
+*  **Please Prefix Example Code with community.missing_collection.<module-name> otherwise it won't work.**
+*  **master** branch is always under-development, please use tags for production use.
+*  [easy_dev.sh](./easy_dev.sh) It is being used for local basic testing.
 
 <!--start requires_ansible-->
 ## Ansible version compatibility
@@ -36,9 +35,10 @@ A collection may contain metadata that identifies these versions.
 PEP440 is the schema used to describe the versions of Ansible.
 <!--end requires_ansible-->
 
-## How to Install 
+## How to Install
+
 **Note*:**
-* `--no-deps` is required till version `0.1.0` bcz I fucked up `galaxy.yml`.
+*  `--no-deps` is required till version `0.1.0` bcz I fucked up `galaxy.yml`.
 
 ### Install Missing Collection with one command
 ```bash
@@ -288,7 +288,8 @@ Name | Description
 [community.missing_collection.couchdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_module.rst)|Create/Delete Couchdb Database.
 [community.missing_collection.couchdb_db_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_info_module.rst)|Get information about Couchdb Database.
 [community.missing_collection.couchdb_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_info_module.rst)|Get information about Couchdb Cluster.
-[community.missing_collection.docker_hub_personal_token](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_personal_token_module.rst)|Management of the Status Cake (contact-groups).
+[community.missing_collection.docker_hub_personal_token](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_personal_token_module.rst)|Management of the Docker Hub Personal Tokens.
+[community.missing_collection.docker_hub_personal_token_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_personal_token_info_module.rst)|Get information about docker hub personal tokens.
 [community.missing_collection.docker_hub_token](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_token_module.rst)|Get Authentication Token aka JWT Token from Docker Hub.
 [community.missing_collection.docker_registry](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_registry_module.rst)|Management operation of Docker Registry (v2).
 [community.missing_collection.docker_registry_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_registry_info_module.rst)|Get information from Docker Registry (v2).

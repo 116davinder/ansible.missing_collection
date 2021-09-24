@@ -1,0 +1,33 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get jwt token from docker hub
+      docker_hub_token:
+        username: 'testUser'
+        password: 'aDL0xxxxxxxxxxoQt6'
+      register: '__'
+
+    - name: create docker hub personal token
+      docker_hub_personal_token:
+        token: '{{ __.token }}'
+        command: 'create'
+        token_label: 'Ansible Managed Token 1'
+        scopes:
+          - 'repo:admin'
+      register: '__created'
+
+    - name: update docker hub personal token aka disable it.
+      docker_hub_personal_token:
+        token: '{{ __.token }}'
+        command: 'update'
+        uuid: '{{ __created.result["uuid"] }}'
+        is_active: false
+
+    - name: delete docker hub personal token.
+      docker_hub_personal_token:
+        token: '{{ __.token }}'
+        command: 'delete'
+        uuid: '{{ __created.result["uuid"] }}'

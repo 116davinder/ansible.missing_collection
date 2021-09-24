@@ -15,7 +15,7 @@ description:
   - U(https://docs.docker.com/docker-hub/api/latest/#operation/PostUsersLogin)
 version_added: 0.4.0
 options:
-  api:
+  url:
     description:
       - docker hub rest api.
     required: false
@@ -58,7 +58,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 def main():
     argument_spec = dict(
-        api=dict(default="https://hub.docker.com/v2/users/login"),
+        url=dict(default="https://hub.docker.com/v2/users/login"),
         username=dict(required=True),
         password=dict(required=True, no_log=True),
     )
@@ -77,14 +77,14 @@ def main():
     }
 
     r = requests.post(
-        module.params["api"],
+        module.params["url"],
         json=data,
         headers=headers
     )
     if r.status_code == 200:
         module.exit_json(token=r.json()["token"])
     else:
-        module.fail_json(msg=r.text)
+        module.fail_json(msg=r.text, code=r.status_code)
 
 
 if __name__ == "__main__":

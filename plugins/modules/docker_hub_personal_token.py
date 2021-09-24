@@ -9,58 +9,52 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 module: docker_hub_personal_token
-short_description: Management of the Status Cake (contact-groups).
+short_description: Management of the Docker Hub Personal Tokens.
 description:
-  - Management of the Status Cake (contact-groups).
-  - U(https://www.statuscake.com/api/v1/#tag/contact-groups)
-version_added: 0.3.0
+  - Management of the Docker Hub Personal Tokens.
+  - U(https://docs.docker.com/docker-hub/api/latest/#tag/access-tokens)
+version_added: 0.4.0
 options:
   url:
     description:
-      - statuscake contact-groups api.
+      - docker hub personal token api.
     required: false
     type: str
-    default: 'https://api.statuscake.com/v1/contact-groups/'
-  api_key:
+    default: 'https://hub.docker.com/v2/access-tokens/'
+  token:
     description:
-      - api key for statuscake.
+      - jwt/bearer token for api.
     required: true
     type: str
   command:
     description:
-      - type of operation on contact groups.
+      - type of operation on docker hub api.
     required: false
     type: str
     choices: ["create", "update", "delete"]
     default: "create"
-  id:
+  uuid:
     description:
-      - id of contact-groups test.
-      - required only for `delete` and `update`.
+      - uuid of personal token.
+      - required only for command I(delete)/I(update).
     required: false
     type: str
-  ping_url:
+  token_label:
     description:
-      - URL or IP address of an endpoint to push uptime events.
-      - Currently this only supports HTTP GET endpoints.
-      - I(example): https://www.google.com
+      - Friendly name for you to identify the token.
     required: false
     type: str
-  email_addresses_csv:
+  is_active:
     description:
-      - Comma separated list of email addresses.
+      - enable/disable personal token.
     required: false
-    type: str
-  mobile_numbers_csv:
+    type: bool
+    default: true
+  scopes:
     description:
-      - Comma separated list of international format mobile phone numbers.
+      - Valid scopes "repo:admin", "repo:write", "repo:read", "repo:public_read"
     required: false
-    type: str
-  integrations_csv:
-    description:
-      - Comma separated list of integration IDs.
-    required: false
-    type: str
+    type: list
 author:
   - "Davinder Pal (@116davinder) <dpsangwal@gmail.com>"
 requirements:
@@ -68,35 +62,56 @@ requirements:
 """
 
 EXAMPLES = """
-- name: create contact groups test
+- name: get jwt token from docker hub
+  community.missing_collection.docker_hub_token:
+    username: 'testUser'
+    password: 'aDL0xxxxxxxxxxoQt6'
+  register: '__'
+
+- name: create docker hub personal token
   community.missing_collection.docker_hub_personal_token:
-    api_key: 'sGxxxxxxxxxxxx6y'
+    token: '{{ __.token }}'
     command: 'create'
-    ping_url: 'https://www.google.com'
-    name: "google_contact_groups_test"
-    email_addresses_csv: "786spartan@gmail.com"
-  register: __id
+    token_label: 'Ansible Managed Token'
+    scopes:
+      - 'repo:admin'
+  register: '__created'
 
-- name: update contact groups name
+- name: update docker hub personal token aka disable it.
   community.missing_collection.docker_hub_personal_token:
-    api_key: 'sGxxxxxxxxxxxx6y'
+    token: '{{ __.token }}'
     command: 'update'
-    id: '{{ __id.id }}'
-    name: "new_google_contact_groups_test"
+    uuid: '{{ __created.result["uuid"] }}'
+    is_active: false
 
-- name: delete contact groups test
+- name: delete docker hub personal token.
   community.missing_collection.docker_hub_personal_token:
-    api_key: 'sGxxxxxxxxxxxx6y'
+    token: '{{ __.token }}'
     command: 'delete'
-    id: '{{ __id.id }}'
+    uuid: '{{ __created.result["uuid"] }}'
+
 """
 
 RETURN = """
-id:
-  description: id of contact-groups test.
-  returned: when command is `create` and success.
-  type: str
-  sample: 230089
+result:
+  description: result of docker hub api.
+  returned: when command is I(create)/I(update) and success.
+  type: dict
+  sample: {
+    "uuid": "b30bbf97-506c-4ecd-aabc-842f3cb484fb",
+    "client_id": "HUB",
+    "creator_ip": "127.0.0.1",
+    "creator_ua": "some user agent",
+    "created_at": "2021-07-20T12:00:00.000Z",
+    "last_used": "string",
+    "generated_by": "manual",
+    "is_active": true,
+    "token": "a7a5ef25-8889-43a0-8cc7-f2a94268e861",
+    "token_label": "My read only token",
+    "scopes": [
+      "repo:read"
+    ]
+  }
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -105,50 +120,49 @@ import requests
 
 def main():
     argument_spec = dict(
-        url=dict(default="https://api.statuscake.com/v1/contact-groups/"),
-        api_key=dict(required=True, no_log=True),
+        url=dict(default="https://hub.docker.com/v2/access-tokens/"),
+        token=dict(required=True),
         command=dict(choices=["create", "update", "delete"], default="create"),
-        id=dict(),
-        name=dict(),
-        ping_url=dict(),
-        email_addresses_csv=dict(),
-        mobile_numbers_csv=dict(),
-        integrations_csv=dict(),
+        uuid=dict(),
+        token_label=dict(),
+        is_active=dict(type=bool, default=True),
+        scopes=dict(type=list),
     )
 
     module = AnsibleModule(
         argument_spec=argument_spec,
     )
     headers = {
-        "Authorization": "Bearer {}".format(module.params["api_key"]),
+        "Authorization": "Bearer {}".format(module.params["token"]),
         "Content-Type": "application/json"
     }
-    data = {
-        "name": module.params["name"],
-        "ping_url": module.params["ping_url"],
-        "mobile_numbers_csv": module.params["mobile_numbers_csv"],
-        "email_addresses_csv": module.params["email_addresses_csv"],
-        "integrations_csv": module.params["integrations_csv"],
-    }
+    data = {}
     if module.params["command"] == "create":
-        r = requests.post(module.params["url"], data=data, headers=headers)
+        data = {
+            "token_label": module.params["token_label"],
+            "scopes": module.params["scopes"]
+        }
+        r = requests.post(module.params["url"], json=data, headers=headers)
     elif module.params["command"] == "update":
-        r = requests.put(
-            module.params["url"] + module.params["id"],
-            data=data,
+        if module.params["token_label"]:
+            data["token_label"] = module.params["token_label"]
+        data["is_active"] = module.params["is_active"]
+        r = requests.patch(
+            module.params["url"] + module.params["uuid"],
+            json=data,
             headers=headers
         )
     else:
         r = requests.delete(
-            module.params["url"] + module.params["id"],
+            module.params["url"] + module.params["uuid"],
             headers=headers
         )
-    if r.status_code == 201 and module.params["command"] == "create":
-        module.exit_json(changed=True, id=r.json()["data"]["new_id"])
-    elif r.status_code == 204 and module.params["command"] in ["update", "delete"]:
+    if r.status_code in [200, 201] and module.params["command"] in ["create", "update"]:
+        module.exit_json(changed=True, result=r.json())
+    elif r.status_code in [202, 204] and module.params["command"] == "delete":
         module.exit_json(changed=True)
     else:
-        module.fail_json(msg=r.text)
+        module.fail_json(msg=r.text, code=r.status_code)
 
 
 if __name__ == "__main__":
