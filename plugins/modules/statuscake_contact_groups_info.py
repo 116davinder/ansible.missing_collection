@@ -77,7 +77,7 @@ def main():
     if r.status_code == 200:
         module.exit_json(data=r.json()["data"])
     else:
-        module.fail_json(msg=r.text)
+        module.fail_json(msg=r.text, code=r.status_code)
 
 
 if __name__ == "__main__":

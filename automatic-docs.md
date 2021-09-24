@@ -1,5 +1,5 @@
 ## Generate Automatic Docs for this collection
-### Install ansible automatic doc creation tool ?
+### Install ansible automatic doc creation tool?
 ```bash
 $ pip3 install git+https://github.com/ansible-network/collection_prep.git
 ```

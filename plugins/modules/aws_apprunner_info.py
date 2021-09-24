@@ -202,8 +202,6 @@ def main():
         ],
     )
 
-    __default_return = []
-
     _it, _paginate = _apprunner(module)
     if _it is not None:
         if module.params['list_auto_scaling_configurations']:

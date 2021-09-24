@@ -518,8 +518,6 @@ def main():
         ],
     )
 
-    __default_return = []
-
     _it, _paginate = _backup(module)
     if _it is not None:
         if module.params['backup_plan_id'] is not None:

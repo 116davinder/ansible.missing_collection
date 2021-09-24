@@ -185,7 +185,7 @@ def main():
         while True:
             try:
                 __res.append(_res.next())
-            except DefaultCursorEmpty as e:
+            except DefaultCursorEmpty:
                 break
         module.exit_json(result=__res)
     except (ReqlAuthError, ReqlOpFailedError) as e:

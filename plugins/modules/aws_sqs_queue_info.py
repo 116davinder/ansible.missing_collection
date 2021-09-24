@@ -105,7 +105,7 @@ from ansible_collections.amazon.aws.plugins.module_utils.ec2 import camel_dict_t
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
 
 try:
-    from botocore.exceptions import BotoCoreError, ClientError, ParamValidationError
+    from botocore.exceptions import BotoCoreError, ClientError
 except ImportError:
     pass  # handled by AnsibleAWSModule
 

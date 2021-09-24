@@ -124,8 +124,6 @@ def main():
     )
 
     config = module.client('appconfig')
-    __default_return = []
-
     _it, paginate = _config(config, module)
     if module.params['list_configurations_profiles']:
         module.exit_json(profiles=aws_response_list_parser(paginate, _it, 'Items'))
