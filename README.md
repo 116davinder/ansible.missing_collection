@@ -19,12 +19,12 @@ So I decided to host modules on my repository instead of ansible.
 
 ## Medium Articles
 
-*  https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
+* https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
 
 ## Notes
 
-* **Please Prefix Example Code with community.missing_collection.<module-name> otherwise it won't work.**
-* **master** branch is always under-development, use tags for production use.
+* Please Prefix Example Code with `community.missing_collection.<module-name>` otherwise it won't work.
+* master branch is always under-development, use tags for production use.
 * [easy_dev.sh](./easy_dev.sh) It is being used for local basic testing.
 
 <!--start requires_ansible-->
