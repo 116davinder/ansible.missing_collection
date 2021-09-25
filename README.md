@@ -13,17 +13,19 @@ Ansible Community reviewers takes too much time and have too hard restrictions.
 So I decided to host modules on my repository instead of ansible.
 
 **Failed Attempts Examples:**
-*  [~~Official Ansible PR: 1~~](https://github.com/ansible/ansible/pull/40029)
-*  [~~Official Ansible PR: 2~~](https://github.com/ansible-collections/community.general/pull/876)
-*  [~~Official Ansible PR: 3~~](https://github.com/ansible-collections/community.general/pull/1501)
+* [~~Official Ansible PR: 1~~](https://github.com/ansible/ansible/pull/40029)
+* [~~Official Ansible PR: 2~~](https://github.com/ansible-collections/community.general/pull/876)
+* [~~Official Ansible PR: 3~~](https://github.com/ansible-collections/community.general/pull/1501)
 
 ## Medium Articles
+
 *  https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
 
 ## Notes
-*  **Please Prefix Example Code with community.missing_collection.<module-name> otherwise it won't work.**
-*  **master** branch is always under-development, please use tags for production use.
-*  [easy_dev.sh](./easy_dev.sh) It is being used for local basic testing.
+
+* **Please Prefix Example Code with community.missing_collection.<module-name> otherwise it won't work.**
+* **master** branch is always under-development, use tags for production use.
+* [easy_dev.sh](./easy_dev.sh) It is being used for local basic testing.
 
 <!--start requires_ansible-->
 ## Ansible version compatibility
@@ -38,7 +40,7 @@ PEP440 is the schema used to describe the versions of Ansible.
 ## How to Install
 
 **Note*:**
-*  `--no-deps` is required till version `0.1.0` bcz I fucked up `galaxy.yml`.
+* `--no-deps` is required till version `0.1.0` bcz I fucked up `galaxy.yml`.
 
 ### Install Missing Collection with one command
 ```bash
