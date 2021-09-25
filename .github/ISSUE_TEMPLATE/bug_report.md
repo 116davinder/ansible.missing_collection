@@ -21,7 +21,9 @@ Steps to reproduce the behavior:
 If applicable, add screenshots to help explain your problem.
 
 **Ansible & Repository Version:**
+
 * tag version?
+
 * ansible version?
 
 **Additional context**
