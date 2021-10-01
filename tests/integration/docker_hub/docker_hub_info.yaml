@@ -1,0 +1,37 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get jwt token from docker hub
+      docker_hub_token:
+        username: 'testUser'
+        password: 'aDL0xxxxxxxxxxoQt6'
+      register: '__'
+
+    - name: get all namespaces from docker hub
+      docker_hub_info:
+        token: '{{ __.token }}'
+        list_namespaces: true
+      register: '__ns'
+
+    - name: get all repositories for given username
+      docker_hub_info:
+        token: '{{ __.token }}'
+        list_repositories: true
+        username: 'testUser'
+
+    - name: get repository summary
+      docker_hub_info:
+        token: '{{ __.token }}'
+        get_repository_summary: true
+        namespace: 'testUser'
+        repository: 'test'
+
+    - name: get repository images (required Pro license)
+      docker_hub_info:
+        token: '{{ __.token }}'
+        get_repository_images: true
+        namespace: 'testUser'
+        repository: 'test'

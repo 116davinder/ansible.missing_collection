@@ -124,15 +124,21 @@ def main():
             'user': str(module.params['user']), }
     }
 
-    headers = {'x-api-key': module.params['token'],
-               'Content-Type': 'application/json'}
-    (response, info) = fetch_url(module, url,
-                                 data=module.jsonify(data),
-                                 headers=headers, method='POST')
+    headers = {
+        'x-api-key': module.params['token'],
+        'Content-Type': 'application/json'
+    }
+    (_, info) = fetch_url(
+        module,
+        url,
+        data=module.jsonify(data),
+        headers=headers,
+        method='POST'
+    )
     if info['status'] == 201:
         module.exit_json(changed=True)
     else:
-        module.fail_json(msg='unable to update newrelic: %s' % info['msg'])
+        module.fail_json(f'unable to update newrelic: {info["msg"]}')
 
 
 if __name__ == '__main__':

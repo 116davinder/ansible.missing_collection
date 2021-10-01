@@ -102,7 +102,7 @@ def main():
     )
 
     client = module.client('lex-runtime', retry_decorator=AWSRetry.exponential_backoff())
-    it, paginate = _lex_runtime(client, module)
+    it, _ = _lex_runtime(client, module)
 
     if module.params['get_session']:
         module.exit_json(session=camel_dict_to_snake_dict(it))

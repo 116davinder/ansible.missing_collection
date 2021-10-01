@@ -14,17 +14,22 @@ So I decided to host modules on my repository instead of ansible.
 
 **Failed Attempts Examples:**
 * [~~Official Ansible PR: 1~~](https://github.com/ansible/ansible/pull/40029)
+
 * [~~Official Ansible PR: 2~~](https://github.com/ansible-collections/community.general/pull/876)
+
 * [~~Official Ansible PR: 3~~](https://github.com/ansible-collections/community.general/pull/1501)
 
-**Articles**
-* https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613
+## Story of Unsuccessful PR to Ansible (Medium Articles)
+
+* [Part 1](https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-da78db20613)
+* [Part 2](https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-part-2-69ab0ae62047)
+* [Part 3](https://116davinder.medium.com/story-of-unsuccessful-pr-to-open-source-project-part-3-f5026dfe907f)
 
 ## Notes
-* **Please Prefix Example Code with community.missing_collection.<module-name> otherwise it won't work.**
-* **master** branch is always under-development, please use tags for production use.
-* [easy_dev.sh](./easy_dev.sh)
-  It is being used for local basic testing.
+
+* Please Prefix Example Code with `community.missing_collection.<module-name>`.
+* master branch is always under-development, use tags for production use.
+* [easy_dev.sh](./easy_dev.sh)It is being used for local basic testing.
 
 <!--start requires_ansible-->
 ## Ansible version compatibility
@@ -36,7 +41,8 @@ A collection may contain metadata that identifies these versions.
 PEP440 is the schema used to describe the versions of Ansible.
 <!--end requires_ansible-->
 
-## How to Install 
+## How to Install
+
 **Note*:**
 * `--no-deps` is required till version `0.1.0` bcz I fucked up `galaxy.yml`.
 
@@ -288,6 +294,12 @@ Name | Description
 [community.missing_collection.couchdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_module.rst)|Create/Delete Couchdb Database.
 [community.missing_collection.couchdb_db_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_info_module.rst)|Get information about Couchdb Database.
 [community.missing_collection.couchdb_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_info_module.rst)|Get information about Couchdb Cluster.
+[community.missing_collection.docker_hub_auditlogs_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_auditlogs_info_module.rst)|The Audit Logs API endpoints allow you to query audit log events across a namespace.
+[community.missing_collection.docker_hub_delete_images](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_delete_images_module.rst)|docker hub deletes one or more images within a namespace.
+[community.missing_collection.docker_hub_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_info_module.rst)|Get information about docker namespaces/repositories/images.
+[community.missing_collection.docker_hub_personal_token](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_personal_token_module.rst)|Management of the Docker Hub Personal Tokens.
+[community.missing_collection.docker_hub_personal_token_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_personal_token_info_module.rst)|Get information about docker hub personal tokens.
+[community.missing_collection.docker_hub_token](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_token_module.rst)|Get Authentication Token aka JWT Token from Docker Hub.
 [community.missing_collection.docker_registry](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_registry_module.rst)|Management operation of Docker Registry (v2).
 [community.missing_collection.docker_registry_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_registry_info_module.rst)|Get information from Docker Registry (v2).
 [community.missing_collection.doh](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.doh_module.rst)|DNS Lookup over HTTPS.

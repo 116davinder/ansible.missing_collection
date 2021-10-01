@@ -148,7 +148,7 @@ def main():
     elif r.status_code == 204 and module.params["command"] in ["update", "delete"]:
         module.exit_json(changed=True)
     else:
-        module.fail_json(msg=r.text)
+        module.fail_json(msg=r.text, code=r.status_code)
 
 
 if __name__ == "__main__":

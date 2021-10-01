@@ -1,0 +1,21 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get jwt token from docker hub
+      docker_hub_token:
+        username: 'testUser'
+        password: 'aDL0xxxxxxxxxxoQt6'
+      register: '__'
+
+    - name: get information about all personal tokens
+      docker_hub_personal_token_info:
+        token: '{{ __.token }}'
+      register: '__all'
+
+    - name: get information about one personal tokens
+      docker_hub_personal_token_info:
+        token: '{{ __.token }}'
+        uuid: '{{ __all.result.results[0].uuid }}'

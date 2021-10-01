@@ -274,7 +274,6 @@ def main():
     )
 
     client = module.client('accessanalyzer')
-    __default_return = []
 
     _it, paginate = _iam_access_analyzer(client, module)
     if _it is not None:
