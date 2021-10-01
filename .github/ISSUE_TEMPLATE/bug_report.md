@@ -22,9 +22,8 @@ If applicable, add screenshots to help explain your problem.
 
 **Ansible & Repository Version:**
 
-* tag version?
-
-* ansible version?
+* tag version
+* ansible version
 
 **Additional context**
 Add any other context about the problem here.
