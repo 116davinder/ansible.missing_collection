@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get jwt token from docker hub
+      docker_hub_token:
+        username: 'testUser'
+        password: 'aDL0xxxxxxxxxxoQt6'
+      register: '__'
+
+    - name: delete images from docker hub
+      docker_hub_delete_images:
+        token: '{{ __.token }}'
+        dry_run: false
+        namespace: 'yourNamespace'
+        manifests:
+          - repository: 'test'
+            digest: 'sha256:6ff24033b35ff1f6f66e2fc8fa4792cf91f0fee8da57955051036dbb8b6a6d44'
+        ignore_warnings:
+          - repository: 'test'
+            digest: 'sha256:6ff24033b35ff1f6f66e2fc8fa4792cf91f0fee8da57955051036dbb8b6a6d44'
+            warning: 'current_tag'
+            tags:
+              - 'latest'

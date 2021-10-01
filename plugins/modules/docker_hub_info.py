@@ -202,7 +202,7 @@ def main():
         params["status"] = module.params["status"]
         params["currently_tagged"] = module.params["currently_tagged"]
         params["ordering"] = module.params["ordering"]
-        if not module.params["active_from"]:
+        if module.params["active_from"]:
             params["active_from"] = module.params["active_from"]
 
         url_suffix = "namespaces/{}/repositories/{}/images".format(

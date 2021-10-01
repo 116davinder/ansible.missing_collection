@@ -1,0 +1,26 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get jwt token from docker hub
+      docker_hub_token:
+        username: 'testUser'
+        password: 'aDL0xxxxxxxxxxoQt6'
+      register: '__'
+
+    - name: get all log events which are repo.tag.push
+      docker_hub_auditlogs_info:
+        token: '{{ __.token }}'
+        list_log_events: true
+        account: 'yourAccount'
+        action: 'repo.tag.push'
+        from_date: '2021-09-01T00:00:00Z'
+        to_date: '2021-10-02T00:00:00Z'
+
+    - name: get all log actions
+      docker_hub_auditlogs_info:
+        token: '{{ __.token }}'
+        list_log_actions: true
+        account: 'yourAccount'
