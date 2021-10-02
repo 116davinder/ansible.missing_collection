@@ -1,14 +1,18 @@
-## Generate Automatic Docs for this collection
+# Generate Automatic Docs for this collection
+
 ### Install ansible automatic doc creation tool?
+
 ```bash
 $ pip3 install git+https://github.com/ansible-network/collection_prep.git
 ```
 ### #myWay
+
 ```bash
 bash easy_dev.sh
 ```
 
 ### Manually generate docs from ansible tool ?
+
 ```bash
 $ collection_prep_add_docs -p . -b master
 INFO      Setting collection name to community.missing_collection

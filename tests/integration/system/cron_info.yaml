@@ -1,0 +1,33 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all crons for dpal user
+      cron_info:
+        list_all_crons: true
+        user: 'dpal'
+
+    - name: get all crons by command for dpal user (python command)
+      cron_info:
+        get_crons_by_command: true
+        user: 'dpal'
+        match_string: '.py'
+
+    - name: get all crons by comment for dpal user
+      cron_info:
+        get_crons_by_comment: true
+        user: 'dpal'
+        match_string: 'python'
+
+    - name: get all crons by time for dpal user
+      cron_info:
+        get_crons_by_time: true
+        user: 'dpal'
+        match_string: '4 16 * * *'
+
+    - name: check if given crontime is valid or not
+      cron_info:
+        validate_cron_time: true
+        schedule: '2 14 * * *'
