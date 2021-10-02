@@ -1,22 +1,24 @@
-## Ansible Missing Collection
+# Ansible Missing Collection
+
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/de12dacf2a4644259d3a9ab87d3eaa5b)](https://www.codacy.com/gh/116davinder/ansible.missing_collection/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=116davinder/ansible.missing_collection&amp;utm_campaign=Badge_Grade)
 ![Github Latest Release](https://img.shields.io/github/v/release/116davinder/ansible.missing_collection?include_prereleases)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/116davinder/ansible.missing_collection/CI%20Testing)
 ![Lines of code](https://img.shields.io/tokei/lines/github/116davinder/ansible.missing_collection)
 ![GitHub contributors](https://img.shields.io/github/contributors/116davinder/ansible.missing_collection)
 
-It will host all new modules which doesn't exists in Official Ansible Collections and takes years to publish something new.
-Anyone who want to contribute, please feel free to create PR / Bug Report / Feature Request.
+It will host all new modules which doesn't exists in Official Ansible Collections and
+takes years to publish something new.
+Anyone who want to contribute,
+please feel free to create PR / Bug Report / Feature Request.
 
 ## Why this repository exists ?
+
 Ansible Community reviewers takes too much time and have too hard restrictions.
 So I decided to host modules on my repository instead of ansible.
 
 **Failed Attempts Examples:**
 * [~~Official Ansible PR: 1~~](https://github.com/ansible/ansible/pull/40029)
-
 * [~~Official Ansible PR: 2~~](https://github.com/ansible-collections/community.general/pull/876)
-
 * [~~Official Ansible PR: 3~~](https://github.com/ansible-collections/community.general/pull/1501)
 
 ## Story of Unsuccessful PR to Ansible (Medium Articles)
@@ -44,9 +46,11 @@ PEP440 is the schema used to describe the versions of Ansible.
 ## How to Install
 
 **Note*:**
+
 * `--no-deps` is required till version `0.1.0` bcz I fucked up `galaxy.yml`.
 
 ### Install Missing Collection with one command
+
 ```bash
 $ ansible-galaxy collection install git+https://github.com/116davinder/ansible.missing_collection.git,refs/tags/0.2.0 --no-deps
 Starting galaxy collection install process
@@ -62,6 +66,7 @@ Collection                   Version
 community.missing_collection 0.2.0
 ```
 ### Install Missing Collection with collections.yaml
+
 Save Below Mentioned yaml into your `collections.yaml` file.
 ```yaml
 collections:
@@ -294,6 +299,7 @@ Name | Description
 [community.missing_collection.couchdb_db](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_module.rst)|Create/Delete Couchdb Database.
 [community.missing_collection.couchdb_db_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_db_info_module.rst)|Get information about Couchdb Database.
 [community.missing_collection.couchdb_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.couchdb_info_module.rst)|Get information about Couchdb Cluster.
+[community.missing_collection.cron_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.cron_info_module.rst)|Get Information from Crontab.
 [community.missing_collection.docker_configs_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_configs_info_module.rst)|Get information about Docker Configs.
 [community.missing_collection.docker_hub_auditlogs_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_auditlogs_info_module.rst)|The Audit Logs API endpoints allow you to query audit log events across a namespace.
 [community.missing_collection.docker_hub_delete_images](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_hub_delete_images_module.rst)|docker hub deletes one or more images within a namespace.

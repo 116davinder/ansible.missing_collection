@@ -110,7 +110,7 @@ def main():
             module.exit_json(
                 namespaces=[i.name for i in results]
             )
-        if module.params['list_containers']:
+        elif module.params['list_containers']:
             containersv1 = containers_pb2_grpc.ContainersStub(channel)
             results = containersv1.List(
                 containers_pb2.ListContainersRequest(),
