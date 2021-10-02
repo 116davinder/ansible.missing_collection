@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all plugins
+      docker_plugins_info:
+      register: '__'
+
+    - name: get info about one plugin
+      docker_plugins_info:
+        id: '{{ __.plugins[0].id }}'
