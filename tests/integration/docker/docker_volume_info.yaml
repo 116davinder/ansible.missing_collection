@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all volumes
+      docker_volume_info:
+      register: '__'
+
+    - name: get info about one volume
+      docker_volume_info:
+        id: '{{ __.volumes[0].id }}'
