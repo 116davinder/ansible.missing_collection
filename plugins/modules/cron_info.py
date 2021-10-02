@@ -4,7 +4,6 @@
 # Copyright 2021 Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
-from sys import modules
 __metaclass__ = type
 
 DOCUMENTATION = '''
@@ -185,30 +184,30 @@ def main():
     cron = CronTab(user=module.params["user"], tabfile=module.params["tabfile"])
 
     if module.params['list_all_crons']:
-        iter = cron.lines
+        crons = cron.lines
     elif module.params['get_crons_by_command']:
         if module.params["use_regex"]:
-            iter = cron.find_command(
+            crons = cron.find_command(
                 re.compile(r"{}".format(module.params["match_string"]))
             )
         else:
-            iter = cron.find_command(module.params["match_string"])
+            crons = cron.find_command(module.params["match_string"])
     elif module.params['get_crons_by_comment']:
         if module.params["use_regex"]:
-            iter = cron.find_comment(
+            crons = cron.find_comment(
                 re.compile(r"{}".format(module.params["match_string"]))
             )
         else:
-            iter = cron.find_comment(module.params["match_string"])
+            crons = cron.find_comment(module.params["match_string"])
     elif module.params['get_crons_by_time']:
-        iter = cron.find_time(module.params["match_string"])
+        crons = cron.find_time(module.params["match_string"])
 
     elif module.params['validate_cron_time']:
         module.exit_json(valid=CronSlices.is_valid(module.params["schedule"]))
     else:
         module.fail_json(msg="unknown parameters")
 
-    module.exit_json(crons=cron_items_to_list(iter))
+    module.exit_json(crons=cron_items_to_list(crons))
 
 
 if __name__ == '__main__':

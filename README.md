@@ -6,7 +6,7 @@
 ![Lines of code](https://img.shields.io/tokei/lines/github/116davinder/ansible.missing_collection)
 ![GitHub contributors](https://img.shields.io/github/contributors/116davinder/ansible.missing_collection)
 
-It will host all new modules which doesn't exists in Official Ansible Collections and 
+It will host all new modules which doesn't exists in Official Ansible Collections and
 takes years to publish something new.
 Anyone who want to contribute,
 please feel free to create PR / Bug Report / Feature Request.
