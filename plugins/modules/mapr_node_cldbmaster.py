@@ -87,9 +87,6 @@ def main():
         )
     )
 
-    # default value
-    mapReduceMode = None
-
     maprUsername = module.params['username']
     maprPassword = module.params['password']
     mcsUrl = module.params['mcs_url']
