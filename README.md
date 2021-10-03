@@ -313,6 +313,10 @@ Name | Description
 [community.missing_collection.docker_secret_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_secret_info_module.rst)|Get information about Docker Secrets.
 [community.missing_collection.docker_volume_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_volume_info_module.rst)|Get information about Docker Volumes.
 [community.missing_collection.doh](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.doh_module.rst)|DNS Lookup over HTTPS.
+[community.missing_collection.mapr_blacklistuser](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_blacklistuser_module.rst)|Add user to mapr blacklist
+[community.missing_collection.mapr_cluster_mapreduce](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_cluster_mapreduce_module.rst)|Get/Set mapreduce mode.
+[community.missing_collection.mapr_node_cldbmaster](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_node_cldbmaster_module.rst)|Get Cldb Master Node.
+[community.missing_collection.mapr_node_services](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_node_services_module.rst)|Manage MapR Services by rest api.
 [community.missing_collection.mapr_service](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_service_module.rst)|Manage MapR Services by rest api.
 [community.missing_collection.minio_bucket](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.minio_bucket_module.rst)|Create/Update/Delete Minio Buckets.
 [community.missing_collection.minio_bucket_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.minio_bucket_info_module.rst)|Get Information about Minio Bucket.
