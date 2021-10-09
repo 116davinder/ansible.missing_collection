@@ -129,17 +129,6 @@ def main():
                     "leader": {"id": resp.leader.id, "name": resp.leader.name},
                 }
             )
-        #  elif module.params['list_images']:
-        #      imagesv1 = images_pb2_grpc.ImagesStub(channel)
-        #      results = imagesv1.List(
-        #          images_pb2.ListImagesRequest(),
-        #          metadata=(
-        #              ('containerd-namespace', module.params['namespace']),
-        #          )
-        #      ).images
-        #      module.exit_json(
-        #          images=[i.name for i in results]
-        #      )
         else:
             module.fail_json(msg="unknown parameters")
     except Exception as error:
