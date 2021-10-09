@@ -6,3 +6,4 @@ pyorient>=1.5.5
 containerd
 docker>=5.0.2
 python-crontab>=2.5.1
+etcd3>=0.12.0

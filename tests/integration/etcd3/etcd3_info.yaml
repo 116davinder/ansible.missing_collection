@@ -1,0 +1,18 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get value of key
+      etcd3_info:
+        host: "localhost"
+        port: 2379
+        get_value: true
+        key: '/Test'
+
+    - name: get status of current etcd node
+      etcd3_info:
+        host: "localhost"
+        port: 2379
+        get_status: true
