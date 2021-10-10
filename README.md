@@ -314,6 +314,7 @@ Name | Description
 [community.missing_collection.docker_volume_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.docker_volume_info_module.rst)|Get information about Docker Volumes.
 [community.missing_collection.doh](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.doh_module.rst)|DNS Lookup over HTTPS.
 [community.missing_collection.etcd3_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.etcd3_info_module.rst)|Get Information from ETCD Cluster.
+[community.missing_collection.etcd3_lease](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.etcd3_lease_module.rst)|Manage Lease in ETCD Cluster.
 [community.missing_collection.mapr_blacklistuser](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_blacklistuser_module.rst)|Add user to mapr blacklist
 [community.missing_collection.mapr_cluster_mapreduce](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_cluster_mapreduce_module.rst)|Get/Set mapreduce mode.
 [community.missing_collection.mapr_node_cldbmaster](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.mapr_node_cldbmaster_module.rst)|Get Cldb Master Node.

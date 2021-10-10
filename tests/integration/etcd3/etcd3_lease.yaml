@@ -1,0 +1,20 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: create lease in etcd for 1000 seconds
+      etcd3_lease:
+        host: "localhost"
+        port: 2379
+        ttl: 1000
+        state: "present"
+      register: __
+
+    - name: revoke lease in etcd
+      etcd3_lease:
+        host: "localhost"
+        port: 2379
+        id: "{{ __.id }}"
+        state: "absent"

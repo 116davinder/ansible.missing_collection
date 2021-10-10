@@ -16,3 +16,10 @@
         host: "localhost"
         port: 2379
         get_status: true
+
+    - name: get lease status
+      etcd3_info:
+        host: "localhost"
+        port: 2379
+        id: 7587857742833949738
+        get_lease_status: true
