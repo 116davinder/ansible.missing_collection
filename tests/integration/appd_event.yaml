@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: create application deployment event to AppDynamics
-      community.missing_collection.appd_event:
+      appd_event:
         scheme: 'https'
         host: 'demo.appdynamics.com'
         port: '443'
