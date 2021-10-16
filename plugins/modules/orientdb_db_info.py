@@ -4,6 +4,7 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
@@ -191,51 +192,45 @@ def main():
                 "db_count_records",
                 "check_default_credentials",
             )
-        ]
+        ],
     )
 
-    client = OrientDB(
-        host=module.params["host"],
-        port=module.params["port"]
-    )
+    client = OrientDB(host=module.params["host"], port=module.params["port"])
 
     try:
-        client.connect(
-            user=module.params["user"],
-            password=module.params["password"]
-        )
+        client.connect(user=module.params["user"], password=module.params["password"])
 
         if module.params["db_list"]:
-            module.exit_json(databases=client.db_list().__getattr__('databases'))
+            module.exit_json(databases=client.db_list().__getattr__("databases"))
         elif module.params["db_size"]:
             client.db_open(
                 module.params["database"],
                 module.params["user"],
-                module.params["password"]
+                module.params["password"],
             )
             module.exit_json(size=client.db_size())
         elif module.params["db_exists"]:
             module.exit_json(
                 exist=client.db_exists(
-                    module.params["database"],
-                    type=module.params["storage_type"]
-                ))
+                    module.params["database"], type=module.params["storage_type"]
+                )
+            )
         elif module.params["db_count_records"]:
             client.db_open(
                 module.params["database"],
                 module.params["user"],
-                module.params["password"]
+                module.params["password"],
             )
             module.exit_json(count=client.db_count_records())
         elif module.params["check_default_credentials"]:
-            _db_list = list()
+            _db_list = []
             # Check for Default Login
             for i in client.db_list().__getattr__("databases"):
                 try:
                     client.db_open(i, "admin", "admin")
                     _db_list.append(i)
                     client.db_close()
-                except:   # nopep8 #nosec
+                except:  # nopep8 #nosec
                     pass
             module.exit_json(default_credential_dbs=_db_list)
         else:

@@ -4,6 +4,7 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
@@ -70,7 +71,7 @@ session:
 try:
     from botocore.exceptions import BotoCoreError, ClientError
 except ImportError:
-    pass    # Handled by AnsibleAWSModule
+    pass  # Handled by AnsibleAWSModule
 
 from ansible_collections.amazon.aws.plugins.module_utils.core import AnsibleAWSModule
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
@@ -79,17 +80,20 @@ from ansible.module_utils.common.dict_transformations import camel_dict_to_snake
 
 def _lexv2_runtime(client, module):
     try:
-        if module.params['get_session']:
-            return client.get_session(
-                botId=module.params['bot_id'],
-                botAliasId=module.params['bot_alias_id'],
-                localeId=module.params['locale_id'],
-                sessionId=module.params['session_id'],
-            ), False
+        if module.params["get_session"]:
+            return (
+                client.get_session(
+                    botId=module.params["bot_id"],
+                    botAliasId=module.params["bot_alias_id"],
+                    localeId=module.params["locale_id"],
+                    sessionId=module.params["session_id"],
+                ),
+                False,
+            )
         else:
             return None, False
     except (BotoCoreError, ClientError) as e:
-        module.fail_json_aws(e, msg='Failed to fetch Amazon lexv2_runtime details')
+        module.fail_json_aws(e, msg="Failed to fetch Amazon lexv2_runtime details")
 
 
 def main():
@@ -104,19 +108,25 @@ def main():
     module = AnsibleAWSModule(
         argument_spec=argument_spec,
         required_if=(
-            ('get_session', True, ['bot_id', 'bot_alias_id', 'locale_id', 'session_id']),
+            (
+                "get_session",
+                True,
+                ["bot_id", "bot_alias_id", "locale_id", "session_id"],
+            ),
         ),
         mutually_exclusive=[],
     )
 
-    client = module.client('lexv2-runtime', retry_decorator=AWSRetry.exponential_backoff())
-    it, paginate = _lexv2_runtime(client, module)
+    client = module.client(
+        "lexv2-runtime", retry_decorator=AWSRetry.exponential_backoff()
+    )
+    it, _ = _lexv2_runtime(client, module)
 
-    if module.params['get_session']:
+    if module.params["get_session"]:
         module.exit_json(session=camel_dict_to_snake_dict(it))
     else:
         module.fail_json("unknown options are passed")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

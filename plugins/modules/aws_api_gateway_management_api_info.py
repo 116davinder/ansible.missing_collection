@@ -4,6 +4,7 @@
 # Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
@@ -40,7 +41,6 @@ EXAMPLES = """
   aws_api_gateway_management_api_info:
     connection_id: 'test'
     get_connection: true
-
 """
 
 RETURN = """
@@ -61,23 +61,28 @@ connection:
 try:
     from botocore.exceptions import BotoCoreError, ClientError
 except ImportError:
-    pass    # Handled by AnsibleAWSModule
+    pass  # Handled by AnsibleAWSModule
 
 from ansible_collections.amazon.aws.plugins.module_utils.core import AnsibleAWSModule
-from ansible_collections.amazon.aws.plugins.module_utils.ec2 import camel_dict_to_snake_dict
+from ansible_collections.amazon.aws.plugins.module_utils.ec2 import (
+    camel_dict_to_snake_dict,
+)
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
 
 
 def _apigatewaymanagementapi(client, module):
     try:
-        if module.params['get_connection']:
-            return client.get_connection(
-                ConnectionId=module.params['connection_id']
-            ), False
+        if module.params["get_connection"]:
+            return (
+                client.get_connection(ConnectionId=module.params["connection_id"]),
+                False,
+            )
         else:
             return None, False
     except (BotoCoreError, ClientError) as e:
-        module.fail_json_aws(e, msg='Failed to fetch aws api gateway management api details')
+        module.fail_json_aws(
+            e, msg="Failed to fetch aws api gateway management api details"
+        )
 
 
 def main():
@@ -88,20 +93,20 @@ def main():
 
     module = AnsibleAWSModule(
         argument_spec=argument_spec,
-        required_if=[
-            ('get_connection', True, ['connection_id'])
-        ],
+        required_if=[("get_connection", True, ["connection_id"])],
         mutually_exclusive=[],
     )
 
-    _gateway = module.client('apigatewaymanagementapi', retry_decorator=AWSRetry.exponential_backoff())
-    _it, paginate = _apigatewaymanagementapi(_gateway, module)
+    _gateway = module.client(
+        "apigatewaymanagementapi", retry_decorator=AWSRetry.exponential_backoff()
+    )
+    _it, _ = _apigatewaymanagementapi(_gateway, module)
 
-    if module.params['get_connection']:
+    if module.params["get_connection"]:
         module.exit_json(connection=camel_dict_to_snake_dict(_it))
     else:
         module.fail_json("unknown options are passed")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
