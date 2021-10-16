@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: create application deployment event to AppDynamics
+      community.missing_collection.appd_event:
+        scheme: 'https'
+        host: 'demo.appdynamics.com'
+        port: '443'
+        user: 'testUser'
+        password: 'testPassword'
+        id: 'test_application'
+        summary: 'new release of application 0.0.1'
+        eventtype: 'APPLICATION_DEPLOYMENT'
+        severity: 'INFO'
+        comment: 'deployed by ansible automation'

@@ -4,6 +4,7 @@
 # Copyright: (c) 2021, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
@@ -119,14 +120,12 @@ def main():
         argument_spec=argument_spec,
     )
 
-    headers = {
-        "accept": "application/dns-json"
-    }
+    headers = {"accept": "application/dns-json"}
     params = {
         "name": module.params["domain_name"],
         "type": module.params["type"],
         "do": module.params["do"],
-        "cd": module.params["cd"]
+        "cd": module.params["cd"],
     }
 
     dns_urls = {
@@ -137,9 +136,7 @@ def main():
 
     if module.params["source"] in dns_urls.keys():
         r = requests.get(
-            url=dns_urls[module.params["source"]],
-            params=params,
-            headers=headers
+            url=dns_urls[module.params["source"]], params=params, headers=headers
         )
     else:
         module.fail_json("unknown options are passed")
