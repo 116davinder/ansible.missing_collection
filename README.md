@@ -84,6 +84,7 @@ Name | Description
 --- | ---
 [community.missing_collection.alertmanager](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.alertmanager_module.rst)|Management of the Alertmanager.
 [community.missing_collection.alertmanager_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.alertmanager_info_module.rst)|Get information from Alertmanager.
+[community.missing_collection.appd_event](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.appd_event_module.rst)|create application deployment events for appdynamics.
 [community.missing_collection.aws_amp](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_amp_module.rst)|Create / Update AWS Prometheus Service.
 [community.missing_collection.aws_amp_info](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_amp_info_module.rst)|Get details about AWS Prometheus Service.
 [community.missing_collection.aws_api_gateway_management_api](https://github.com/116davinder/ansible.missing_collection/blob/master/docs/community.missing_collection.aws_api_gateway_management_api_module.rst)|Manage Resources of Amazon API Gateway Management API.

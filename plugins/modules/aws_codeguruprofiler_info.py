@@ -4,6 +4,7 @@
 # Copyright: (c) 2020, Davinder Pal <dpsangwal@gmail.com>
 
 from __future__ import absolute_import, division, print_function
+
 __metaclass__ = type
 
 
@@ -209,70 +210,101 @@ recommendations:
 try:
     from botocore.exceptions import BotoCoreError, ClientError
 except ImportError:
-    pass    # Handled by AnsibleAWSModule
+    pass  # Handled by AnsibleAWSModule
 
 from ansible_collections.amazon.aws.plugins.module_utils.core import AnsibleAWSModule
-from ansible_collections.amazon.aws.plugins.module_utils.ec2 import camel_dict_to_snake_dict
+from ansible_collections.amazon.aws.plugins.module_utils.ec2 import (
+    camel_dict_to_snake_dict,
+)
 from ansible_collections.amazon.aws.plugins.module_utils.ec2 import AWSRetry
-from ansible_collections.community.missing_collection.plugins.module_utils.aws_response_parser import aws_response_list_parser
-from ansible_collections.community.missing_collection.plugins.module_utils.utils import convert_str_to_datetime
+from ansible_collections.community.missing_collection.plugins.module_utils.aws_response_parser import (
+    aws_response_list_parser,
+)
+from ansible_collections.community.missing_collection.plugins.module_utils.utils import (
+    convert_str_to_datetime,
+)
 
 
 def _codeguruprofiler(client, module):
     try:
-        if module.params['list_profiling_groups']:
-            if client.can_paginate('list_profiling_groups'):
-                paginator = client.get_paginator('list_profiling_groups')
-                return paginator.paginate(
-                    includeDescription=module.params['include_description'],
-                ), True
+        if module.params["list_profiling_groups"]:
+            if client.can_paginate("list_profiling_groups"):
+                paginator = client.get_paginator("list_profiling_groups")
+                return (
+                    paginator.paginate(
+                        includeDescription=module.params["include_description"],
+                    ),
+                    True,
+                )
             else:
-                return client.list_profiling_groups(
-                    includeDescription=module.params['include_description'],
-                ), False
-        elif module.params['list_findings_reports']:
-            _end_time = convert_str_to_datetime(module.params['end_time'])
-            _start_time = convert_str_to_datetime(module.params['start_time'])
+                return (
+                    client.list_profiling_groups(
+                        includeDescription=module.params["include_description"],
+                    ),
+                    False,
+                )
+        elif module.params["list_findings_reports"]:
+            _end_time = convert_str_to_datetime(module.params["end_time"])
+            _start_time = convert_str_to_datetime(module.params["start_time"])
             if _start_time is None or _end_time is None:
-                module.fail_json("date format is wrong, please use correct format. Example: '2020-06-01'")
-            if client.can_paginate('list_findings_reports'):
-                paginator = client.get_paginator('list_findings_reports')
-                return paginator.paginate(
-                    dailyReportsOnly=module.params['daily_reports_only'],
-                    endTime=_end_time,
-                    profilingGroupName=module.params['profiling_group_name'],
-                    startTime=_start_time,
-                ), True
+                module.fail_json(
+                    "date format is wrong, please use correct format. Example: '2020-06-01'"
+                )
+            if client.can_paginate("list_findings_reports"):
+                paginator = client.get_paginator("list_findings_reports")
+                return (
+                    paginator.paginate(
+                        dailyReportsOnly=module.params["daily_reports_only"],
+                        endTime=_end_time,
+                        profilingGroupName=module.params["profiling_group_name"],
+                        startTime=_start_time,
+                    ),
+                    True,
+                )
             else:
-                return client.list_findings_reports(
-                    dailyReportsOnly=module.params['daily_reports_only'],
-                    endTime=_end_time,
-                    profilingGroupName=module.params['profiling_group_name'],
-                    startTime=_start_time,
-                ), False
-        elif module.params['describe_profiling_group']:
-            return client.describe_profiling_group(
-                profilingGroupName=module.params['profiling_group_name'],
-            ), False
-        elif module.params['get_notification_configuration']:
-            return client.get_notification_configuration(
-                profilingGroupName=module.params['profiling_group_name'],
-            ), False
-        elif module.params['get_recommendations']:
-            _end_time = _convert_str_to_datetime(module.params['end_time'])
-            _start_time = _convert_str_to_datetime(module.params['start_time'])
+                return (
+                    client.list_findings_reports(
+                        dailyReportsOnly=module.params["daily_reports_only"],
+                        endTime=_end_time,
+                        profilingGroupName=module.params["profiling_group_name"],
+                        startTime=_start_time,
+                    ),
+                    False,
+                )
+        elif module.params["describe_profiling_group"]:
+            return (
+                client.describe_profiling_group(
+                    profilingGroupName=module.params["profiling_group_name"],
+                ),
+                False,
+            )
+        elif module.params["get_notification_configuration"]:
+            return (
+                client.get_notification_configuration(
+                    profilingGroupName=module.params["profiling_group_name"],
+                ),
+                False,
+            )
+        elif module.params["get_recommendations"]:
+            _end_time = convert_str_to_datetime(module.params["end_time"])
+            _start_time = convert_str_to_datetime(module.params["start_time"])
             if _start_time is None or _end_time is None:
-                module.fail_json("date format is wrong, please correct format. Example: '2020-06-01'")
-            return client.get_recommendations(
-                locale=module.params['locale'],
-                endTime=_end_time,
-                profilingGroupName=module.params['profiling_group_name'],
-                startTime=_start_time,
-            ), False
+                module.fail_json(
+                    "date format is wrong, please correct format. Example: '2020-06-01'"
+                )
+            return (
+                client.get_recommendations(
+                    locale=module.params["locale"],
+                    endTime=_end_time,
+                    profilingGroupName=module.params["profiling_group_name"],
+                    startTime=_start_time,
+                ),
+                False,
+            )
         else:
             return None, False
     except (BotoCoreError, ClientError) as e:
-        module.fail_json_aws(e, msg='Failed to fetch aws code guru profiler details')
+        module.fail_json_aws(e, msg="Failed to fetch aws code guru profiler details")
 
 
 def main():
@@ -293,39 +325,66 @@ def main():
     module = AnsibleAWSModule(
         argument_spec=argument_spec,
         required_if=(
-            ('list_profiling_groups', True, ['include_description']),
-            ('list_findings_reports', True, ['daily_reports_only', 'end_time', 'profiling_group_name', 'start_time']),
-            ('describe_profiling_group', True, ['profiling_group_name']),
-            ('get_notification_configuration', True, ['profiling_group_name']),
-            ('get_recommendations', True, ['locale', 'end_time', 'profiling_group_name', 'start_time']),
+            ("list_profiling_groups", True, ["include_description"]),
+            (
+                "list_findings_reports",
+                True,
+                [
+                    "daily_reports_only",
+                    "end_time",
+                    "profiling_group_name",
+                    "start_time",
+                ],
+            ),
+            ("describe_profiling_group", True, ["profiling_group_name"]),
+            ("get_notification_configuration", True, ["profiling_group_name"]),
+            (
+                "get_recommendations",
+                True,
+                ["locale", "end_time", "profiling_group_name", "start_time"],
+            ),
         ),
         mutually_exclusive=[
             (
-                'list_profiling_groups',
-                'list_findings_reports',
-                'describe_profiling_group',
-                'get_notification_configuration',
-                'get_recommendations'
+                "list_profiling_groups",
+                "list_findings_reports",
+                "describe_profiling_group",
+                "get_notification_configuration",
+                "get_recommendations",
             )
         ],
     )
 
-    client = module.client('codeguruprofiler', retry_decorator=AWSRetry.exponential_backoff())
+    client = module.client(
+        "codeguruprofiler", retry_decorator=AWSRetry.exponential_backoff()
+    )
     _it, paginate = _codeguruprofiler(client, module)
 
-    if module.params['list_profiling_groups']:
-        module.exit_json(profiling_groups=aws_response_list_parser(paginate, _it, 'profilingGroups'))
-    elif module.params['list_findings_reports']:
-        module.exit_json(findings_report_summaries=aws_response_list_parser(paginate, _it, 'findingsReportSummaries'))
-    elif module.params['describe_profiling_group']:
-        module.exit_json(profiling_group=camel_dict_to_snake_dict(_it['profilingGroup']))
-    elif module.params['get_notification_configuration']:
-        module.exit_json(notification_configuration=camel_dict_to_snake_dict(_it['notificationConfiguration']))
-    elif module.params['get_recommendations']:
+    if module.params["list_profiling_groups"]:
+        module.exit_json(
+            profiling_groups=aws_response_list_parser(paginate, _it, "profilingGroups")
+        )
+    elif module.params["list_findings_reports"]:
+        module.exit_json(
+            findings_report_summaries=aws_response_list_parser(
+                paginate, _it, "findingsReportSummaries"
+            )
+        )
+    elif module.params["describe_profiling_group"]:
+        module.exit_json(
+            profiling_group=camel_dict_to_snake_dict(_it["profilingGroup"])
+        )
+    elif module.params["get_notification_configuration"]:
+        module.exit_json(
+            notification_configuration=camel_dict_to_snake_dict(
+                _it["notificationConfiguration"]
+            )
+        )
+    elif module.params["get_recommendations"]:
         module.exit_json(recommendations=camel_dict_to_snake_dict(_it))
     else:
         module.fail_json("unknown options are passed")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

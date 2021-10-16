@@ -11,8 +11,9 @@ then
   exit 1
 fi
 
-echo "Running Pycodestyle"
-pycodestyle --config=.pycodestyle plugins/module_utils/ plugins/modules --show-source
+# started using black in local env
+#echo "Running Pycodestyle"
+#pycodestyle --config=.pycodestyle plugins/module_utils/ plugins/modules --show-source
 
 echo "Running Yamllint"
 yamllint tests/integration
