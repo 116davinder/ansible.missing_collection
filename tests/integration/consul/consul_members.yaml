@@ -1,0 +1,8 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get current members list
+      consul_members:

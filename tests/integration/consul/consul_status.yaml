@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get current leader information
+      consul_status:
+        get_leader: true
+
+    - name: get current perrs information
+      consul_status:
+        get_peers: true
