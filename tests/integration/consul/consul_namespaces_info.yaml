@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get list of namespaces
+      consul_namespaces_info:
+
+    - name: get details of given namespace
+      consul_namespaces_info:
+        namespace: "default"
