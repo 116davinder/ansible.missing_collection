@@ -29,8 +29,9 @@ cockroach_user: name=user1 path=/var/lib/cockroach host={{ inventory_hostname }}
 cockroach_user: name=user1 path=/var/lib/cockroach host={{ inventory_hostname }} state=absent
 
 """
-import os
 
+from ansible.module_utils.basic import *
+import os
 
 # Check if the service exists
 def check_user_exists(module, msg, path, host, port, name, certs_dir):
@@ -146,8 +147,6 @@ def main():
 
     module.exit_json(msg="Unhandled exit", changed=False)
 
-
-from ansible.module_utils.basic import *
 
 if __name__ == "__main__":
     main()
