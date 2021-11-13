@@ -21,7 +21,7 @@ EXAMPLES = """
 - name: create a master node
   cockroach_cluster:
     path: "/var/lib/cockroach"
-    host: "{{ inventory_hostname }}
+    host: "{{ inventory_hostname }}"
     state: started
 
 - name: join a node to a cluster
