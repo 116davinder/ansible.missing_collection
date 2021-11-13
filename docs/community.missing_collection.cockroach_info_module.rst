@@ -1,9 +1,9 @@
-.. _community.missing_collection.cockroach_facts_module:
+.. _community.missing_collection.cockroach_info_module:
 
 
-********************************************
-community.missing_collection.cockroach_facts
-********************************************
+*******************************************
+community.missing_collection.cockroach_info
+*******************************************
 
 **Returns facts about a Cockroach Cluster**
 
@@ -130,7 +130,7 @@ Examples
          user: root
       tasks:
         - name: facts
-          cockroach_facts:
+          cockroach_info:
                 user={{ user |default(omit)}}
                 path={{ path |default(omit)}}
                 host={{ ansible_fqdn }}

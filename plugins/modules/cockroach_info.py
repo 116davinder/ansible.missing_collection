@@ -3,7 +3,7 @@
 
 DOCUMENTATION = """
 ---
-module: cockroach_facts
+module: cockroach_info
 short_description: Returns facts about a Cockroach Cluster
 description:
     - Returns facts about a Cockroach Cluster
@@ -45,7 +45,7 @@ EXAMPLES = """
      user: root
   tasks:
     - name: facts
-      cockroach_facts:
+      cockroach_info:
             user={{ user |default(omit)}}
             path={{ path |default(omit)}}
             host={{ ansible_fqdn }}
