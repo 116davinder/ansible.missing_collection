@@ -32,8 +32,9 @@ EXAMPLES = """
     cluster_master: "node1:{{ port }}"
     state: started
 """
-import os
 
+from ansible.module_utils.basic import *
+import os
 
 # Check if the service exists
 def check_node_started(module, msg, path):
@@ -221,8 +222,6 @@ def main():
 
     module.exit_json(msg="Unhandled exit", changed=False)
 
-
-from ansible.module_utils.basic import *
 
 if __name__ == "__main__":
     main()
