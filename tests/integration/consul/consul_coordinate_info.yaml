@@ -1,0 +1,23 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get wan datacenter coordinates
+      consul_coordinate_info:
+        get_wan_datacenter: true
+        token: "7661077f-3b6b-f763-6330-eedd2c3a442b"
+
+    - name: get lan datacenter coordinates
+      consul_coordinate_info:
+        get_lan_datacenter: true
+        dc: "dc1"
+        token: "7661077f-3b6b-f763-6330-eedd2c3a442b"
+
+    - name: get lan node coordinates
+      consul_coordinate_info:
+        get_lan_node: true
+        dc: "dc1"
+        node: "consul-server1"
+        token: "7661077f-3b6b-f763-6330-eedd2c3a442b"

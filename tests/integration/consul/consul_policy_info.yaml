@@ -1,0 +1,22 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get all policies
+      consul_policy_info:
+        get_all_policies: true
+        token: "7661077f-3b6b-f763-6330-eedd2c3a442b"
+
+    - name: get policy by name
+      consul_policy_info:
+        get_policy: true
+        name: "global-management"
+        token: "7661077f-3b6b-f763-6330-eedd2c3a442b"
+
+    - name: get policy by id
+      consul_policy_info:
+        get_policy: true
+        id: "00000000-0000-0000-0000-000000000001"
+        token: "7661077f-3b6b-f763-6330-eedd2c3a442b"
