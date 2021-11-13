@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get current members list
+      consul_members:
+        token: "7661077f-3b6b-f763-6330-eedd2c3a442b"

@@ -1,0 +1,11 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  ignore_errors: true
+  tasks:
+    - name: get health of given node
+      consul_health:
+        get_node_health: true
+        node: "server-1"
+        dc: "dc1"
