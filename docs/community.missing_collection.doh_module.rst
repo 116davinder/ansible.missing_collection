@@ -17,10 +17,11 @@ Version added: 0.4.0
 
 Synopsis
 --------
-- DNS Lookup over HTTPS from various Public DOH Servers like Google/Cloudflare/Quad9.
+- DNS Lookup over HTTPS from various Public DOH Servers like Google/Cloudflare/Quad9/Alibaba.
 - https://developers.cloudflare.com/1.1.1.1/encrypted-dns/dns-over-https/make-api-requests/dns-json
 - https://developers.google.com/speed/public-dns/docs/doh/json
 - https://www.quad9.net/news/blog/doh-with-quad9-dns-servers/
+- https://www.alibabacloud.com/help/en/doc-detail/171666.html
 
 
 
@@ -110,6 +111,7 @@ Parameters
                                     <li>google</li>
                                     <li><div style="color: blue"><b>cloudflare</b>&nbsp;&larr;</div></li>
                                     <li>quad9</li>
+                                    <li>alibaba</li>
                         </ul>
                 </td>
                 <td>
@@ -160,6 +162,12 @@ Examples
         source: "quad9"
         name: "example.com"
         type: "MX"
+
+    - name: fetch A record from Alibaba DNS over HTTPS
+      community.missing_collection.doh:
+        source: "alibaba"
+        name: "example.com"
+        type: "A"
 
 
 

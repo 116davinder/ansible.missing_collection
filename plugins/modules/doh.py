@@ -12,10 +12,11 @@ DOCUMENTATION = """
 module: doh
 short_description: DNS Lookup over HTTPS.
 description:
-  - DNS Lookup over HTTPS from various Public DOH Servers like Google/Cloudflare/Quad9.
+  - DNS Lookup over HTTPS from various Public DOH Servers like Google/Cloudflare/Quad9/Alibaba.
   - U(https://developers.cloudflare.com/1.1.1.1/encrypted-dns/dns-over-https/make-api-requests/dns-json)
   - U(https://developers.google.com/speed/public-dns/docs/doh/json)
   - U(https://www.quad9.net/news/blog/doh-with-quad9-dns-servers/)
+  - U(https://www.alibabacloud.com/help/en/doc-detail/171666.html)
 version_added: 0.4.0
 options:
   source:
@@ -23,7 +24,7 @@ options:
       - DNS over HTTPS can be queried from Google/Cloudflare/Quad9.
     required: false
     type: str
-    choices: ["google", "cloudflare", "quad9"]
+    choices: ["google", "cloudflare", "quad9", "alibaba"]
     default: "cloudflare"
   domain_name:
     description:
@@ -72,6 +73,12 @@ EXAMPLES = """
     source: "quad9"
     name: "example.com"
     type: "MX"
+
+- name: fetch A record from Alibaba DNS over HTTPS
+  community.missing_collection.doh:
+    source: "alibaba"
+    name: "example.com"
+    type: "A"
 """
 
 RETURN = """
@@ -109,7 +116,7 @@ import requests
 
 def main():
     argument_spec = dict(
-        source=dict(choices=["google", "cloudflare", "quad9"], default="cloudflare"),
+        source=dict(choices=["google", "cloudflare", "quad9", "alibaba"], default="cloudflare"),
         domain_name=dict(required=True, aliases=["name"]),
         type=dict(default="A"),
         do=dict(type=bool, default=True),
@@ -132,9 +139,10 @@ def main():
         "cloudflare": "https://cloudflare-dns.com/dns-query",
         "google": "https://dns.google/resolve",
         "quad9": "https://dns.quad9.net:5053/dns-query",
+        "alibaba": "https://dns.alidns.com/resolve",
     }
 
-    if module.params["source"] in dns_urls.keys():
+    if module.params["source"] in dns_urls:
         r = requests.get(
             url=dns_urls[module.params["source"]], params=params, headers=headers
         )

@@ -20,3 +20,9 @@
         source: "quad9"
         name: "example.com"
         type: "MX"
+
+    - name: fetch A record from Alibaba DNS over HTTPS
+      doh:
+        source: "alibaba"
+        name: "example.com"
+        type: "A"
