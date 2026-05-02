@@ -5,5 +5,5 @@ rethinkdb>=2.4.8
 pyorient>=1.5.5
 containerd
 docker>=5.0.2
-python-crontab>=2.5.1
+python-crontab>=3.3.0
 etcd3>=0.12.0
